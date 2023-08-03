@@ -3,6 +3,7 @@ import QtQuick
 
 QtObject {
     property QtObject primaryColor: QtObject {
+        property color veryLight: "#222227"
         property color light: "#18181B"
         property color regular: "#0E0E10"
         property color shadow: "#0A0A0B"

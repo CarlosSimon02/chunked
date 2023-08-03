@@ -71,6 +71,11 @@ C.ItemDelegate {
                 id: timeRemaining
                 text: "1d 12h remaining"
             }
+
+            C.ProgressBar {
+                Q.Layout.fillWidth: true
+                value: 0.8
+            }
         }
     }
 

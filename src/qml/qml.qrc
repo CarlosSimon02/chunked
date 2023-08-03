@@ -40,5 +40,6 @@
         <file>components/ItemDelegate.qml</file>
         <file>side_menu/components/ItemDelegate.qml</file>
         <file>components/Text.qml</file>
+        <file>components/ProgressBar.qml</file>
     </qresource>
 </RCC>

@@ -1,0 +1,22 @@
+module components
+AccentButton 1.0 AccentButton.qml
+ApplicationWindow 1.0 ApplicationWindow.qml
+Button 1.0 Button.qml
+ComboBox 1.0 ComboBox.qml
+DatePicker 1.0 DatePicker.qml
+GoalItemDelegate 1.0 GoalItemDelegate.qml
+ItemDelegate 1.0 ItemDelegate.qml
+ImagePicker 1.0 ImagePicker.qml
+PageHeaderTitle 1.0 PageHeaderTitle.qml
+Page 1.0 Page.qml
+Pane 1.0 Pane.qml
+Text 1.0 Text.qml
+TextArea 1.0 TextArea.qml
+TextField 1.0 TextField.qml
+TimeFramePicker 1.0 TimeFramePicker.qml
+TimePicker 1.0 TimePicker.qml
+Utils 1.0 Utils.js
+
+singleton ColorScheme ColorScheme.qml
+singleton Units Units.qml
+

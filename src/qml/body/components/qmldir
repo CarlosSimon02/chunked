@@ -1,0 +1,3 @@
+module body.components
+PageHeader 1.0 PageHeader.qml
+GoalItemDelegate 1.0 GoalItemDelegate.qml

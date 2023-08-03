@@ -1,0 +1,44 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Main.qml</file>
+        <file>qml.qrc</file>
+        <file>body/goals/active_goals/ActiveGoalsView.qml</file>
+        <file>body/goals/GoalsView.qml</file>
+        <file>body/settings/SettingsView.qml</file>
+        <file>popups/create_goal/CreateGoalView.qml</file>
+        <file>popups/goal_info/DescriptionView.qml</file>
+        <file>popups/goal_info/GoalInfoView.qml</file>
+        <file>popups/goal_info/HabitsView.qml</file>
+        <file>popups/goal_info/JournalView.qml</file>
+        <file>popups/goal_info/SubgoalsView.qml</file>
+        <file>popups/goal_info/TasksView.qml</file>
+        <file>popups/Popups.qml</file>
+        <file>side_menu/SideMenuView.qml</file>
+        <file>body/BodyView.qml</file>
+        <file>components/ApplicationWindow.qml</file>
+        <file>components/ComboBox.qml</file>
+        <file>components/DatePicker.qml</file>
+        <file>components/ImagePicker.qml</file>
+        <file>components/PageHeaderTitle.qml</file>
+        <file>components/Pane.qml</file>
+        <file>components/qmldir</file>
+        <file>components/TextArea.qml</file>
+        <file>components/TextField.qml</file>
+        <file>components/TimeFramePicker.qml</file>
+        <file>components/TimePicker.qml</file>
+        <file>components/ColorScheme.qml</file>
+        <file>components/Units.qml</file>
+        <file>components/Utils.js</file>
+        <file>side_menu/components/MenuButton.qml</file>
+        <file>components/impl/FadeEffect.qml</file>
+        <file>components/Button.qml</file>
+        <file>body/components/PageHeader.qml</file>
+        <file>components/Page.qml</file>
+        <file>body/components/qmldir</file>
+        <file>components/AccentButton.qml</file>
+        <file>body/components/GoalItemDelegate.qml</file>
+        <file>components/ItemDelegate.qml</file>
+        <file>side_menu/components/ItemDelegate.qml</file>
+        <file>components/Text.qml</file>
+    </qresource>
+</RCC>

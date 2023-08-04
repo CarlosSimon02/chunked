@@ -28,7 +28,7 @@ Pane {
 
                 B.GoalItemDelegate {
                     anchors.centerIn: parent
-                    imageSource: model.imageSource
+//                    imageSource: model.imageSource
 //                    category: model.category
 //                    goalName: model.name
 //                    timeRemaining: "1d 3h remaining"

@@ -14,7 +14,7 @@ C.ItemDelegate {
     elevated: true
     padding: 0
 
-    property alias imageSource: image.source
+//    property alias imageSource: image.source
 //    property alias category: category.text
 //    property alias goalName: goalName.text
 //    property alias timeRemaining: timeRemaining.text
@@ -26,9 +26,9 @@ C.ItemDelegate {
             id: image
             Q.Layout.fillWidth: true
             Q.Layout.preferredHeight: width * 9 / 16
-            Q.Layout.alignment: Qt.AlignTop
             fillMode: Q.Image.PreserveAspectCrop
             opacity: 0.5
+            source: "file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png"
             layer.enabled: true
             layer.effect: Q.OpacityMask {
                 maskSource: Q.Item {
@@ -52,29 +52,77 @@ C.ItemDelegate {
             }
         }
 
-        Q.ColumnLayout {
+        Q.Item {
             Q.Layout.fillWidth: true
-            Q.Layout.margins: 15
+            Q.Layout.fillHeight: true
+            Q.Layout.margins: 20
 
-            C.Text {
-                id: goalName
-                Q.Layout.fillWidth: true
-                font.weight: Q.Font.Bold
-                font.pixelSize: 20
-                wrapMode: Q.Text.Wrap
-                maximumLineCount: 2
-                elide: Q.Text.ElideRight
-                text: "Become a Fucking Software Engineer"
-            }
+            Q.ColumnLayout {
+                anchors.fill: parent
 
-            C.Text {
-                id: timeRemaining
-                text: "1d 12h remaining"
-            }
+                Q.ColumnLayout {
+                    Q.Layout.fillWidth: true
+                    Q.Layout.alignment: Qt.AlignTop
+                    spacing: 10
 
-            C.ProgressBar {
-                Q.Layout.fillWidth: true
-                value: 0.8
+                    Q.Label {
+                        text: "Home"
+                        leftPadding: 10
+                        rightPadding: 10
+                        topPadding: 3
+                        bottomPadding: 3
+                        color: C.ColorScheme.secondaryColor.dark
+                        background: Q.Rectangle {
+                            radius: C.Units.commonRadius
+                            color: C.Utils.setColorAlpha(C.ColorScheme.secondaryColor.dark, 0.1)
+                        }
+                    }
+
+                    C.Text {
+                        id: goalName
+                        Q.Layout.fillWidth: true
+                        font.weight: Q.Font.Bold
+                        font.pixelSize: 22
+                        wrapMode: Q.Text.Wrap
+                        maximumLineCount: 2
+                        elide: Q.Text.ElideRight
+                        text: "Become a Fucking Software Engineer"
+                    }
+
+                    C.Text {
+                        id: timeRemaining
+                        text: "1d 12h remaining"
+                    }
+                }
+
+                Q.ColumnLayout {
+                    Q.Layout.fillWidth: true
+                    Q.Layout.fillHeight: true
+                    spacing: 10
+
+                    Q.RowLayout {
+                        C.Text {
+                            Q.Layout.fillWidth: true
+                            Q.Layout.alignment: Qt.AlignBaseline
+                            color: C.ColorScheme.secondaryColor.dark
+                            text: "30 / 100 books completed"
+                        }
+
+                        C.Text {
+                            Q.Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
+                            color: C.ColorScheme.accentColor.regular
+                            font.pixelSize: 35
+                            font.bold: true
+                            text: "30%"
+                        }
+
+                    }
+
+                    C.ProgressBar {
+                        Q.Layout.fillWidth: true
+                        value: 0.8
+                    }
+                }
             }
         }
     }

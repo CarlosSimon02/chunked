@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 import app
 
 import components as Comp
@@ -21,8 +22,10 @@ Comp.Popup {
                 onClicked: popup.close()
             }
 
-           Comp.PageHeaderTitle {
-                text: "Goal Info"
+            Comp.Text {
+               text: "Goal Info"
+               font.weight: Font.Bold
+               font.pixelSize: 28
             }
         }
 
@@ -30,158 +33,185 @@ Comp.Popup {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            ScrollView {
-                id: scrollView
+            Comp.Pane {
                 Layout.preferredWidth: 400
                 Layout.fillHeight: true
                 padding: 0
-                ScrollBar.vertical.policy: ScrollBar.AlwaysOff
-                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-                background: Rectangle {
-                    color: Comp.ColorScheme.primaryColor.light
-                }
 
-                ColumnLayout {
-                    width: scrollView.availableWidth
-                    spacing: 40
-
-                    Image {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: width * 9 / 16
-                        sourceSize.width: Layout.preferredWidth
-                        sourceSize.height: Layout.preferredHeight
-                        source: goal.imageSource
-                        fillMode: Image.PreserveAspectCrop
-                    }
+                Comp.ScrollView {
+                    id: scrollView
+                    anchors.fill: parent
+                    contentWidth: availableWidth
 
                     ColumnLayout {
-                        Comp.Text {
-                            text: goal.name
-                            font.weight: Font.Bold
-                            font.pixelSize: 30
-                        }
+                        width: scrollView.availableWidth
+                        spacing: 0
 
-                        Comp.Text {
-                            text: "1d 2h remaining"
-                        }
-                    }
-
-                    ColumnLayout {
-                        Comp.Text {
-                            text: "Progress"
-                            font.bold: true
-                            font.pixelSize: 18
-                        }
-
-                        ColumnLayout {
+                        Image {
+                            id: image
                             Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            spacing: 10
+                            Layout.preferredHeight: width * 9 / 16
+                            source: goal.imageSource
+                            fillMode: Image.PreserveAspectCrop
 
-                            RowLayout {
-                                Comp.Text {
-                                    Layout.fillWidth: true
-                                    Layout.alignment: Qt.AlignBaseline
-                                    color: Comp.ColorScheme.secondaryColor.dark
-                                    text: goal.progressValue.toString() + " / " + goal.targetValue.toString() + " " + goal.progressUnit + " completed"
+                            layer.enabled: true
+                            layer.effect: OpacityMask {
+                                maskSource: Item {
+                                    width: image.width
+                                    height: image.height
+
+                                    ColumnLayout {
+                                        anchors.fill: parent
+                                        spacing: -Comp.Units.commonRadius
+                                        Rectangle {
+                                            Layout.fillWidth: true
+                                            Layout.fillHeight: true
+                                            radius: Comp.Units.commonRadius
+                                        }
+                                        Rectangle {
+                                            Layout.fillWidth: true
+                                            Layout.preferredHeight: Comp.Units.commonRadius
+                                        }
+                                    }
                                 }
-
-                                Comp.Text {
-                                    Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
-                                    color: Comp.ColorScheme.accentColor.regular
-                                    font.pixelSize: 35
-                                    font.bold: true
-                                    text: Math.floor(goal.progressValue/goal.targetValue*100).toString()+"%"
-                                }
-
                             }
-
-                            Comp.ProgressBar {
-                                Layout.fillWidth: true
-                                value: goal.progressValue/goal.targetValue
-                            }
-                        }
-
-                    }
-
-                    ColumnLayout {
-                        Layout.fillWidth: true
-                        spacing: 15
-
-                        Comp.Text {
-                            text: "Details"
-                            font.bold: true
-                            font.pixelSize: 18
                         }
 
                         ColumnLayout {
-                            Repeater {
-                                Layout.fillWidth: true
-                                RowLayout {
-                                    width: parent
+                            Layout.margins: 20
+                            spacing: 40
 
-                                    Comp.Text {
-                                        Layout.preferredWidth: 100
-                                        Layout.alignment: Qt.AlignTop
-                                        color: Comp.ColorScheme.secondaryColor.dark
-                                        text: model.label + ":"
+                            ColumnLayout {
+                                Comp.Text {
+                                    text: goal.name
+                                    font.weight: Font.Bold
+                                    font.pixelSize: 24
+                                }
+
+                                Comp.Text {
+                                    text: "1d 2h remaining"
+                                }
+                            }
+
+                            ColumnLayout {
+                                Comp.Text {
+                                    text: "Progress"
+                                    font.bold: true
+                                    font.pixelSize: 18
+                                }
+
+                                ColumnLayout {
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+                                    spacing: 10
+
+                                    RowLayout {
+                                        Comp.Text {
+                                            Layout.fillWidth: true
+                                            Layout.alignment: Qt.AlignBaseline
+                                            color: Comp.ColorScheme.secondaryColor.dark
+                                            text: goal.progressValue.toString() + " / " + goal.targetValue.toString() + " " + goal.progressUnit + " completed"
+                                        }
+
+                                        Comp.Text {
+                                            Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
+                                            color: Comp.ColorScheme.accentColor.regular
+                                            font.pixelSize: 35
+                                            font.bold: true
+                                            text: Math.floor(goal.progressValue/goal.targetValue*100).toString()+"%"
+                                        }
+
                                     }
 
-                                    Comp.Text {
+                                    Comp.ProgressBar {
                                         Layout.fillWidth: true
-                                        text: model.data
+                                        value: goal.progressValue/goal.targetValue
                                     }
                                 }
 
-                                model: ListModel {
-                                    ListElement {
-                                        label: "Parent"
-                                        data: "Wash Dishes"
-                                    }
+                            }
 
-                                    ListElement {
-                                        label: "Category"
-                                        data: "Home"
-                                    }
+                            ColumnLayout {
+                                Layout.fillWidth: true
+                                spacing: 15
 
-                                    ListElement {
-                                        label: "Status"
-                                        data: "Active"
-                                    }
+                                Comp.Text {
+                                    text: "Details"
+                                    font.bold: true
+                                    font.pixelSize: 18
+                                }
 
-                                    ListElement {
-                                        label: "Category"
-                                        data: "Home"
-                                    }
+                                ColumnLayout {
+                                    spacing: 10
+                                    Repeater {
+                                        Layout.fillWidth: true
+                                        RowLayout {
+                                            width: parent
 
-                                    ListElement {
-                                        label: "Start Time"
-                                        data: "January 1, 2023"
-                                    }
+                                            Comp.Text {
+                                                Layout.preferredWidth: 100
+                                                Layout.alignment: Qt.AlignTop
+                                                color: Comp.ColorScheme.secondaryColor.dark
+                                                text: model.label + ":"
+                                            }
 
-                                    ListElement {
-                                        label: "End Time"
-                                        data: "December 31, 2023"
-                                    }
+                                            Comp.Text {
+                                                Layout.fillWidth: true
+                                                text: model.data
+                                            }
+                                        }
 
-                                    ListElement {
-                                        label: "Time Frame"
-                                        data: "365 days"
-                                    }
+                                        model: ListModel {
+                                            ListElement {
+                                                label: "Parent"
+                                                data: "Wash Dishes"
+                                            }
 
-                                    ListElement {
-                                        label: "Tracking"
-                                        data: "Task"
-                                    }
+                                            ListElement {
+                                                label: "Category"
+                                                data: "Home"
+                                            }
 
-                                    ListElement {
-                                        label: "Target"
-                                        data: "100"
-                                    }
+                                            ListElement {
+                                                label: "Status"
+                                                data: "Active"
+                                            }
 
-                                    ListElement {
-                                        label: "Unit"
-                                        data: "books"
+                                            ListElement {
+                                                label: "Category"
+                                                data: "Home"
+                                            }
+
+                                            ListElement {
+                                                label: "Start Time"
+                                                data: "January 1, 2023"
+                                            }
+
+                                            ListElement {
+                                                label: "End Time"
+                                                data: "December 31, 2023"
+                                            }
+
+                                            ListElement {
+                                                label: "Time Frame"
+                                                data: "365 days"
+                                            }
+
+                                            ListElement {
+                                                label: "Tracking"
+                                                data: "Task"
+                                            }
+
+                                            ListElement {
+                                                label: "Target"
+                                                data: "100"
+                                            }
+
+                                            ListElement {
+                                                label: "Unit"
+                                                data: "books"
+                                            }
+                                        }
                                     }
                                 }
                             }

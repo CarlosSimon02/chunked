@@ -1,7 +1,8 @@
-import QtQuick 
+import QtQuick as Quick
 
 import components as Comp
 
-Text {
+Quick.Text {
     color: Comp.ColorScheme.secondaryColor.regular
+    font.pixelSize: 14
 }

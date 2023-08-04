@@ -1,7 +1,7 @@
-import QtQuick as Q
+import QtQuick 
 import QtQuick.Templates as T
 
-import components as C
+import components as Comp
 
 T.ProgressBar {
     id: progressBar
@@ -12,22 +12,22 @@ T.ProgressBar {
                              implicitContentHeight + topPadding + bottomPadding)
 
 
-    contentItem: Q.Item {
+    contentItem: Item {
         implicitWidth: 200
         implicitHeight: 7
 
-        Q.Rectangle {
+        Rectangle {
             width: progressBar.visualPosition * parent.width
             height: parent.height
             radius: progressBar.background.radius
-            color: C.ColorScheme.accentColor.regular
+            color: Comp.ColorScheme.accentColor.regular
         }
     }
 
-    background: Q.Rectangle {
+    background: Rectangle {
         implicitWidth: 200
         implicitHeight: 10
-        color: C.Utils.setColorAlpha(C.ColorScheme.accentColor.regular, 0.2)
+        color: Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular, 0.2)
         radius: implicitHeight
     }
 }

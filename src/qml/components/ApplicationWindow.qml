@@ -1,16 +1,16 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
+import QtQuick 
+import QtQuick.Controls 
 
-import components as C
+import components as Comp
 
-Q.ApplicationWindow {
+ApplicationWindow {
     width: 1280
     height: 720
     visible: true
     title: qsTr("chunked")
     font.family: "Poppins"
 
-    background: Q.Rectangle {
+    background: Rectangle {
         color: ColorScheme.primaryColor.dark
     }
 }

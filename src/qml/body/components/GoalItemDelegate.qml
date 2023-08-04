@@ -1,126 +1,124 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
-import QtQuick.Layouts as Q
-import Qt5Compat.GraphicalEffects as Q
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
-import components as C
+import components as Comp
 
-C.ItemDelegate {
+Comp.ItemDelegate {
     id: itemDelegate
     implicitWidth: 400
     implicitHeight: 490
-    backgroundColor: C.ColorScheme.primaryColor.light
-    fadeEffectColor: C.ColorScheme.secondaryColor.dark
+    backgroundColor: Comp.ColorScheme.primaryColor.light
+    fadeEffectColor: Comp.ColorScheme.secondaryColor.dark
     elevated: true
     padding: 0
 
-//    property alias imageSource: image.source
-//    property alias category: category.text
-//    property alias goalName: goalName.text
-//    property alias timeRemaining: timeRemaining.text
-//    property alias progressBar: progressBar
-//    property string unit: ""
+    property alias imageSource: image.source
+    property alias category: category.text
+    property alias goalName: goalName.text
+    property alias timeRemaining: timeRemaining.text
+    property double progressValue
+    property double targetValue
+    property string unit: ""
 
-    contentItem: Q.ColumnLayout {
-        Q.Image {
+    contentItem: ColumnLayout {
+        Image {
             id: image
-            Q.Layout.fillWidth: true
-            Q.Layout.preferredHeight: width * 9 / 16
-            fillMode: Q.Image.PreserveAspectCrop
+            Layout.fillWidth: true
+            Layout.preferredHeight: width * 9 / 16
+            fillMode: Image.PreserveAspectCrop
             opacity: 0.5
-            source: "file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png"
             layer.enabled: true
-            layer.effect: Q.OpacityMask {
-                maskSource: Q.Item {
+            layer.effect: OpacityMask {
+                maskSource: Item {
                     width: image.width
                     height: image.height
 
-                    Q.ColumnLayout {
+                    ColumnLayout {
                         anchors.fill: parent
-                        spacing: -C.Units.commonRadius
-                        Q.Rectangle {
-                            Q.Layout.fillWidth: true
-                            Q.Layout.fillHeight: true
-                            radius: C.Units.commonRadius
+                        spacing: -Comp.Units.commonRadius
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            radius: Comp.Units.commonRadius
                         }
-                        Q.Rectangle {
-                            Q.Layout.fillWidth: true
-                            Q.Layout.preferredHeight: C.Units.commonRadius
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: Comp.Units.commonRadius
                         }
                     }
                 }
             }
         }
 
-        Q.Item {
-            Q.Layout.fillWidth: true
-            Q.Layout.fillHeight: true
-            Q.Layout.margins: 20
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.margins: 20
 
-            Q.ColumnLayout {
+            ColumnLayout {
                 anchors.fill: parent
 
-                Q.ColumnLayout {
-                    Q.Layout.fillWidth: true
-                    Q.Layout.alignment: Qt.AlignTop
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
                     spacing: 10
 
-                    Q.Label {
-                        text: "Home"
+                    Label {
+                        id: category
                         leftPadding: 10
                         rightPadding: 10
                         topPadding: 3
                         bottomPadding: 3
-                        color: C.ColorScheme.secondaryColor.dark
-                        background: Q.Rectangle {
-                            radius: C.Units.commonRadius
-                            color: C.Utils.setColorAlpha(C.ColorScheme.secondaryColor.dark, 0.1)
+                        color: Comp.ColorScheme.secondaryColor.dark
+                        background: Rectangle {
+                            radius: Comp.Units.commonRadius
+                            color: Comp.Utils.setColorAlpha(Comp.ColorScheme.secondaryColor.dark, 0.1)
                         }
                     }
 
-                    C.Text {
+                    Comp.Text {
                         id: goalName
-                        Q.Layout.fillWidth: true
-                        font.weight: Q.Font.Bold
+                        Layout.fillWidth: true
+                        font.weight: Font.Bold
                         font.pixelSize: 22
-                        wrapMode: Q.Text.Wrap
+                        wrapMode: Text.Wrap
                         maximumLineCount: 2
-                        elide: Q.Text.ElideRight
-                        text: "Become a Fucking Software Engineer"
+                        elide: Text.ElideRight
                     }
 
-                    C.Text {
+                    Comp.Text {
                         id: timeRemaining
-                        text: "1d 12h remaining"
                     }
                 }
 
-                Q.ColumnLayout {
-                    Q.Layout.fillWidth: true
-                    Q.Layout.fillHeight: true
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
                     spacing: 10
 
-                    Q.RowLayout {
-                        C.Text {
-                            Q.Layout.fillWidth: true
-                            Q.Layout.alignment: Qt.AlignBaseline
-                            color: C.ColorScheme.secondaryColor.dark
-                            text: "30 / 100 books completed"
+                    RowLayout {
+                        Comp.Text {
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignBaseline
+                            color: Comp.ColorScheme.secondaryColor.dark
+                            text: itemDelegate.progressValue.toString() + " / " + itemDelegate.targetValue.toString() + " " + itemDelegate.unit + " completed"
                         }
 
-                        C.Text {
-                            Q.Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
-                            color: C.ColorScheme.accentColor.regular
+                        Comp.Text {
+                            Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
+                            color: Comp.ColorScheme.accentColor.regular
                             font.pixelSize: 35
                             font.bold: true
-                            text: "30%"
+                            text: Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%"
                         }
 
                     }
 
-                    C.ProgressBar {
-                        Q.Layout.fillWidth: true
-                        value: 0.8
+                    Comp.ProgressBar {
+                        Layout.fillWidth: true
+                        value: itemDelegate.progressValue/itemDelegate.targetValue
                     }
                 }
             }
@@ -128,44 +126,44 @@ C.ItemDelegate {
     }
 
 
-//    contentItem: Q.ColumnLayout {
-//        Q.RowLayout {
-//            Q.Image {
+//    contentItem: ColumnLayout {
+//        RowLayout {
+//            Image {
 //                id: image
-//                Q.Layout.preferredWidth: 80
-//                Q.Layout.preferredHeight: 80
-//                sourceSize.width: Q.Layout.preferredWidth
-//                sourceSize.height: Q.Layout.preferredHeight
+//                Layout.preferredWidth: 80
+//                Layout.preferredHeight: 80
+//                sourceSize.width: Layout.preferredWidth
+//                sourceSize.height: Layout.preferredHeight
 //            }
 
-//            Q.ColumnLayout {
-//                C.Text {
+//            ColumnLayout {
+//                Comp.Text {
 //                    id: category
 //                }
 
-//                C.Text {
+//                Comp.Text {
 //                    id: goalName
-//                    font.weight: Q.Font.Bold
+//                    font.weight: Font.Bold
 //                    font.pixelSize: 16
 //                }
 
-//                C.Text {
+//                Comp.Text {
 //                    id: timeRemaining
 //                }
 //            }
 //        }
 
-//        Q.ColumnLayout {
-//            Q.ProgressBar {
-//                Q.Layout.fillWidth: true
+//        ColumnLayout {
+//            ProgressBar {
+//                Layout.fillWidth: true
 //                id: progressBar
 //            }
 
-//            C.Text {
+//            Comp.Text {
 //                text: Math.floor(progressBar.value / progressBar.to * 100).toString() + "%"
 //            }
 
-//            C.Text {
+//            Comp.Text {
 //                text: progressBar.value.toString() + "/" + progressBar.to.toString() + " " + itemDelegate.unit + " completed"
 //            }
 //        }

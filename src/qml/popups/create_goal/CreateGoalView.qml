@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import app
 
-import components as App
+import components as Comp
 
 Popup {
     id: popup
@@ -36,7 +36,7 @@ Popup {
                 onClicked: popup.close()
             }
 
-            App.PageHeaderTitle {
+           Comp.PageHeaderTitle {
                 text: "Create Goal"
             }
         }
@@ -49,17 +49,17 @@ Popup {
                 width: parent.availableWidth
                 spacing: 30
 
-                App.ImagePicker {
+               Comp.ImagePicker {
                     id: imagePicker
                     label: "Image"
                 }
 
-                App.TextField {
+               Comp.TextField {
                     id: nameTextArea
                     label: "Goal Name"
                 }
 
-                App.ComboBox {
+               Comp.ComboBox {
                     id: categoryComboBox
                     label: "Category"
                     control.model: ["Home","Personal","Work"]
@@ -92,26 +92,26 @@ Popup {
                         Layout.preferredHeight: 200
                         currentIndex: tabBar.currentIndex
 
-                        App.TextArea {
+                       Comp.TextArea {
                             id: missionTextArea
                             placeholderText: "Mission"
                         }
-                        App.TextArea {
+                       Comp.TextArea {
                             id: visionTextArea
                             placeholderText: "Vision"
                         }
-                        App.TextArea {
+                       Comp.TextArea {
                             id: obstaclesTextArea
                             placeholderText: "Obstacles"
                         }
-                        App.TextArea {
+                       Comp.TextArea {
                             id: resourcesTextArea
                             placeholderText: "Resources"
                         }
                     }
                 }
 
-                App.ComboBox {
+               Comp.ComboBox {
                     id: progressTrackerComboBox
                     label: "Track Progress by"
                     control.model: [
@@ -168,27 +168,27 @@ Popup {
                    }
                 }
 
-                App.TextField {
+               Comp.TextField {
                     id: progressValueTextArea
                     label: "Progress"
                     control.text: "0"
                     enabled: false
                 }
 
-                App.TextField {
+               Comp.TextField {
                     id: targetValueTextArea
                     label: "Target"
                     control.text: "0"
                     enabled: false
                 }
 
-                App.TextField {
+               Comp.TextField {
                     id: progressUnitTextArea
                     label: "Unit"
                     control.text: "task/s"
                 }
 
-                App.TimeFramePicker {
+               Comp.TimeFramePicker {
                     id: timeFramePicker
                     label: "Time Frame"
                 }

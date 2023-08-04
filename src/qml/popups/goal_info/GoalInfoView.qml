@@ -3,12 +3,10 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import app
 
-import components as App
+import components as Comp
 
-Popup {
+Comp.Popup {
     id: popup
-    width: applicationWindow.width
-    height: applicationWindow.height
 
     property Goal goal: Goal {
         onIdChanged: dbAccess.loadData(goal)
@@ -23,7 +21,7 @@ Popup {
                 onClicked: popup.close()
             }
 
-            App.PageHeaderTitle {
+           Comp.PageHeaderTitle {
                 text: "Goal Info"
             }
         }

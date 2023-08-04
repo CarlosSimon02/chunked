@@ -1,45 +1,45 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
-import QtQuick.Layouts as Q
+import QtQuick 
+import QtQuick.Controls 
+import QtQuick.Layouts 
 
-import components as C
+import components as Comp
 
-C.Pane {
+Comp.Pane {
     id: pane
     implicitHeight: 140
     padding: 20
     bottomPadding: 12
 
-    background: Q.Item {
-        Q.ColumnLayout {
+    background: Item {
+        ColumnLayout {
             anchors.fill: parent
             spacing: 0
 
-            Q.ColumnLayout {
-                Q.Layout.fillWidth: true
-                Q.Layout.fillHeight: true
-                spacing: -1 * C.Units.commonRadius
+            ColumnLayout {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                spacing: -1 * Comp.Units.commonRadius
 
-                Q.Rectangle {
-                    Q.Layout.fillWidth: true
-                    Q.Layout.fillHeight: true
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
                     color: pane.backgroundColor
-                    radius: C.Units.commonRadius
+                    radius: Comp.Units.commonRadius
                 }
 
-                Q.Rectangle {
-                    Q.Layout.fillWidth: true
-                    Q.Layout.preferredHeight: C.Units.commonRadius
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: Comp.Units.commonRadius
                     color: pane.backgroundColor
                 }
             }
 
-            Q.Rectangle {
-                Q.Layout.fillWidth: true
-                Q.Layout.preferredHeight: pane.bottomPadding
-                gradient: Q.Gradient {
-                    Q.GradientStop { position: 0.0; color: "#AA080808" }
-                    Q.GradientStop { position: 0.5; color: "#00080808" }
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: pane.bottomPadding
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#AA080808" }
+                    GradientStop { position: 0.5; color: "#00080808" }
 
                 }
             }

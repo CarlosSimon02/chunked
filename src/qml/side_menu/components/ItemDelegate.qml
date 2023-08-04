@@ -1,32 +1,32 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
+import QtQuick 
+import QtQuick.Controls 
 
-import components as C
+import components as Comp
 
-C.ItemDelegate {
+Comp.ItemDelegate {
     id: iconLabelItemDelegate 
     property bool opened
 
-    Q.Item {
-        states: Q.State {
+    Item {
+        states: State {
             name: "opened"
             when: iconLabelItemDelegate.opened
 
-            Q.PropertyChanges {
+            PropertyChanges {
                 target: iconLabelItemDelegate
                 horizontalPadding: 18
             }
         }
 
-        transitions: Q.Transition {
+        transitions: Transition {
             to: "opened"
             reversible: true
 
-            Q.NumberAnimation {
+            NumberAnimation {
                 targets: [iconLabelItemDelegate]
                 property:"horizontalPadding"
                 duration: 500
-                easing.type: Q.Easing.OutQuad
+                easing.type: Easing.OutQuad
             }
         }
     }

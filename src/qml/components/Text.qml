@@ -1,7 +1,7 @@
-import QtQuick as Q
+import QtQuick 
 
-import components as C
+import components as Comp
 
-Q.Text {
-    color: C.ColorScheme.secondaryColor.regular
+Text {
+    color: Comp.ColorScheme.secondaryColor.regular
 }

@@ -1,9 +1,9 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
-import Qt5Compat.GraphicalEffects as Q
+import QtQuick 
+import QtQuick.Controls 
+import Qt5Compat.GraphicalEffects 
 import QtQuick.Templates as T
 
-import components as C
+import components as Comp
 import "./impl" as Impl
 
 T.ItemDelegate {
@@ -22,16 +22,16 @@ T.ItemDelegate {
     icon.height: 20
     icon.color: foregroundColor
     font.pixelSize: 14
-    font.weight: Q.Font.Medium
+    font.weight: Font.Medium
 
-    property Q.color foregroundColor: highlighted ? C.ColorScheme.accentColor.regular :
-                                             C.ColorScheme.secondaryColor.dark
-    property Q.color backgroundColor: highlighted ? C.Utils.setColorAlpha(C.ColorScheme.accentColor.regular, 0.1) :
+    property color foregroundColor: highlighted ? Comp.ColorScheme.accentColor.regular :
+                                             Comp.ColorScheme.secondaryColor.dark
+    property color backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular, 0.1) :
                                              "transparent"
-    property Q.color fadeEffectColor: C.ColorScheme.secondaryColor.regular
+    property color fadeEffectColor: Comp.ColorScheme.secondaryColor.regular
     property bool elevated: false
 
-    contentItem: Q.IconLabel {
+    contentItem: IconLabel {
         spacing: itemDelegate.spacing
         mirrored: itemDelegate.mirrored
         display: itemDelegate.display
@@ -43,18 +43,18 @@ T.ItemDelegate {
         color: itemDelegate.foregroundColor
     }
 
-    background: Q.Rectangle {
-        radius: C.Units.commonRadius
+    background: Rectangle {
+        radius: Comp.Units.commonRadius
         color: itemDelegate.backgroundColor
 
         layer.enabled: itemDelegate.elevated
-        layer.effect: Q.DropShadow {
+        layer.effect: DropShadow {
             horizontalOffset: 2
             verticalOffset: 2
             spread: 0.2
             radius: 12
             samples: 17
-            color: C.ColorScheme.primaryColor.shadow
+            color: Comp.ColorScheme.primaryColor.shadow
         }
 
         Impl.FadeEffect {
@@ -66,21 +66,21 @@ T.ItemDelegate {
         }
     }
 
-    states: Q.State {
+    states: State {
         name: "down"
         when: itemDelegate.hovered && !itemDelegate.highlighted
 
-        Q.PropertyChanges {
+        PropertyChanges {
             target: itemDelegate
-            foregroundColor: C.ColorScheme.secondaryColor.regular
+            foregroundColor: Comp.ColorScheme.secondaryColor.regular
         }
     }
 
-    transitions: Q.Transition {
+    transitions: Transition {
         to: "down"
         reversible: true
 
-        Q.ColorAnimation {
+        ColorAnimation {
             target: itemDelegate
             property: "foregroundColor"
             duration: 300

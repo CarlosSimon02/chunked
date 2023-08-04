@@ -1,75 +1,75 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
-import QtQuick.Layouts as Q
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import components as C
-import body.components as B
+import components as Comp
+import body.components as Body
 import "./active_goals"
 
-C.Page {
+Comp.Page {
     signal goalAdded
     topPadding: -pageHeader.bottomPadding
     onGoalAdded: activeGoalsView.model.refresh()
 
-    header: B.PageHeader {
+    header: Body.PageHeader {
         id: pageHeader
 
-        C.Text {
+        Comp.Text {
             text: "Goals"
-            font.weight: Q.Font.Bold
+            font.weight: Font.Bold
             font.pixelSize: 28
         }
 
-        Q.RowLayout {
+        RowLayout {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 0
             width: parent.width
 
-            Q.ListView {
+            ListView {
                 id: listView
-                Q.Layout.fillWidth: true
-                Q.Layout.preferredHeight: contentItem.childrenRect.height
-                orientation: Q.ListView.Horizontal
+                Layout.fillWidth: true
+                Layout.preferredHeight: contentItem.childrenRect.height
+                orientation: ListView.Horizontal
                 currentIndex: 0
                 spacing: 10
                 clip: true
                 highlightFollowsCurrentItem: false
-                highlight: Q.Rectangle {
+                highlight: Rectangle {
                     height: 2
                     width: listView.currentItem.width
-                    color: C.ColorScheme.accentColor.regular
+                    color: Comp.ColorScheme.accentColor.regular
                     x: listView.currentItem.x
                     y: listView.currentItem.y + listView.currentItem.height - height
 
-                    Q.Behavior on width { Q.SmoothedAnimation { velocity: 100 } }
-                    Q.Behavior on x { Q.SmoothedAnimation { velocity: 400 } }
+                    Behavior on width { SmoothedAnimation { velocity: 100 } }
+                    Behavior on x { SmoothedAnimation { velocity: 400 } }
                 }
 
-                delegate: C.ItemDelegate {
+                delegate: Comp.ItemDelegate {
                     padding: 10
                     bottomPadding: 20
                     text: model.text
-                    font.weight: Q.Font.Normal
+                    font.weight: Font.Normal
                     bottomInset: 10
-                    highlighted: Q.ListView.isCurrentItem
+                    highlighted: ListView.isCurrentItem
                     backgroundColor: "transparent"
-                    onClicked: Q.ListView.view.currentIndex = model.index
+                    onClicked: ListView.view.currentIndex = model.index
                 }
 
-                model: Q.ListModel {
-                    Q.ListElement {
+                model: ListModel {
+                    ListElement {
                         text: "Active"
                     }
-                    Q.ListElement {
+                    ListElement {
                         text: "Achieved"
                     }
-                    Q.ListElement {
+                    ListElement {
                         text: "Failed"
                     }
-                    Q.ListElement {
+                    ListElement {
                         text: "Dreams"
                     }
-                    Q.ListElement {
+                    ListElement {
                         text: "Templates"
                     }
                 }
@@ -77,7 +77,7 @@ C.Page {
         }
     }
 
-    Q.StackLayout {
+    StackLayout {
         anchors.fill: parent
 
         ActiveGoalsView {
@@ -85,7 +85,7 @@ C.Page {
         }
     }
 
-    C.AccentButton {
+    Comp.AccentButton {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.bottomMargin: 30

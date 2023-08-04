@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls as Q
+import QtQuick.Controls 
 import QtQuick.Layouts
 
 ColumnLayout {
@@ -10,7 +10,7 @@ ColumnLayout {
         id: label
     }
 
-    Q.TextField {
+    TextField {
         id: textField
         Layout.preferredWidth: 300
         Layout.preferredHeight: 40

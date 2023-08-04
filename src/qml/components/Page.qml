@@ -1,20 +1,20 @@
-import QtQuick as Q
-import QtQuick.Controls.Material.impl as Q
-import QtQuick.Controls.Material as Q
+import QtQuick 
+import QtQuick.Controls.Material.impl 
+import QtQuick.Controls.Material 
 
-import components as C
+import components as Comp
 
-Q.Page {
+Page {
     id: page
-    property Q.color backgroundColor: ColorScheme.primaryColor.regular
+    property color backgroundColor: ColorScheme.primaryColor.regular
     clip: false
 
-    background: Q.Rectangle {
+    background: Rectangle {
         color: page.backgroundColor
         radius: Units.commonRadius
 
         layer.enabled: true
-        layer.effect: Q.ElevationEffect {
+        layer.effect: ElevationEffect {
             elevation: 10
         }
     }

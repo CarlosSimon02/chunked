@@ -1,16 +1,16 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
-import QtQuick.Layouts as Q
+import QtQuick 
+import QtQuick.Controls 
+import QtQuick.Layouts 
 
-import components as C
+import components as Comp
 import "./components" as SideMenu
 
-C.Pane {
+Comp.Pane {
     id: subWindowPane
     padding: 8
     property int currentIndex: listView.currentIndex
 
-    Q.Column {
+    Column {
         spacing: 50
 
         SideMenu.MenuButton {
@@ -18,7 +18,7 @@ C.Pane {
             anchors.horizontalCenter: listView.horizontalCenter
         }
 
-        Q.ListView {
+        ListView {
             id: listView
             width: 40
             height: contentItem.childrenRect.height
@@ -27,86 +27,86 @@ C.Pane {
 
             delegate: SideMenu.ItemDelegate {
                 width: listView.width
-                highlighted: Q.ListView.isCurrentItem
+                highlighted: ListView.isCurrentItem
                 text: label
                 icon.source: iconSource
                 opened: menuButton.highlighted
                 onClicked: listView.currentIndex = model.index
             }
 
-            model: Q.ListModel {
-                Q.ListElement {
+            model: ListModel {
+                ListElement {
                     label: "Home"
                     iconSource: "qrc:/home_icon.svg"
                 }
 
-                Q.ListElement {
+                ListElement {
                     label: "Goals"
                     iconSource: "qrc:/goals_icon.svg"
                 }
 
-                Q.ListElement {
+                ListElement {
                     label: "Tasks"
                     iconSource: "qrc:/tasks_icon.svg"
                 }
 
-                Q.ListElement {
+                ListElement {
                     label: "Habits"
                     iconSource: "qrc:/habits_icon.svg"
                 }
 
-                Q.ListElement {
+                ListElement {
                     label: "Vision Board"
                     iconSource: "qrc:/vision_board_icon.svg"
                 }
 
-                Q.ListElement {
+                ListElement {
                     label: "Journal"
                     iconSource: "qrc:/journal_icon.svg"
                 }
 
-                Q.ListElement {
+                ListElement {
                     label: "Reports"
                     iconSource: "qrc:/reports_icon.svg"
                 }
 
-                Q.ListElement {
+                ListElement {
                     label: "Settings"
                     iconSource: "qrc:/settings_icon.svg"
                 }
             }
         }
 
-        states: Q.State {
+        states: State {
             name: "opened"
             when: menuButton.highlighted
 
-            Q.PropertyChanges {
+            PropertyChanges {
                 target: listView
                 width: 170
             }
 
-            Q.AnchorChanges {
+            AnchorChanges {
                 target: menuButton
                 anchors.horizontalCenter: undefined
                 anchors.right: listView.right
             }
         }
 
-        transitions: Q.Transition {
+        transitions: Transition {
             to: "opened"
             reversible: true
 
-            Q.NumberAnimation {
+            NumberAnimation {
                 target: listView
                 property: "width"
                 duration: 500
-                easing.type: Q.Easing.OutQuad
+                easing.type: Easing.OutQuad
             }
 
-            Q.AnchorAnimation {
+            AnchorAnimation {
                 duration: 500
-                easing.type: Q.Easing.OutQuad
+                easing.type: Easing.OutQuad
             }
         }
     }

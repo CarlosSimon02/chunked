@@ -1,49 +1,49 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
-import QtQuick.Layouts as Q
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import app
 
 import "./side_menu"
 import "./body"
-//import "./popups"
+import "./popups"
 
-import components as C
+import components as Comp
 
-C.ApplicationWindow {
-
-//    Popups {
-//        id: popups
-//        anchors.fill: parents
-//    }
+Comp.ApplicationWindow {
 
     DBAccess {
         id: dbAccess
     }
 
-    Q.ColumnLayout {
+    ColumnLayout {
         anchors.fill: parent
 
-        Q.Item {
-            Q.Layout.maximumWidth: 1700
-            Q.Layout.maximumHeight: 1080
-            Q.Layout.fillWidth: true
-            Q.Layout.fillHeight: true
-            Q.Layout.alignment: Qt.AlignCenter
-            Q.Layout.margins: 15
+        Item {
+            Layout.maximumWidth: 1700
+            Layout.maximumHeight: 1080
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.alignment: Qt.AlignCenter
+            Layout.margins: 15
 
-            Q.RowLayout {
+            Popups {
+                id: popups
+                anchors.fill: parent
+            }
+
+            RowLayout {
                 anchors.fill: parent
                 spacing: 10
 
                 SideMenuView {
                     id: sideMenu
-                    Q.Layout.fillHeight: true
+                    Layout.fillHeight: true
                 }
 
                 BodyView {
                     id: bodyView
-                    Q.Layout.fillWidth: true
-                    Q.Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
                     currentIndex: sideMenu.currentIndex
                 }
             }

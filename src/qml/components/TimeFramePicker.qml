@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import components as App
+import components as Comp
 
 ColumnLayout {
     property alias label: label.text
@@ -58,7 +58,7 @@ ColumnLayout {
             RowLayout {
                 anchors.fill: parent
 
-                App.DatePicker {
+               Comp.DatePicker {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     selectedDate: startDateTimeButton.date
@@ -67,7 +67,7 @@ ColumnLayout {
                     }
                 }
 
-                App.TimePicker {
+               Comp.TimePicker {
                     Layout.fillHeight: true
                     selectedTime: startDateTimeButton.date
                     onSelectTime: {
@@ -81,7 +81,7 @@ ColumnLayout {
             RowLayout {
                 anchors.fill: parent
 
-                App.DatePicker {
+               Comp.DatePicker {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     selectedDate: endDateTimeButton.date
@@ -90,7 +90,7 @@ ColumnLayout {
                     }
                 }
 
-                App.TimePicker {
+               Comp.TimePicker {
                     Layout.fillHeight: true
                     selectedTime: endDateTimeButton.date
                     onSelectTime: {

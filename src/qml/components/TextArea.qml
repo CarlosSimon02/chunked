@@ -1,7 +1,7 @@
 import QtQuick
-import QtQuick.Controls as Q
+import QtQuick.Controls 
 
-Q.ScrollView {
+ScrollView {
     property alias placeholderText: textArea.placeholderText
     property alias control: textArea
 
@@ -10,7 +10,7 @@ Q.ScrollView {
         border.color: "lightgrey"
     }
 
-    Q.TextArea {
+    TextArea {
         id: textArea
         background: null
         wrapMode: TextInput.Wrap

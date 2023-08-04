@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls as Q
+import QtQuick.Controls as Ctrl
 import QtQuick.Layouts
 
 ColumnLayout {
@@ -10,7 +10,7 @@ ColumnLayout {
         id: label
     }
 
-    Q.ComboBox {
+    Ctrl.ComboBox {
         id: comboBox
         Layout.preferredWidth: 300
         Layout.preferredHeight: 40

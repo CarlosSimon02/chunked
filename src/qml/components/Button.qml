@@ -1,8 +1,8 @@
-import QtQuick as Q
-import QtQuick.Controls as Q
+import QtQuick 
+import QtQuick.Controls 
 import QtQuick.Templates as T
 
-import components as C
+import components as Comp
 import "./impl" as Impl
 
 T.Button {
@@ -21,12 +21,12 @@ T.Button {
     icon.color: foregroundColor
     font.pixelSize: 14
 
-    property Q.color foregroundColor: C.ColorScheme.secondaryColor.regular
-    property Q.color backgroundColor: "transparent"
-    property Q.color fadeEffectColor: C.ColorScheme.secondaryColor.regular
+    property color foregroundColor: Comp.ColorScheme.secondaryColor.regular
+    property color backgroundColor: "transparent"
+    property color fadeEffectColor: Comp.ColorScheme.secondaryColor.regular
     property bool elevated: false
 
-    contentItem: Q.IconLabel {
+    contentItem: IconLabel {
         spacing: button.spacing
         mirrored: button.mirrored
         display: button.display
@@ -38,9 +38,9 @@ T.Button {
         color: button.foregroundColor
     }
 
-    background: Q.Rectangle {
+    background: Rectangle {
         id: rectangle
-        radius: C.Units.commonRadius
+        radius: Comp.Units.commonRadius
         color: button.backgroundColor
 
         Impl.FadeEffect {

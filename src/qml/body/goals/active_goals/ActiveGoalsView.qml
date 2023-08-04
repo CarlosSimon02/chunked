@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import app
 
-import body.components as B
+import body.components as Body
 
 Pane {
     signal goalAdded
@@ -26,15 +26,15 @@ Pane {
                 width: GridView.view.cellWidth
                 height: GridView.view.cellHeight
 
-                B.GoalItemDelegate {
+                Body.GoalItemDelegate {
                     anchors.centerIn: parent
-//                    imageSource: model.imageSource
-//                    category: model.category
-//                    goalName: model.name
-//                    timeRemaining: "1d 3h remaining"
-//                    progressBar.value: model.progressValue
-//                    progressBar.to: model.targetValue
-//                    unit: model.progressUnit
+                    imageSource: model.imageSource
+                    category: model.category
+                    goalName: model.name
+                    timeRemaining: "1d 3h remaining"
+                    progressValue: model.progressValue
+                    targetValue: model.targetValue
+                    unit: model.progressUnit
                     onClicked: {
                         popups.goalInfoView.open()
                         popups.goalInfoView.goal.id = model.id

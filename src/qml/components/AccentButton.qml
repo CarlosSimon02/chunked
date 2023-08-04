@@ -1,10 +1,10 @@
-import QtQuick as Q
+import QtQuick 
 
-import components as C
+import components as Comp
 
-C.Button {
-    foregroundColor: C.ColorScheme.secondaryColor.regular
-    backgroundColor: C.ColorScheme.accentColor.dark
+Comp.Button {
+    foregroundColor: Comp.ColorScheme.secondaryColor.regular
+    backgroundColor: Comp.ColorScheme.accentColor.dark
     fadeEffectColor: "black"
-    font.weight: Q.Font.Medium
+    font.weight: Font.Medium
 }

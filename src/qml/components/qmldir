@@ -10,6 +10,7 @@ ImagePicker 1.0 ImagePicker.qml
 PageHeaderTitle 1.0 PageHeaderTitle.qml
 Page 1.0 Page.qml
 Pane 1.0 Pane.qml
+Popup 1.0 Popup.qml
 ProgressBar 1.0 ProgressBar.qml
 Text 1.0 Text.qml
 TextArea 1.0 TextArea.qml

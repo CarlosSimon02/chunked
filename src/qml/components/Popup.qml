@@ -1,19 +1,14 @@
 import QtQuick
 import QtQuick.Controls.Material.impl
-import QtQuick.Controls.Material
+import QtQuick.Controls as Ctrl
 
 import components as Comp
 
-Pane {
-    id: pane
-    property color backgroundColor: ColorScheme.primaryColor.light
-    clip: false
-
+Ctrl.Popup {
     background: Rectangle {
         clip: false
-        color: pane.backgroundColor
+        color: Comp.ColorScheme.primaryColor.regular
         radius: Units.commonRadius
-
         layer.enabled: true
         layer.effect: RoundedElevationEffect {
             elevation: 10

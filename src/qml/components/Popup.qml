@@ -5,6 +5,7 @@ import QtQuick.Controls as Ctrl
 import components as Comp
 
 Ctrl.Popup {
+    padding: 20
     background: Rectangle {
         clip: false
         color: Comp.ColorScheme.primaryColor.regular

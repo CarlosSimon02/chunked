@@ -34,20 +34,20 @@ Comp.Popup {
                 id: scrollView
                 Layout.preferredWidth: 400
                 Layout.fillHeight: true
-                padding: 10
-                rightPadding: 10
-                bottomPadding: 10
+                padding: 0
+                ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 background: Rectangle {
-                    color: "lightgrey"
+                    color: Comp.ColorScheme.primaryColor.light
                 }
 
                 ColumnLayout {
                     width: scrollView.availableWidth
-                    spacing: 30
+                    spacing: 40
 
                     Image {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 250
+                        Layout.preferredHeight: width * 9 / 16
                         sourceSize.width: Layout.preferredWidth
                         sourceSize.height: Layout.preferredHeight
                         source: goal.imageSource
@@ -55,113 +55,134 @@ Comp.Popup {
                     }
 
                     ColumnLayout {
-                        Text {
+                        Comp.Text {
                             text: goal.name
                             font.weight: Font.Bold
-                            font.pixelSize: 24
+                            font.pixelSize: 30
                         }
 
-                        Text {
+                        Comp.Text {
                             text: "1d 2h remaining"
                         }
                     }
 
                     ColumnLayout {
-                        Text {
+                        Comp.Text {
                             text: "Progress"
                             font.bold: true
+                            font.pixelSize: 18
                         }
 
-                        ProgressBar {
+                        ColumnLayout {
                             Layout.fillWidth: true
-                            Layout.preferredHeight: 40
-                            value: goal.progressValue / goal.targetValue
-                        }
+                            Layout.fillHeight: true
+                            spacing: 10
 
-                        Text {
-                            text: goal.progressValue + " out of " + goal.targetValue + " " + goal.progressUnit + " is completed"
-                        }
+                            RowLayout {
+                                Comp.Text {
+                                    Layout.fillWidth: true
+                                    Layout.alignment: Qt.AlignBaseline
+                                    color: Comp.ColorScheme.secondaryColor.dark
+                                    text: goal.progressValue.toString() + " / " + goal.targetValue.toString() + " " + goal.progressUnit + " completed"
+                                }
 
-                        Text {
-                            text: ((goal.progressValue / goal.targetValue) * 100).toString() + "%"
+                                Comp.Text {
+                                    Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
+                                    color: Comp.ColorScheme.accentColor.regular
+                                    font.pixelSize: 35
+                                    font.bold: true
+                                    text: Math.floor(goal.progressValue/goal.targetValue*100).toString()+"%"
+                                }
+
+                            }
+
+                            Comp.ProgressBar {
+                                Layout.fillWidth: true
+                                value: goal.progressValue/goal.targetValue
+                            }
                         }
 
                     }
 
                     ColumnLayout {
                         Layout.fillWidth: true
+                        spacing: 15
 
-                        Text {
+                        Comp.Text {
                             text: "Details"
                             font.bold: true
+                            font.pixelSize: 18
                         }
 
-                        Repeater {
-                            Layout.fillWidth: true
-                            RowLayout {
-                                width: parent
+                        ColumnLayout {
+                            Repeater {
+                                Layout.fillWidth: true
+                                RowLayout {
+                                    width: parent
 
-                                Text {
-                                    Layout.preferredWidth: 100
-                                    Layout.alignment: Qt.AlignTop
-                                    text: model.label + ":"
+                                    Comp.Text {
+                                        Layout.preferredWidth: 100
+                                        Layout.alignment: Qt.AlignTop
+                                        color: Comp.ColorScheme.secondaryColor.dark
+                                        text: model.label + ":"
+                                    }
+
+                                    Comp.Text {
+                                        Layout.fillWidth: true
+                                        text: model.data
+                                    }
                                 }
 
-                                Text {
-                                    Layout.fillWidth: true
-                                    text: model.data
-                                }
-                            }
+                                model: ListModel {
+                                    ListElement {
+                                        label: "Parent"
+                                        data: "Wash Dishes"
+                                    }
 
-                            model: ListModel {
-                                ListElement {
-                                    label: "Parent"
-                                    data: "Wash Dishes"
-                                }
+                                    ListElement {
+                                        label: "Category"
+                                        data: "Home"
+                                    }
 
-                                ListElement {
-                                    label: "Category"
-                                    data: "Home"
-                                }
+                                    ListElement {
+                                        label: "Status"
+                                        data: "Active"
+                                    }
 
-                                ListElement {
-                                    label: "Status"
-                                    data: "Active"
-                                }
+                                    ListElement {
+                                        label: "Category"
+                                        data: "Home"
+                                    }
 
-                                ListElement {
-                                    label: "Category"
-                                    data: "Home"
-                                }
+                                    ListElement {
+                                        label: "Start Time"
+                                        data: "January 1, 2023"
+                                    }
 
-                                ListElement {
-                                    label: "Start Time"
-                                    data: "January 1, 2023"
-                                }
+                                    ListElement {
+                                        label: "End Time"
+                                        data: "December 31, 2023"
+                                    }
 
-                                ListElement {
-                                    label: "End Time"
-                                    data: "December 31, 2023"
-                                }
+                                    ListElement {
+                                        label: "Time Frame"
+                                        data: "365 days"
+                                    }
 
-                                ListElement {
-                                    label: "Time Frame"
-                                    data: "365 days"
-                                }
+                                    ListElement {
+                                        label: "Tracking"
+                                        data: "Task"
+                                    }
 
-                                ListElement {
-                                    label: "Tracking"
-                                    data: "Task"
-                                }
+                                    ListElement {
+                                        label: "Target"
+                                        data: "100"
+                                    }
 
-                                ListElement {
-                                    label: "Target"
-                                    data: "100"
-                                }
-
-                                ListElement {
-                                    label: "Unit"
-                                    data: "books"
+                                    ListElement {
+                                        label: "Unit"
+                                        data: "books"
+                                    }
                                 }
                             }
                         }
@@ -169,66 +190,66 @@ Comp.Popup {
                 }
             }
 
-            Pane {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+//            Pane {
+//                Layout.fillWidth: true
+//                Layout.fillHeight: true
 
-                ColumnLayout {
-                    anchors.fill: parent
+//                ColumnLayout {
+//                    anchors.fill: parent
 
-                    TabBar {
-                        id: tabBar
-                        Layout.fillWidth: true
+//                    TabBar {
+//                        id: tabBar
+//                        Layout.fillWidth: true
 
-                        TabButton {
-                            text: "Description"
-                        }
+//                        TabButton {
+//                            text: "Description"
+//                        }
 
-                        TabButton {
-                            text: "Subgoals"
-                        }
+//                        TabButton {
+//                            text: "Subgoals"
+//                        }
 
-                        TabButton {
-                            text: "Tasks"
-                        }
+//                        TabButton {
+//                            text: "Tasks"
+//                        }
 
-                        TabButton {
-                            text: "Habits"
-                        }
+//                        TabButton {
+//                            text: "Habits"
+//                        }
 
-                        TabButton {
-                            text: "Journal"
-                        }
-                    }
+//                        TabButton {
+//                            text: "Journal"
+//                        }
+//                    }
 
-                    StackLayout{
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        currentIndex: tabBar.currentIndex
-                        clip: true
+//                    StackLayout{
+//                        Layout.fillWidth: true
+//                        Layout.fillHeight: true
+//                        currentIndex: tabBar.currentIndex
+//                        clip: true
 
-                        DescriptionView {
+//                        DescriptionView {
 
-                        }
+//                        }
 
-                        SubgoalsView {
+//                        SubgoalsView {
 
-                        }
+//                        }
 
-                        TasksView {
+//                        TasksView {
 
-                        }
+//                        }
 
-                        HabitsView {
+//                        HabitsView {
 
-                        }
+//                        }
 
-                        JournalView {
+//                        JournalView {
 
-                        }
-                    }
-                }
-            }
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 }

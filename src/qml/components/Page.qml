@@ -1,21 +1,27 @@
 import QtQuick 
-import QtQuick.Controls.Material.impl 
-import QtQuick.Controls.Material 
+import QtQuick.Controls as Ctrl
+import Qt5Compat.GraphicalEffects
+
 
 import components as Comp
 
-Page {
+Ctrl.Page {
     id: page
-    property color backgroundColor: ColorScheme.primaryColor.regular
+    property color backgroundColor: Comp.ColorScheme.primaryColor.regular
     clip: false
 
     background: Rectangle {
         color: page.backgroundColor
         radius: Units.commonRadius
 
-        layer.enabled: true
-        layer.effect: ElevationEffect {
-            elevation: 10
+        layer.enabled: page.elevated
+        layer.effect: DropShadow {
+            horizontalOffset: 2
+            verticalOffset: 2
+            spread: 0.2
+            radius: 12
+            samples: 17
+            color: Comp.ColorScheme.primaryColor.shadow
         }
     }
 }

@@ -5,6 +5,7 @@ import Qt5Compat.GraphicalEffects
 import app
 
 import components as Comp
+import body.components as Body
 
 Comp.Popup {
     id: popup
@@ -13,25 +14,31 @@ Comp.Popup {
         onIdChanged: dbAccess.loadData(goal)
     }
 
-    ColumnLayout {
+    Comp.Page {
         anchors.fill: parent
+        padding: 20
+        topPadding: 0
 
-        RowLayout {
-            Button {
-                text: "Back"
-                onClicked: popup.close()
-            }
+        header: Body.PageHeader {
+            background: null
+            height: 80
+            RowLayout {
+                Comp.Button {
+                    icon.source: "qrc:/back_icon.svg"
+                    onClicked: popup.close()
+                }
 
-            Comp.Text {
-               text: "Goal Info"
-               font.weight: Font.Bold
-               font.pixelSize: 28
+                Comp.Text {
+                   text: "Goal Info"
+                   font.weight: Font.Bold
+                   font.pixelSize: 28
+                }
             }
         }
 
         RowLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            anchors.fill: parent
+            spacing: 20
 
             Comp.Pane {
                 Layout.preferredWidth: 400
@@ -96,7 +103,7 @@ Comp.Popup {
                             ColumnLayout {
                                 Comp.Text {
                                     text: "Progress"
-                                    font.bold: true
+                                    font.weight: Font.DemiBold
                                     font.pixelSize: 18
                                 }
 
@@ -137,7 +144,7 @@ Comp.Popup {
 
                                 Comp.Text {
                                     text: "Details"
-                                    font.bold: true
+                                    font.weight: Font.DemiBold
                                     font.pixelSize: 18
                                 }
 
@@ -220,9 +227,71 @@ Comp.Popup {
                 }
             }
 
-//            Pane {
-//                Layout.fillWidth: true
-//                Layout.fillHeight: true
+            Page {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                background: null
+
+                header: Body.PageHeader {
+                    id: pageHeader
+                    height: 80
+
+                    RowLayout {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 0
+                        width: parent.width
+
+                        ListView {
+                            id: listView
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: contentItem.childrenRect.height
+                            orientation: ListView.Horizontal
+                            currentIndex: 0
+                            spacing: 10
+                            clip: true
+                            highlightFollowsCurrentItem: false
+                            highlight: Rectangle {
+                                height: 2
+                                width: listView.currentItem.width
+                                color: Comp.ColorScheme.accentColor.regular
+                                x: listView.currentItem.x
+                                y: listView.currentItem.y + listView.currentItem.height - height
+
+                                Behavior on width { SmoothedAnimation { velocity: 100 } }
+                                Behavior on x { SmoothedAnimation { velocity: 400 } }
+                            }
+
+                            delegate: Comp.ItemDelegate {
+                                padding: 10
+                                bottomPadding: 20
+                                text: model.text
+                                font.weight: Font.Normal
+                                bottomInset: 10
+                                highlighted: ListView.isCurrentItem
+                                backgroundColor: "transparent"
+                                onClicked: ListView.view.currentIndex = model.index
+                            }
+
+                            model: ListModel {
+                                ListElement {
+                                    text: "Description"
+                                }
+                                ListElement {
+                                    text: "Subgoals"
+                                }
+                                ListElement {
+                                    text: "Tasks"
+                                }
+                                ListElement {
+                                    text: "Habits"
+                                }
+                                ListElement {
+                                    text: "Journal"
+                                }
+                            }
+                        }
+                    }
+                }
 
 //                ColumnLayout {
 //                    anchors.fill: parent
@@ -279,7 +348,7 @@ Comp.Popup {
 //                        }
 //                    }
 //                }
-//            }
+            }
         }
     }
 }

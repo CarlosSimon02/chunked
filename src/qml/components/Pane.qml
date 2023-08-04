@@ -1,13 +1,12 @@
 import QtQuick
-import QtQuick.Controls.Material.impl
-import QtQuick.Controls.Material
+import QtQuick.Controls as Ctrl
+import Qt5Compat.GraphicalEffects
 
 import components as Comp
 
-Pane {
+Ctrl.Pane {
     id: pane
     property color backgroundColor: ColorScheme.primaryColor.light
-    clip: false
 
     background: Rectangle {
         clip: false
@@ -15,8 +14,13 @@ Pane {
         radius: Units.commonRadius
 
         layer.enabled: true
-        layer.effect: RoundedElevationEffect {
-            elevation: 10
+        layer.effect: DropShadow {
+            horizontalOffset: 2
+            verticalOffset: 2
+            spread: 0.2
+            radius: 12
+            samples: 17
+            color: Comp.ColorScheme.primaryColor.shadow
         }
     }
 }

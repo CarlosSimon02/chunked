@@ -41,8 +41,8 @@
         <file>side_menu/components/ItemDelegate.qml</file>
         <file>components/Text.qml</file>
         <file>components/ProgressBar.qml</file>
-        <file>components/Popup.qml</file>
         <file>components/ScrollView.qml</file>
         <file>components/ScrollBar.qml</file>
+        <file>components/Popup.qml</file>
     </qresource>
 </RCC>

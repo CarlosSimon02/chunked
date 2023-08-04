@@ -11,5 +11,6 @@
         <file>tasks_icon.svg</file>
         <file>vision_board_icon.svg</file>
         <file>create_icon.svg</file>
+        <file>back_icon.svg</file>
     </qresource>
 </RCC>

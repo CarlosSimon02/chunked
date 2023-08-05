@@ -3,12 +3,7 @@
         <file>Main.qml</file>
         <file>qml.qrc</file>
         <file>popups/create_goal/CreateGoalView.qml</file>
-        <file>popups/goal_info/DescriptionView.qml</file>
         <file>popups/goal_info/GoalInfoView.qml</file>
-        <file>popups/goal_info/HabitsView.qml</file>
-        <file>popups/goal_info/JournalView.qml</file>
-        <file>popups/goal_info/SubgoalsView.qml</file>
-        <file>popups/goal_info/TasksView.qml</file>
         <file>popups/Popups.qml</file>
         <file>side_menu/SideMenuView.qml</file>
         <file>body/BodyView.qml</file>
@@ -45,5 +40,10 @@
         <file>body/views/goals/GoalsView.qml</file>
         <file>body/views/settings/SettingsView.qml</file>
         <file>body/views/goals/views/active_goals/ActiveGoalsView.qml</file>
+        <file>popups/goal_info/views/DescriptionView.qml</file>
+        <file>popups/goal_info/views/HabitsView.qml</file>
+        <file>popups/goal_info/views/JournalView.qml</file>
+        <file>popups/goal_info/views/SubgoalsView.qml</file>
+        <file>popups/goal_info/views/TasksView.qml</file>
     </qresource>
 </RCC>

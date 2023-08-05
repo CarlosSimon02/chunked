@@ -6,6 +6,7 @@ import app
 
 import components as Comp
 import body.components as Body
+import "./views"
 
 Comp.Popup {
     id: popup

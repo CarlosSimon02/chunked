@@ -2,9 +2,6 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>qml.qrc</file>
-        <file>body/goals/active_goals/ActiveGoalsView.qml</file>
-        <file>body/goals/GoalsView.qml</file>
-        <file>body/settings/SettingsView.qml</file>
         <file>popups/create_goal/CreateGoalView.qml</file>
         <file>popups/goal_info/DescriptionView.qml</file>
         <file>popups/goal_info/GoalInfoView.qml</file>
@@ -45,5 +42,8 @@
         <file>components/ScrollBar.qml</file>
         <file>components/Popup.qml</file>
         <file>popups/goal_info/components/SubgoalItemDelegate.qml</file>
+        <file>body/views/goals/active_goals/ActiveGoalsView.qml</file>
+        <file>body/views/goals/GoalsView.qml</file>
+        <file>body/views/settings/SettingsView.qml</file>
     </qresource>
 </RCC>

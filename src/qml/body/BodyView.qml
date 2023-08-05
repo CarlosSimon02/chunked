@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import "./goals"
-import "./settings"
+import "./views/goals"
+import "./views/settings"
 
 StackLayout {
     signal goalAdded

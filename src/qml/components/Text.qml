@@ -4,5 +4,5 @@ import components as Comp
 
 Quick.Text {
     color: Comp.ColorScheme.secondaryColor.regular
-    font.pixelSize: 14
+    font.pixelSize: 15
 }

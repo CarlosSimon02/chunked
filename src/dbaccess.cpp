@@ -41,7 +41,7 @@ void DBAccess::initSchema()
     for(int i = 0; i < 10; i++)
     {
         query.exec("INSERT INTO goals (name,imageSource,category,startDateTime,endDateTime,progressTracker,progressValue,targetValue,progressUnit) VALUES ("
-                   "'Wash Dishes', 'file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png', 'Home', "
+                   "'Become a Freaking Software Engineer', 'file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png', 'Home', "
                    "'02 Sep 2023 11:59 PM', '02 Sep 2023 11:59 PM',"
                    "'Progress tracker', 70, 100, 'plates');");
     }

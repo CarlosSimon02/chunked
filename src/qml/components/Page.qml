@@ -14,7 +14,7 @@ Ctrl.Page {
         color: page.backgroundColor
         radius: Units.commonRadius
 
-        layer.enabled: page.elevated
+        layer.enabled: true
         layer.effect: DropShadow {
             horizontalOffset: 2
             verticalOffset: 2

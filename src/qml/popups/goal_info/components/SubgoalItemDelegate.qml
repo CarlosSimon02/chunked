@@ -7,15 +7,14 @@ import components as Comp
 
 Comp.ItemDelegate {
     id: itemDelegate
-    implicitWidth: 400
-    implicitHeight: 480
+    implicitWidth: 320
+    implicitHeight: 380
     backgroundColor: Comp.ColorScheme.primaryColor.light
     fadeEffectColor: Comp.ColorScheme.secondaryColor.dark
     elevated: true
     padding: 0
 
     property alias imageSource: image.source
-    property alias category: category.text
     property alias goalName: goalName.text
     property alias timeRemaining: timeRemaining.text
     property double progressValue
@@ -68,8 +67,8 @@ Comp.ItemDelegate {
                     Comp.Text {
                         id: goalName
                         Layout.fillWidth: true
-                        font.weight: Font.Bold
-                        font.pixelSize: 22
+                        font.weight: Font.DemiBold
+                        font.pixelSize: 20
                         wrapMode: Text.Wrap
                         maximumLineCount: 2
                         elide: Text.ElideRight
@@ -79,24 +78,11 @@ Comp.ItemDelegate {
                         id: timeRemaining
                         color: Comp.ColorScheme.secondaryColor.dark
                     }
-
-                    Label {
-                        id: category
-                        leftPadding: 10
-                        rightPadding: 10
-                        topPadding: 3
-                        bottomPadding: 3
-                        color: Comp.ColorScheme.secondaryColor.dark
-                        background: Rectangle {
-                            radius: Comp.Units.commonRadius
-                            color: Comp.Utils.setColorAlpha(Comp.ColorScheme.secondaryColor.dark, 0.1)
-                        }
-                    }
                 }
 
                 ColumnLayout {
                     Layout.fillWidth: true
-                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignBottom
                     spacing: 10
 
                     RowLayout {
@@ -104,7 +90,7 @@ Comp.ItemDelegate {
                         Comp.Text {
                             Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
                             color: Comp.ColorScheme.accentColor.regular
-                            font.pixelSize: 24
+                            font.pixelSize: 20
                             font.bold: true
                             text: Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%"
                         }
@@ -119,6 +105,7 @@ Comp.ItemDelegate {
 
                     Comp.ProgressBar {
                         Layout.fillWidth: true
+                        Layout.preferredHeight: 6
                         value: itemDelegate.progressValue/itemDelegate.targetValue
                     }
                 }

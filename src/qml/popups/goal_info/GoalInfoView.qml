@@ -89,10 +89,15 @@ Comp.Popup {
                             spacing: 40
 
                             ColumnLayout {
+
                                 Comp.Text {
+                                    Layout.fillWidth: true
                                     text: goal.name
                                     font.weight: Font.Bold
                                     font.pixelSize: 24
+                                    wrapMode: Text.Wrap
+                                    maximumLineCount: 2
+                                    elide: Text.ElideRight
                                 }
 
                                 Comp.Text {
@@ -101,6 +106,7 @@ Comp.Popup {
                             }
 
                             ColumnLayout {
+                                spacing: 15
                                 Comp.Text {
                                     text: "Progress"
                                     font.weight: Font.DemiBold
@@ -109,25 +115,24 @@ Comp.Popup {
 
                                 ColumnLayout {
                                     Layout.fillWidth: true
-                                    Layout.fillHeight: true
                                     spacing: 10
 
                                     RowLayout {
+                                        spacing: 15
+                                        Comp.Text {
+                                            Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
+                                            color: Comp.ColorScheme.accentColor.regular
+                                            font.pixelSize: 24
+                                            font.bold: true
+                                            text: Math.floor(goal.progressValue/goal.targetValue*100).toString()+"%"
+                                        }
+
                                         Comp.Text {
                                             Layout.fillWidth: true
                                             Layout.alignment: Qt.AlignBaseline
                                             color: Comp.ColorScheme.secondaryColor.dark
                                             text: goal.progressValue.toString() + " / " + goal.targetValue.toString() + " " + goal.progressUnit + " completed"
                                         }
-
-                                        Comp.Text {
-                                            Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
-                                            color: Comp.ColorScheme.accentColor.regular
-                                            font.pixelSize: 35
-                                            font.bold: true
-                                            text: Math.floor(goal.progressValue/goal.targetValue*100).toString()+"%"
-                                        }
-
                                     }
 
                                     Comp.ProgressBar {
@@ -231,6 +236,7 @@ Comp.Popup {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 background: null
+                topPadding: -pageHeader.bottomPadding
 
                 header: Body.PageHeader {
                     id: pageHeader
@@ -293,61 +299,31 @@ Comp.Popup {
                     }
                 }
 
-//                ColumnLayout {
-//                    anchors.fill: parent
+                StackLayout{
+                    anchors.fill: parent
+                    currentIndex: listView.currentIndex
+                    clip: true
 
-//                    TabBar {
-//                        id: tabBar
-//                        Layout.fillWidth: true
+                    DescriptionView {
 
-//                        TabButton {
-//                            text: "Description"
-//                        }
+                    }
 
-//                        TabButton {
-//                            text: "Subgoals"
-//                        }
+                    SubgoalsView {
 
-//                        TabButton {
-//                            text: "Tasks"
-//                        }
+                    }
 
-//                        TabButton {
-//                            text: "Habits"
-//                        }
+                    TasksView {
 
-//                        TabButton {
-//                            text: "Journal"
-//                        }
-//                    }
+                    }
 
-//                    StackLayout{
-//                        Layout.fillWidth: true
-//                        Layout.fillHeight: true
-//                        currentIndex: tabBar.currentIndex
-//                        clip: true
+                    HabitsView {
 
-//                        DescriptionView {
+                    }
 
-//                        }
+                    JournalView {
 
-//                        SubgoalsView {
-
-//                        }
-
-//                        TasksView {
-
-//                        }
-
-//                        HabitsView {
-
-//                        }
-
-//                        JournalView {
-
-//                        }
-//                    }
-//                }
+                    }
+                }
             }
         }
     }

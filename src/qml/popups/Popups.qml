@@ -1,7 +1,7 @@
 import QtQuick
 
-import "./create_goal"
-import "./goal_info"
+import "./views/create_goal"
+import "./views/goal_info"
 
 Item {
     property alias createGoalView: createGoalView

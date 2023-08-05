@@ -2,8 +2,6 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>qml.qrc</file>
-        <file>popups/create_goal/CreateGoalView.qml</file>
-        <file>popups/goal_info/GoalInfoView.qml</file>
         <file>popups/Popups.qml</file>
         <file>side_menu/SideMenuView.qml</file>
         <file>body/BodyView.qml</file>
@@ -36,14 +34,16 @@
         <file>components/ScrollView.qml</file>
         <file>components/ScrollBar.qml</file>
         <file>components/Popup.qml</file>
-        <file>popups/goal_info/components/SubgoalItemDelegate.qml</file>
         <file>body/views/goals/GoalsView.qml</file>
         <file>body/views/settings/SettingsView.qml</file>
         <file>body/views/goals/views/active_goals/ActiveGoalsView.qml</file>
-        <file>popups/goal_info/views/DescriptionView.qml</file>
-        <file>popups/goal_info/views/HabitsView.qml</file>
-        <file>popups/goal_info/views/JournalView.qml</file>
-        <file>popups/goal_info/views/SubgoalsView.qml</file>
-        <file>popups/goal_info/views/TasksView.qml</file>
+        <file>popups/views/create_goal/CreateGoalView.qml</file>
+        <file>popups/views/goal_info/components/SubgoalItemDelegate.qml</file>
+        <file>popups/views/goal_info/views/DescriptionView.qml</file>
+        <file>popups/views/goal_info/views/HabitsView.qml</file>
+        <file>popups/views/goal_info/views/JournalView.qml</file>
+        <file>popups/views/goal_info/views/SubgoalsView.qml</file>
+        <file>popups/views/goal_info/views/TasksView.qml</file>
+        <file>popups/views/goal_info/GoalInfoView.qml</file>
     </qresource>
 </RCC>

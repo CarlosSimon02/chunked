@@ -3,14 +3,14 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import app
 
-import "./side_menu"
-import "./body"
-import "./popups"
+import "./views/side_menu"
+import "./views/body"
+import "./views/popups"
+import "./views/goal_info"
 
 import components as Comp
 
 Comp.ApplicationWindow {
-
     DBAccess {
         id: dbAccess
     }
@@ -31,21 +31,30 @@ Comp.ApplicationWindow {
                 anchors.fill: parent
             }
 
-            RowLayout {
+            StackView {
+                id: stackView
                 anchors.fill: parent
-                spacing: 10
+                initialItem: RowLayout {
+                    spacing: 10
 
-                SideMenuView {
-                    id: sideMenu
-                    Layout.fillHeight: true
-                }
+                    SideMenuView {
+                        id: sideMenu
+                        Layout.fillHeight: true
+                    }
 
-                BodyView {
-                    id: bodyView
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    currentIndex: sideMenu.currentIndex
+                    BodyView {
+                        id: bodyView
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        currentIndex: sideMenu.currentIndex
+                    }
                 }
+            }
+
+            Component {
+                id: goalInfoView
+
+                GoalInfoView {}
             }
         }
     }

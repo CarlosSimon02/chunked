@@ -7,13 +7,14 @@ import components as Comp
 Ctrl.Pane {
     id: pane
     property color backgroundColor: ColorScheme.primaryColor.light
+    property bool elevated: false
 
     background: Rectangle {
         clip: false
         color: pane.backgroundColor
         radius: Units.commonRadius
 
-        layer.enabled: true
+        layer.enabled: pane.elevated
         layer.effect: DropShadow {
             horizontalOffset: 2
             verticalOffset: 2

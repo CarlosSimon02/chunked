@@ -6,7 +6,6 @@
         <file>components/ComboBox.qml</file>
         <file>components/DatePicker.qml</file>
         <file>components/ImagePicker.qml</file>
-        <file>components/PageHeaderTitle.qml</file>
         <file>components/Pane.qml</file>
         <file>components/qmldir</file>
         <file>components/TextArea.qml</file>
@@ -26,9 +25,6 @@
         <file>components/ScrollView.qml</file>
         <file>components/ScrollBar.qml</file>
         <file>components/Popup.qml</file>
-        <file>views/body/components/GoalItemDelegate.qml</file>
-        <file>views/body/components/PageHeader.qml</file>
-        <file>views/body/components/qmldir</file>
         <file>views/body/views/goals/views/active_goals/ActiveGoalsView.qml</file>
         <file>views/body/views/goals/GoalsView.qml</file>
         <file>views/body/views/settings/SettingsView.qml</file>
@@ -45,5 +41,8 @@
         <file>views/goal_info/views/SubgoalsView.qml</file>
         <file>views/goal_info/views/TasksView.qml</file>
         <file>views/goal_info/GoalInfoView.qml</file>
+        <file>components/PageTitleText.qml</file>
+        <file>components/PageHeader.qml</file>
+        <file>views/body/views/goals/components/GoalItemDelegate.qml</file>
     </qresource>
 </RCC>

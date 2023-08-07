@@ -14,7 +14,6 @@ Application::Application(int &argc, char *argv[], int flags)
 {
     loadFonts();
     m_engine.addImportPath("qrc:/");
-    m_engine.addImportPath("qrc:/views");
     const QUrl url(u"qrc:/Main.qml"_qs);
 
     QObject::connect(&m_engine, &QQmlApplicationEngine::objectCreationFailed,

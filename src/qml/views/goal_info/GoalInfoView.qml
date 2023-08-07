@@ -5,7 +5,6 @@ import Qt5Compat.GraphicalEffects
 import app
 
 import components as Comp
-import body.components as Body
 import "./views"
 
 Comp.Page {
@@ -17,7 +16,7 @@ Comp.Page {
         onIdChanged: dbAccess.loadData(goal)
     }
 
-    header: Body.PageHeader {
+    header: Comp.PageHeader {
         background: null
         height: 80
         RowLayout {
@@ -238,7 +237,7 @@ Comp.Page {
             background: null
             topPadding: -pageHeader.bottomPadding
 
-            header: Body.PageHeader {
+            header: Comp.PageHeader {
                 id: pageHeader
                 height: 80
 

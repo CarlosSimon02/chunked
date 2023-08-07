@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Layouts
 import app
 
@@ -34,6 +35,12 @@ Comp.ApplicationWindow {
             StackView {
                 id: stackView
                 anchors.fill: parent
+                popEnter: null
+                popExit: null
+                pushEnter: null
+                pushExit: null
+                replaceEnter: null
+                replaceExit: null
                 initialItem: RowLayout {
                     spacing: 10
 

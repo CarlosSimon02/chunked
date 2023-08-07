@@ -25,6 +25,7 @@ T.Button {
     property color backgroundColor: "transparent"
     property color fadeEffectColor: Comp.ColorScheme.secondaryColor.regular
     property bool elevated: false
+    property alias border: rectangle.border
 
     contentItem: IconLabel {
         spacing: button.spacing
@@ -42,6 +43,8 @@ T.Button {
         id: rectangle
         radius: Comp.Units.commonRadius
         color: button.backgroundColor
+        border.color: button.foregroundColor
+        border.width: 0
 
         Impl.FadeEffect {
             anchors.fill: parent

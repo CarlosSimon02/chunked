@@ -2,5 +2,5 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    property int commonRadius: 12
+    property int commonRadius: 15
 }

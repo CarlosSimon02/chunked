@@ -5,11 +5,12 @@ import Qt5Compat.GraphicalEffects
 import app
 
 import components as Comp
+import "./components" as CreateGoal
 
 Popup {
     id: popup
     width: 750
-    height: 550
+    height: 600
     modal: true
     dim: true
     closePolicy: Popup.NoAutoClose
@@ -48,23 +49,115 @@ Popup {
             Comp.Button {
                 Layout.alignment: Qt.AlignRight
                 icon.source: "qrc:/close_icon.svg"
+                onClicked: popup.close()
             }
         }
 
         RowLayout {
             ListView {
-                Layout.preferredWidth: 100
+                id: listView
+                Layout.preferredWidth: 200
                 Layout.fillHeight: true
+                currentIndex: 0
+                highlightFollowsCurrentItem: false
+                spacing: 6
+                highlight: Rectangle {
+                    height: listView.currentItem.height - 6
+                    width: 1.5
+                    color: Comp.ColorScheme.accentColor.regular
+                    x: 0
+                    y: listView.currentItem.y + 3
 
-                delegate: Comp.ItemDelegate {
+                    Behavior on y { SmoothedAnimation { velocity: 400 } }
+                }
+
+                delegate: Comp.Button {
                     required property string modelData
+                    required property int index
+                    horizontalPadding: 15
+                    verticalPadding: 8
 
                     text: modelData
                     font.weight: Font.Normal
                     font.pixelSize: 12
+                    highlighted: ListView.isCurrentItem
+                    backgroundColor: "transparent"
+                    enabled: index === 0
+
+                    onClicked: ListView.view.currentIndex = index
                 }
 
                 model: ["Details", "Time Frame", "Progress Tracker", "Description"]
+            }
+
+            StackLayout {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                currentIndex: listView.currentIndex
+
+                Comp.ScrollView {
+                    ColumnLayout {
+                        spacing: 25
+
+                        ColumnLayout {
+                            spacing: 12
+
+                            Comp.Text {
+                                text: "Goal Name"
+                                font.pixelSize: 14
+                                font.weight: Font.Medium
+                                color: Comp.ColorScheme.secondaryColor.dark
+                            }
+
+                            CreateGoal.TextArea {
+                                Layout.preferredWidth: 400
+                            }
+                        }
+
+                        ColumnLayout {
+                            spacing: 12
+
+                            Comp.Text {
+                                text: "Category"
+                                font.pixelSize: 14
+                                font.weight: Font.Medium
+                                color: Comp.ColorScheme.secondaryColor.dark
+                            }
+
+                            CreateGoal.TextArea {
+                                Layout.preferredWidth: 400
+                            }
+                        }
+
+                        ColumnLayout {
+                            spacing: 12
+
+                            Comp.Text {
+                                text: "Image"
+                                font.pixelSize: 14
+                                font.weight: Font.Medium
+                                color: Comp.ColorScheme.secondaryColor.dark
+                            }
+
+                            CreateGoal.ImagePicker {
+                                Layout.preferredWidth: 400
+                                Layout.preferredHeight: Layout.preferredWidth * 9 / 16
+                            }
+                        }
+                    }
+                }
+
+                Rectangle {
+                    color: "blue"
+                }
+
+                Rectangle {
+                    color: "green"
+                }
+
+                Rectangle {
+                    color: "violet"
+                }
             }
 
         }
@@ -77,10 +170,18 @@ Popup {
                 Layout.preferredWidth: 80
                 text: "Back"
                 border.width: 1
+                enabled: listView.currentIndex > 0
+                onClicked: listView.currentIndex -= 1
             }
+
             Comp.AccentButton {
                 Layout.preferredWidth: 80
-                text: "Next"
+                text: listView.currentIndex === listView.count - 1 ? "Save" : "Next"
+
+                onClicked: if(listView.currentIndex < listView.count - 1) {
+                               listView.currentIndex += 1
+                               listView.currentItem.enabled = true
+                           }
             }
         }
     }

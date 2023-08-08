@@ -6,7 +6,6 @@ ComboBox 1.0 ComboBox.qml
 DatePicker 1.0 DatePicker.qml
 GoalItemDelegate 1.0 GoalItemDelegate.qml
 ItemDelegate 1.0 ItemDelegate.qml
-ImagePicker 1.0 ImagePicker.qml
 Page 1.0 Page.qml
 PageHeader 1.0 PageHeader.qml
 PageTitleText 1.0 PageTitleText.qml
@@ -16,7 +15,6 @@ ProgressBar 1.0 ProgressBar.qml
 ScrollBar 1.0 ScrollBar.qml
 ScrollView 1.0 ScrollView.qml
 Text 1.0 Text.qml
-TextArea 1.0 TextArea.qml
 TextField 1.0 TextField.qml
 TimeFramePicker 1.0 TimeFramePicker.qml
 TimePicker 1.0 TimePicker.qml

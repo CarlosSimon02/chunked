@@ -24,8 +24,9 @@ T.ItemDelegate {
     font.pixelSize: 14
     font.weight: Font.Medium
 
-    property color foregroundColor: highlighted ? Comp.ColorScheme.accentColor.regular :
-                                             Comp.ColorScheme.secondaryColor.dark
+    property color foregroundColor: enabled ? highlighted ? Comp.ColorScheme.accentColor.regular :
+                                             Comp.ColorScheme.secondaryColor.dark :
+                                    Comp.ColorScheme.secondaryColor.veryDark
     property color backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular, 0.1) :
                                              "transparent"
     property color fadeEffectColor: Comp.ColorScheme.secondaryColor.regular
@@ -63,12 +64,13 @@ T.ItemDelegate {
             controlIsHovered: itemDelegate.hovered
             controlIsDown: itemDelegate.down
             controlIsHighlighted: itemDelegate.highlighted
+            controlIsEnabled: itemDelegate.enabled
         }
     }
 
     states: State {
         name: "down"
-        when: itemDelegate.hovered && !itemDelegate.highlighted
+        when: itemDelegate.hovered && !itemDelegate.highlighted && itemDelegate.enabled
 
         PropertyChanges {
             target: itemDelegate

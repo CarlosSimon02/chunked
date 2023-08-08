@@ -11,6 +11,7 @@ QtObject {
     }
 
     property QtObject secondaryColor: QtObject {
+        property color veryDark: "#737373"
         property color dark: "#A3A3A3"
         property color regular: "#FFFFFF"
     }

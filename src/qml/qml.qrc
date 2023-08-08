@@ -5,10 +5,8 @@
         <file>components/ApplicationWindow.qml</file>
         <file>components/ComboBox.qml</file>
         <file>components/DatePicker.qml</file>
-        <file>components/ImagePicker.qml</file>
         <file>components/Pane.qml</file>
         <file>components/qmldir</file>
-        <file>components/TextArea.qml</file>
         <file>components/TextField.qml</file>
         <file>components/TimeFramePicker.qml</file>
         <file>components/TimePicker.qml</file>
@@ -44,5 +42,7 @@
         <file>components/PageTitleText.qml</file>
         <file>components/PageHeader.qml</file>
         <file>views/body/views/goals/components/GoalItemDelegate.qml</file>
+        <file>views/popups/views/create_goal/components/TextArea.qml</file>
+        <file>views/popups/views/create_goal/components/ImagePicker.qml</file>
     </qresource>
 </RCC>

@@ -9,6 +9,7 @@ Item {
     property bool controlIsHovered
     property bool controlIsDown
     property bool controlIsHighlighted
+    property bool controlIsEnabled
 
     Rectangle {
         id: rectangle
@@ -20,7 +21,7 @@ Item {
         states: [
             State {
                 name: "down"
-                when: item.controlIsDown && !item.controlIsHighlighted
+                when: item.controlIsDown && !item.controlIsHighlighted && item.controlIsEnabled
 
                 PropertyChanges {
                     target: rectangle
@@ -29,7 +30,7 @@ Item {
             },
             State {
                 name: "hovered"
-                when: item.controlIsHovered && !item.controlIsHighlighted
+                when: item.controlIsHovered && !item.controlIsHighlighted && item.controlIsEnabled
 
                 PropertyChanges {
                     target: rectangle

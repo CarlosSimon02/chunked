@@ -8,7 +8,8 @@ import "." as Pop
 Loader {
     id: loader
 
-    property date currentDate: new Date()
+    property date chosenDate: new Date()
+    signal chooseDate
     readonly property var months: ["January","February","March","April","May",
     "June","July","August","September","October","November","December"]
 
@@ -83,14 +84,14 @@ Loader {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    month: loader.currentDate.getMonth()
-                    year: loader.currentDate.getFullYear()
+                    month: loader.chosenDate.getMonth()
+                    year: loader.chosenDate.getFullYear()
 
                     delegate: Comp.Button {
                         text: model.day
-                        highlighted: loader.currentDate.getDate() === model.date.getDate() &&
-                                 loader.currentDate.getMonth() === model.month &&
-                                 loader.currentDate.getFullYear() === model.year
+                        highlighted: loader.chosenDate.getDate() === model.date.getDate() &&
+                                 loader.chosenDate.getMonth() === model.month &&
+                                 loader.chosenDate.getFullYear() === model.year
                         foregroundColor: monthGrid.month === model.month ?
                                              highlighted ? Comp.ColorScheme.accentColor.regular :
                                                            Comp.ColorScheme.secondaryColor.regular :
@@ -102,8 +103,8 @@ Loader {
                                             "transparent"
 
                         onClicked: {
-                            loader.currentDate.setFullYear(model.year, model.month, model.day)
-                            loader.chooseDay()
+                            loader.chosenDate.setFullYear(model.year, model.month, model.day)
+                            loader.chooseDate()
                         }
                     }
                 }
@@ -123,7 +124,7 @@ Loader {
                 anchors.fill: parent
 
                 Comp.Button {
-                    text: loader.currentDate.getFullYear().toString()
+                    text: loader.chosenDate.getFullYear().toString()
                     onClicked: loader.sourceComponent = yearPicker
                 }
 
@@ -137,10 +138,10 @@ Loader {
                         width: GridView.view.cellWidth
                         height: GridView.view.cellHeight
                         text: loader.months[model.index]
-                        highlighted: model.index === loader.currentDate.getMonth()
+                        highlighted: model.index === loader.chosenDate.getMonth()
 
                         onClicked: {
-                            loader.currentDate.setMonth(model.index)
+                            loader.chosenDate.setMonth(model.index)
                             loader.sourceComponent = dayPicker
                         }
                     }
@@ -202,17 +203,17 @@ Loader {
                     cellWidth: width / 4
                     cellHeight: height / 4
 
-                    property int startingYear: Math.floor(loader.currentDate.getFullYear() / 16) * 16
+                    property int startingYear: Math.floor(loader.chosenDate.getFullYear() / 16) * 16
 
                     delegate: Pop.Button {
                         width: GridView.view.cellWidth
                         height: GridView.view.cellHeight
                         text: gridView.startingYear + model.index
                         display: IconLabel.TextUnderIcon
-                        highlighted: (gridView.startingYear + model.index) === loader.currentDate.getFullYear()
+                        highlighted: (gridView.startingYear + model.index) === loader.chosenDate.getFullYear()
 
                         onClicked: {
-                            loader.currentDate.setFullYear(gridView.startingYear + model.index)
+                            loader.chosenDate.setFullYear(gridView.startingYear + model.index)
                             loader.sourceComponent = monthPicker
                         }
                     }

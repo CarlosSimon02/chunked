@@ -8,16 +8,18 @@ import "." as Pop
 RowLayout {
     id: rowLayout
 
-    property date time
+    property date chosenTime
     signal chooseTime
 
     ListView {
         id: hourListView
         Layout.preferredWidth: contentItem.childrenRect.width
         Layout.fillHeight: true
-        currentIndex: parseInt(rowLayout.time.toLocaleTimeString(Qt.locale, "hh AP").substring(0,2)) - 1
+        currentIndex: parseInt(rowLayout.chosenTime.toLocaleTimeString(Qt.locale, "hh AP").substring(0,2)) - 1
         clip: true
         spacing: 8
+
+        onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
 
         delegate: Pop.Button {
             width: 36
@@ -29,8 +31,7 @@ RowLayout {
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                ListView.view.positionViewAtIndex(model.index, ListView.Beginning)
-                rowLayout.time.setHours(Date.fromLocaleTimeString(Qt.locale(), hourListView.currentItem.text + ":" + minuteListView.currentItem.text + " " + amPmListView.currentItem.text, "hh:mm AP").getHours())
+                rowLayout.chosenTime.setHours(Date.fromLocaleTimeString(Qt.locale(), hourListView.currentItem.text + ":" + minuteListView.currentItem.text + " " + amPmListView.currentItem.text, "hh:mm AP").getHours())
                 rowLayout.chooseTime()
             }
         }
@@ -42,9 +43,11 @@ RowLayout {
         id: minuteListView
         Layout.preferredWidth: contentItem.childrenRect.width
         Layout.fillHeight: true
-        currentIndex: rowLayout.time.getMinutes()
+        currentIndex: rowLayout.chosenTime.getMinutes()
         clip: true
         spacing: 8
+
+        onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
 
         delegate: Pop.Button {
             width: 36
@@ -56,8 +59,7 @@ RowLayout {
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                ListView.view.positionViewAtIndex(model.index, ListView.Beginning)
-                rowLayout.time.setMinutes(model.index)
+                rowLayout.chosenTime.setMinutes(model.index)
                 rowLayout.chooseTime()
             }
         }
@@ -69,9 +71,11 @@ RowLayout {
         id: amPmListView
         Layout.preferredWidth: contentItem.childrenRect.width
         Layout.fillHeight: true
-        currentIndex: Math.floor(rowLayout.time.getHours() / 12)
+        currentIndex: Math.floor(rowLayout.chosenTime.getHours() / 12)
         clip: true
         spacing: 8
+
+        onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
 
         delegate: Pop.Button {
             width: 36
@@ -83,8 +87,7 @@ RowLayout {
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                ListView.view.positionViewAtIndex(model.index, ListView.Beginning)
-                rowLayout.time.setHours(Date.fromLocaleTimeString(Qt.locale(), hourListView.currentItem.text + ":" + minuteListView.currentItem.text + " " + amPmListView.currentItem.text, "hh:mm AP").getHours())
+                rowLayout.chosenTime.setHours(Date.fromLocaleTimeString(Qt.locale(), hourListView.currentItem.text + ":" + minuteListView.currentItem.text + " " + amPmListView.currentItem.text, "hh:mm AP").getHours())
                 rowLayout.chooseTime()
             }
         }
@@ -92,6 +95,14 @@ RowLayout {
         model: ListModel {
             ListElement {ap: "AM"}
             ListElement {ap: "PM"}
+            ListElement {ap: ""}
+            ListElement {ap: ""}
+            ListElement {ap: ""}
+            ListElement {ap: ""}
+            ListElement {ap: ""}
+            ListElement {ap: ""}
+            ListElement {ap: ""}
+            ListElement {ap: ""}
             ListElement {ap: ""}
             ListElement {ap: ""}
             ListElement {ap: ""}

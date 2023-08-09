@@ -16,12 +16,16 @@ RowLayout {
         Layout.fillHeight: true
         currentIndex: parseInt(rowLayout.time.toLocaleTimeString(Qt.locale, "hh AP").substring(0,2)) - 1
         clip: true
+        spacing: 8
 
         delegate: Comp.Button {
-            width: 46
+            width: 36
+            horizontalPadding: 0
             text: (model.index + 1).toString().padStart(2,"0")
             enabled: model.index < 12
             visible: model.index < 12
+            highlighted: ListView.isCurrentItem
+            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
 
             onClicked: {
                 ListView.view.currentIndex = model.index
@@ -40,12 +44,16 @@ RowLayout {
         Layout.fillHeight: true
         currentIndex: rowLayout.time.getMinutes()
         clip: true
+        spacing: 8
 
         delegate: Comp.Button {
-            width: 46
+            width: 36
+            horizontalPadding: 0
             text: model.index.toString().padStart(2,"0")
             enabled: model.index < 60
             visible: model.index < 60
+            highlighted: ListView.isCurrentItem
+            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
 
             onClicked: {
                 ListView.view.currentIndex = model.index
@@ -64,12 +72,16 @@ RowLayout {
         Layout.fillHeight: true
         currentIndex: Math.floor(rowLayout.time.getHours() / 12)
         clip: true
+        spacing: 8
 
         delegate: Comp.Button {
-            width: 46
+            width: 36
+            horizontalPadding: 0
             text: model.ap
             enabled: model.index < 2
             visible: model.index < 2
+            highlighted: ListView.isCurrentItem
+            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
 
             onClicked: {
                 ListView.view.currentIndex = model.index

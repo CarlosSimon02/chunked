@@ -1,17 +1,24 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import QtQuick.Layouts
 import app
 
-import "./views/side_menu"
-import "./views/body"
-import "./views/popups"
+import "./views/main"
 import "./views/goal_info"
 
 import components as Comp
 
-Comp.ApplicationWindow {
+ApplicationWindow {
+    width: 1280
+    height: 720
+    visible: true
+    title: qsTr("Chunked")
+    font.family: "Poppins"
+
+    background: Rectangle {
+        color: Comp.ColorScheme.primaryColor.dark
+    }
+
     DBAccess {
         id: dbAccess
     }
@@ -27,35 +34,18 @@ Comp.ApplicationWindow {
             Layout.alignment: Qt.AlignCenter
             Layout.margins: 15
 
-            Popups {
-                id: popups
-                anchors.fill: parent
-            }
-
             StackView {
                 id: stackView
                 anchors.fill: parent
+
                 popEnter: null
                 popExit: null
                 pushEnter: null
                 pushExit: null
                 replaceEnter: null
                 replaceExit: null
-                initialItem: RowLayout {
-                    spacing: 10
 
-                    SideMenuView {
-                        id: sideMenu
-                        Layout.fillHeight: true
-                    }
-
-                    BodyView {
-                        id: bodyView
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        currentIndex: sideMenu.currentIndex
-                    }
-                }
+                initialItem: MainView {}
             }
 
             Component {

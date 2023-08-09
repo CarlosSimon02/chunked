@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>qml.qrc</file>
-        <file>components/ApplicationWindow.qml</file>
         <file>components/ComboBox.qml</file>
         <file>components/DatePicker.qml</file>
         <file>components/Pane.qml</file>
@@ -23,15 +22,6 @@
         <file>components/ScrollView.qml</file>
         <file>components/ScrollBar.qml</file>
         <file>components/Popup.qml</file>
-        <file>views/body/views/goals/views/active_goals/ActiveGoalsView.qml</file>
-        <file>views/body/views/goals/GoalsView.qml</file>
-        <file>views/body/views/settings/SettingsView.qml</file>
-        <file>views/body/BodyView.qml</file>
-        <file>views/popups/views/create_goal/CreateGoalView.qml</file>
-        <file>views/popups/Popups.qml</file>
-        <file>views/side_menu/components/ItemDelegate.qml</file>
-        <file>views/side_menu/components/MenuButton.qml</file>
-        <file>views/side_menu/SideMenuView.qml</file>
         <file>views/goal_info/components/SubgoalItemDelegate.qml</file>
         <file>views/goal_info/views/DescriptionView.qml</file>
         <file>views/goal_info/views/HabitsView.qml</file>
@@ -41,8 +31,26 @@
         <file>views/goal_info/GoalInfoView.qml</file>
         <file>components/PageTitleText.qml</file>
         <file>components/PageHeader.qml</file>
-        <file>views/body/views/goals/components/GoalItemDelegate.qml</file>
-        <file>views/popups/views/create_goal/components/TextArea.qml</file>
-        <file>views/popups/views/create_goal/components/ImagePicker.qml</file>
+        <file>popups/components/ImagePicker.qml</file>
+        <file>popups/components/TextArea.qml</file>
+        <file>popups/CreateGoalPopup.qml</file>
+        <file>popups/qmldir</file>
+        <file>views/main/views/goals/components/GoalItemDelegate.qml</file>
+        <file>views/main/views/goals/views/active_goals/ActiveGoalsView.qml</file>
+        <file>views/main/views/goals/GoalsView.qml</file>
+        <file>views/main/views/settings/SettingsView.qml</file>
+        <file>views/main/views/side_menu/components/ItemDelegate.qml</file>
+        <file>views/main/views/side_menu/components/MenuButton.qml</file>
+        <file>views/main/views/side_menu/SideMenuView.qml</file>
+        <file>views/main/MainView.qml</file>
+        <file>views/main/views/habits/HabitsView.qml</file>
+        <file>views/main/views/home/HomeView.qml</file>
+        <file>views/main/views/journal/JournalView.qml</file>
+        <file>views/main/views/reports/ReportsView.qml</file>
+        <file>views/main/views/tasks/TasksView.qml</file>
+        <file>views/main/views/vision_board/VisionBoardView.qml</file>
+        <file>popups/components/ColumnLayout.qml</file>
+        <file>popups/components/FieldColumnLayout.qml</file>
+        <file>popups/components/TimePicker.qml</file>
     </qresource>
 </RCC>

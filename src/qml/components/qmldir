@@ -1,6 +1,5 @@
 module components
 AccentButton 1.0 AccentButton.qml
-ApplicationWindow 1.0 ApplicationWindow.qml
 Button 1.0 Button.qml
 ComboBox 1.0 ComboBox.qml
 DatePicker 1.0 DatePicker.qml
@@ -22,4 +21,3 @@ Utils 1.0 Utils.js
 
 singleton ColorScheme ColorScheme.qml
 singleton Units Units.qml
-

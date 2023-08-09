@@ -269,6 +269,9 @@ Comp.Page {
                         delegate: Comp.ItemDelegate {
                             padding: 10
                             bottomPadding: 20
+
+                            property url viewSource: model.viewSource
+
                             text: model.text
                             font.weight: Font.Normal
                             bottomInset: 10
@@ -280,48 +283,33 @@ Comp.Page {
                         model: ListModel {
                             ListElement {
                                 text: "Description"
+                                viewSource: "qrc:/views/goal_info/views/DescriptionView.qml"
                             }
                             ListElement {
                                 text: "Subgoals"
+                                viewSource: "qrc:/views/goal_info/views/SubgoalsView.qml"
                             }
                             ListElement {
                                 text: "Tasks"
+                                viewSource: "qrc:/views/goal_info/views/TasksView.qml"
                             }
                             ListElement {
                                 text: "Habits"
+                                viewSource: "qrc:/views/goal_info/views/HabitsView.qml"
                             }
                             ListElement {
                                 text: "Journal"
+                                viewSource: "qrc:/views/goal_info/views/JournalView.qml"
                             }
                         }
                     }
                 }
             }
 
-            StackLayout{
+            Loader{
                 anchors.fill: parent
-                currentIndex: listView.currentIndex
+                source: listView.currentItem.viewSource
                 clip: true
-
-                DescriptionView {
-
-                }
-
-                SubgoalsView {
-
-                }
-
-                TasksView {
-
-                }
-
-                HabitsView {
-
-                }
-
-                JournalView {
-
-                }
             }
         }
     }

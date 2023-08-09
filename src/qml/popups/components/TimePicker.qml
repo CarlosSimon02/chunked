@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import components as Comp
+import "." as Pop
 
 RowLayout {
     id: rowLayout
@@ -18,14 +19,13 @@ RowLayout {
         clip: true
         spacing: 8
 
-        delegate: Comp.Button {
+        delegate: Pop.Button {
             width: 36
             horizontalPadding: 0
             text: (model.index + 1).toString().padStart(2,"0")
             enabled: model.index < 12
             visible: model.index < 12
             highlighted: ListView.isCurrentItem
-            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
 
             onClicked: {
                 ListView.view.currentIndex = model.index
@@ -46,14 +46,13 @@ RowLayout {
         clip: true
         spacing: 8
 
-        delegate: Comp.Button {
+        delegate: Pop.Button {
             width: 36
             horizontalPadding: 0
             text: model.index.toString().padStart(2,"0")
             enabled: model.index < 60
             visible: model.index < 60
             highlighted: ListView.isCurrentItem
-            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
 
             onClicked: {
                 ListView.view.currentIndex = model.index
@@ -74,14 +73,13 @@ RowLayout {
         clip: true
         spacing: 8
 
-        delegate: Comp.Button {
+        delegate: Pop.Button {
             width: 36
             horizontalPadding: 0
             text: model.ap
             enabled: model.index < 2
             visible: model.index < 2
             highlighted: ListView.isCurrentItem
-            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
 
             onClicked: {
                 ListView.view.currentIndex = model.index

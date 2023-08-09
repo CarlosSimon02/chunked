@@ -53,5 +53,6 @@
         <file>popups/components/FieldColumnLayout.qml</file>
         <file>popups/components/TimePicker.qml</file>
         <file>popups/components/DatePicker.qml</file>
+        <file>popups/components/Button.qml</file>
     </qresource>
 </RCC>

@@ -13,5 +13,7 @@
         <file>create_icon.svg</file>
         <file>back_icon.svg</file>
         <file>close_icon.svg</file>
+        <file>arrow_left_icon.svg</file>
+        <file>arrow_right_icon.svg</file>
     </qresource>
 </RCC>

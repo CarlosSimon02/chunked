@@ -85,13 +85,6 @@ T.ComboBox {
             model: comboBox.delegateModel
             currentIndex: comboBox.highlightedIndex
             highlightMoveDuration: 0
-
-            ScrollBar.vertical: Comp.ScrollBar {
-                parent: listView
-                x: listView.mirrored ? 0 : listView.width - width
-                y: listView.topPadding
-                height: listView.availableHeight
-            }
         }
 
         background: Rectangle {

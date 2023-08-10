@@ -54,5 +54,7 @@
         <file>popups/components/TimePicker.qml</file>
         <file>popups/components/DatePicker.qml</file>
         <file>popups/components/Button.qml</file>
+        <file>popups/components/FieldLabel.qml</file>
+        <file>popups/components/ComboBox.qml</file>
     </qresource>
 </RCC>

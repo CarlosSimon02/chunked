@@ -109,11 +109,8 @@ Popup {
                             Pop.FieldColumnLayout {
                                 spacing: 12
 
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "Goal Name"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
                                 Pop.TextArea {
@@ -122,24 +119,19 @@ Popup {
                             }
 
                             Pop.FieldColumnLayout {
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "Category"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
-                                Pop.TextArea {
+                                Pop.ComboBox {
                                     Layout.preferredWidth: 400
+                                    model: ["Home","Personal","Work"]
                                 }
                             }
 
                             Pop.FieldColumnLayout {
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "Image"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
                                 Pop.ImagePicker {
@@ -151,14 +143,14 @@ Popup {
                     }
 
                     Pop.ColumnLayout {
+                        spacing: 40
+
                         RowLayout {
                             spacing: 15
+
                             Pop.FieldColumnLayout {
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "Start"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
                                 Comp.Button {
@@ -187,11 +179,8 @@ Popup {
                             }
 
                             Pop.FieldColumnLayout {
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "End"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
                                 Comp.Button {
@@ -257,7 +246,6 @@ Popup {
                                     onChooseDate: endButton.chosenDate.setDate(chosenDate.getDate())
                                 }
 
-
                                 Pop.TimePicker {
                                     id: endTimePicker
                                     Layout.maximumHeight: endDatePicker.height
@@ -268,23 +256,119 @@ Popup {
                         }
                     }
 
+                    Pop.ColumnLayout {
+                        Pop.FieldColumnLayout {
+                            Pop.FieldLabel {
+                                text: "Progress Tracker"
+                            }
 
-                    Rectangle {
-                        color: "blue"
-                    }
+                            Pop.ComboBox {
+                                Layout.preferredWidth: 400
+                                model: [
+                                    "Total number of completed tasks",
+                                    "Total outcome from all tasks",
+                                    "Total progress from all subgoals",
+                                    "Total number of completed subgoals",
+                                    "Manually updating current progress"
+                                ]
 
-                    Rectangle {
-                        color: "green"
+                                onActivated: index => {
+                                   switch(index) {
+                                       case 0:
+                                       progressValueTextArea.text = 0
+                                       progressValueTextArea.enabled = false
+                                       targetValueTextArea.text = 0
+                                       targetValueTextArea.enabled = false
+                                       progressUnitTextArea.text = "task/s"
+                                       progressUnitTextArea.enabled = true
+                                       break
+                                       case 1:
+                                       progressValueTextArea.text = 0
+                                       progressValueTextArea.enabled = false
+                                       targetValueTextArea.text = 0
+                                       targetValueTextArea.enabled = false
+                                       progressUnitTextArea.text = "outcome/s"
+                                       progressUnitTextArea.enabled = true
+                                       break
+                                       case 2:
+                                       progressValueTextArea.text = 0
+                                       progressValueTextArea.enabled = false
+                                       targetValueTextArea.text = 0
+                                       targetValueTextArea.enabled = false
+                                       progressUnitTextArea.text = "subgoals' progress"
+                                       progressUnitTextArea.enabled = false
+                                       break
+                                       case 3:
+                                       progressValueTextArea.text = 0
+                                       progressValueTextArea.enabled = false
+                                       targetValueTextArea.text = 0
+                                       targetValueTextArea.enabled = false
+                                       progressUnitTextArea.text = "subgoal/s"
+                                       progressUnitTextArea.enabled = true
+                                       break
+                                       case 4:
+                                       progressValueTextArea.text = 0
+                                       progressValueTextArea.enabled = true
+                                       targetValueTextArea.text = 0
+                                       targetValueTextArea.enabled = true
+                                       progressUnitTextArea.text = ""
+                                       progressUnitTextArea.enabled = true
+                                       break
+                                   }
+                               }
+                            }
+                        }
+
+                        Pop.FieldColumnLayout {
+                            Pop.FieldLabel {
+                                text: "Unit"
+                            }
+
+                            Pop.TextArea {
+                                id: progressUnitTextArea
+                                Layout.preferredWidth: 400
+                                placeholderText: "e.g., book/s, project/s, item/s"
+                                text: "task/s"
+                                wrapMode: TextArea.NoWrap
+                            }
+                        }
+
+                        Pop.FieldColumnLayout {
+                            Pop.FieldLabel {
+                                text: "Target"
+                            }
+
+                            Pop.TextArea {
+                                id: targetValueTextArea
+                                Layout.preferredWidth: 200
+                                text: "0"
+                                enabled: false
+                                wrapMode: TextArea.NoWrap
+                                horizontalAlignment: TextEdit.AlignRight
+                            }
+                        }
+
+                        Pop.FieldColumnLayout {
+                            Pop.FieldLabel {
+                                text: "Current Progress"
+                            }
+
+                            Pop.TextArea {
+                                id: progressValueTextArea
+                                Layout.preferredWidth: 200
+                                text: "0"
+                                enabled: false
+                                wrapMode: TextArea.NoWrap
+                                horizontalAlignment: TextEdit.AlignRight
+                            }
+                        }
                     }
 
                     Comp.ScrollView {
                         Pop.ColumnLayout {
                             Pop.FieldColumnLayout {
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "Mission"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
                                 Pop.TextArea {
@@ -293,11 +377,8 @@ Popup {
                             }
 
                             Pop.FieldColumnLayout {
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "Vision"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
                                 Pop.TextArea {
@@ -306,11 +387,8 @@ Popup {
                             }
 
                             Pop.FieldColumnLayout {
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "Obstacles"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
                                 Pop.TextArea {
@@ -319,11 +397,8 @@ Popup {
                             }
 
                             Pop.FieldColumnLayout {
-                                Comp.Text {
+                                Pop.FieldLabel {
                                     text: "Resources"
-                                    font.pixelSize: 14
-                                    font.weight: Font.Medium
-                                    color: Comp.ColorScheme.secondaryColor.dark
                                 }
 
                                 Pop.TextArea {

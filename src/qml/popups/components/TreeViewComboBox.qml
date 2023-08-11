@@ -53,7 +53,7 @@ Pop.ComboBox {
             delegate: Item {
                 id: item
                 implicitWidth: itemDelegate.implicitWidth + itemDelegate.x
-                implicitHeight: 40
+                implicitHeight: itemDelegate.height
 
                 readonly property real indent: 20
                 required property TreeView treeView
@@ -64,8 +64,6 @@ Pop.ComboBox {
 
                 Comp.ItemDelegate {
                     id: itemDelegate
-                    verticalPadding: 0
-                    height: 40
                     x: item.indent * item.depth
 
                     TapHandler {

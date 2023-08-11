@@ -11,15 +11,15 @@ GoalNamesTreeViewModel::GoalNamesTreeViewModel(QObject *parent)
     QStandardItem *group2 = new QStandardItem;
     QStandardItem *group3 = new QStandardItem;
 
-//    QStandardItem *value1 = new QStandardItem;
-//    QStandardItem *value2 = new QStandardItem;
-//    QStandardItem *value3 = new QStandardItem;
-//    QStandardItem *value4 = new QStandardItem;
-//    QStandardItem *value5 = new QStandardItem;
-//    QStandardItem *value6 = new QStandardItem;
-//    QStandardItem *value7 = new QStandardItem;
-//    QStandardItem *value8 = new QStandardItem;
-//    QStandardItem *value9 = new QStandardItem;
+    QStandardItem *value1 = new QStandardItem;
+    QStandardItem *value2 = new QStandardItem;
+    QStandardItem *value3 = new QStandardItem;
+    QStandardItem *value4 = new QStandardItem;
+    QStandardItem *value5 = new QStandardItem;
+    QStandardItem *value6 = new QStandardItem;
+    QStandardItem *value7 = new QStandardItem;
+    QStandardItem *value8 = new QStandardItem;
+    QStandardItem *value9 = new QStandardItem;
 
     group1->setData("Group 1",GoalName);
     group2->setData("Group 2",GoalName);
@@ -29,27 +29,37 @@ GoalNamesTreeViewModel::GoalNamesTreeViewModel(QObject *parent)
     group2->setData(2,ID);
     group3->setData(3,ID);
 
-//    value1->setText("Value 1");
-//    value2->setText("Value 2");
-//    value3->setText("Value 3");
-//    value4->setText("Value 4");
-//    value5->setText("Value 5");
-//    value6->setText("Value 6");
-//    value7->setText("Value 7");
-//    value8->setText("Value 8");
-//    value9->setText("Value 9");
+    value1->setData("Value 1", GoalName);
+    value2->setData("Value 2", GoalName);
+    value3->setData("Value 3", GoalName);
+    value4->setData("Value 4", GoalName);
+    value5->setData("Value 5", GoalName);
+    value6->setData("Value 6", GoalName);
+    value7->setData("Value 7", GoalName);
+    value8->setData("Value 8", GoalName);
+    value9->setData("Value 9", GoalName);
 
-//    group1->appendRow(value1);
-//    group1->appendRow(value2);
-//    group1->appendRow(value3);
+    value1->setData("1", ID);
+    value2->setData("2", ID);
+    value3->setData("3", ID);
+    value4->setData("4", ID);
+    value5->setData("5", ID);
+    value6->setData("6", ID);
+    value7->setData("7", ID);
+    value8->setData("8", ID);
+    value9->setData("9", ID);
 
-//    group2->appendRow(value4);
-//    group2->appendRow(value5);
-//    group2->appendRow(value6);
+    group1->appendRow(value1);
+    group1->appendRow(value2);
+    group1->appendRow(value3);
 
-//    group3->appendRow(value7);
-//    group3->appendRow(value8);
-//    group3->appendRow(value9);
+    group2->appendRow(value4);
+    group2->appendRow(value5);
+    group2->appendRow(value6);
+
+    group3->appendRow(value7);
+    group3->appendRow(value8);
+    group3->appendRow(value9);
 
     rootItem->appendRow(group1);
     rootItem->appendRow(group2);

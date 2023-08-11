@@ -51,9 +51,10 @@ Pop.ComboBox {
             model: comboBox.model
             clip: true
             delegate: Item {
-                implicitWidth: itemDelegate.implicitWidth + x
-                implicitHeight: 40
                 id: item
+                implicitWidth: itemDelegate.implicitWidth + itemDelegate.x
+                implicitHeight: 40
+
                 readonly property real indent: 20
                 required property TreeView treeView
                 required property bool isTreeNode
@@ -63,14 +64,20 @@ Pop.ComboBox {
 
                 Comp.ItemDelegate {
                     id: itemDelegate
-
+                    verticalPadding: 0
+                    height: 40
                     x: item.indent * item.depth
+
+                    TapHandler {
+                        onTapped: treeView.toggleExpanded(row)
+                    }
 
                     contentItem: RowLayout {
                         Comp.Button {
-                            text: "C"
-                            verticalPadding: 0
-                            onClicked: treeView.expand(model.row)
+                            icon.source: item.expanded ? "qrc:/dropdown_open_icon.svg" : "qrc:/dropdown_close_icon.svg"
+                            icon.width: 12
+                            icon.height: 12
+                            onClicked: treeView.toggleExpanded(model.row)
                         }
 
                         Text {

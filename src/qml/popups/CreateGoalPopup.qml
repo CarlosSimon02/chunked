@@ -63,6 +63,7 @@ Popup {
                 vision: visionTextArea.text
                 obstacles: obstaclesTextArea.text
                 resources: resourcesTextArea.text
+                parentGoal: parentGoalComBoBox.currentIndex ? parentGoalComBoBox.currentIndex : 0
             }
 
             RowLayout {
@@ -159,6 +160,18 @@ Popup {
                                     id: imagePicker
                                     Layout.preferredWidth: 400
                                     Layout.preferredHeight: Layout.preferredWidth * 9 / 16
+                                }
+                            }
+
+                            Pop.FieldColumnLayout {
+                                Pop.FieldLabel {
+                                    text: "Parent Goal"
+                                }
+
+                                Pop.TreeViewComboBox {
+                                    id: parentGoalComBoBox
+                                    Layout.preferredWidth: 400
+                                    model: GoalNamesTreeViewModel {}
                                 }
                             }
                         }

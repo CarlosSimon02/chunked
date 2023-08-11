@@ -2,7 +2,7 @@
 #define DBACCESS_H
 
 #include <QObject>
-#include <QQmlEngine>
+#include <QtQml/qqml.h>
 
 #include "goal.h"
 

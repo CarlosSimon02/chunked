@@ -55,7 +55,8 @@ T.ComboBox {
         implicitHeight: 50
         color: "transparent"
         border.width: 1.5
-        border.color: Comp.ColorScheme.secondaryColor.dark
+        border.color: comboBox.activeFocus ? Comp.ColorScheme.accentColor.regular :
+                                             Comp.ColorScheme.secondaryColor.dark
         radius: Comp.Units.commonRadius
     }
 

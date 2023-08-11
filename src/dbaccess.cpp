@@ -32,7 +32,9 @@ void DBAccess::initSchema()
                "mission TEXT, "
                "vision TEXT, "
                "obstacles TEXT, "
-               "resources TEXT"
+               "resources TEXT, "
+               "parentGoal INTEGER,"
+               "FOREIGN KEY(parentGoal) REFERENCES goals(id)"
                ");");
 
     if (query.lastError().isValid())
@@ -56,7 +58,7 @@ void DBAccess::loadData(Goal* goal)
     QSqlQuery query;
     query.prepare("SELECT name, imageSource, category, startDateTime, "
                          "endDateTime, progressTracker, progressValue, targetValue, "
-                         "progressUnit, mission, vision, obstacles, resources "
+                         "progressUnit, mission, vision, obstacles, resources, parentGoal "
                   "FROM goals "
                   "WHERE id=:id;");
     query.bindValue(":id", goal->id());
@@ -77,6 +79,7 @@ void DBAccess::loadData(Goal* goal)
         goal->setMission(query.value(9).toString());
         goal->setObstacles(query.value(10).toString());
         goal->setResources(query.value(11).toString());
+        goal->setParentGoal(query.value(12).toInt());
     }
     else
     {
@@ -95,11 +98,11 @@ void DBAccess::saveData(Goal* goal)
     query.prepare("INSERT INTO goals "
                       "(name, imageSource, category, startDateTime, "
                       "endDateTime, progressTracker, progressValue, targetValue, "
-                      "progressUnit, mission, vision, obstacles, resources) "
+                      "progressUnit, mission, vision, obstacles, resources, parentGoal) "
                   "VALUES "
                       "(:name, :imageSource, :category, :startDateTime, "
                       ":endDateTime, :progressTracker, :progressValue, :targetValue, "
-                      ":progressUnit, :mission, :vision, :obstacles, :resources);");
+                      ":progressUnit, :mission, :vision, :obstacles, :resources, :parentGoal);");
     query.bindValue(":name", goal->name());
     query.bindValue(":imageSource", goal->imageSource());
     query.bindValue(":category", goal->category());
@@ -113,6 +116,7 @@ void DBAccess::saveData(Goal* goal)
     query.bindValue(":vision", goal->vision());
     query.bindValue(":obstacles", goal->obstacles());
     query.bindValue(":resources", goal->resources());
+    query.bindValue(":parentGoal", goal->parentGoal() ? goal->parentGoal() : QVariant(QMetaType::fromType<int>()));
     query.exec();
 
     if (query.lastError().isValid())

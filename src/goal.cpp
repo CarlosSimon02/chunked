@@ -200,3 +200,17 @@ void Goal::setResources(const QString &resources)
         emit resourcesChanged();
     }
 }
+
+int Goal::parentGoal() const
+{
+    return m_parentGoal;
+}
+
+void Goal::setParentGoal(int parentGoal)
+{
+    if (parentGoal != m_parentGoal)
+    {
+        m_parentGoal = parentGoal;
+        emit parentGoalChanged();
+    }
+}

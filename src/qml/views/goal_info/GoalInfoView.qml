@@ -123,7 +123,7 @@ Comp.Page {
                                         color: Comp.ColorScheme.accentColor.regular
                                         font.pixelSize: 24
                                         font.bold: true
-                                        text: Math.floor(goal.progressValue/goal.targetValue*100).toString()+"%"
+                                        text: goal.targetValue ? Math.floor(goal.progressValue/goal.targetValue*100).toString()+"%" : "--"
                                     }
 
                                     Comp.Text {

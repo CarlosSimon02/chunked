@@ -2,13 +2,8 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>qml.qrc</file>
-        <file>components/ComboBox.qml</file>
-        <file>components/DatePicker.qml</file>
         <file>components/Pane.qml</file>
         <file>components/qmldir</file>
-        <file>components/TextField.qml</file>
-        <file>components/TimeFramePicker.qml</file>
-        <file>components/TimePicker.qml</file>
         <file>components/ColorScheme.qml</file>
         <file>components/Units.qml</file>
         <file>components/Utils.js</file>
@@ -56,5 +51,6 @@
         <file>popups/components/Button.qml</file>
         <file>popups/components/FieldLabel.qml</file>
         <file>popups/components/ComboBox.qml</file>
+        <file>popups/components/TreeViewComboBox.qml</file>
     </qresource>
 </RCC>

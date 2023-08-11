@@ -2,7 +2,6 @@
 #define GOAL_H
 
 #include <QObject>
-#include <QQmlEngine>
 #include <QtQml/qqml.h>
 
 class Goal : public QObject
@@ -22,6 +21,7 @@ class Goal : public QObject
     Q_PROPERTY(QString vision READ vision WRITE setVision NOTIFY visionChanged)
     Q_PROPERTY(QString obstacles READ obstacles WRITE setObstacles NOTIFY obstaclesChanged)
     Q_PROPERTY(QString resources READ resources WRITE setResources NOTIFY resourcesChanged)
+    Q_PROPERTY(int parentGoal READ parentGoal WRITE setParentGoal NOTIFY parentGoalChanged)
     QML_ELEMENT
 
 public:
@@ -54,6 +54,8 @@ public:
     void setObstacles(const QString& obstacles);
     QString resources() const;
     void setResources(const QString& resources);
+    int parentGoal() const;
+    void setParentGoal(int parentGoal);
 
 signals:
     void idChanged();
@@ -70,6 +72,7 @@ signals:
     void visionChanged();
     void obstaclesChanged();
     void resourcesChanged();
+    void parentGoalChanged();
 
 private:
     int m_id;
@@ -86,6 +89,7 @@ private:
     QString m_vision;
     QString m_obstacles;
     QString m_resources;
+    int m_parentGoal;
 };
 
 #endif // GOAL_H

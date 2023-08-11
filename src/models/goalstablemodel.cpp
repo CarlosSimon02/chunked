@@ -7,6 +7,7 @@ GoalsTableModel::GoalsTableModel(QObject *parent)
     : QSqlTableModel(parent)
 {
     setTable("goals");
+    setFilter("parentGoal IS NULL");
     setEditStrategy(QSqlTableModel::OnFieldChange);
     select();
 }
@@ -37,6 +38,21 @@ QVariant GoalsTableModel::data(const QModelIndex &index, int role) const
 void GoalsTableModel::refresh()
 {
     select();
+}
+
+int GoalsTableModel::parentGoal() const
+{
+    return m_parentGoal;
+}
+
+void GoalsTableModel::setParentGoal(int parentGoal)
+{
+    if (parentGoal != m_parentGoal)
+    {
+        m_parentGoal = parentGoal;
+        setFilter("parentGoal="+QString::number(parentGoal));
+        emit parentGoalChanged();
+    }
 }
 
 

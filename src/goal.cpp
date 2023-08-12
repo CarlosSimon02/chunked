@@ -201,16 +201,16 @@ void Goal::setResources(const QString &resources)
     }
 }
 
-int Goal::parentGoal() const
+int Goal::parentGoalId() const
 {
-    return m_parentGoal;
+    return m_parentGoalId;
 }
 
-void Goal::setParentGoal(int parentGoal)
+void Goal::setParentGoal(int parentGoalId)
 {
-    if (parentGoal != m_parentGoal)
+    if (parentGoalId != m_parentGoalId)
     {
-        m_parentGoal = parentGoal;
-        emit parentGoalChanged();
+        m_parentGoalId = parentGoalId;
+        emit parentGoalIdChanged();
     }
 }

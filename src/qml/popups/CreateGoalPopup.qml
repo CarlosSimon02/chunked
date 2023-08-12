@@ -63,7 +63,7 @@ Popup {
                 vision: visionTextArea.text
                 obstacles: obstaclesTextArea.text
                 resources: resourcesTextArea.text
-                parentGoal: parentGoalComBoBox.currentIndex ? parentGoalComBoBox.currentIndex : 0
+                parentGoalId: parentGoalIdComBoBox.currentIndex ? parentGoalIdComBoBox.currentIndex : 0
             }
 
             RowLayout {
@@ -169,7 +169,7 @@ Popup {
                                 }
 
                                 Pop.TreeViewComboBox {
-                                    id: parentGoalComBoBox
+                                    id: parentGoalIdComBoBox
                                     Layout.preferredWidth: 400
                                     model: GoalNamesTreeViewModel {}
                                 }

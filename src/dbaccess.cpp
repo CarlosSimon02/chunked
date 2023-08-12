@@ -33,8 +33,8 @@ void DBAccess::initSchema()
                "vision TEXT, "
                "obstacles TEXT, "
                "resources TEXT, "
-               "parentGoal INTEGER,"
-               "FOREIGN KEY(parentGoal) REFERENCES goals(id)"
+               "parentGoalId INTEGER,"
+               "FOREIGN KEY(parentGoalId) REFERENCES goals(id)"
                ");");
 
     if (query.lastError().isValid())
@@ -58,7 +58,7 @@ void DBAccess::loadData(Goal* goal)
     QSqlQuery query;
     query.prepare("SELECT name, imageSource, category, startDateTime, "
                          "endDateTime, progressTracker, progressValue, targetValue, "
-                         "progressUnit, mission, vision, obstacles, resources, parentGoal "
+                         "progressUnit, mission, vision, obstacles, resources, parentGoalId "
                   "FROM goals "
                   "WHERE id=:id;");
     query.bindValue(":id", goal->id());
@@ -98,11 +98,11 @@ void DBAccess::saveData(Goal* goal)
     query.prepare("INSERT INTO goals "
                       "(name, imageSource, category, startDateTime, "
                       "endDateTime, progressTracker, progressValue, targetValue, "
-                      "progressUnit, mission, vision, obstacles, resources, parentGoal) "
+                      "progressUnit, mission, vision, obstacles, resources, parentGoalId) "
                   "VALUES "
                       "(:name, :imageSource, :category, :startDateTime, "
                       ":endDateTime, :progressTracker, :progressValue, :targetValue, "
-                      ":progressUnit, :mission, :vision, :obstacles, :resources, :parentGoal);");
+                      ":progressUnit, :mission, :vision, :obstacles, :resources, :parentGoalId);");
     query.bindValue(":name", goal->name());
     query.bindValue(":imageSource", goal->imageSource());
     query.bindValue(":category", goal->category());
@@ -116,7 +116,7 @@ void DBAccess::saveData(Goal* goal)
     query.bindValue(":vision", goal->vision());
     query.bindValue(":obstacles", goal->obstacles());
     query.bindValue(":resources", goal->resources());
-    query.bindValue(":parentGoal", goal->parentGoal() ? goal->parentGoal() : QVariant(QMetaType::fromType<int>()));
+    query.bindValue(":parentGoalId", goal->parentGoalId() ? goal->parentGoalId() : QVariant(QMetaType::fromType<int>()));
     query.exec();
 
     if (query.lastError().isValid())

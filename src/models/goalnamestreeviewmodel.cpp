@@ -9,10 +9,21 @@ GoalNamesTreeViewModel::GoalNamesTreeViewModel(QObject *parent)
     setColumnCount(1);
     QStandardItem *mapperItem = invisibleRootItem();
     QSqlQuery query;
+    query.setForwardOnly(true);
     query.exec("SELECT name, id from goals;");
 
     if (query.lastError().isValid())
+    {
         qDebug() << query.lastError().text();
+        return;
+    }
+
+    while(query.isValid())
+    {
+
+    }
+
+
 
 
 
@@ -98,4 +109,11 @@ QVariant GoalNamesTreeViewModel::data(const QModelIndex &index, int role) const
     default:
         return QStandardItemModel::data(index, role);
     }
+}
+
+void GoalNamesTreeViewModel::setChildrenOfItem(QStandardItem *item)
+{
+    QVariant parentId = item == invisibleRootItem() ? QMetaType::fromType<QString>() : item->data(ID);
+
+
 }

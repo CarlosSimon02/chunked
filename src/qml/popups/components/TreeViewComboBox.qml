@@ -12,6 +12,8 @@ Pop.ComboBox {
     id: comboBox
     delegate: null
 
+    property int itemId: 0
+
     popup: T.Popup {
         y: comboBox.height
         width: comboBox.width
@@ -59,22 +61,24 @@ Pop.ComboBox {
 
                 readonly property real indent: 20
                 required property TreeView treeView
-                required property bool isTreeNode
                 required property bool expanded
                 required property int hasChildren
                 required property int depth
-                required property bool current
 
                 Comp.ItemDelegate {
                     id: itemDelegate
                     verticalPadding: 0
                     height: 40
                     x: item.indent * item.depth
-                    highlighted: item.current
+                    highlighted: comboBox.id === model.id
+
+                    Component.onCompleted: if(highlighted) comboBox.displayText = model.goalName
 
                     onClicked: {
                         if(item.hasChildren) treeView.toggleExpanded(model.row)
-                        treeView.selectionModel.setCurrentIndex(treeView.index(0,0), ItemSelectionModel.SelectCurrent)
+                        comboBox.id = model.id
+                        comboBox.displayText = model.goalName
+                        comboBox.popup.close()
                     }
 
                     contentItem: RowLayout {

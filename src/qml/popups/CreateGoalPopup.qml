@@ -172,6 +172,7 @@ Popup {
                                 Pop.TreeViewComboBox {
                                     id: parentGoalIdComBoBox
                                     Layout.preferredWidth: 400
+                                    itemId: popup.parentGoalId
                                     model: GoalNamesTreeViewModel {}
                                 }
                             }

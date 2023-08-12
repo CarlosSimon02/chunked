@@ -86,12 +86,6 @@ Pop.ComboBox {
                             font: itemDelegate.font
                             color: itemDelegate.foregroundColor
                         }
-
-                        Text {
-                            text: model.id
-                            font: itemDelegate.font
-                            color: itemDelegate.foregroundColor
-                        }
                     }
                 }
             }

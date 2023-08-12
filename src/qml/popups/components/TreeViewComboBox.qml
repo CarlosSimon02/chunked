@@ -50,6 +50,8 @@ Pop.ComboBox {
             height: Math.min(400, 40*rows)
             model: comboBox.model
             clip: true
+            selectionModel: ItemSelectionModel {}
+
             delegate: Item {
                 id: item
                 implicitWidth: itemDelegate.implicitWidth + itemDelegate.x
@@ -61,14 +63,19 @@ Pop.ComboBox {
                 required property bool expanded
                 required property int hasChildren
                 required property int depth
+                required property bool current
 
                 Comp.ItemDelegate {
                     id: itemDelegate
                     verticalPadding: 0
                     height: 40
                     x: item.indent * item.depth
+                    highlighted: item.current
 
-                    onClicked: if(item.hasChildren) treeView.toggleExpanded(model.row)
+                    onClicked: {
+                        if(item.hasChildren) treeView.toggleExpanded(model.row)
+                        treeView.selectionModel.setCurrentIndex(treeView.index(0,0), ItemSelectionModel.SelectCurrent)
+                    }
 
                     contentItem: RowLayout {
                         IconImage {

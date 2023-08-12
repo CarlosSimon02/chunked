@@ -18,6 +18,7 @@ Popup {
     parent: Overlay.overlay
     anchors.centerIn: parent
 
+    property int parentGoalId: 0
     signal save
 
     background: Rectangle {

@@ -10,6 +10,7 @@ GoalNamesTreeViewModel::GoalNamesTreeViewModel(QObject *parent)
     setColumnCount(1);
     QStandardItem* firstItem = new QStandardItem;
     firstItem->setData("None(Top Level Goal", GoalName);
+    firstItem->setData(0, ID);
     invisibleRootItem()->appendRow(firstItem);
     setChildrenOfItem(invisibleRootItem());
 }

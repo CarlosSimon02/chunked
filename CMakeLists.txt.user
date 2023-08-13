@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 11.0.1, 2023-08-12T06:44:14. -->
+<!-- Written by QtCreator 11.0.1, 2023-08-13T21:04:23. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -401,7 +401,6 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Carlos Simon/OneDrive/Documents/Projects/2023/C++/chunked/build-chunked-Desktop_Qt_6_5_0_MinGW_64_bit-Debug</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

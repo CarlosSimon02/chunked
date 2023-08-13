@@ -4,10 +4,9 @@ import QtQuick.Layouts
 import app
 
 import components as Comp
-import body.components as Body
+import "../../components" as Goals
 
 Pane {
-    signal goalAdded
     background: null
     clip: false
     padding: 0
@@ -31,7 +30,7 @@ Pane {
                     width: GridView.view.cellWidth
                     height: GridView.view.cellHeight
 
-                    Body.GoalItemDelegate {
+                    Goals.GoalItemDelegate {
                         anchors.centerIn: parent
                         imageSource: model.imageSource
                         category: model.category
@@ -41,10 +40,14 @@ Pane {
                         targetValue: model.targetValue
                         unit: model.progressUnit
                         onClicked: {
-                            popups.goalInfoView.open()
-                            popups.goalInfoView.goal.id = model.id
+                            stackView.push(goalInfoView, {"goal.id": model.id})
                         }
                     }
+                }
+
+                Connections {
+                    target: createGoalPopup
+                    function onSave() {goalsTableModel.refresh()}
                 }
 
                 model: GoalsTableModel {

@@ -21,7 +21,7 @@ T.TextArea {
     bottomPadding: 14
     wrapMode: TextArea.Wrap
 
-    color: Comp.ColorScheme.secondaryColor.regular
+    color: enabled ? Comp.ColorScheme.secondaryColor.regular : Comp.ColorScheme.secondaryColor.dark
     placeholderTextColor: textArea.palette.placeholderText
     selectionColor: textArea.palette.highlight
     selectedTextColor: textArea.palette.highlightedText
@@ -35,7 +35,8 @@ T.TextArea {
         implicitHeight: 50
         color: "transparent"
         border.width: 1.5
-        border.color: Comp.ColorScheme.secondaryColor.dark
+        border.color: textArea.activeFocus ? Comp.ColorScheme.accentColor.regular :
+                                             Comp.ColorScheme.secondaryColor.dark
         radius: Comp.Units.commonRadius
     }
 
@@ -48,7 +49,7 @@ T.TextArea {
 
         text: textArea.placeholderText
         font: textArea.font
-        color: textArea.placeholderTextColor
+        color: Comp.ColorScheme.secondaryColor.veryDark
         verticalAlignment: textArea.verticalAlignment
         visible: !textArea.length && !textArea.preeditText && (!textArea.activeFocus || textArea.horizontalAlignment !== Qt.AlignHCenter)
         elide: Text.ElideRight

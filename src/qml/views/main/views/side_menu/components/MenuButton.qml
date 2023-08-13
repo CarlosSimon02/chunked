@@ -5,6 +5,7 @@ import components as Comp
 Comp.Button {
     id: button
     onClicked: button.highlighted = !button.highlighted
+    foregroundColor: Comp.ColorScheme.secondaryColor.regular
 
     contentItem: Item {
         id: item

@@ -28,6 +28,8 @@ Comp.ItemDelegate {
             Layout.preferredHeight: width * 9 / 16
             fillMode: Image.PreserveAspectCrop
             opacity: 0.5
+            sourceSize.width: {sourceSize.width = width}
+            sourceSize.height: {sourceSize.height = height}
             layer.enabled: true
             layer.effect: OpacityMask {
                 maskSource: Item {

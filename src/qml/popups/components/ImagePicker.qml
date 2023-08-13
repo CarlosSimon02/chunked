@@ -13,6 +13,8 @@ Pane {
     padding: 0
     background: null
 
+    property alias source: image.source
+
     Rectangle {
         id: dragIndicator
         anchors.fill: parent
@@ -54,6 +56,8 @@ Pane {
         id: image
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
+        sourceSize.width: {sourceSize.width = width}
+        sourceSize.height: {sourceSize.height = height}
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Item {

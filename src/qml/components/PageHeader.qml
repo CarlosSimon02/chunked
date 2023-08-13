@@ -1,12 +1,11 @@
-import QtQuick 
-import QtQuick.Controls 
-import QtQuick.Layouts 
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 import components as Comp
 
-Comp.Pane {
+Pane {
     id: pane
-    implicitHeight: 140
     padding: 20
     bottomPadding: 12
 
@@ -18,19 +17,18 @@ Comp.Pane {
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                spacing: -1 * Comp.Units.commonRadius
+                spacing: -Comp.Units.commonRadius
 
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: pane.backgroundColor
                     radius: Comp.Units.commonRadius
+                    color: Comp.ColorScheme.primaryColor.light
                 }
-
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: Comp.Units.commonRadius
-                    color: pane.backgroundColor
+                    color: Comp.ColorScheme.primaryColor.light
                 }
             }
 

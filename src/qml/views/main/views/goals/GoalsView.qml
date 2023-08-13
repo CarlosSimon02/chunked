@@ -3,16 +3,16 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import components as Comp
-import body.components as Body
-import "./active_goals"
+import popups as Pop
+import "./views/active_goals"
 
 Comp.Page {
     signal goalAdded
     topPadding: -pageHeader.bottomPadding
-    onGoalAdded: activeGoalsView.model.refresh()
 
-    header: Body.PageHeader {
+    header: Comp.PageHeader {
         id: pageHeader
+        height: 140
 
         Comp.Text {
             text: "Goals"
@@ -92,8 +92,13 @@ Comp.Page {
         anchors.rightMargin: 30
         padding: 10
         icon.source: "qrc:/create_icon.svg"
+        onClicked: {
+            createGoalPopup.open()
+        }
+
+        Pop.CreateGoalPopup {
+            id: createGoalPopup
+        }
     }
 }
-
-
 

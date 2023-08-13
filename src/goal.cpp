@@ -206,7 +206,7 @@ int Goal::parentGoalId() const
     return m_parentGoalId;
 }
 
-void Goal::setParentGoal(int parentGoalId)
+void Goal::setParentGoalId(int parentGoalId)
 {
     if (parentGoalId != m_parentGoalId)
     {

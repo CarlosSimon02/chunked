@@ -277,7 +277,20 @@ Comp.Page {
                             bottomInset: 10
                             highlighted: ListView.isCurrentItem
                             backgroundColor: "transparent"
-                            onClicked: ListView.view.currentIndex = model.index
+                            onClicked: {
+                                ListView.view.currentIndex = model.index
+                                switch (model.index)
+                                {
+                                case 0:
+                                    loader.setSource(model.viewSource);
+                                    break;
+                                case 1:
+                                    loader.setSource(model.viewSource, {"goalId":goal.id,"goalName": goal.name});
+                                    break;
+                                }
+
+
+                            }
                         }
 
                         model: ListModel {
@@ -307,8 +320,8 @@ Comp.Page {
             }
 
             Loader{
+                id: loader
                 anchors.fill: parent
-                source: listView.currentItem.viewSource
                 clip: true
             }
         }

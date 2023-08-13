@@ -8,7 +8,7 @@ import components as Comp
 import "./components" as Pop
 
 Popup {
-    id: popup
+    id: createGoalPopup
     width: 750
     height: 630
     modal: true
@@ -19,6 +19,7 @@ Popup {
     anchors.centerIn: parent
 
     property int parentGoalId: 0
+    property string parentGoalName: "None(Top Level)"
     signal save
 
     background: Rectangle {
@@ -40,7 +41,7 @@ Popup {
 
     Loader {
         anchors.fill: parent
-        sourceComponent: popup.opened ? content : null
+        sourceComponent: createGoalPopup.opened ? content : null
     }
 
     Component {
@@ -64,7 +65,7 @@ Popup {
                 vision: visionTextArea.text
                 obstacles: obstaclesTextArea.text
                 resources: resourcesTextArea.text
-                parentGoalId: parentGoalIdComBoBox.currentIndex ? parentGoalIdComBoBox.currentIndex : 0
+                parentGoalId: parentGoalIdComBoBox.itemId
             }
 
             RowLayout {
@@ -79,7 +80,7 @@ Popup {
                 Comp.Button {
                     Layout.alignment: Qt.AlignRight
                     icon.source: "qrc:/close_icon.svg"
-                    onClicked: popup.close()
+                    onClicked: createGoalPopup.close()
                 }
             }
 
@@ -172,7 +173,8 @@ Popup {
                                 Pop.TreeViewComboBox {
                                     id: parentGoalIdComBoBox
                                     Layout.preferredWidth: 400
-                                    itemId: popup.parentGoalId
+                                    itemId: createGoalPopup.parentGoalId
+                                    displayText: createGoalPopup.parentGoalName
                                     model: GoalNamesTreeViewModel {}
                                 }
                             }
@@ -476,8 +478,8 @@ Popup {
                         }
                         else {
                             dbAccess.saveData(columnLayout.goal)
-                            popup.save()
-                            popup.close()
+                            createGoalPopup.save()
+                            createGoalPopup.close()
                         }
                     }
                 }

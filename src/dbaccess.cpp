@@ -79,7 +79,7 @@ void DBAccess::loadData(Goal* goal)
         goal->setMission(query.value(9).toString());
         goal->setObstacles(query.value(10).toString());
         goal->setResources(query.value(11).toString());
-        goal->setParentGoal(query.value(12).toInt());
+        goal->setParentGoalId(query.value(12).toInt());
     }
     else
     {

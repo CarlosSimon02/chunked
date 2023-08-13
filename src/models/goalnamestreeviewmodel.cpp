@@ -9,7 +9,7 @@ GoalNamesTreeViewModel::GoalNamesTreeViewModel(QObject *parent)
 {
     setColumnCount(1);
     QStandardItem* firstItem = new QStandardItem;
-    firstItem->setData("None(Top Level Goal", GoalName);
+    firstItem->setData("None(Top Level Goal)", GoalName);
     firstItem->setData(0, ID);
     invisibleRootItem()->appendRow(firstItem);
     setChildrenOfItem(invisibleRootItem());
@@ -42,11 +42,16 @@ QVariant GoalNamesTreeViewModel::data(const QModelIndex &index, int role) const
 
 void GoalNamesTreeViewModel::setChildrenOfItem(QStandardItem *item)
 {
-    QVariant parentGoalId = item == invisibleRootItem() ? QVariant(QMetaType::fromType<int>()) : item->data(ID);
-
     QSqlQuery query;
-    query.prepare("SELECT name,id FROM goals WHERE parentGoalId=:parentGoalId");
-    query.bindValue(":parentGoalId",parentGoalId);
+    if(item == invisibleRootItem())
+        query.prepare("SELECT name,id FROM goals WHERE parentGoalId IS NULL;");
+    else
+    {
+        query.prepare("SELECT name,id FROM goals WHERE parentGoalId=:parentGoalId;");
+        query.bindValue(":parentGoalId", item->data(ID));
+    }
+
+    query.exec();
 
     if (query.lastError().isValid())
     {
@@ -59,7 +64,7 @@ void GoalNamesTreeViewModel::setChildrenOfItem(QStandardItem *item)
         QStandardItem* childItem = new QStandardItem;
         childItem->setData(query.value(0), GoalName);
         childItem->setData(query.value(1),ID);
-        item->appendRow(item);
         setChildrenOfItem(childItem);
+        item->appendRow(childItem);
     }
 }

@@ -21,7 +21,7 @@ class Goal : public QObject
     Q_PROPERTY(QString vision READ vision WRITE setVision NOTIFY visionChanged)
     Q_PROPERTY(QString obstacles READ obstacles WRITE setObstacles NOTIFY obstaclesChanged)
     Q_PROPERTY(QString resources READ resources WRITE setResources NOTIFY resourcesChanged)
-    Q_PROPERTY(int parentGoalId READ parentGoalId WRITE setParentGoal NOTIFY parentGoalIdChanged)
+    Q_PROPERTY(int parentGoalId READ parentGoalId WRITE setParentGoalId NOTIFY parentGoalIdChanged)
     QML_ELEMENT
 
 public:
@@ -55,7 +55,7 @@ public:
     QString resources() const;
     void setResources(const QString& resources);
     int parentGoalId() const;
-    void setParentGoal(int parentGoalId);
+    void setParentGoalId(int parentGoalId);
 
 signals:
     void idChanged();

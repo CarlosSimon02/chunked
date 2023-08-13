@@ -70,13 +70,11 @@ Pop.ComboBox {
                     verticalPadding: 0
                     height: 40
                     x: item.indent * item.depth
-                    highlighted: comboBox.id === model.id
-
-                    Component.onCompleted: if(highlighted) comboBox.displayText = model.goalName
+                    highlighted: comboBox.itemId === model.id
 
                     onClicked: {
                         if(item.hasChildren) treeView.toggleExpanded(model.row)
-                        comboBox.id = model.id
+                        comboBox.itemId = model.id
                         comboBox.displayText = model.goalName
                         comboBox.popup.close()
                     }

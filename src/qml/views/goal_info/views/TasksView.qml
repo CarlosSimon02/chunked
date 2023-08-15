@@ -2,7 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-ScrollView {
+import "../components" as GoalInfo
+
+GoalInfo.ScrollView {
     id: scrollView
     //this view should contain multiple types of view like board view and list view
 

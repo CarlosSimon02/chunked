@@ -2,7 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-ScrollView {
+import "../components" as GoalInfo
+
+GoalInfo.ScrollView {
     id: scrollView
 
     ListView {

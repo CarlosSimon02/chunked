@@ -18,8 +18,7 @@ Popup {
     parent: Overlay.overlay
     anchors.centerIn: parent
 
-    property int parentGoalId: 0
-    property string parentGoalName: "None(Top Level)"
+    property Goal parentGoal: null
     signal save
 
     background: Rectangle {
@@ -173,8 +172,8 @@ Popup {
                                 Pop.TreeViewComboBox {
                                     id: parentGoalIdComBoBox
                                     Layout.preferredWidth: 400
-                                    itemId: createGoalPopup.parentGoalId
-                                    displayText: createGoalPopup.parentGoalName
+                                    itemId: createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
+                                    displayText: createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
                                     model: GoalNamesTreeViewModel {}
                                 }
                             }

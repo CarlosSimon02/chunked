@@ -7,11 +7,9 @@ import components as Comp
 import popups as Pop
 import "../components" as GoalInfo
 
-Comp.ScrollView {
+GoalInfo.ScrollView {
     id: scrollView
     contentWidth: availableWidth
-    property int goalId
-    property string goalName
 
     ColumnLayout {
         width: scrollView.availableWidth
@@ -37,7 +35,7 @@ Comp.ScrollView {
                     unit: model.progressUnit
 
                     onClicked: {
-                        stackView.push(goalInfoView, {"goal.id": model.id})
+                        stackView.push(goalInfoView, {"goal.itemId": model.itemId})
                     }
                 }
             }
@@ -49,7 +47,7 @@ Comp.ScrollView {
 
             model: GoalsTableModel {
                 id: goalsTableModel
-                parentGoalId: goalId
+                parentGoalId: scrollView.goal.itemId
             }
         }
     }
@@ -62,8 +60,7 @@ Comp.ScrollView {
         padding: 10
         icon.source: "qrc:/create_icon.svg"
         onClicked: {
-            createGoalPopup.parentGoalId = goalId
-            createGoalPopup.parentGoalName = goalName
+            createGoalPopup.parentGoal = scrollView.goal
             createGoalPopup.open()
         }
 

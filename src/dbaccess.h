@@ -18,6 +18,7 @@ public:
     explicit DBAccess(QObject *parent = nullptr);
     Q_INVOKABLE void loadData(Goal* goal);
     Q_INVOKABLE void saveData(Goal* goal);
+    Q_INVOKABLE QVariant getData(const QString& tableName, const QString& columnName, int itemId);
 
 signals:
 

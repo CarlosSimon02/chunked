@@ -3,8 +3,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import components as Comp
+import "../components" as GoalInfo
 
-Comp.ScrollView {
+GoalInfo.ScrollView {
     id: scrollView
     contentWidth: availableWidth
 

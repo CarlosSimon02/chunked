@@ -5,17 +5,17 @@ Goal::Goal(QObject *parent)
 {
 }
 
-int Goal::id() const
+int Goal::itemId() const
 {
-    return m_id;
+    return m_itemId;
 }
 
-void Goal::setId(int id)
+void Goal::setItemId(int itemId)
 {
-    if (id != m_id)
+    if (itemId != m_itemId)
     {
-        m_id = id;
-        emit idChanged();
+        m_itemId = itemId;
+        emit itemIdChanged();
     }
 }
 

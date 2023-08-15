@@ -13,12 +13,17 @@ Comp.Page {
     topPadding: 0
 
     property Goal goal: Goal {
-        onIdChanged: dbAccess.loadData(goal)
+        onItemIdChanged: {
+            dbAccess.loadData(goal)
+            parentGoalText.text = parentGoalId !== 0 ? dbAccess.getData("goals","name",parentGoalId).toString() : ""
+            parentGoalRowLayout.visible = true
+        }
     }
 
     header: Comp.PageHeader {
         background: null
         height: 80
+
         RowLayout {
             Comp.Button {
                 icon.source: "qrc:/back_icon.svg"
@@ -154,6 +159,24 @@ Comp.Page {
 
                             ColumnLayout {
                                 spacing: 10
+
+                                RowLayout {
+                                    id: parentGoalRowLayout
+                                    width: parent
+
+                                    Comp.Text {
+                                        Layout.preferredWidth: 100
+                                        Layout.alignment: Qt.AlignTop
+                                        color: Comp.ColorScheme.secondaryColor.dark
+                                        text: "Parent Goal"
+                                    }
+
+                                    Comp.Text {
+                                        id: parentGoalText
+                                        Layout.fillWidth: true
+                                    }
+                                }
+
                                 Repeater {
                                     Layout.fillWidth: true
                                     RowLayout {
@@ -173,11 +196,6 @@ Comp.Page {
                                     }
 
                                     model: ListModel {
-                                        ListElement {
-                                            label: "Parent"
-                                            data: "Wash Dishes"
-                                        }
-
                                         ListElement {
                                             label: "Category"
                                             data: "Home"
@@ -278,18 +296,11 @@ Comp.Page {
                             highlighted: ListView.isCurrentItem
                             backgroundColor: "transparent"
                             onClicked: {
-                                ListView.view.currentIndex = model.index
-                                switch (model.index)
+                                if(ListView.view.currentIndex !== model.index)
                                 {
-                                case 0:
-                                    loader.setSource(model.viewSource);
-                                    break;
-                                case 1:
-                                    loader.setSource(model.viewSource, {"goalId":goal.id,"goalName": goal.name});
-                                    break;
+                                    ListView.view.currentIndex = model.index
+                                    loader.setSource(model.viewSource, {"goal": page.goal});
                                 }
-
-
                             }
                         }
 

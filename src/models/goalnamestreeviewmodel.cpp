@@ -44,10 +44,10 @@ void GoalNamesTreeViewModel::setChildrenOfItem(QStandardItem *item)
 {
     QSqlQuery query;
     if(item == invisibleRootItem())
-        query.prepare("SELECT name,id FROM goals WHERE parentGoalId IS NULL;");
+        query.prepare("SELECT name,itemId FROM goals WHERE parentGoalId IS NULL;");
     else
     {
-        query.prepare("SELECT name,id FROM goals WHERE parentGoalId=:parentGoalId;");
+        query.prepare("SELECT name,itemId FROM goals WHERE parentGoalId=:parentGoalId;");
         query.bindValue(":parentGoalId", item->data(ID));
     }
 
@@ -55,7 +55,7 @@ void GoalNamesTreeViewModel::setChildrenOfItem(QStandardItem *item)
 
     if (query.lastError().isValid())
     {
-        qDebug() << query.lastError().text();
+        qDebug() << "GoalNamesTreeViewModel::setChildrenOfItem" << query.lastError().text();
         return;
     }
 

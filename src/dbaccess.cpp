@@ -19,7 +19,7 @@ void DBAccess::initSchema()
     QSqlQuery query;
 
     query.exec("CREATE TABLE IF NOT EXISTS goals ("
-               "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+               "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
                "name TEXT, "
                "imageSource TEXT,"
                "category TEXT, "
@@ -38,15 +38,15 @@ void DBAccess::initSchema()
                ");");
 
     if (query.lastError().isValid())
-        qDebug() << query.lastError().text();
+        qDebug() << "DBAccess::initSchema" << query.lastError().text();
 
-//    for(int i = 0; i < 10; i++)
-//    {
-//        query.exec("INSERT INTO goals (name,imageSource,category,startDateTime,endDateTime,progressTracker,progressValue,targetValue,progressUnit) VALUES ("
-//                   "'Become a Freaking Software Engineer', 'file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png', 'Home', "
-//                   "'02 Sep 2023 11:59 PM', '02 Sep 2023 11:59 PM',"
-//                   "'Progress tracker', 70, 100, 'plates');");
-//    }
+    for(int i = 0; i < 10; i++)
+    {
+        query.exec("INSERT INTO goals (name,imageSource,category,startDateTime,endDateTime,progressTracker,progressValue,targetValue,progressUnit) VALUES ("
+                   "'Become a Freaking Software Engineer', 'file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png', 'Home', "
+                   "'02 Sep 2023 11:59 PM', '02 Sep 2023 11:59 PM',"
+                   "'Progress tracker', 70, 100, 'plates');");
+    }
 
 
     if (query.lastError().isValid())
@@ -60,8 +60,8 @@ void DBAccess::loadData(Goal* goal)
                          "endDateTime, progressTracker, progressValue, targetValue, "
                          "progressUnit, mission, vision, obstacles, resources, parentGoalId "
                   "FROM goals "
-                  "WHERE id=:id;");
-    query.bindValue(":id", goal->id());
+                  "WHERE itemId=:itemId;");
+    query.bindValue(":itemId", goal->itemId());
     query.exec();
 
     if(query.isActive() && query.isSelect())
@@ -79,12 +79,12 @@ void DBAccess::loadData(Goal* goal)
         goal->setMission(query.value(9).toString());
         goal->setObstacles(query.value(10).toString());
         goal->setResources(query.value(11).toString());
-        goal->setParentGoalId(query.value(12).toInt());
+        goal->setParentGoalId(query.value(12).isNull() ? 0 : query.value(12).toInt());
     }
     else
     {
         if (query.lastError().isValid())
-            qDebug() << query.lastError().text();
+            qDebug() << "DBAccess::loadData" << query.lastError().text();
     }
 }
 
@@ -120,5 +120,22 @@ void DBAccess::saveData(Goal* goal)
     query.exec();
 
     if (query.lastError().isValid())
-        qDebug() << query.lastError().text();
+        qDebug() << "DBAccess::saveData" << query.lastError().text();
+}
+
+QVariant DBAccess::getData(const QString& tableName, const QString& columnName, int itemId)
+{
+    QSqlQuery query;
+    query.prepare("SELECT :columnName FROM :tableName WHERE itemId=:itemId;");
+    query.bindValue(":columnName", columnName);
+    query.bindValue(":tableName", tableName);
+    query.bindValue(":itemId", itemId);
+    query.exec();
+
+    if (query.lastError().isValid())
+        qDebug() << "DBAccess::getData" << query.lastError().text();
+
+    query.next();
+//    return query.value(0);
+    return QVariant("Fuck you");
 }

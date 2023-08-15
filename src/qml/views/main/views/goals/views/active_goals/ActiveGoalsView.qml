@@ -40,7 +40,7 @@ Pane {
                         targetValue: model.targetValue
                         unit: model.progressUnit
                         onClicked: {
-                            stackView.push(goalInfoView, {"goal.id": model.id})
+                            stackView.push(goalInfoView, {"goal.itemId": model.itemId})
                         }
                     }
                 }

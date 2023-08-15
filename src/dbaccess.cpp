@@ -128,9 +128,7 @@ void DBAccess::saveData(Goal* goal)
 QVariant DBAccess::getData(const QString& tableName, const QString& columnName, int itemId)
 {
     QSqlQuery query;
-    query.prepare("SELECT :columnName FROM :tableName WHERE itemId=:itemId;");
-    query.bindValue(":columnName", columnName);
-    query.bindValue(":tableName", tableName);
+    query.prepare("SELECT " + columnName + " FROM " + tableName + " WHERE itemId=:itemId;");
     query.bindValue(":itemId", itemId);
     query.exec();
 
@@ -138,6 +136,5 @@ QVariant DBAccess::getData(const QString& tableName, const QString& columnName, 
         qDebug() << "DBAccess::getData" << query.lastError().text();
 
     query.next();
-//    return query.value(0);
-    return QVariant("Fuck you");
+    return query.value(0);
 }

@@ -161,6 +161,7 @@ Comp.Page {
                                 RowLayout {
                                     id: parentGoalRowLayout
                                     width: parent
+                                    visible: page.goal.parentGoalId
 
                                     Comp.Text {
                                         Layout.preferredWidth: 100

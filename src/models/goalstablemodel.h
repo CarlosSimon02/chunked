@@ -8,7 +8,7 @@
 class GoalsTableModel : public QSqlTableModel
 {
     Q_OBJECT
-    Q_PROPERTY(int parentGoalId READ parentGoalId WRITE setParentGoal NOTIFY parentGoalIdChanged)
+    Q_PROPERTY(int parentGoalId READ parentGoalId WRITE setParentGoalId NOTIFY parentGoalIdChanged)
     QML_ELEMENT
 
 public:
@@ -18,7 +18,7 @@ public:
     Q_INVOKABLE void refresh();
 
     int parentGoalId() const;
-    void setParentGoal(int parentGoalId);
+    void setParentGoalId(int parentGoalId);
 
 signals:
     void parentGoalIdChanged();

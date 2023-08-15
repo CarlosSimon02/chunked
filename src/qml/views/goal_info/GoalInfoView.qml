@@ -15,8 +15,6 @@ Comp.Page {
     property Goal goal: Goal {
         onItemIdChanged: {
             dbAccess.loadData(goal)
-            parentGoalText.text = parentGoalId !== 0 ? dbAccess.getData("goals","name",parentGoalId).toString() : ""
-            parentGoalRowLayout.visible = true
         }
     }
 
@@ -174,6 +172,7 @@ Comp.Page {
                                     Comp.Text {
                                         id: parentGoalText
                                         Layout.fillWidth: true
+                                        text: page.goal.parentGoalId
                                     }
                                 }
 

@@ -14,6 +14,7 @@ void DBAccess::initSchema()
 {
     QSqlDatabase db{ QSqlDatabase::addDatabase("QSQLITE") };
     db.setDatabaseName(":memory:");
+//    db.setDatabaseName("data.sqlite");
     if(!db.open()) qDebug() << db.lastError().text();
 
     QSqlQuery query;
@@ -33,8 +34,8 @@ void DBAccess::initSchema()
                "vision TEXT, "
                "obstacles TEXT, "
                "resources TEXT, "
-               "parentGoalId INTEGER,"
-               "FOREIGN KEY(parentGoalId) REFERENCES goals(id)"
+               "parentGoalId INTEGER, "
+               "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId)"
                ");");
 
     if (query.lastError().isValid())
@@ -77,9 +78,10 @@ void DBAccess::loadData(Goal* goal)
         goal->setTargetValue(query.value(7).toInt());
         goal->setProgressUnit(query.value(8).toString());
         goal->setMission(query.value(9).toString());
-        goal->setObstacles(query.value(10).toString());
-        goal->setResources(query.value(11).toString());
-        goal->setParentGoalId(query.value(12).isNull() ? 0 : query.value(12).toInt());
+        goal->setVision(query.value(10).toString());
+        goal->setObstacles(query.value(11).toString());
+        goal->setResources(query.value(12).toString());
+        goal->setParentGoalId(query.value(13).toInt());
     }
     else
     {

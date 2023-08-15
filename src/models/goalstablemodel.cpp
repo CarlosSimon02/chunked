@@ -45,7 +45,7 @@ int GoalsTableModel::parentGoalId() const
     return m_parentGoalId;
 }
 
-void GoalsTableModel::setParentGoal(int parentGoalId)
+void GoalsTableModel::setParentGoalId(int parentGoalId)
 {
     if (parentGoalId != m_parentGoalId)
     {

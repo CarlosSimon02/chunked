@@ -30,11 +30,15 @@ Comp.ScrollView {
                 GoalInfo.SubgoalItemDelegate {
                     anchors.centerIn: parent
                     imageSource: model.imageSource
-                    goalName: model.goalName
-                    timeRemaining: model.timeRemaining
+                    goalName: model.name
+                    timeRemaining: "1d 2h remaining"
                     progressValue: model.progressValue
-                    targetValue: model.progressTarget
-                    unit: model.unit
+                    targetValue: model.targetValue
+                    unit: model.progressUnit
+
+                    onClicked: {
+                        stackView.push(goalInfoView, {"goal.id": model.id})
+                    }
                 }
             }
 

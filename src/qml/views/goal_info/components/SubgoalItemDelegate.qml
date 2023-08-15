@@ -94,7 +94,7 @@ Comp.ItemDelegate {
                             color: Comp.ColorScheme.accentColor.regular
                             font.pixelSize: 20
                             font.bold: true
-                            text: Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%"
+                            text: itemDelegate.targetValue ? Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%" : "--"
                         }
 
                         Comp.Text {

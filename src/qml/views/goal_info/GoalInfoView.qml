@@ -172,7 +172,7 @@ Comp.Page {
                                     Comp.Text {
                                         id: parentGoalText
                                         Layout.fillWidth: true
-                                        text: page.goal.parentGoalId
+                                        text: page.goal.parentGoalId ? dbAccess.getData("goals","name", page.goal.parentGoalId) : ""
                                     }
                                 }
 

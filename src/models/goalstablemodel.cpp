@@ -2,14 +2,22 @@
 
 #include <QSqlRecord>
 #include <QDebug>
+#include <QSqlError>
 
-GoalsTableModel::GoalsTableModel(QObject *parent)
+GoalsTableModel::GoalsTableModel(QObject *parent, int parentGoalId)
     : QSqlTableModel(parent)
 {
     setTable("goals");
-    setFilter("parentGoalId IS NULL");
-    setEditStrategy(QSqlTableModel::OnFieldChange);
+
+    if(parentGoalId != 0)
+        setFilter("parentGoalId="+parentGoalId);
+    else
+        setFilter("parentGoalId IS NULL");
+
     select();
+
+//    if (lastError().isValid())
+//        qDebug() << "GoalsDataAccess::createGoalsTableModel" << lastError().text;
 }
 
 QHash<int, QByteArray> GoalsTableModel::roleNames() const
@@ -39,22 +47,6 @@ void GoalsTableModel::refresh()
 {
     select();
 }
-
-int GoalsTableModel::parentGoalId() const
-{
-    return m_parentGoalId;
-}
-
-void GoalsTableModel::setParentGoalId(int parentGoalId)
-{
-    if (parentGoalId != m_parentGoalId)
-    {
-        m_parentGoalId = parentGoalId;
-        setFilter("parentGoalId="+QString::number(parentGoalId));
-        emit parentGoalIdChanged();
-    }
-}
-
 
 
 

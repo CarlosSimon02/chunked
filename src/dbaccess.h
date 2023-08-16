@@ -4,10 +4,6 @@
 #include <QObject>
 #include <QtQml/qqml.h>
 
-#include "goal.h"
-
-class QSqlDatabase;
-
 class DBAccess : public QObject
 {
     Q_OBJECT
@@ -15,9 +11,9 @@ class DBAccess : public QObject
 
 public:
     explicit DBAccess(QObject *parent = nullptr);
-    QSqlDatabase database();
 
 private:
+    void initDatabase();
     bool checkDBSchema();
 
 signals:

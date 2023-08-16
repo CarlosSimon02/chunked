@@ -8,9 +8,10 @@
 DBAccess::DBAccess(QObject *parent)
     : QObject{parent}
 {
+    initDatabase();
 }
 
-QSqlDatabase DBAccess::database()
+void DBAccess::initDatabase()
 {
     if(!QSqlDatabase::contains(QSqlDatabase::defaultConnection))
     {
@@ -22,11 +23,7 @@ QSqlDatabase DBAccess::database()
             qDebug() << db.lastError().text();
         if(!checkDBSchema())
             db.close();
-
-        return db;
     }
-
-    return  QSqlDatabase::database(QSqlDatabase::defaultConnection);
 }
 
 bool DBAccess::checkDBSchema()
@@ -53,7 +50,10 @@ bool DBAccess::checkDBSchema()
                ");");
 
     if (query.lastError().isValid())
+    {
         qDebug() << "DBAccess::initSchema" << query.lastError().text();
+        return false;
+    }
 
     for(int i = 0; i < 10; i++)
     {
@@ -63,9 +63,13 @@ bool DBAccess::checkDBSchema()
                    "'Progress tracker', 70, 100, 'plates');");
     }
 
-
     if (query.lastError().isValid())
+    {
         qDebug() << query.lastError().text();
+        return false;
+    }
+
+    return true;
 }
 
 

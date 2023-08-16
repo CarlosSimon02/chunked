@@ -1,11 +1,15 @@
 #include "goalsdataaccess.h"
+#include "goal.h"
 
-GoalsDataAccess::GoalsDataAccess()
+#include <QSqlQuery>
+#include <QSqlError>
+
+GoalsDataAccess::GoalsDataAccess(QObject *parent)
+    : DBAccess{parent}
 {
-
 }
 
-void GoalsDataAccess::loadData(Goal* goal)
+Goal* GoalsDataAccess::load(int itemId)
 {
     QSqlQuery query;
     query.prepare("SELECT name, imageSource, category, startDateTime, "
@@ -13,9 +17,10 @@ void GoalsDataAccess::loadData(Goal* goal)
                   "progressUnit, mission, vision, obstacles, resources, parentGoalId "
                   "FROM goals "
                   "WHERE itemId=:itemId;");
-    query.bindValue(":itemId", goal->itemId());
+    query.bindValue(":itemId", itemId);
     query.exec();
 
+    Goal* goal = new Goal;
     if(query.isActive() && query.isSelect())
     {
         query.first();
@@ -37,11 +42,13 @@ void GoalsDataAccess::loadData(Goal* goal)
     else
     {
         if (query.lastError().isValid())
-            qDebug() << "GoalsDataAccess::loadData" << query.lastError().text();
+            qDebug() << "GoalsDataAccess::load" << query.lastError().text();
     }
+
+    return goal;
 }
 
-void GoalsDataAccess::saveData(Goal* goal)
+void GoalsDataAccess::save(Goal* goal)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO goals "
@@ -73,19 +80,25 @@ void GoalsDataAccess::saveData(Goal* goal)
     query.exec();
 
     if (query.lastError().isValid())
-        qDebug() << "GoalsDataAccess::saveData" << query.lastError().text();
+        qDebug() << "GoalsDataAccess::save" << query.lastError().text();
 }
 
-QVariant GoalsDataAccess::getData(const QString& tableName, const QString& columnName, int itemId)
+QVariant GoalsDataAccess::get(const QString& columnName, int itemId)
 {
     QSqlQuery query;
-    query.prepare("SELECT " + columnName + " FROM " + tableName + " WHERE itemId=:itemId;");
+    query.prepare("SELECT " + columnName + " FROM goals WHERE itemId=:itemId;");
     query.bindValue(":itemId", itemId);
     query.exec();
 
     if (query.lastError().isValid())
-        qDebug() << "GoalsDataAccess::getData" << query.lastError().text();
+        qDebug() << "GoalsDataAccess::get" << query.lastError().text();
 
     query.next();
     return query.value(0);
+}
+
+GoalsTableModel *GoalsDataAccess::createGoalsTableModel(int parentGoalId)
+{
+    GoalsTableModel* model = new GoalsTableModel(nullptr, parentGoalId);
+    return model;
 }

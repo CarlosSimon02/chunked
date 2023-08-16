@@ -8,23 +8,13 @@
 class GoalsTableModel : public QSqlTableModel
 {
     Q_OBJECT
-    Q_PROPERTY(int parentGoalId READ parentGoalId WRITE setParentGoalId NOTIFY parentGoalIdChanged)
     QML_ELEMENT
 
 public:
-    explicit GoalsTableModel(QObject *parent = nullptr);
+    explicit GoalsTableModel(QObject *parent = nullptr, int parentGoalId = 0);
     QHash<int, QByteArray> roleNames() const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Q_INVOKABLE void refresh();
-
-    int parentGoalId() const;
-    void setParentGoalId(int parentGoalId);
-
-signals:
-    void parentGoalIdChanged();
-
-private:
-    int m_parentGoalId;
 };
 
 #endif // GOALSTABLEMODEL_H

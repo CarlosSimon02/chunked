@@ -39,20 +39,16 @@ Pane {
                         progressValue: model.progressValue
                         targetValue: model.targetValue
                         unit: model.progressUnit
-                        onClicked: {
-                            stackView.push(goalInfoView, {"goal.itemId": model.itemId})
-                        }
+                        onClicked: stackView.push(goalInfoView, {"goal": goalsDataAccess.load(model.itemId)})
                     }
                 }
 
                 Connections {
                     target: createGoalPopup
-                    function onSave() {goalsTableModel.refresh()}
+                    function onSave() {gridView.model.refresh()}
                 }
 
-                model: GoalsTableModel {
-                    id: goalsTableModel
-                }
+                model: goalsDataAccess.createGoalsTableModel()
             }
         }
     }

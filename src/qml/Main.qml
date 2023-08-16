@@ -19,8 +19,8 @@ ApplicationWindow {
         color: Comp.ColorScheme.primaryColor.dark
     }
 
-    DBAccess {
-        id: dbAccess
+    GoalsDataAccess {
+        id: goalsDataAccess
     }
 
     ColumnLayout {

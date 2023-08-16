@@ -14,7 +14,7 @@ Comp.Page {
 
     property Goal goal: Goal {
         onItemIdChanged: {
-            dbAccess.loadData(goal)
+            goalsDataAccess.load(goal)
         }
     }
 
@@ -173,7 +173,7 @@ Comp.Page {
                                     Comp.Text {
                                         id: parentGoalText
                                         Layout.fillWidth: true
-                                        text: page.goal.parentGoalId ? dbAccess.getData("goals","name", page.goal.parentGoalId) : ""
+                                        text: page.goal.parentGoalId ? goalsDataAccess.get("goals","name", page.goal.parentGoalId) : ""
                                     }
                                 }
 
@@ -288,52 +288,39 @@ Comp.Page {
                             padding: 10
                             bottomPadding: 20
 
-                            property url viewSource: model.viewSource
+                            required property string modelData
+                            required property int index
 
-                            text: model.text
+                            text: modelData
                             font.weight: Font.Normal
                             bottomInset: 10
                             highlighted: ListView.isCurrentItem
                             backgroundColor: "transparent"
-                            onClicked: {
-                                if(ListView.view.currentIndex !== model.index)
-                                {
-                                    ListView.view.currentIndex = model.index
-                                    loader.setSource(model.viewSource, {"goal": page.goal});
-                                }
-                            }
+                            onClicked: ListView.view.currentIndex = index
                         }
 
-                        model: ListModel {
-                            ListElement {
-                                text: "Description"
-                                viewSource: "qrc:/views/goal_info/views/DescriptionView.qml"
-                            }
-                            ListElement {
-                                text: "Subgoals"
-                                viewSource: "qrc:/views/goal_info/views/SubgoalsView.qml"
-                            }
-                            ListElement {
-                                text: "Tasks"
-                                viewSource: "qrc:/views/goal_info/views/TasksView.qml"
-                            }
-                            ListElement {
-                                text: "Habits"
-                                viewSource: "qrc:/views/goal_info/views/HabitsView.qml"
-                            }
-                            ListElement {
-                                text: "Journal"
-                                viewSource: "qrc:/views/goal_info/views/JournalView.qml"
-                            }
-                        }
+                        model: ["Description", "Subgoals", "Tasks", "Habits", "Journal"]
                     }
                 }
             }
 
-            Loader{
+            Loader {
                 id: loader
                 anchors.fill: parent
                 clip: true
+                sourceComponent: switch(listView.currentIndex) {
+                                    case 0: return descriptionView
+                                    case 1: return subgoalsView
+                                    case 2: return tasksView
+                                    case 3: return habitsView
+                                    case 4: return journalView
+                                 }
+
+                Component {id: descriptionView; DescriptionView {goal: page.goal}}
+                Component {id: subgoalsView; SubgoalsView {goal: page.goal}}
+                Component {id: tasksView; TasksView {goal: page.goal}}
+                Component {id: habitsView; HabitsView {goal: page.goal}}
+                Component {id: journalView; JournalView {goal: page.goal}}
             }
         }
     }

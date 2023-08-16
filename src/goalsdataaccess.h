@@ -5,6 +5,9 @@
 #include <QQmlEngine>
 
 #include "dbaccess.h"
+#include "models/goalstablemodel.h"
+
+class Goal;
 
 class GoalsDataAccess : public DBAccess
 {
@@ -13,9 +16,10 @@ class GoalsDataAccess : public DBAccess
 
 public:
     GoalsDataAccess(QObject *parent = nullptr);
-    Q_INVOKABLE void loadData(Goal* goal);
-    Q_INVOKABLE void saveData(Goal* goal);
-    Q_INVOKABLE QVariant getData(const QString& tableName, const QString& columnName, int itemId);
+    Q_INVOKABLE Goal* load(int itemId);
+    Q_INVOKABLE void save(Goal* goal);
+    Q_INVOKABLE QVariant get(const QString& columnName, int itemId);
+    Q_INVOKABLE GoalsTableModel* createGoalsTableModel(int parentGoalId = 0);
 };
 
 #endif // GOALSDATAACCESS_H

@@ -11,10 +11,13 @@ GoalInfo.ScrollView {
     id: scrollView
     contentWidth: availableWidth
 
+    Component.onCompleted: gridView.model = goalsDataAccess.createGoalsTableModel(scrollView.goal.itemId)
+
     ColumnLayout {
         width: scrollView.availableWidth
 
         GridView {
+            id: gridView
             Layout.preferredHeight: contentHeight
             Layout.preferredWidth: (Math.floor(parent.width / cellWidth) * cellWidth)
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
@@ -35,19 +38,14 @@ GoalInfo.ScrollView {
                     unit: model.progressUnit
 
                     onClicked: {
-                        stackView.push(goalInfoView, {"goal.itemId": model.itemId})
+                        stackView.push(goalInfoView, {"goal": goalsDataAccess.load(model.itemId)})
                     }
                 }
             }
 
             Connections {
                 target: createGoalPopup
-                function onSave() {goalsTableModel.refresh()}
-            }
-
-            model: GoalsTableModel {
-                id: goalsTableModel
-                parentGoalId: scrollView.goal.itemId
+                function onSave() {gridView.model.refresh()}
             }
         }
     }

@@ -60,21 +60,20 @@ Pop.ComboBox {
                     highlighted: comboBox.itemId === model.id
 
                     onClicked: {
-                        if(item.hasChildren) treeView.toggleExpanded(model.row)
                         comboBox.itemId = model.id
                         comboBox.displayText = model.goalName
                         comboBox.popup.close()
                     }
 
                     contentItem: RowLayout {
-                        IconImage {
-                            width: 12
-                            height: 12
-                            source: item.expanded ? "qrc:/dropdown_open_icon.svg" : "qrc:/dropdown_close_icon.svg"
-                            sourceSize.width: 12
-                            sourceSize.height: 12
-                            color: itemDelegate.foregroundColor
+                        Comp.Button {
+                            padding: 4
+                            icon.source: item.expanded ? "qrc:/dropdown_open_icon.svg" : "qrc:/dropdown_close_icon.svg"
+                            icon.width: 12
+                            icon.height: 12
+                            foregroundColor: itemDelegate.foregroundColor
                             visible: item.hasChildren
+                            onClicked: treeView.toggleExpanded(model.row)
                         }
 
                         Text {

@@ -16,6 +16,8 @@ qt_add_executable(chunked
     src/goal.cpp
     src/dbaccess.h
     src/dbaccess.cpp
+    src/goalsdataaccess.h
+    src/goalsdataaccess.cpp
     src/models/goalstablemodel.h
     src/models/goalstablemodel.cpp
     src/models/goalnamestreeviewmodel.h
@@ -34,6 +36,7 @@ target_include_directories(chunked
 qt6_add_qml_module(chunked
   URI app
   VERSION 1.0
+  SOURCES
 )
 
 list(APPEND QML_DIRS ${CMAKE_SOURCE_DIR}/src/qml)

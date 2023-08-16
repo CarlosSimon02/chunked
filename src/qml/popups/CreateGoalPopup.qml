@@ -7,36 +7,13 @@ import app
 import components as Comp
 import "./components" as Pop
 
-Popup {
+Comp.ModalPopup {
     id: createGoalPopup
     width: 750
     height: 630
-    modal: true
-    dim: true
-    closePolicy: Popup.NoAutoClose
-    padding: 20
-    parent: Overlay.overlay
-    anchors.centerIn: parent
 
     property Goal parentGoal: null
     signal save
-
-    background: Rectangle {
-        color: Comp.ColorScheme.primaryColor.light
-        radius: Comp.Units.commonRadius
-
-        layer.enabled: true
-        layer.effect: DropShadow {
-            spread: 0.2
-            radius: 10
-            samples: 17
-            color: Comp.ColorScheme.primaryColor.shadow
-        }
-    }
-
-    Overlay.modal: Rectangle {
-        color: Comp.Utils.setColorAlpha(Comp.ColorScheme.primaryColor.dark, 0.3)
-    }
 
     Loader {
         anchors.fill: parent

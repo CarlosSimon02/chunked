@@ -11,12 +11,12 @@ Comp.Page {
     id: page
     padding: 20
     topPadding: 0
-
-    property Goal goal: Goal {
-        onItemIdChanged: {
-            goalsDataAccess.load(goal)
-        }
+    onGoalChanged: {
+        loader.setSource("qrc:/views/goal_info/views/DescriptionView.qml", {"goal": page.goal})
     }
+
+    required property Goal goal
+
 
     header: Comp.PageHeader {
         background: null
@@ -288,18 +288,42 @@ Comp.Page {
                             padding: 10
                             bottomPadding: 20
 
-                            required property string modelData
-                            required property int index
-
-                            text: modelData
+                            text: model.text
                             font.weight: Font.Normal
                             bottomInset: 10
                             highlighted: ListView.isCurrentItem
                             backgroundColor: "transparent"
-                            onClicked: ListView.view.currentIndex = index
+                            onClicked: {
+                                if(ListView.view.currentIndex !== model.index)
+                                {
+                                    ListView.view.currentIndex = model.index
+                                    loader.setSource(model.viewSource, {"goal": page.goal});
+                                }
+                            }
                         }
 
-                        model: ["Description", "Subgoals", "Tasks", "Habits", "Journal"]
+                        model: ListModel {
+                            ListElement {
+                                text: "Description"
+                                viewSource: "qrc:/views/goal_info/views/DescriptionView.qml"
+                            }
+                            ListElement {
+                                text: "Subgoals"
+                                viewSource: "qrc:/views/goal_info/views/SubgoalsView.qml"
+                            }
+                            ListElement {
+                                text: "Tasks"
+                                viewSource: "qrc:/views/goal_info/views/TasksView.qml"
+                            }
+                            ListElement {
+                                text: "Habits"
+                                viewSource: "qrc:/views/goal_info/views/HabitsView.qml"
+                            }
+                            ListElement {
+                                text: "Journal"
+                                viewSource: "qrc:/views/goal_info/views/JournalView.qml"
+                            }
+                        }
                     }
                 }
             }
@@ -308,19 +332,6 @@ Comp.Page {
                 id: loader
                 anchors.fill: parent
                 clip: true
-                sourceComponent: switch(listView.currentIndex) {
-                                    case 0: return descriptionView
-                                    case 1: return subgoalsView
-                                    case 2: return tasksView
-                                    case 3: return habitsView
-                                    case 4: return journalView
-                                 }
-
-                Component {id: descriptionView; DescriptionView {goal: page.goal}}
-                Component {id: subgoalsView; SubgoalsView {goal: page.goal}}
-                Component {id: tasksView; TasksView {goal: page.goal}}
-                Component {id: habitsView; HabitsView {goal: page.goal}}
-                Component {id: journalView; JournalView {goal: page.goal}}
             }
         }
     }

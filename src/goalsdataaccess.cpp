@@ -21,6 +21,7 @@ Goal* GoalsDataAccess::load(int itemId)
     query.exec();
 
     Goal* goal = new Goal;
+    goal->setItemId(itemId);
     if(query.isActive() && query.isSelect())
     {
         query.first();

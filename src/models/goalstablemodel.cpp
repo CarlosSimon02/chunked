@@ -4,20 +4,9 @@
 #include <QDebug>
 #include <QSqlError>
 
-GoalsTableModel::GoalsTableModel(QObject *parent, int parentGoalId)
+GoalsTableModel::GoalsTableModel(QObject *parent)
     : QSqlTableModel(parent)
 {
-    setTable("goals");
-
-    if(parentGoalId != 0)
-        setFilter("parentGoalId="+parentGoalId);
-    else
-        setFilter("parentGoalId IS NULL");
-
-    select();
-
-//    if (lastError().isValid())
-//        qDebug() << "GoalsDataAccess::createGoalsTableModel" << lastError().text;
 }
 
 QHash<int, QByteArray> GoalsTableModel::roleNames() const

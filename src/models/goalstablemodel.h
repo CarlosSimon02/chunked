@@ -11,7 +11,7 @@ class GoalsTableModel : public QSqlTableModel
     QML_ELEMENT
 
 public:
-    explicit GoalsTableModel(QObject *parent = nullptr, int parentGoalId = 0);
+    explicit GoalsTableModel(QObject *parent = nullptr);
     QHash<int, QByteArray> roleNames() const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Q_INVOKABLE void refresh();

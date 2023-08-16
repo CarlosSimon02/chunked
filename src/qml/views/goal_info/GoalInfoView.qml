@@ -11,12 +11,8 @@ Comp.Page {
     id: page
     padding: 20
     topPadding: 0
-    onGoalChanged: {
-        loader.setSource("qrc:/views/goal_info/views/DescriptionView.qml", {"goal": page.goal})
-    }
 
     required property Goal goal
-
 
     header: Comp.PageHeader {
         background: null

@@ -11,8 +11,6 @@ GoalInfo.ScrollView {
     id: scrollView
     contentWidth: availableWidth
 
-    Component.onCompleted: gridView.model = goalsDataAccess.createGoalsTableModel(1)
-
     ColumnLayout {
         width: scrollView.availableWidth
 
@@ -42,6 +40,8 @@ GoalInfo.ScrollView {
                     }
                 }
             }
+
+            model: goalsDataAccess.createGoalsTableModel(scrollView.goal.itemId)
 
             Connections {
                 target: createGoalPopup

@@ -60,7 +60,7 @@ T.ComboBox {
         radius: Comp.Units.commonRadius
     }
 
-    popup: T.Popup {
+    popup: Comp.Popup {
         y: comboBox.height
         width: comboBox.width
         height: Math.min(contentItem.implicitHeight + verticalPadding * 2, comboBox.Window.height - topMargin - bottomMargin)
@@ -86,19 +86,6 @@ T.ComboBox {
             model: comboBox.delegateModel
             currentIndex: comboBox.highlightedIndex
             highlightMoveDuration: 0
-        }
-
-        background: Rectangle {
-            color: Comp.ColorScheme.primaryColor.light
-            radius: Comp.Units.commonRadius
-
-            layer.enabled: true
-            layer.effect: DropShadow {
-                spread: 0.2
-                radius: 10
-                samples: 17
-                color: Comp.ColorScheme.primaryColor.shadow
-            }
         }
     }
 }

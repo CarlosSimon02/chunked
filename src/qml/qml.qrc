@@ -53,5 +53,6 @@
         <file>popups/components/ComboBox.qml</file>
         <file>popups/components/TreeViewComboBox.qml</file>
         <file>views/goal_info/components/ScrollView.qml</file>
+        <file>components/Popup.qml</file>
     </qresource>
 </RCC>

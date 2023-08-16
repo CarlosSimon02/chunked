@@ -14,7 +14,7 @@ Pop.ComboBox {
 
     property int itemId: 0
 
-    popup: T.Popup {
+    popup: Comp.Popup {
         y: comboBox.height
         width: comboBox.width
         height: contentItem.childrenRect.height + topPadding + bottomPadding
@@ -31,19 +31,6 @@ Pop.ComboBox {
         exit: Transition {
             NumberAnimation { property: "scale"; to: 0.9; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
-        }
-
-        background: Rectangle {
-            color: Comp.ColorScheme.primaryColor.light
-            radius: Comp.Units.commonRadius
-
-            layer.enabled: true
-            layer.effect: DropShadow {
-                spread: 0.2
-                radius: 10
-                samples: 17
-                color: Comp.ColorScheme.primaryColor.shadow
-            }
         }
 
         TreeView {

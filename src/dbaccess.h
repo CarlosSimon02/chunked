@@ -6,17 +6,19 @@
 
 #include "goal.h"
 
+class QSqlDatabase;
+
 class DBAccess : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
 
-private:
-    void initSchema();
-
 public:
     explicit DBAccess(QObject *parent = nullptr);
+    QSqlDatabase database();
 
+private:
+    bool checkDBSchema();
 
 signals:
 

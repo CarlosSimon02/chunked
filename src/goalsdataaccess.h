@@ -4,10 +4,13 @@
 #include <QObject>
 #include <QQmlEngine>
 
-class GoalsDataAccess
+#include "dbaccess.h"
+
+class GoalsDataAccess : public DBAccess
 {
     Q_OBJECT
     QML_ELEMENT
+
 public:
     GoalsDataAccess(QObject *parent = nullptr);
     Q_INVOKABLE void loadData(Goal* goal);

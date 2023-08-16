@@ -82,9 +82,15 @@ Pane {
 
     DropArea {
         anchors.fill: parent
-        onEntered: dragIndicator.color = Comp.ColorScheme.secondaryColor.veryDark
+        onEntered: drag => {
+                       dragIndicator.color = Comp.ColorScheme.secondaryColor.veryDark
+
+                   }
+
         onExited: dragIndicator.color = "transparent"
-        onDropped: drop => image.source = drop.urls[0]
+        onDropped: drop => {
+                       image.source = drop.urls[0]
+                   }
     }
 
     FileDialog {

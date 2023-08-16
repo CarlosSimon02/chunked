@@ -7,7 +7,7 @@ Page 1.0 Page.qml
 PageHeader 1.0 PageHeader.qml
 PageTitleText 1.0 PageTitleText.qml
 Pane 1.0 Pane.qml
-Popup 1.0 Popup.qml
+ModalPopup 1.0 ModalPopup.qml
 ProgressBar 1.0 ProgressBar.qml
 ScrollBar 1.0 ScrollBar.qml
 ScrollView 1.0 ScrollView.qml

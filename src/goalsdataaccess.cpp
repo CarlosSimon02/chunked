@@ -95,11 +95,11 @@ QVariant GoalsDataAccess::get(const QString& columnName, int itemId)
 
 GoalsTableModel *GoalsDataAccess::createGoalsTableModel(int parentGoalId)
 {
-    GoalsTableModel* model = new GoalsTableModel(nullptr);
+    GoalsTableModel* model = new GoalsTableModel;
     model->setTable("goals");
 
-    if(parentGoalId != 0)
-        model->setFilter("parentGoalId="+parentGoalId);
+    if(parentGoalId)
+        model->setFilter("parentGoalId="+QString::number(parentGoalId));
     else
         model->setFilter("parentGoalId IS NULL");
 

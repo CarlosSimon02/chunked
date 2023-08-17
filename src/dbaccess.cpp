@@ -37,7 +37,7 @@ bool DBAccess::checkDBSchema()
                "category TEXT, "
                "startDateTime VARCHAR(20), "
                "endDateTime VARCHAR(20), "
-               "progressTracker TEXT, "
+               "progressTracker INTEGER, "
                "progressValue INTEGER, "
                "targetValue INTEGER, "
                "progressUnit VARCHAR(20),"
@@ -54,18 +54,6 @@ bool DBAccess::checkDBSchema()
         qDebug() << "DBAccess::initSchema" << query.lastError().text();
         return false;
     }
-
-    query.exec("CREATE TABLE IF NOT EXISTS goalProgressTrackers ("
-               "itemId INTEGER PRIMARY KEY, "
-               "name TEXT;");
-
-    if (query.lastError().isValid())
-    {
-        qDebug() << "DBAccess::initSchema" << query.lastError().text();
-        return false;
-    }
-
-//    query.exec("INSERT INTO goalProgressTrackers (")
 
     for(int i = 0; i < 10; i++)
     {

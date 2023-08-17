@@ -38,15 +38,15 @@ Comp.ItemDelegate {
 
                     ColumnLayout {
                         anchors.fill: parent
-                        spacing: -Comp.Units.commonRadius
+                        spacing: -Comp.Consts.commonRadius
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            radius: Comp.Units.commonRadius
+                            radius: Comp.Consts.commonRadius
                         }
                         Rectangle {
                             Layout.fillWidth: true
-                            Layout.preferredHeight: Comp.Units.commonRadius
+                            Layout.preferredHeight: Comp.Consts.commonRadius
                         }
                     }
                 }

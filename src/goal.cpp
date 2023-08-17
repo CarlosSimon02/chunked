@@ -89,12 +89,12 @@ void Goal::setEndDateTime(const QString &endDateTime)
     }
 }
 
-QString Goal::progressTracker() const
+int Goal::progressTracker() const
 {
     return m_progressTracker;
 }
 
-void Goal::setProgressTracker(const QString &progressTracker)
+void Goal::setProgressTracker(int progressTracker)
 {
     if (progressTracker != m_progressTracker)
     {

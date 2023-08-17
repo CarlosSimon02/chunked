@@ -12,7 +12,7 @@ Ctrl.Pane {
     background: Rectangle {
         clip: false
         color: pane.backgroundColor
-        radius: Units.commonRadius
+        radius: Consts.commonRadius
 
         layer.enabled: pane.elevated
         layer.effect: DropShadow {

@@ -57,7 +57,7 @@ T.ComboBox {
         border.width: 1.5
         border.color: comboBox.activeFocus ? Comp.ColorScheme.accentColor.regular :
                                              Comp.ColorScheme.secondaryColor.dark
-        radius: Comp.Units.commonRadius
+        radius: Comp.Consts.commonRadius
     }
 
     popup: Comp.Popup {

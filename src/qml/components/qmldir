@@ -16,4 +16,4 @@ Text 1.0 Text.qml
 Utils 1.0 Utils.js
 
 singleton ColorScheme ColorScheme.qml
-singleton Units Units.qml
+singleton Consts Consts.qml

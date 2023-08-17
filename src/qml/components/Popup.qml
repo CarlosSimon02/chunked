@@ -7,7 +7,7 @@ import components as Comp
 Ctrl.Popup {
     background: Rectangle {
         color: Comp.ColorScheme.primaryColor.light
-        radius: Comp.Units.commonRadius
+        radius: Comp.Consts.commonRadius
 
         layer.enabled: true
         layer.effect: DropShadow {

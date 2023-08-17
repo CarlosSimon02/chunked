@@ -33,7 +33,7 @@ Comp.ModalPopup {
                 category: categoryComboBox.displayText
                 startDateTime: startButton.chosenDate
                 endDateTime: endButton.chosenDate
-                progressTracker: progressTrackerComboBox.displayText
+                progressTracker: progressTrackerComboBox.currentIndex
                 progressValue: parseInt(progressValueTextArea.text)
                 targetValue: parseInt(targetValueTextArea.text)
                 progressUnit: progressUnitTextArea.text
@@ -280,13 +280,7 @@ Comp.ModalPopup {
                             Pop.ComboBox {
                                 id: progressTrackerComboBox
                                 Layout.preferredWidth: 400
-                                model: [
-                                    "Total number of completed tasks",
-                                    "Total outcome from all tasks",
-                                    "Total progress from all subgoals",
-                                    "Total number of completed subgoals",
-                                    "Manually updating current progress"
-                                ]
+                                model: Comp.Units.goalProgressTrackers
 
                                 onActivated: index => {
                                    switch(index) {

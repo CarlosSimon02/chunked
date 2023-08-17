@@ -13,7 +13,7 @@ Ctrl.Page {
 
     background: Rectangle {
         color: page.backgroundColor
-        radius: Units.commonRadius
+        radius: Consts.commonRadius
 
         layer.enabled: page.elevated
         layer.effect: DropShadow {

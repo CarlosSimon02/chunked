@@ -19,7 +19,7 @@ Pane {
         id: dragIndicator
         anchors.fill: parent
         color: "transparent"
-        radius: Comp.Units.commonRadius
+        radius: Comp.Consts.commonRadius
 
         ColumnLayout {
             anchors.centerIn: parent
@@ -66,7 +66,7 @@ Pane {
 
                 Rectangle {
                     anchors.fill: parent
-                    radius: Comp.Units.commonRadius
+                    radius: Comp.Consts.commonRadius
                 }
             }
         }
@@ -77,7 +77,7 @@ Pane {
         color: "transparent"
         border.width: 1.5
         border.color: Comp.ColorScheme.secondaryColor.dark
-        radius: Comp.Units.commonRadius
+        radius: Comp.Consts.commonRadius
     }
 
     DropArea {

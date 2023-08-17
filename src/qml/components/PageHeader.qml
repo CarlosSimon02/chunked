@@ -17,17 +17,17 @@ Pane {
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                spacing: -Comp.Units.commonRadius
+                spacing: -Comp.Consts.commonRadius
 
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    radius: Comp.Units.commonRadius
+                    radius: Comp.Consts.commonRadius
                     color: Comp.ColorScheme.primaryColor.light
                 }
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: Comp.Units.commonRadius
+                    Layout.preferredHeight: Comp.Consts.commonRadius
                     color: Comp.ColorScheme.primaryColor.light
                 }
             }

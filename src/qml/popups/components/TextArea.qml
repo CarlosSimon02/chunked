@@ -37,7 +37,7 @@ T.TextArea {
         border.width: 1.5
         border.color: textArea.activeFocus ? Comp.ColorScheme.accentColor.regular :
                                              Comp.ColorScheme.secondaryColor.dark
-        radius: Comp.Units.commonRadius
+        radius: Comp.Consts.commonRadius
     }
 
     PlaceholderText {

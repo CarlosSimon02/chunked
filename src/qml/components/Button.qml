@@ -43,7 +43,7 @@ T.Button {
 
     background: Rectangle {
         id: rectangle
-        radius: Comp.Units.commonRadius
+        radius: Comp.Consts.commonRadius
         color: button.backgroundColor
         border.color: button.foregroundColor
         border.width: 0

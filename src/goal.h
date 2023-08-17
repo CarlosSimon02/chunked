@@ -13,7 +13,7 @@ class Goal : public QObject
     Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
     Q_PROPERTY(QString startDateTime READ startDateTime WRITE setStartDateTime NOTIFY startDateTimeChanged)
     Q_PROPERTY(QString endDateTime READ endDateTime WRITE setEndDateTime NOTIFY endDateTimeChanged)
-    Q_PROPERTY(QString progressTracker READ progressTracker WRITE setProgressTracker NOTIFY progressTrackerChanged)
+    Q_PROPERTY(int progressTracker READ progressTracker WRITE setProgressTracker NOTIFY progressTrackerChanged)
     Q_PROPERTY(int progressValue READ progressValue WRITE setProgressValue NOTIFY progressValueChanged)
     Q_PROPERTY(int targetValue READ targetValue WRITE setTargetValue NOTIFY targetValueChanged)
     Q_PROPERTY(QString progressUnit READ progressUnit WRITE setProgressUnit NOTIFY progressUnitChanged)
@@ -38,8 +38,8 @@ public:
     void setStartDateTime(const QString& startDateTime);
     QString endDateTime() const;
     void setEndDateTime(const QString& endDateTime);
-    QString progressTracker() const;
-    void setProgressTracker(const QString& progressTracker);
+    int progressTracker() const;
+    void setProgressTracker(int progressTracker);
     int progressValue() const;
     void setProgressValue(int progressValue);
     int targetValue() const;
@@ -81,7 +81,7 @@ private:
     QString m_category;
     QString m_startDateTime;
     QString m_endDateTime;
-    QString m_progressTracker;
+    int m_progressTracker;
     int m_progressValue;
     int m_targetValue;
     QString m_progressUnit;

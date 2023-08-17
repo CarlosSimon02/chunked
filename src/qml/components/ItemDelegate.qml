@@ -45,7 +45,7 @@ T.ItemDelegate {
     }
 
     background: Rectangle {
-        radius: Comp.Units.commonRadius
+        radius: Comp.Consts.commonRadius
         color: itemDelegate.backgroundColor
 
         layer.enabled: itemDelegate.elevated

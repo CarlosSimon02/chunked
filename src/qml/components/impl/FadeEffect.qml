@@ -14,7 +14,7 @@ Item {
     Rectangle {
         id: rectangle
         anchors.fill: parent
-        radius: Comp.Units.commonRadius
+        radius: Comp.Consts.commonRadius
 
         color: Comp.Utils.setColorAlpha(item.colorEffect, 0)
 

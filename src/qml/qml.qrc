@@ -5,7 +5,7 @@
         <file>components/Pane.qml</file>
         <file>components/qmldir</file>
         <file>components/ColorScheme.qml</file>
-        <file>components/Units.qml</file>
+        <file>components/Consts.qml</file>
         <file>components/Utils.js</file>
         <file>components/impl/FadeEffect.qml</file>
         <file>components/Button.qml</file>

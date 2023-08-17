@@ -144,12 +144,14 @@ Comp.Pane {
                             Comp.Text {
                                 id: parentGoalText
                                 Layout.fillWidth: true
-                                text: scrollView.goal.parentGoalId ? goalsDataAccess.get("goals","name", scrollView.goal.parentGoalId) : ""
+                                text: scrollView.goal.parentGoalId ? goalsDataAccess.get("name", scrollView.goal.parentGoalId) : ""
+                                font.underline: true
                             }
                         }
 
                         Repeater {
                             Layout.fillWidth: true
+
                             RowLayout {
                                 width: parent
 
@@ -167,49 +169,14 @@ Comp.Pane {
                             }
 
                             model: ListModel {
-                                ListElement {
-                                    label: "Category"
-                                    data: "Home"
-                                }
-
-                                ListElement {
-                                    label: "Status"
-                                    data: "Active"
-                                }
-
-                                ListElement {
-                                    label: "Category"
-                                    data: "Home"
-                                }
-
-                                ListElement {
-                                    label: "Start Time"
-                                    data: "January 1, 2023"
-                                }
-
-                                ListElement {
-                                    label: "End Time"
-                                    data: "December 31, 2023"
-                                }
-
-                                ListElement {
-                                    label: "Time Frame"
-                                    data: "365 days"
-                                }
-
-                                ListElement {
-                                    label: "Tracking"
-                                    data: "Task"
-                                }
-
-                                ListElement {
-                                    label: "Target"
-                                    data: "100"
-                                }
-
-                                ListElement {
-                                    label: "Unit"
-                                    data: "books"
+                                Component.onCompleted: {
+                                    append({"label":"Category", "data":scrollView.goal.category})
+                                    append({"label":"Status", "data":"Active"})
+                                    append({"label":"Start Time", "data":scrollView.goal.startDateTime})
+                                    append({"label":"End Time", "data":scrollView.goal.endDateTime})
+                                    append({"label":"Time Frame", "data":"1d 2h"})
+                                    append({"label":"Tracker", "data":Comp.Consts.goalProgressTrackers[scrollView.goal.progressTracker]})
+                                    append({"label":"Target", "data":scrollView.goal.targetValue.toString()})
                                 }
                             }
                         }

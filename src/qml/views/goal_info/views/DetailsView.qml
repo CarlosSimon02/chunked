@@ -146,6 +146,15 @@ Comp.Pane {
                                 Layout.fillWidth: true
                                 text: scrollView.goal.parentGoalId ? goalsDataAccess.get("name", scrollView.goal.parentGoalId) : ""
                                 font.underline: true
+                                wrapMode: Text.Wrap
+
+                                HoverHandler {
+                                    cursorShape: Qt.PointingHandCursor
+                                }
+
+                                TapHandler {
+                                    onTapped: stackView.push(goalInfoView, {"goal": goalsDataAccess.load(scrollView.goal.parentGoalId)})
+                                }
                             }
                         }
 
@@ -165,6 +174,7 @@ Comp.Pane {
                                 Comp.Text {
                                     Layout.fillWidth: true
                                     text: model.data
+                                    wrapMode: Text.Wrap
                                 }
                             }
 

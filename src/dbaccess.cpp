@@ -55,6 +55,18 @@ bool DBAccess::checkDBSchema()
         return false;
     }
 
+    query.exec("CREATE TABLE IF NOT EXISTS goalProgressTrackers ("
+               "itemId INTEGER PRIMARY KEY, "
+               "name TEXT;");
+
+    if (query.lastError().isValid())
+    {
+        qDebug() << "DBAccess::initSchema" << query.lastError().text();
+        return false;
+    }
+
+//    query.exec("INSERT INTO goalProgressTrackers (")
+
     for(int i = 0; i < 10; i++)
     {
         query.exec("INSERT INTO goals (name,imageSource,category,startDateTime,endDateTime,progressTracker,progressValue,targetValue,progressUnit) VALUES ("

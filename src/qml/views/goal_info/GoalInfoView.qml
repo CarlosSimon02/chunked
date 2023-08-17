@@ -81,19 +81,28 @@ Comp.Page {
                             padding: 10
                             bottomPadding: 20
 
-                            required property string modelData
-                            required property int index
-
-                            text: modelData
+                            text: model.data
                             font.weight: Font.Normal
                             bottomInset: 10
                             highlighted: ListView.isCurrentItem
                             backgroundColor: "transparent"
 
-                            onClicked: ListView.view.currentIndex = index
+                            onClicked: ListView.view.currentIndex = model.index
                         }
 
-                        model: ["Description","Subgoals","Tasks","Habits","Journal"]
+                        model: ListModel {
+                            Component.onCompleted: {
+                                switch(page.goal.progressTracker) {
+                                case 0: case 1: append({"data":"Subgoals"}); break;
+                                case 2: case 3: append({"data":"Tasks"}); break;
+                                case 4: case 5: append({"data":"Habits"}); break;
+                                case 6: break;
+                                }
+
+                                append({"data":"Description"})
+                                append({"data":"Journal"})
+                            }
+                        }
                     }
                 }
             }
@@ -102,13 +111,11 @@ Comp.Page {
                 id: loader
                 anchors.fill: parent
                 clip: true
-                sourceComponent: switch(listView.currentIndex) {
-                                 case 0: return descriptionView;
-                                 case 1: return subgoalsView;
-                                 case 2: return tasksView;
-                                 case 3: return habitsView;
-                                 case 4: return journalView;
-                                 }
+                sourceComponent: if(listView.currentItem.text === "Subgoals") return subgoalsView;
+                    else if(listView.currentItem.text === "Habits") return habitsView;
+                    else if(listView.currentItem.text === "Tasks") return tasksView;
+                    else if(listView.currentItem.text === "Description") return descriptionView
+                    else if(listView.currentItem.text === "Journal") return journalView
 
                 Component {id: descriptionView; DescriptionView {goal: page.goal}}
                 Component {id: subgoalsView; SubgoalsView {goal: page.goal}}

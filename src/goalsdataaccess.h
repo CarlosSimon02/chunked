@@ -19,6 +19,7 @@ public:
     Q_INVOKABLE Goal* load(int itemId);
     Q_INVOKABLE void save(Goal* goal);
     Q_INVOKABLE QVariant get(const QString& columnName, int itemId);
+    Q_INVOKABLE void update(const QString& columnName, int itemId, const QVariant& value);
     Q_INVOKABLE GoalsTableModel* createGoalsTableModel(int parentGoalId = 0);
 };
 

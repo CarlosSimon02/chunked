@@ -16,7 +16,7 @@ Goal* GoalsDataAccess::load(int itemId)
                   "endDateTime, progressTracker, progressValue, targetValue, "
                   "progressUnit, mission, vision, obstacles, resources, parentGoalId "
                   "FROM goals "
-                  "WHERE itemId=:itemId;");
+                  "WHERE itemId = :itemId;");
     query.bindValue(":itemId", itemId);
     query.exec();
     query.first();
@@ -82,24 +82,41 @@ void GoalsDataAccess::save(Goal* goal)
 QVariant GoalsDataAccess::get(const QString& columnName, int itemId)
 {
     QSqlQuery query;
-    query.prepare("SELECT " + columnName + " FROM goals WHERE itemId=:itemId;");
+    query.prepare("SELECT " + columnName + " FROM goals WHERE itemId = :itemId;");
     query.bindValue(":itemId", itemId);
     query.exec();
 
-    if (query.lastError().isValid())
+    if(query.lastError().isValid())
         qDebug() << "GoalsDataAccess::get" << query.lastError().text();
 
     query.next();
     return query.value(0);
 }
 
-GoalsTableModel *GoalsDataAccess::createGoalsTableModel(int parentGoalId)
+void GoalsDataAccess::update(const QString &columnName, int itemId, const QVariant &value)
+{
+    QSqlQuery query;
+    if(itemId)
+    {
+        query.prepare("UPDATE goals SET :columnName = :value WHERE itemId = :itemId");
+        query.bindValue(":itemId", itemId);
+    }
+    else
+        query.prepare("UPDATE goals SET :columnName = :value WHERE itemId IS NULL");
+    query.bindValue(":columnName", columnName);
+    query.bindValue(":value",value);
+    query.exec();
+
+
+}
+
+GoalsTableModel *GoalsDataAcGcess::createGoalsTableModel(int parentGoalId)
 {
     GoalsTableModel* model = new GoalsTableModel;
     model->setTable("goals");
 
     if(parentGoalId)
-        model->setFilter("parentGoalId="+QString::number(parentGoalId));
+        model->setFilter("parentGoalId = "+QString::number(parentGoalId));
     else
         model->setFilter("parentGoalId IS NULL");
 

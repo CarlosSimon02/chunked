@@ -87,16 +87,35 @@ Comp.Page {
                             highlighted: ListView.isCurrentItem
                             backgroundColor: "transparent"
 
-                            onClicked: ListView.view.currentIndex = model.index
+                            onClicked: {
+                                ListView.view.currentIndex = model.index
+
+                                if(listView.currentItem.text === "Subgoals") loader.sourceComponent = subgoalsView;
+                                else if(listView.currentItem.text === "Habits") loader.sourceComponent = habitsView;
+                                else if(listView.currentItem.text === "Tasks") loader.sourceComponent = tasksView;
+                                else if(listView.currentItem.text === "Description") loader.sourceComponent = descriptionView
+                                else if(listView.currentItem.text === "Journal") loader.sourceComponent = journalView
+                            }
                         }
 
                         model: ListModel {
                             Component.onCompleted: {
                                 switch(page.goal.progressTracker) {
-                                case 0: case 1: append({"data":"Subgoals"}); break;
-                                case 2: case 3: append({"data":"Tasks"}); break;
-                                case 4: case 5: append({"data":"Habits"}); break;
-                                case 6: break;
+                                case 0: case 1:
+                                            append({"data":"Subgoals"});
+                                            loader.sourceComponent = subgoalsView
+                                            break;
+                                case 2: case 3:
+                                            append({"data":"Tasks"});
+                                            loader.sourceComponent = tasksView
+                                            break;
+                                case 4: case 5:
+                                            append({"data":"Habits"});
+                                            loader.sourceComponent = habitsView
+                                            break;
+                                case 6:
+                                    loader.sourceComponent = descriptionView
+                                    break;
                                 }
 
                                 append({"data":"Description"})
@@ -111,11 +130,6 @@ Comp.Page {
                 id: loader
                 anchors.fill: parent
                 clip: true
-                sourceComponent: if(listView.currentItem.text === "Subgoals") return subgoalsView;
-                    else if(listView.currentItem.text === "Habits") return habitsView;
-                    else if(listView.currentItem.text === "Tasks") return tasksView;
-                    else if(listView.currentItem.text === "Description") return descriptionView
-                    else if(listView.currentItem.text === "Journal") return journalView
 
                 Component {id: descriptionView; DescriptionView {goal: page.goal}}
                 Component {id: subgoalsView; SubgoalsView {goal: page.goal}}

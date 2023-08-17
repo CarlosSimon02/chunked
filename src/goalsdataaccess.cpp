@@ -31,7 +31,7 @@ Goal* GoalsDataAccess::load(int itemId)
     goal->setCategory(query.value(2).toString());
     goal->setStartDateTime(query.value(3).toString());
     goal->setEndDateTime(query.value(4).toString());
-    goal->setProgressTracker(query.value(5).toString());
+    goal->setProgressTracker(query.value(5).toInt());
     goal->setProgressValue(query.value(6).toInt());
     goal->setTargetValue(query.value(7).toInt());
     goal->setProgressUnit(query.value(8).toString());
@@ -110,7 +110,7 @@ void GoalsDataAccess::update(const QString &columnName, int itemId, const QVaria
 
 }
 
-GoalsTableModel *GoalsDataAcGcess::createGoalsTableModel(int parentGoalId)
+GoalsTableModel *GoalsDataAccess::createGoalsTableModel(int parentGoalId)
 {
     GoalsTableModel* model = new GoalsTableModel;
     model->setTable("goals");

@@ -280,7 +280,7 @@ Comp.ModalPopup {
                             Pop.ComboBox {
                                 id: progressTrackerComboBox
                                 Layout.preferredWidth: 400
-                                model: Comp.Units.goalProgressTrackers
+                                model: Comp.Consts.goalProgressTrackers
 
                                 onActivated: index => {
                                    switch(index) {

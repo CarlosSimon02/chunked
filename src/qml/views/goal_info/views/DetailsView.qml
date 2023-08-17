@@ -12,6 +12,8 @@ Comp.Pane {
     implicitHeight: 1000
     padding: 0
 
+    property alias goal: scrollView.goal
+
     GoalInfo.ScrollView {
         id: scrollView
         anchors.fill: parent
@@ -37,11 +39,13 @@ Comp.Pane {
                         ColumnLayout {
                             anchors.fill: parent
                             spacing: -Comp.Consts.commonRadius
+
                             Rectangle {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
                                 radius: Comp.Consts.commonRadius
                             }
+
                             Rectangle {
                                 Layout.fillWidth: true
                                 Layout.preferredHeight: Comp.Consts.commonRadius
@@ -128,7 +132,7 @@ Comp.Pane {
                         RowLayout {
                             id: parentGoalRowLayout
                             width: parent
-                            visible: page.scrollView.goal.parentGoalId
+                            visible: scrollView.goal.parentGoalId
 
                             Comp.Text {
                                 Layout.preferredWidth: 100
@@ -140,7 +144,7 @@ Comp.Pane {
                             Comp.Text {
                                 id: parentGoalText
                                 Layout.fillWidth: true
-                                text: page.scrollView.goal.parentGoalId ? goalsDataAccess.get("goals","name", page.scrollView.goal.parentGoalId) : ""
+                                text: scrollView.goal.parentGoalId ? goalsDataAccess.get("goals","name", scrollView.goal.parentGoalId) : ""
                             }
                         }
 

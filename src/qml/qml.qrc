@@ -27,7 +27,6 @@
         <file>components/PageTitleText.qml</file>
         <file>components/PageHeader.qml</file>
         <file>popups/components/ImagePicker.qml</file>
-        <file>popups/components/TextArea.qml</file>
         <file>popups/CreateGoalPopup.qml</file>
         <file>popups/qmldir</file>
         <file>views/main/views/goals/components/GoalItemDelegate.qml</file>
@@ -44,16 +43,17 @@
         <file>views/main/views/reports/ReportsView.qml</file>
         <file>views/main/views/tasks/TasksView.qml</file>
         <file>views/main/views/vision_board/VisionBoardView.qml</file>
-        <file>popups/components/ColumnLayout.qml</file>
-        <file>popups/components/FieldColumnLayout.qml</file>
         <file>popups/components/TimePicker.qml</file>
         <file>popups/components/DatePicker.qml</file>
         <file>popups/components/Button.qml</file>
-        <file>popups/components/FieldLabel.qml</file>
-        <file>popups/components/ComboBox.qml</file>
         <file>popups/components/TreeViewComboBox.qml</file>
         <file>views/goal_info/components/ScrollView.qml</file>
         <file>components/Popup.qml</file>
         <file>views/goal_info/views/DetailsView.qml</file>
+        <file>components/ComboBox.qml</file>
+        <file>components/FieldColumnLayout.qml</file>
+        <file>components/FieldLabel.qml</file>
+        <file>components/TextArea.qml</file>
+        <file>popups/components/ColumnLayout.qml</file>
     </qresource>
 </RCC>

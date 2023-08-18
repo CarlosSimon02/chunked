@@ -5,10 +5,9 @@ import QtQuick.Templates as T
 import Qt5Compat.GraphicalEffects
 import app
 
-import "." as Pop
 import components as Comp
 
-Pop.ComboBox {
+Comp.ComboBox {
     id: comboBox
     delegate: null
 

@@ -104,33 +104,33 @@ Comp.ModalPopup {
 
                     Comp.ScrollView {
                         Pop.ColumnLayout {
-                            Pop.FieldColumnLayout {
+                            Comp.FieldColumnLayout {
                                 spacing: 12
 
-                                Pop.FieldLabel {
+                                Comp.FieldLabel {
                                     text: "Goal Name"
                                 }
 
-                                Pop.TextArea {
+                                Comp.TextArea {
                                     id: goalNameTextArea
                                     Layout.preferredWidth: 400
                                 }
                             }
 
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     text: "Category"
                                 }
 
-                                Pop.ComboBox {
+                                Comp.ComboBox {
                                     id: categoryComboBox
                                     Layout.preferredWidth: 400
                                     model: ["Home","Personal","Work"]
                                 }
                             }
 
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     text: "Image"
                                 }
 
@@ -141,8 +141,8 @@ Comp.ModalPopup {
                                 }
                             }
 
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     text: "Parent Goal"
                                 }
 
@@ -163,8 +163,8 @@ Comp.ModalPopup {
                         RowLayout {
                             spacing: 15
 
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     text: "Start"
                                 }
 
@@ -193,8 +193,8 @@ Comp.ModalPopup {
                                 }
                             }
 
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     text: "End"
                                 }
 
@@ -272,12 +272,12 @@ Comp.ModalPopup {
                     }
 
                     Pop.ColumnLayout {
-                        Pop.FieldColumnLayout {
-                            Pop.FieldLabel {
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
                                 text: "Progress Tracker"
                             }
 
-                            Pop.ComboBox {
+                            Comp.ComboBox {
                                 id: progressTrackerComboBox
                                 Layout.preferredWidth: 400
                                 model: Comp.Consts.goalProgressTrackers
@@ -329,12 +329,12 @@ Comp.ModalPopup {
                             }
                         }
 
-                        Pop.FieldColumnLayout {
-                            Pop.FieldLabel {
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
                                 text: "Unit"
                             }
 
-                            Pop.TextArea {
+                            Comp.TextArea {
                                 id: progressUnitTextArea
                                 Layout.preferredWidth: 400
                                 placeholderText: "e.g., book/s, project/s, item/s"
@@ -343,12 +343,12 @@ Comp.ModalPopup {
                             }
                         }
 
-                        Pop.FieldColumnLayout {
-                            Pop.FieldLabel {
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
                                 text: "Target"
                             }
 
-                            Pop.TextArea {
+                            Comp.TextArea {
                                 id: targetValueTextArea
                                 Layout.preferredWidth: 200
                                 text: "0"
@@ -358,12 +358,12 @@ Comp.ModalPopup {
                             }
                         }
 
-                        Pop.FieldColumnLayout {
-                            Pop.FieldLabel {
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
                                 text: "Current Progress"
                             }
 
-                            Pop.TextArea {
+                            Comp.TextArea {
                                 id: progressValueTextArea
                                 Layout.preferredWidth: 200
                                 text: "0"
@@ -376,45 +376,45 @@ Comp.ModalPopup {
 
                     Comp.ScrollView {
                         Pop.ColumnLayout {
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     text: "Mission"
                                 }
 
-                                Pop.TextArea {
+                                Comp.TextArea {
                                     id: missionTextArea
                                     Layout.preferredWidth: 400
                                 }
                             }
 
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     id: visionTextArea
                                     text: "Vision"
                                 }
 
-                                Pop.TextArea {
+                                Comp.TextArea {
                                     Layout.preferredWidth: 400
                                 }
                             }
 
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     text: "Obstacles"
                                 }
 
-                                Pop.TextArea {
+                                Comp.TextArea {
                                     id: obstaclesTextArea
                                     Layout.preferredWidth: 400
                                 }
                             }
 
-                            Pop.FieldColumnLayout {
-                                Pop.FieldLabel {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
                                     text: "Resources"
                                 }
 
-                                Pop.TextArea {
+                                Comp.TextArea {
                                     id: resourcesTextArea
                                     Layout.preferredWidth: 400
                                 }

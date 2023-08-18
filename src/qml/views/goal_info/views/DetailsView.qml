@@ -82,7 +82,7 @@ Comp.Pane {
                     spacing: 15
 
                     RowLayout {
-                        Layout.fillWidth: true
+                        Layout.maximumWidth: Number.POSITIVE_INFINITY
 
                         Comp.Text {
                             text: "Progress"
@@ -99,7 +99,7 @@ Comp.Pane {
                                 Layout.preferredWidth: 30
                                 text: "-"
                                 font.pixelSize: 20
-                                font.bold: true
+                                font.weight: Font.DemiBold
                             }
 
                             Comp.Button {
@@ -107,12 +107,16 @@ Comp.Pane {
                                 Layout.preferredWidth: 30
                                 text: "+"
                                 font.pixelSize: 20
-                                font.bold: true
+                                font.weight: Font.DemiBold
                             }
 
                             Comp.Button {
                                 Layout.preferredHeight: 30
                                 text: "Edit"
+
+//                                Comp.Popup {
+//                                    ColumnLayout
+//                                }
                             }
                         }
                     }

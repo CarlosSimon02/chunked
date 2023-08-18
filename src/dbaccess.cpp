@@ -74,6 +74,24 @@ bool DBAccess::checkDBSchema()
 
 void DBAccess::parentGoalUpdate(const QString &columnName, int itemId)
 {
+    int value = 0;
+    int progressTracker = 0;
+
+    QSqlQuery query;
+
+    //get progressTracker value first
+    query.prepare("SELECT progressTracker FROM goals WHERE itemId = :itemId;");
+    query.bindValue(":itemId",itemId);
+    query.exec();
+
+    if (query.lastError().isValid())
+    {
+        qDebug() << query.lastError().text();
+        return false;
+    }
+
+    query.first;
+    progressTracker = query.value(0).toInt();
 
 }
 

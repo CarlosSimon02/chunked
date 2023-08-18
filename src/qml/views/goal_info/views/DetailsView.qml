@@ -113,10 +113,48 @@ Comp.Pane {
                             Comp.Button {
                                 Layout.preferredHeight: 30
                                 text: "Edit"
+                                onClicked: {
+                                    progressEditPopup.open()
+                                    progressEditPopup.targetValue = scrollView.goal.targetValue
+                                    progressEditPopup.currentProgress = scrollView.goal.progressValue
+                                }
 
-//                                Comp.Popup {
-//                                    ColumnLayout
-//                                }
+                                Comp.Popup {
+                                    id: progressEditPopup
+                                    x: parent.x - implicitWidth
+                                    padding: 20
+
+                                    property alias targetValue: targetValueTextArea.text
+                                    property alias currentProgress: currentProgressTextArea.text
+
+                                    ColumnLayout {
+                                        spacing: 25
+
+                                        Comp.FieldColumnLayout {
+                                            Comp.FieldLabel {
+                                                text: "Target Value"
+                                            }
+
+                                            Comp.TextArea {
+                                                id: targetValueTextArea
+                                                Layout.preferredWidth: 200
+                                                onEditingFinished: scrollView.goal.targetValue = text
+                                            }
+                                        }
+
+                                        Comp.FieldColumnLayout {
+                                            Comp.FieldLabel {
+                                                text: "Current Progress"
+                                            }
+
+                                            Comp.TextArea {
+                                                id: currentProgressTextArea
+                                                Layout.preferredWidth: 200
+                                                onEditingFinished: scrollView.goal.progressValue = text
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

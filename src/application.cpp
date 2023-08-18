@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlError>
+#include <QQmlContext>
 
 #include "goal.h"
 #include "dbaccess.h"
@@ -14,8 +15,8 @@ Application::Application(int &argc, char *argv[], int flags)
     : QGuiApplication{ argc, argv, flags }
 {
     loadFonts();
-    DBAccess dbAccess;
-    m_engine.rootContext()->setContextProperty("dbAccess",&dbAccess);
+    DBAccess* dbAccess = new DBAccess;
+    m_engine.rootContext()->setContextProperty("dbAccess",dbAccess);
     m_engine.addImportPath("qrc:/");
     const QUrl url(u"qrc:/Main.qml"_qs);
 

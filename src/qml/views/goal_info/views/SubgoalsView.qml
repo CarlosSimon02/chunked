@@ -36,7 +36,7 @@ GoalInfo.ScrollView {
                     unit: model.progressUnit
 
                     onClicked: {
-                        stackView.push(goalInfoView, {"goal": dbAccess.load(model.itemId)})
+                        stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(model.itemId)})
                     }
                 }
             }

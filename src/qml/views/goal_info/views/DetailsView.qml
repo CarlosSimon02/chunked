@@ -144,7 +144,7 @@ Comp.Pane {
                             Comp.Text {
                                 id: parentGoalText
                                 Layout.fillWidth: true
-                                text: scrollView.goal.parentGoalId ? dbAccess.get("name", scrollView.goal.parentGoalId) : ""
+                                text: scrollView.goal.parentGoalId ? dbAccess.getValue("goals", "name", scrollView.goal.parentGoalId) : ""
                                 font.underline: true
                                 wrapMode: Text.Wrap
 
@@ -153,7 +153,7 @@ Comp.Pane {
                                 }
 
                                 TapHandler {
-                                    onTapped: stackView.push(goalInfoView, {"goal": dbAccess.load(scrollView.goal.parentGoalId)})
+                                    onTapped: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(scrollView.goal.parentGoalId)})
                                 }
                             }
                         }

@@ -4,8 +4,8 @@
 #include <QObject>
 #include <QtQml/qqml.h>
 
-class Goal;
-class GoalsTableModel;
+#include "goal.h"
+#include "models/goalstablemodel.h"
 
 class DBAccess : public QObject
 {

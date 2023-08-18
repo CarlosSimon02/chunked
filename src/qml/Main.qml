@@ -19,10 +19,6 @@ ApplicationWindow {
         color: Comp.ColorScheme.primaryColor.dark
     }
 
-    GoalsDataAccess {
-        id: dbAccess
-    }
-
     ColumnLayout {
         anchors.fill: parent
 

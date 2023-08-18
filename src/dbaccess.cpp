@@ -1,6 +1,4 @@
 #include "dbaccess.h"
-#include "goal.h"
-#include "models/goalstablemodel.h"
 
 #include <QSqlDatabase>
 #include <QSqlQuery>

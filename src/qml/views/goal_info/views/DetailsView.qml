@@ -80,10 +80,41 @@ Comp.Pane {
 
                 ColumnLayout {
                     spacing: 15
-                    Comp.Text {
-                        text: "Progress"
-                        font.weight: Font.DemiBold
-                        font.pixelSize: 18
+
+                    RowLayout {
+                        Layout.fillWidth: true
+
+                        Comp.Text {
+                            text: "Progress"
+                            font.weight: Font.DemiBold
+                            font.pixelSize: 18
+                        }
+
+                        RowLayout {
+                            Layout.alignment: Qt.AlignRight
+                            visible: scrollView.goal.progressTracker === 6
+
+                            Comp.Button {
+                                Layout.preferredHeight: 30
+                                Layout.preferredWidth: 30
+                                text: "-"
+                                font.pixelSize: 20
+                                font.bold: true
+                            }
+
+                            Comp.Button {
+                                Layout.preferredHeight: 30
+                                Layout.preferredWidth: 30
+                                text: "+"
+                                font.pixelSize: 20
+                                font.bold: true
+                            }
+
+                            Comp.Button {
+                                Layout.preferredHeight: 30
+                                text: "Edit"
+                            }
+                        }
                     }
 
                     ColumnLayout {
@@ -113,7 +144,6 @@ Comp.Pane {
                             value: scrollView.goal.progressValue/scrollView.goal.targetValue
                         }
                     }
-
                 }
 
                 ColumnLayout {

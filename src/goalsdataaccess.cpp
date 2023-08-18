@@ -109,6 +109,8 @@ void GoalsDataAccess::update(const QString &columnName, int itemId, const QVaria
 
     if(query.lastError().isValid())
         qDebug() << "GoalsDataAccess::update" << query.lastError().text();
+
+    parentUpdate(columnName, itemId);
 }
 
 GoalsTableModel *GoalsDataAccess::createGoalsTableModel(int parentGoalId)

@@ -72,4 +72,9 @@ bool DBAccess::checkDBSchema()
     return true;
 }
 
+void DBAccess::parentGoalUpdate(const QString &columnName, int itemId)
+{
+
+}
+
 

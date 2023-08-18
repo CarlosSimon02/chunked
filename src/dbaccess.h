@@ -15,6 +15,7 @@ public:
 private:
     void initDatabase();
     bool checkDBSchema();
+    void parentGoalUpdate(const QString& columnName, int itemId);
 
 signals:
 

@@ -76,8 +76,8 @@ void DBAccess::updateValue(const QString& tableName,
 {
     QSqlQuery query;
     query.prepare("UPDATE " + tableName + " SET " + columnName + " = :value WHERE itemId = :itemId");
-    query.bindValue(":itemId", itemId);
     query.bindValue(":value",value);
+    query.bindValue(":itemId", itemId);
     query.exec();
 
     if(query.lastError().isValid())

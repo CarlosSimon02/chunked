@@ -100,6 +100,12 @@ Comp.Pane {
                                 text: "-"
                                 font.pixelSize: 20
                                 font.weight: Font.DemiBold
+                                onClicked: {
+                                    if(scrollView.goal.progressValue > 0) {
+                                        scrollView.goal.progressValue--
+                                        dbAccess.updateValue("goals", "progressValue", scrollView.goal.itemId, scrollView.goal.progressValue)
+                                    }
+                                }
                             }
 
                             Comp.Button {
@@ -108,6 +114,12 @@ Comp.Pane {
                                 text: "+"
                                 font.pixelSize: 20
                                 font.weight: Font.DemiBold
+                                onClicked: {
+                                    if(scrollView.goal.progressValue < scrollView.goal.targetValue) {
+                                        scrollView.goal.progressValue++
+                                        dbAccess.updateValue("goals", "progressValue", scrollView.goal.itemId, scrollView.goal.progressValue)
+                                    }
+                                }
                             }
 
                             Comp.Button {
@@ -138,7 +150,12 @@ Comp.Pane {
                                             Comp.TextArea {
                                                 id: targetValueTextArea
                                                 Layout.preferredWidth: 200
-                                                onEditingFinished: scrollView.goal.targetValue = text
+                                                onEditingFinished: {
+                                                    if(targetValueTextArea.text !== scrollView.goal.targetValue.toString()) {
+                                                        scrollView.goal.targetValue = text
+                                                        dbAccess.updateValue("goals", "targetValue", scrollView.goal.itemId, scrollView.goal.targetValue)
+                                                    }
+                                                }
                                             }
                                         }
 
@@ -150,7 +167,12 @@ Comp.Pane {
                                             Comp.TextArea {
                                                 id: currentProgressTextArea
                                                 Layout.preferredWidth: 200
-                                                onEditingFinished: scrollView.goal.progressValue = text
+                                                onEditingFinished: {
+                                                    if(currentProgressTextArea.text !== scrollView.goal.progressValue.toString()) {
+                                                        scrollView.goal.progressValue = text
+                                                        dbAccess.updateValue("goals", "progressValue", scrollView.goal.itemId, scrollView.goal.progressValue)
+                                                    }
+                                                }
                                             }
                                         }
                                     }

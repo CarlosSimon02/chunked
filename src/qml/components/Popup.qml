@@ -5,6 +5,8 @@ import Qt5Compat.GraphicalEffects
 import components as Comp
 
 Ctrl.Popup {
+    padding: 10
+
     background: Rectangle {
         color: Comp.ColorScheme.primaryColor.light
         radius: Comp.Consts.commonRadius

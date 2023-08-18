@@ -7,12 +7,15 @@
 #include <QSqlError>
 
 #include "goal.h"
+#include "dbaccess.h"
 #include "models/goalstablemodel.h"
 
 Application::Application(int &argc, char *argv[], int flags)
     : QGuiApplication{ argc, argv, flags }
 {
     loadFonts();
+    DBAccess db;
+    m_engine.rootContext()->setContextProperty("db",&db);
     m_engine.addImportPath("qrc:/");
     const QUrl url(u"qrc:/Main.qml"_qs);
 

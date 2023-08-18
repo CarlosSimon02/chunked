@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QtQml/qqml.h>
 
+class Goal;
+class GoalsTableModel;
+
 class DBAccess : public QObject
 {
     Q_OBJECT
@@ -11,10 +14,13 @@ class DBAccess : public QObject
 
 public:
     explicit DBAccess(QObject *parent = nullptr);
+    Q_INVOKABLE QVariant getValue(const QString& columnName, int itemId);
+    Q_INVOKABLE void updateValue(const QString& columnName, int itemId, const QVariant& value);
+    Q_INVOKABLE Goal* getGoalItem(int itemId);
+    Q_INVOKABLE void saveGoalItem(Goal* goal);
+    Q_INVOKABLE GoalsTableModel* createGoalsTableModel(int parentGoalId = 0);
 
 private:
-    void initDatabase();
-    bool checkDBSchema();
     void parentGoalUpdate(const QString& columnName, int itemId);
 
 signals:

@@ -1,4 +1,6 @@
 #include "dbaccess.h"
+#include "goal.h"
+#include "models/goalstablemodel.h"
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -8,68 +10,168 @@
 DBAccess::DBAccess(QObject *parent)
     : QObject{parent}
 {
-    initDatabase();
-}
-
-void DBAccess::initDatabase()
-{
     if(!QSqlDatabase::contains(QSqlDatabase::defaultConnection))
     {
+        //opens connection
         QSqlDatabase db{ QSqlDatabase::addDatabase("QSQLITE") };
         db.setDatabaseName(":memory:");
-//        db.setDatabaseName("data.sqlite");
-
         if(!db.open())
-            qDebug() << db.lastError().text();
-        if(!checkDBSchema())
-            db.close();
+            qWarning() << db.lastError().text();
+
+        //initialize database schema
+        QSqlQuery query;
+        query.exec("CREATE TABLE IF NOT EXISTS goals ("
+                   "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
+                   "name TEXT, "
+                   "imageSource TEXT,"
+                   "category TEXT, "
+                   "startDateTime VARCHAR(20), "
+                   "endDateTime VARCHAR(20), "
+                   "progressTracker INTEGER, "
+                   "progressValue INTEGER, "
+                   "targetValue INTEGER, "
+                   "progressUnit VARCHAR(20),"
+                   "mission TEXT, "
+                   "vision TEXT, "
+                   "obstacles TEXT, "
+                   "resources TEXT, "
+                   "parentGoalId INTEGER, "
+                   "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId)"
+                   ");");
+        if (query.lastError().isValid())
+            qWarning() << "DBAccess::DBAccess" << query.lastError().text();
+
+        //just example data --to be deleted
+        for(int i = 0; i < 10; i++)
+        {
+            query.exec("INSERT INTO goals (name,imageSource,category,startDateTime,endDateTime,progressTracker,progressValue,targetValue,progressUnit) VALUES ("
+                       "'Become a Freaking Software Engineer', 'file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png', 'Home', "
+                       "'02 Sep 2023 11:59 PM', '02 Sep 2023 11:59 PM',"
+                       "0, 70, 100, 'plates');");
+        }
+
+        if (query.lastError().isValid())
+            qWarning() << query.lastError().text();
     }
 }
 
-bool DBAccess::checkDBSchema()
+QVariant DBAccess::getValue(const QString& columnName, int itemId)
 {
     QSqlQuery query;
+    query.prepare("SELECT " + columnName + " FROM goals WHERE itemId = :itemId;");
+    query.bindValue(":itemId", itemId);
+    query.exec();
 
-    query.exec("CREATE TABLE IF NOT EXISTS goals ("
-               "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
-               "name TEXT, "
-               "imageSource TEXT,"
-               "category TEXT, "
-               "startDateTime VARCHAR(20), "
-               "endDateTime VARCHAR(20), "
-               "progressTracker INTEGER, "
-               "progressValue INTEGER, "
-               "targetValue INTEGER, "
-               "progressUnit VARCHAR(20),"
-               "mission TEXT, "
-               "vision TEXT, "
-               "obstacles TEXT, "
-               "resources TEXT, "
-               "parentGoalId INTEGER, "
-               "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId)"
-               ");");
+    if(query.lastError().isValid())
+        qWarning() << "DBAccess::getValue" << query.lastError().text();
+
+    query.next();
+    return query.value(0);
+}
+
+void DBAccess::updateValue(const QString &columnName, int itemId, const QVariant &value)
+{
+    QSqlQuery query;
+    if(itemId)
+    {
+        query.prepare("UPDATE goals SET :columnName = :value WHERE itemId = :itemId");
+        query.bindValue(":itemId", itemId);
+    }
+    else
+        query.prepare("UPDATE goals SET :columnName = :value WHERE itemId IS NULL");
+    query.bindValue(":columnName", columnName);
+    query.bindValue(":value",value);
+    query.exec();
+
+    if(query.lastError().isValid())
+        qWarning() << "DBAccess::update" << query.lastError().text();
+
+    parentGoalUpdate(columnName, getValue("parentGoalId", itemId));
+}
+
+Goal* DBAccess::getGoalItem(int itemId)
+{
+    QSqlQuery query;
+    query.prepare("SELECT name, imageSource, category, startDateTime, "
+                  "endDateTime, progressTracker, progressValue, targetValue, "
+                  "progressUnit, mission, vision, obstacles, resources, parentGoalId "
+                  "FROM goals "
+                  "WHERE itemId = :itemId;");
+    query.bindValue(":itemId", itemId);
+    query.exec();
 
     if (query.lastError().isValid())
-    {
-        qDebug() << "DBAccess::initSchema" << query.lastError().text();
-        return false;
-    }
+        qWarning() << "DBAccess::getGoalItem" << query.lastError().text();
 
-    for(int i = 0; i < 10; i++)
-    {
-        query.exec("INSERT INTO goals (name,imageSource,category,startDateTime,endDateTime,progressTracker,progressValue,targetValue,progressUnit) VALUES ("
-                   "'Become a Freaking Software Engineer', 'file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png', 'Home', "
-                   "'02 Sep 2023 11:59 PM', '02 Sep 2023 11:59 PM',"
-                   "0, 70, 100, 'plates');");
-    }
+    query.first();
+
+    Goal* goal = new Goal;
+    goal->setItemId(itemId);
+    goal->setName(query.value(0).toString());
+    goal->setImageSource(query.value(1).toString());
+    goal->setCategory(query.value(2).toString());
+    goal->setStartDateTime(query.value(3).toString());
+    goal->setEndDateTime(query.value(4).toString());
+    goal->setProgressTracker(query.value(5).toInt());
+    goal->setProgressValue(query.value(6).toInt());
+    goal->setTargetValue(query.value(7).toInt());
+    goal->setProgressUnit(query.value(8).toString());
+    goal->setMission(query.value(9).toString());
+    goal->setVision(query.value(10).toString());
+    goal->setObstacles(query.value(11).toString());
+    goal->setResources(query.value(12).toString());
+    goal->setParentGoalId(query.value(13).toInt());
+
+    return goal;
+}
+
+void DBAccess::saveGoalItem(Goal* goal)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO goals "
+                  "(name, imageSource, category, startDateTime, "
+                  "endDateTime, progressTracker, progressValue, targetValue, "
+                  "progressUnit, mission, vision, obstacles, resources, parentGoalId) "
+                  "VALUES "
+                  "(:name, :imageSource, :category, :startDateTime, "
+                  ":endDateTime, :progressTracker, :progressValue, :targetValue, "
+                  ":progressUnit, :mission, :vision, :obstacles, :resources, :parentGoalId);");
+    query.bindValue(":name", goal->name());
+    query.bindValue(":imageSource", goal->imageSource());
+    query.bindValue(":category", goal->category());
+    query.bindValue(":startDateTime", goal->startDateTime());
+    query.bindValue(":endDateTime", goal->endDateTime());
+    query.bindValue(":progressTracker", goal->progressTracker());
+    query.bindValue(":progressValue", goal->progressValue());
+    query.bindValue(":targetValue", goal->targetValue());
+    query.bindValue(":progressUnit", goal->progressUnit());
+    query.bindValue(":mission", goal->mission());
+    query.bindValue(":vision", goal->vision());
+    query.bindValue(":obstacles", goal->obstacles());
+    query.bindValue(":resources", goal->resources());
+    query.bindValue(":parentGoalId", goal->parentGoalId() ? goal->parentGoalId() : QVariant(QMetaType::fromType<int>()));
+    query.exec();
 
     if (query.lastError().isValid())
-    {
-        qDebug() << query.lastError().text();
-        return false;
-    }
+        qWarning() << "DBAccess::save" << query.lastError().text();
+}
 
-    return true;
+GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
+{
+    GoalsTableModel* model = new GoalsTableModel;
+    model->setTable("goals");
+
+    if(parentGoalId)
+        model->setFilter("parentGoalId = "+QString::number(parentGoalId));
+    else
+        model->setFilter("parentGoalId IS NULL");
+
+    model->select();
+
+    if (model->lastError().isValid())
+        qWarning() << "DBAccess::createGoalsTableModel " << model->lastError().text();
+
+    return model;
 }
 
 void DBAccess::parentGoalUpdate(const QString &columnName, int itemId)
@@ -85,14 +187,31 @@ void DBAccess::parentGoalUpdate(const QString &columnName, int itemId)
     query.exec();
 
     if (query.lastError().isValid())
-    {
-        qDebug() << query.lastError().text();
-        return false;
-    }
+        qWarning() << "DBAccess::parentGoalUpdate" << query.lastError().text();
 
-    query.first;
+    query.first();
     progressTracker = query.value(0).toInt();
 
+    if(columnName == "targetValue")
+    {
+        switch (progressTracker) {
+        case 0:
+            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId");
+            break;
+        case 1:
+            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId");
+            break;
+        case 5:
+            return;
+        }
+
+        query.bindValue(":parentGoalId",itemId);
+        query.exec();
+        query.first();
+        value = query.isNull(0) ? return : query.value(0);
+    }
+
 }
+
 
 

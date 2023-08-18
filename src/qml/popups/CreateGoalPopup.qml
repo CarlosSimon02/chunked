@@ -447,7 +447,7 @@ Comp.ModalPopup {
                            listView.currentItem.enabled = true
                         }
                         else {
-                            goalsDataAccess.save(columnLayout.goal)
+                            dbAccess.save(columnLayout.goal)
                             createGoalPopup.save()
                             createGoalPopup.close()
                         }

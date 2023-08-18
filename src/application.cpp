@@ -14,8 +14,8 @@ Application::Application(int &argc, char *argv[], int flags)
     : QGuiApplication{ argc, argv, flags }
 {
     loadFonts();
-    DBAccess db;
-    m_engine.rootContext()->setContextProperty("db",&db);
+    DBAccess dbAccess;
+    m_engine.rootContext()->setContextProperty("dbAccess",&dbAccess);
     m_engine.addImportPath("qrc:/");
     const QUrl url(u"qrc:/Main.qml"_qs);
 

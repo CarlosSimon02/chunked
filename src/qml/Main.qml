@@ -20,7 +20,7 @@ ApplicationWindow {
     }
 
     GoalsDataAccess {
-        id: goalsDataAccess
+        id: dbAccess
     }
 
     ColumnLayout {

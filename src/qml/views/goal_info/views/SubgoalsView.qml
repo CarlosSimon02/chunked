@@ -36,12 +36,12 @@ GoalInfo.ScrollView {
                     unit: model.progressUnit
 
                     onClicked: {
-                        stackView.push(goalInfoView, {"goal": goalsDataAccess.load(model.itemId)})
+                        stackView.push(goalInfoView, {"goal": dbAccess.load(model.itemId)})
                     }
                 }
             }
 
-            model: goalsDataAccess.createGoalsTableModel(scrollView.goal.itemId)
+            model: dbAccess.createGoalsTableModel(scrollView.goal.itemId)
 
             Connections {
                 target: createGoalPopup

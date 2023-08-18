@@ -55,10 +55,12 @@ DBAccess::DBAccess(QObject *parent)
     }
 }
 
-QVariant DBAccess::getValue(const QString& columnName, int itemId)
+QVariant DBAccess::getValue(const QString& tableName,
+                            const QString& columnName,
+                            int itemId)
 {
     QSqlQuery query;
-    query.prepare("SELECT " + columnName + " FROM goals WHERE itemId = :itemId;");
+    query.prepare("SELECT " + columnName + " FROM " + tableName + " WHERE itemId = :itemId;");
     query.bindValue(":itemId", itemId);
     query.exec();
 
@@ -69,24 +71,19 @@ QVariant DBAccess::getValue(const QString& columnName, int itemId)
     return query.value(0);
 }
 
-void DBAccess::updateValue(const QString &columnName, int itemId, const QVariant &value)
+void DBAccess::updateValue(const QString& tableName,
+                           const QString& columnName,
+                           int itemId,
+                           const QVariant& value)
 {
     QSqlQuery query;
-    if(itemId)
-    {
-        query.prepare("UPDATE goals SET :columnName = :value WHERE itemId = :itemId");
-        query.bindValue(":itemId", itemId);
-    }
-    else
-        query.prepare("UPDATE goals SET :columnName = :value WHERE itemId IS NULL");
-    query.bindValue(":columnName", columnName);
+    query.prepare("UPDATE " + tableName + " SET " + columnName + " = :value WHERE itemId = :itemId");
+    query.bindValue(":itemId", itemId);
     query.bindValue(":value",value);
     query.exec();
 
     if(query.lastError().isValid())
         qWarning() << "DBAccess::update" << query.lastError().text();
-
-    parentGoalUpdate(columnName, getValue("parentGoalId", itemId));
 }
 
 Goal* DBAccess::getGoalItem(int itemId)
@@ -174,44 +171,44 @@ GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
     return model;
 }
 
-void DBAccess::parentGoalUpdate(const QString &columnName, int itemId)
-{
-    int value = 0;
-    int progressTracker = 0;
+//void DBAccess::parentGoalUpdate(const QString &columnName, int itemId)
+//{
+//    int value = 0;
+//    int progressTracker = 0;
 
-    QSqlQuery query;
+//    QSqlQuery query;
 
-    //get progressTracker value first
-    query.prepare("SELECT progressTracker FROM goals WHERE itemId = :itemId;");
-    query.bindValue(":itemId",itemId);
-    query.exec();
+//    //get progressTracker value first
+//    query.prepare("SELECT progressTracker FROM goals WHERE itemId = :itemId;");
+//    query.bindValue(":itemId",itemId);
+//    query.exec();
 
-    if (query.lastError().isValid())
-        qWarning() << "DBAccess::parentGoalUpdate" << query.lastError().text();
+//    if (query.lastError().isValid())
+//        qWarning() << "DBAccess::parentGoalUpdate" << query.lastError().text();
 
-    query.first();
-    progressTracker = query.value(0).toInt();
+//    query.first();
+//    progressTracker = query.value(0).toInt();
 
-    if(columnName == "targetValue")
-    {
-        switch (progressTracker) {
-        case 0:
-            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId");
-            break;
-        case 1:
-            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId");
-            break;
-        case 5:
-            return;
-        }
+//    if(columnName == "targetValue")
+//    {
+//        switch (progressTracker) {
+//        case 0:
+//            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId");
+//            break;
+//        case 1:
+//            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId");
+//            break;
+//        case 5:
+//            return;
+//        }
 
-        query.bindValue(":parentGoalId",itemId);
-        query.exec();
-        query.first();
-        value = query.isNull(0) ? return : query.value(0);
-    }
+//        query.bindValue(":parentGoalId",itemId);
+//        query.exec();
+//        query.first();
+//        value = query.isNull(0) ? return : query.value(0);
+//    }
 
-}
+//}
 
 
 

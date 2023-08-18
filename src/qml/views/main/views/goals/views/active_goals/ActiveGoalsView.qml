@@ -39,7 +39,7 @@ Pane {
                         progressValue: model.progressValue
                         targetValue: model.targetValue
                         unit: model.progressUnit
-                        onClicked: stackView.push(goalInfoView, {"goal": goalsDataAccess.load(model.itemId)})
+                        onClicked: stackView.push(goalInfoView, {"goal": dbAccess.load(model.itemId)})
                     }
                 }
 
@@ -48,7 +48,7 @@ Pane {
                     function onSave() {gridView.model.refresh()}
                 }
 
-                model: goalsDataAccess.createGoalsTableModel()
+                model: dbAccess.createGoalsTableModel()
             }
         }
     }

@@ -171,44 +171,68 @@ GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
     return model;
 }
 
-//void DBAccess::parentGoalUpdate(const QString &columnName, int itemId)
-//{
-//    int value = 0;
-//    int progressTracker = 0;
+void DBAccess::checkParentGoalUpdate(const QString &columnName, int itemId)
+{
+    if(itemId && progressTracker != 6)
+    {
+        int progressTracker = getValue("goals", "progressTracker", itemId).toInt();
+        QString refTableName = "";
+        QString sqlProperFunc = "";
 
-//    QSqlQuery query;
+        switch (progressTracker) {
+        case 0:
+            refTableName = "goals";
+            sqlProperFunc = "";
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            return;
+    }
+    int value = 0;
+    int progressTracker = 0;
 
-//    //get progressTracker value first
-//    query.prepare("SELECT progressTracker FROM goals WHERE itemId = :itemId;");
-//    query.bindValue(":itemId",itemId);
-//    query.exec();
+    QSqlQuery query;
 
-//    if (query.lastError().isValid())
-//        qWarning() << "DBAccess::parentGoalUpdate" << query.lastError().text();
+    //get progressTracker value first
+    query.prepare("SELECT progressTracker FROM goals WHERE itemId = :itemId;");
+    query.bindValue(":itemId",itemId);
+    query.exec();
 
-//    query.first();
-//    progressTracker = query.value(0).toInt();
+    if (query.lastError().isValid())
+        qWarning() << "DBAccess::parentGoalUpdate" << query.lastError().text();
 
-//    if(columnName == "targetValue")
-//    {
-//        switch (progressTracker) {
-//        case 0:
-//            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId");
-//            break;
-//        case 1:
-//            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId");
-//            break;
-//        case 5:
-//            return;
-//        }
+    query.first();
+    progressTracker = query.value(0).toInt();
 
-//        query.bindValue(":parentGoalId",itemId);
-//        query.exec();
-//        query.first();
-//        value = query.isNull(0) ? return : query.value(0);
-//    }
+    if(columnName == "targetValue")
+    {
+        switch (progressTracker) {
+        case 0:
+            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId");
+            break;
+        case 1:
+            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId");
+            break;
+        case 5:
+            return;
+        }
 
-//}
+        query.bindValue(":parentGoalId",itemId);
+        query.exec();
+        query.first();
+        value = query.isNull(0) ? return : query.value(0);
+    }
+
+}
 
 
 

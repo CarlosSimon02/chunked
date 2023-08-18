@@ -81,7 +81,9 @@ void DBAccess::updateValue(const QString& tableName,
     query.exec();
 
     if(query.lastError().isValid())
-        qWarning() << "DBAccess::update" << query.lastError().text();
+        qWarning() << "DBAccess::updateValue" << query.lastError().text();
+
+    checkParentGoalUpdate(columnName, getValue(tableName,"parentGoalId",itemId).toInt());
 }
 
 Goal* DBAccess::getGoalItem(int itemId)
@@ -148,7 +150,7 @@ void DBAccess::saveGoalItem(Goal* goal)
     query.exec();
 
     if (query.lastError().isValid())
-        qWarning() << "DBAccess::save" << query.lastError().text();
+        qWarning() << "DBAccess::saveGoalItem" << query.lastError().text();
 }
 
 GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)

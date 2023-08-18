@@ -27,7 +27,8 @@ public:
     Q_INVOKABLE GoalsTableModel* createGoalsTableModel(int parentGoalId = 0);
 
 private:
-    void checkParentGoalUpdate(const QString& columnName, int itemId);
+    void checkParentGoalUpdate(const QString& columnName,
+                               int itemId);
 
 signals:
 

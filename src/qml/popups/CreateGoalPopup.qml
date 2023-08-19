@@ -238,7 +238,9 @@ Comp.ModalPopup {
                                     Layout.fillWidth: true
                                     Layout.alignment: Qt.AlignTop
 
-                                    onChooseDate: startButton.chosenDate.setFullYear(chosenDate.getFullYear(), chosenDate.getMonth(),chosenDate.getDay())
+                                    onChooseDate: startButton.chosenDate.setFullYear(chosenDate.getFullYear(),
+                                                                                     chosenDate.getMonth(),
+                                                                                     chosenDate.getDate())
                                 }
 
 
@@ -258,7 +260,9 @@ Comp.ModalPopup {
                                     Layout.fillWidth: true
                                     Layout.alignment: Qt.AlignTop
 
-                                    onChooseDate: endButton.chosenDate.setFullYear(chosenDate.getFullYear(), chosenDate.getMonth(),chosenDate.getDay())
+                                    onChooseDate: endButton.chosenDate.setFullYear(chosenDate.getFullYear(),
+                                                                                   chosenDate.getMonth(),
+                                                                                   chosenDate.getDate())
                                 }
 
                                 Pop.TimePicker {

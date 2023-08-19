@@ -35,7 +35,8 @@ Pane {
                         imageSource: model.imageSource
                         category: model.category
                         goalName: model.name
-                        timeRemaining: "1d 3h remaining"
+                        startDateTime: new Date(Date.parse("2023 Aug 20 11:45 PM"))
+                        endDateTime: new Date(Date.parse("2029 Aug 20 11:45 PM"))
                         progressValue: model.progressValue
                         targetValue: model.targetValue
                         unit: model.progressUnit

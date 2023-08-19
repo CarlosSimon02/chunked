@@ -17,10 +17,11 @@ Comp.ItemDelegate {
     property alias imageSource: image.source
     property alias category: category.text
     property alias goalName: goalName.text
-    property alias timeRemaining: timeRemaining.text
-    property double progressValue
-    property double targetValue
-    property string unit: ""
+    required property var startDateTime
+    required property var endDateTime
+    required property double progressValue
+    required property double targetValue
+    required property string unit
 
     contentItem: ColumnLayout {
         Image {
@@ -79,6 +80,7 @@ Comp.ItemDelegate {
 
                     Comp.Text {
                         id: timeRemaining
+                        text: Comp.Utils.getTimeFrame(itemDelegate.startDateTime, itemDelegate.endDateTime) + " remaining"
                         color: Comp.ColorScheme.secondaryColor.dark
                     }
 

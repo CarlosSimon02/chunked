@@ -31,8 +31,8 @@ Comp.ModalPopup {
                 name: goalNameTextArea.text
                 imageSource: imagePicker.source.toString()
                 category: categoryComboBox.displayText
-                startDateTime: startButton.chosenDate
-                endDateTime: endButton.chosenDate
+                startDateTime: startButton.text
+                endDateTime: endButton.text
                 progressTracker: progressTrackerComboBox.currentIndex
                 progressValue: parseInt(progressValueTextArea.text)
                 targetValue: parseInt(targetValueTextArea.text)

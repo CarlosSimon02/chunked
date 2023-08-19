@@ -35,8 +35,8 @@ Pane {
                         imageSource: model.imageSource
                         category: model.category
                         goalName: model.name
-                        startDateTime: new Date(Date.parse("2023 Aug 20 11:45 PM"))
-                        endDateTime: new Date(Date.parse("2029 Aug 20 11:45 PM"))
+                        startDateTime: Date.fromLocaleString(Qt.locale(), model.startDateTime, "dd MMM yyyy hh:mm AP")
+                        endDateTime: Date.fromLocaleString(Qt.locale(), model.endDateTime, "dd MMM yyyy hh:mm AP")
                         progressValue: model.progressValue
                         targetValue: model.targetValue
                         unit: model.progressUnit

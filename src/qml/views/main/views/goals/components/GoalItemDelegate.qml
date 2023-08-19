@@ -17,8 +17,8 @@ Comp.ItemDelegate {
     property alias imageSource: image.source
     property alias category: category.text
     property alias goalName: goalName.text
-    required property var startDateTime
-    required property var endDateTime
+    required property date startDateTime
+    required property date endDateTime
     required property double progressValue
     required property double targetValue
     required property string unit

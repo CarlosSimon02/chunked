@@ -49,8 +49,8 @@ Pane {
                 }
 
                 Connections {
-                    target: goalInfoView
-                    function onGoalDataChanged() {gridView.model.refresh()}
+                    target: mainView.StackView
+                    function onActivating() {gridView.model.refresh()}
                 }
 
                 model: dbAccess.createGoalsTableModel()

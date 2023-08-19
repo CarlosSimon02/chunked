@@ -41,7 +41,9 @@ ApplicationWindow {
                 replaceEnter: null
                 replaceExit: null
 
-                initialItem: MainView {}
+                initialItem: MainView {
+                    id: mainView
+                }
             }
 
             Component {

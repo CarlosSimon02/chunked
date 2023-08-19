@@ -13,9 +13,8 @@ Comp.Page {
     topPadding: 0
 
     required property Goal goal
-    signal goalDataChanged
 
-    onGoalDataChanged: if(goal.progressTracker !== 6) {
+    StackView.onActivating: if(goal.progressTracker !== 6) {
                            goal.targetValue = dbAccess.getValue("goals", "targetValue", goal.itemId)
                            goal.progressValue = dbAccess.getValue("goals", "progressValue", goal.itemId)
                        }

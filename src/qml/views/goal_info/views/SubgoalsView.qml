@@ -49,8 +49,8 @@ GoalInfo.ScrollView {
             }
 
             Connections {
-                target: goalInfoView
-                function onGoalDataChanged() {gridView.model.refresh()}
+                target: page.StackView
+                function onActivating() {gridView.model.refresh()}
             }
         }
     }

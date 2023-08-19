@@ -195,16 +195,16 @@ void DBAccess::checkParentGoalUpdate(const QString &columnName, int itemId)
         switch (progressTracker) {
         case 0:
             if(columnName == "targetValue")
-                query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId"), targetColumn = "targetValue";
+                query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId;";), targetColumn = "targetValue";
             else if(columnName == "progressValue")
-                query.prepare("SELECT SUM(progressValue) FROM goals WHERE parentGoalId = :parentGoalId"), targetColumn = "progressValue";
+                query.prepare("SELECT SUM(progressValue) FROM goals WHERE parentGoalId = :parentGoalId;"), targetColumn = "progressValue";
             else return;
             break;
         case 1:
             if(columnName == "targetValue")
-                query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId"), targetColumn = "targetValue";
+                query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId;"), targetColumn = "targetValue";
             else if(columnName == "progressValue")
-                query.prepare("SELECT COUNT(*) FROM goals WHERE (parentGoalId = :parentGoalId, progressValue = targetValue, targetValue != 0)"), targetColumn = "targetValue";
+                query.prepare("SELECT COUNT(*) FROM goals WHERE (parentGoalId = :parentGoalId, progressValue = targetValue, targetValue > 0);"), targetColumn = "progressValue";
             else return;
             break;
         case 2:
@@ -227,7 +227,7 @@ void DBAccess::checkParentGoalUpdate(const QString &columnName, int itemId)
         query.exec();
 
         if (query.lastError().isValid())
-            qWarning() << "DBAccess::checkParentGoalUpdate" << query.lastError().text();
+            qWarning() << query.lastQuery() << "\n" << "DBAccess::checkParentGoalUpdate" << query.lastError().text();
 
         query.first();
         updateValue("goals", targetColumn, itemId, query.value(0).toInt());

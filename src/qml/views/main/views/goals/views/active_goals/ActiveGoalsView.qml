@@ -48,6 +48,11 @@ Pane {
                     function onSave() {gridView.model.refresh()}
                 }
 
+                Connections {
+                    target: goalInfoView
+                    function onGoalDataChanged() {gridView.model.refresh()}
+                }
+
                 model: dbAccess.createGoalsTableModel()
             }
         }

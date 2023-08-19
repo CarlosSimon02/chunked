@@ -104,6 +104,7 @@ Comp.Pane {
                                     if(scrollView.goal.progressValue > 0) {
                                         scrollView.goal.progressValue--
                                         dbAccess.updateValue("goals", "progressValue", scrollView.goal.itemId, scrollView.goal.progressValue)
+                                        goalInfoView.goalDataChanged();
                                     }
                                 }
                             }
@@ -118,6 +119,7 @@ Comp.Pane {
                                     if(scrollView.goal.progressValue < scrollView.goal.targetValue) {
                                         scrollView.goal.progressValue++
                                         dbAccess.updateValue("goals", "progressValue", scrollView.goal.itemId, scrollView.goal.progressValue)
+                                        goalInfoView.goalDataChanged();
                                     }
                                 }
                             }
@@ -154,6 +156,7 @@ Comp.Pane {
                                                     if(targetValueTextArea.text !== scrollView.goal.targetValue.toString()) {
                                                         scrollView.goal.targetValue = text
                                                         dbAccess.updateValue("goals", "targetValue", scrollView.goal.itemId, scrollView.goal.targetValue)
+                                                        goalInfoView.goalDataChanged();
                                                     }
                                                 }
                                             }
@@ -171,6 +174,7 @@ Comp.Pane {
                                                     if(currentProgressTextArea.text !== scrollView.goal.progressValue.toString()) {
                                                         scrollView.goal.progressValue = text
                                                         dbAccess.updateValue("goals", "progressValue", scrollView.goal.itemId, scrollView.goal.progressValue)
+                                                        goalInfoView.goalDataChanged();
                                                     }
                                                 }
                                             }

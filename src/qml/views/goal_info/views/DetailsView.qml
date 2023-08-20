@@ -73,7 +73,7 @@ Comp.Pane {
                     }
 
                     Comp.Text {
-                        text: "1d 2h remaining"
+                        text: Comp.Utils.getTimeFrame(scrollView.goal.startDateTime, scrollView.goal.endDateTime)
                         color: Comp.ColorScheme.secondaryColor.dark
                     }
                 }

@@ -8,7 +8,7 @@ import components as Comp
 Comp.ItemDelegate {
     id: itemDelegate
     implicitWidth: 400
-    implicitHeight: 480
+    implicitHeight: 400
     backgroundColor: Comp.ColorScheme.primaryColor.light
     fadeEffectColor: Comp.ColorScheme.secondaryColor.dark
     elevated: true
@@ -17,7 +17,6 @@ Comp.ItemDelegate {
     property alias imageSource: image.source
     property alias category: category.text
     property alias goalName: goalName.text
-    required property date startDateTime
     required property date endDateTime
     required property double progressValue
     required property double targetValue
@@ -27,7 +26,7 @@ Comp.ItemDelegate {
         Image {
             id: image
             Layout.fillWidth: true
-            Layout.preferredHeight: width * 9 / 16
+            Layout.preferredHeight: (width * 9 / 16) - 80
             fillMode: Image.PreserveAspectCrop
             opacity: 0.5
             sourceSize.width: {sourceSize.width = width}
@@ -80,7 +79,7 @@ Comp.ItemDelegate {
 
                     Comp.Text {
                         id: timeRemaining
-                        text: Comp.Utils.getTimeFrame(itemDelegate.startDateTime, itemDelegate.endDateTime) + " remaining"
+                        text: Comp.Utils.getTimeFrame(new Date(), itemDelegate.endDateTime) + " remaining"
                         color: Comp.ColorScheme.secondaryColor.dark
                     }
 

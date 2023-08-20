@@ -99,13 +99,7 @@ StackView {
                                         "transparent"
 
                     onClicked: {
-                        stackView.chosenDate.setFullYear(model.year, model.month,model.day)
-                        console.log(model.day)
-                        console.log(model.month)
-                        console.log(model.year)
-                        console.log(stackView.chosenDate.getDate())
-                        console.log(stackView.chosenDate.getMonth())
-                        console.log(stackView.chosenDate.getFullYear())
+                        stackView.chosenDate.setFullYear(model.year, model.month, model.day)
                         stackView.chooseDate()
                     }
                 }

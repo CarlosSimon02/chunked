@@ -4,8 +4,9 @@ import components as Comp
 
 Comp.Button {
     id: button
-    onClicked: button.highlighted = !button.highlighted
+    onClicked: opened = !opened
     foregroundColor: Comp.ColorScheme.secondaryColor.regular
+    property bool opened: false
 
     contentItem: Item {
         id: item
@@ -46,7 +47,7 @@ Comp.Button {
 
             states: State {
                 name: "opened"
-                when: button.highlighted
+                when: button.opened
 
                 PropertyChanges { target: top; width: item.implicitWidth }
                 PropertyChanges { target: middle; width: item.implicitWidth - 8 }

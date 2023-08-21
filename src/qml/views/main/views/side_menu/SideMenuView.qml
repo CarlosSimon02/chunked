@@ -34,7 +34,7 @@ Comp.Pane {
                 highlighted: ListView.isCurrentItem
                 text: label
                 icon.source: iconSource
-                opened: menuButton.highlighted
+                opened: menuButton.opened
                 onClicked: listView.currentIndex = model.index
             }
 
@@ -91,7 +91,7 @@ Comp.Pane {
 
         states: State {
             name: "opened"
-            when: menuButton.highlighted
+            when: menuButton.opened
 
             PropertyChanges {
                 target: listView

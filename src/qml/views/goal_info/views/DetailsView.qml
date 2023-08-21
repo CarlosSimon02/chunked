@@ -253,6 +253,32 @@ Comp.Pane {
                             }
                         }
 
+                        RowLayout {
+                            width: parent
+
+                            Comp.Text {
+                                Layout.preferredWidth: 100
+                                Layout.alignment: Qt.AlignTop
+                                color: Comp.ColorScheme.secondaryColor.dark
+                                text: "Status"
+                            }
+
+                            Comp.Text {
+                                Layout.fillWidth: true
+                                property int status: Comp.Utils.getGoalStatus(Date.fromLocaleString(Qt.locale(), scrollView.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                              Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                              scrollView.goal.targetValue,
+                                                                              scrollView.goal.progressValue)
+                                text: Comp.Consts.statusTypes[status]
+                                color: switch(status) {
+                                       case 0: return "darkgoldenrod"
+                                       case 1: return "darkolivegreen"
+                                       case 2: return "darkblue"
+                                       case 3: return "darkred"
+                                       }
+                            }
+                        }
+
                         Repeater {
                             Layout.fillWidth: true
 
@@ -276,13 +302,11 @@ Comp.Pane {
                             model: ListModel {
                                 Component.onCompleted: {
                                     append({"label":"Category", "data":scrollView.goal.category})
-                                    append({"label":"Status", "data":"Active"})
                                     append({"label":"Start Time", "data":scrollView.goal.startDateTime})
                                     append({"label":"End Time", "data":scrollView.goal.endDateTime})
                                     append({"label":"Time Frame", "data":Comp.Utils.getTimeFrame(Date.fromLocaleString(Qt.locale(), scrollView.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
                                                                                                  Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"))})
                                     append({"label":"Tracker", "data":Comp.Consts.goalProgressTrackers[scrollView.goal.progressTracker]})
-                                    append({"label":"Target", "data":scrollView.goal.targetValue.toString()})
                                 }
                             }
                         }

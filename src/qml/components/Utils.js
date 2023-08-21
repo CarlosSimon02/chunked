@@ -28,3 +28,19 @@ function getTimeFrame(startDateTime, endDateTime) {
 
     return "0 time"
 }
+
+function getGoalStatus(startDateTime, endDateTime, targetValue, progressValue) {
+//    "Pending"
+//    "Active"
+//    "Done"
+//    "Unfinished"
+
+    let currentDateTime = new Date()
+
+    if(currentDateTime < startDateTime) return 0
+    else if(currentDateTime > startDateTime && currentDateTime < endDateTime) return 1
+    else {
+        if (progressValue >= targetValue) return 2
+        else return 3
+    }
+}

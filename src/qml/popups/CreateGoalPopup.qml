@@ -157,6 +157,10 @@ Comp.ModalPopup {
                                 itemId: createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
                                 displayText: createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
                                 model: GoalNamesTreeViewModel {}
+                                onItemIdChanged: {
+                                    if(itemId) createGoalPopup.parentGoal = dbAccess.getGoalItem(itemId)
+                                    else createGoalPopup.parentGoal = null
+                                }
                             }
                         }
                     }

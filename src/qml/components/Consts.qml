@@ -13,4 +13,11 @@ QtObject {
         "Habits(Completed)",
         "Manual Update"
     ]
+
+    readonly property var statusTypes: [
+        "Pending",
+        "Active",
+        "Done",
+        "Unfinished"
+    ]
 }

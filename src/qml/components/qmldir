@@ -4,6 +4,7 @@ Button 1.0 Button.qml
 ComboBox 1.0 ComboBox.qml
 FieldColumnLayout 1.0 FieldColumnLayout.qml
 FieldLabel 1.0 FieldLabel.qml
+GoalItemDelegate 1.0 GoalItemDelegate.qml
 ItemDelegate 1.0 ItemDelegate.qml
 ModalPopup 1.0 ModalPopup.qml
 Page 1.0 Page.qml

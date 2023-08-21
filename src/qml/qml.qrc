@@ -29,7 +29,6 @@
         <file>popups/components/ImagePicker.qml</file>
         <file>popups/CreateGoalPopup.qml</file>
         <file>popups/qmldir</file>
-        <file>views/main/views/goals/components/GoalItemDelegate.qml</file>
         <file>views/main/views/goals/views/active_goals/ActiveGoalsView.qml</file>
         <file>views/main/views/goals/GoalsView.qml</file>
         <file>views/main/views/settings/SettingsView.qml</file>
@@ -55,5 +54,6 @@
         <file>components/FieldLabel.qml</file>
         <file>components/TextArea.qml</file>
         <file>popups/components/ColumnLayout.qml</file>
+        <file>components/GoalItemDelegate.qml</file>
     </qresource>
 </RCC>

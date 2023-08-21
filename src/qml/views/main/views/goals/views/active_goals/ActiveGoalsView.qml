@@ -23,10 +23,11 @@ Pane {
                 Layout.preferredWidth: (Math.floor(parent.width / cellWidth) * cellWidth)
                 Layout.preferredHeight: contentHeight
                 Layout.alignment: Qt.AlignHCenter
-                cellWidth: 420
-                cellHeight: 510
+                cellWidth: 400
+                cellHeight: 240
 
                 delegate: Item {
+                    id: item
                     width: GridView.view.cellWidth
                     height: GridView.view.cellHeight
 
@@ -39,7 +40,9 @@ Pane {
                         progressValue: model.progressValue
                         targetValue: model.targetValue
                         unit: model.progressUnit
+
                         onClicked: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(model.itemId)})
+                        Component.onCompleted: if(imageSource.toString()) item.GridView.view.cellHeight = 440
                     }
                 }
 

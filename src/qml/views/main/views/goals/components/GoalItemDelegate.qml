@@ -7,13 +7,14 @@ import components as Comp
 
 Comp.ItemDelegate {
     id: itemDelegate
-    implicitWidth: 400
-    implicitHeight: 400
+    implicitWidth: subGoal ? 320 : 380
+    implicitHeight: (subGoal ? 180 : 220) + (image.source.toString() ? image.Layout.preferredHeight : 0)
     backgroundColor: Comp.ColorScheme.primaryColor.light
     fadeEffectColor: Comp.ColorScheme.secondaryColor.dark
     elevated: true
     padding: 0
 
+    property bool subGoal: false
     property alias imageSource: image.source
     property alias category: category.text
     property alias goalName: goalName.text
@@ -26,9 +27,10 @@ Comp.ItemDelegate {
         Image {
             id: image
             Layout.fillWidth: true
-            Layout.preferredHeight: (width * 9 / 16) - 80
+            Layout.preferredHeight: width * 9 / 16
             fillMode: Image.PreserveAspectCrop
             opacity: 0.5
+            visible: image.source.toString()
             sourceSize.width: {sourceSize.width = width}
             sourceSize.height: {sourceSize.height = height}
             layer.enabled: true
@@ -40,11 +42,13 @@ Comp.ItemDelegate {
                     ColumnLayout {
                         anchors.fill: parent
                         spacing: -Comp.Consts.commonRadius
+
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             radius: Comp.Consts.commonRadius
                         }
+
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: Comp.Consts.commonRadius
@@ -71,7 +75,7 @@ Comp.ItemDelegate {
                         id: goalName
                         Layout.fillWidth: true
                         font.weight: Font.Bold
-                        font.pixelSize: 22
+                        font.pixelSize: 20
                         wrapMode: Text.Wrap
                         maximumLineCount: 2
                         elide: Text.ElideRight
@@ -89,6 +93,7 @@ Comp.ItemDelegate {
                         rightPadding: 10
                         topPadding: 3
                         bottomPadding: 3
+                        visible: !itemDelegate.subGoal
                         color: Comp.ColorScheme.secondaryColor.dark
                         background: Rectangle {
                             radius: Comp.Consts.commonRadius

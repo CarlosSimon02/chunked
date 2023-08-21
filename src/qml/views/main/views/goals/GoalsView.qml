@@ -99,6 +99,7 @@ Comp.Page {
 
                     Comp.GoalItemDelegate {
                         anchors.centerIn: parent
+                        itemId: model.itemId
                         imageSource: model.imageSource
                         category: model.category
                         goalName: model.name
@@ -107,7 +108,6 @@ Comp.Page {
                         targetValue: model.targetValue
                         unit: model.progressUnit
 
-                        onClicked: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(model.itemId)})
                         Component.onCompleted: {
                             if(item.GridView.view.cellWidth < implicitWidth) item.GridView.view.cellWidth = implicitWidth + 20
                             if(item.GridView.view.cellHeight < implicitHeight) item.GridView.view.cellHeight = implicitHeight + 20

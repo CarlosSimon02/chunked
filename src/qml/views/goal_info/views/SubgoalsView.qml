@@ -22,10 +22,8 @@ GoalInfo.ScrollView {
             cellWidth: 330
             cellHeight: 390
 
-            delegate: Item {
-                id: item
-                width: GridView.view.cellWidth
-                height: GridView.view.cellHeight
+            delegate: Column {
+                id: columnLayout
 
                 Comp.GoalItemDelegate {
                     anchors.centerIn: parent
@@ -38,10 +36,11 @@ GoalInfo.ScrollView {
                     targetValue: model.targetValue
                     unit: model.progressUnit
 
-                    onClicked: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(model.itemId)})
                     Component.onCompleted: {
-                        if(item.GridView.view.cellWidth < implicitWidth) item.GridView.view.cellWidth = implicitWidth + 20
-                        if(item.GridView.view.cellHeight < implicitHeight) item.GridView.view.cellHeight = implicitHeight + 20
+                        if(columnLayout.GridView.view.cellWidth < implicitWidth)
+                            columnLayout.GridView.view.cellWidth = implicitWidth + 20
+                        if(columnLayout.GridView.view.cellHeight < implicitHeight)
+                            columnLayout.GridView.view.cellHeight = implicitHeight + 20
                     }
                 }
             }

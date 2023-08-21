@@ -127,6 +127,7 @@ Comp.ModalPopup {
                                     Layout.preferredWidth: 400
                                     model: ["Home","Personal","Work"]
                                     enabled: !createGoalPopup.parentGoal
+                                    displayText: if(createGoalPopup.parentGoal) return createGoalPopup.parentGoal.category
                                 }
                             }
 

@@ -94,7 +94,7 @@ Comp.ModalPopup {
                         onClicked: ListView.view.currentIndex = index
                     }
 
-                    model: ["Details", "Time Frame", "Progress Tracker", "Description"]
+                    model: ["Details", "Parent Goal", "Time Frame", "Progress Tracker", "Description"]
                 }
 
                 StackLayout {
@@ -140,19 +140,21 @@ Comp.ModalPopup {
                                     Layout.preferredHeight: Layout.preferredWidth * 9 / 16
                                 }
                             }
+                        }
+                    }
 
-                            Comp.FieldColumnLayout {
-                                Comp.FieldLabel {
-                                    text: "Parent Goal"
-                                }
+                    Pop.ColumnLayout {
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
+                                text: "Parent Goal"
+                            }
 
-                                Pop.TreeViewComboBox {
-                                    id: parentGoalIdComBoBox
-                                    Layout.preferredWidth: 400
-                                    itemId: createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
-                                    displayText: createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
-                                    model: GoalNamesTreeViewModel {}
-                                }
+                            Pop.TreeViewComboBox {
+                                id: parentGoalIdComBoBox
+                                Layout.preferredWidth: 400
+                                itemId: createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
+                                displayText: createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
+                                model: GoalNamesTreeViewModel {}
                             }
                         }
                     }
@@ -242,7 +244,6 @@ Comp.ModalPopup {
                                                                                      chosenDate.getMonth(),
                                                                                      chosenDate.getDate())
                                 }
-
 
                                 Pop.TimePicker {
                                     id: startTimePicker

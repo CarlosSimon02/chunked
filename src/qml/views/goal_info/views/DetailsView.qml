@@ -29,7 +29,7 @@ Comp.Pane {
                 Layout.preferredHeight: width * 9 / 16
                 source: scrollView.goal.imageSource
                 fillMode: Image.PreserveAspectCrop
-
+                visible: scrollView.goal.imageSource.toString()
                 layer.enabled: true
                 layer.effect: OpacityMask {
                     maskSource: Item {
@@ -73,7 +73,8 @@ Comp.Pane {
                     }
 
                     Comp.Text {
-                        text: Comp.Utils.getTimeFrame(new Date(), Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"))
+                        text: Comp.Utils.getTimeFrame(new Date(),
+                                                      Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP")) + " remaining"
                         color: Comp.ColorScheme.secondaryColor.dark
                     }
                 }
@@ -278,7 +279,8 @@ Comp.Pane {
                                     append({"label":"Status", "data":"Active"})
                                     append({"label":"Start Time", "data":scrollView.goal.startDateTime})
                                     append({"label":"End Time", "data":scrollView.goal.endDateTime})
-                                    append({"label":"Time Frame", "data":"1d 2h"})
+                                    append({"label":"Time Frame", "data":Comp.Utils.getTimeFrame(Date.fromLocaleString(Qt.locale(), scrollView.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                                                 Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"))})
                                     append({"label":"Tracker", "data":Comp.Consts.goalProgressTrackers[scrollView.goal.progressTracker]})
                                     append({"label":"Target", "data":scrollView.goal.targetValue.toString()})
                                 }

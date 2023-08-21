@@ -73,7 +73,7 @@ Comp.Pane {
                     }
 
                     Comp.Text {
-                        text: Comp.Utils.getTimeFrame(scrollView.goal.startDateTime, scrollView.goal.endDateTime)
+                        text: Comp.Utils.getTimeFrame(new Date(), Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"))
                         color: Comp.ColorScheme.secondaryColor.dark
                     }
                 }

@@ -23,20 +23,25 @@ GoalInfo.ScrollView {
             cellHeight: 390
 
             delegate: Item {
+                id: item
                 width: GridView.view.cellWidth
                 height: GridView.view.cellHeight
 
-                GoalInfo.SubgoalItemDelegate {
+                Comp.GoalItemDelegate {
                     anchors.centerIn: parent
+                    subGoal: true
                     imageSource: model.imageSource
+                    category: model.category
                     goalName: model.name
-                    timeRemaining: "1d 2h remaining"
+                    endDateTime: Date.fromLocaleString(Qt.locale(), model.endDateTime, "dd MMM yyyy hh:mm AP")
                     progressValue: model.progressValue
                     targetValue: model.targetValue
                     unit: model.progressUnit
 
-                    onClicked: {
-                        stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(model.itemId)})
+                    onClicked: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(model.itemId)})
+                    Component.onCompleted: {
+                        if(item.GridView.view.cellWidth < implicitWidth) item.GridView.view.cellWidth = implicitWidth + 20
+                        if(item.GridView.view.cellHeight < implicitHeight) item.GridView.view.cellHeight = implicitHeight + 20
                     }
                 }
             }

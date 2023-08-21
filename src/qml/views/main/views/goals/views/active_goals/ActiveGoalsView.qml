@@ -4,7 +4,6 @@ import QtQuick.Layouts
 import app
 
 import components as Comp
-import "../../components" as Goals
 
 Pane {
     background: null
@@ -31,7 +30,7 @@ Pane {
                     width: GridView.view.cellWidth
                     height: GridView.view.cellHeight
 
-                    Goals.GoalItemDelegate {
+                    Comp.GoalItemDelegate {
                         anchors.centerIn: parent
                         imageSource: model.imageSource
                         category: model.category
@@ -42,7 +41,10 @@ Pane {
                         unit: model.progressUnit
 
                         onClicked: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(model.itemId)})
-                        Component.onCompleted: if(imageSource.toString()) item.GridView.view.cellHeight = 440
+                        Component.onCompleted: {
+                            if(item.GridView.view.cellWidth < implicitWidth) item.GridView.view.cellWidth = implicitWidth + 20
+                            if(item.GridView.view.cellHeight < implicitHeight) item.GridView.view.cellHeight = implicitHeight + 20
+                        }
                     }
                 }
 

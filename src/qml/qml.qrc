@@ -17,7 +17,6 @@
         <file>components/ScrollView.qml</file>
         <file>components/ScrollBar.qml</file>
         <file>components/ModalPopup.qml</file>
-        <file>views/goal_info/components/SubgoalItemDelegate.qml</file>
         <file>views/goal_info/views/DescriptionView.qml</file>
         <file>views/goal_info/views/HabitsView.qml</file>
         <file>views/goal_info/views/JournalView.qml</file>

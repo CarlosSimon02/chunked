@@ -126,6 +126,7 @@ Comp.ModalPopup {
                                     id: categoryComboBox
                                     Layout.preferredWidth: 400
                                     model: ["Home","Personal","Work"]
+                                    enabled: !createGoalPopup.parentGoal
                                 }
                             }
 

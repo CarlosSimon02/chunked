@@ -40,7 +40,7 @@ function getGoalStatus(startDateTime, endDateTime, targetValue, progressValue) {
     if(currentDateTime < startDateTime) return 0
     else if(currentDateTime > startDateTime && currentDateTime < endDateTime) return 1
     else {
-        if (progressValue >= targetValue) return 2
+        if (progressValue >= targetValue && targetValue !== 0) return 2
         else return 3
     }
 }

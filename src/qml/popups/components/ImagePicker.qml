@@ -23,7 +23,7 @@ Pane {
 
         ColumnLayout {
             anchors.centerIn: parent
-            spacing: 0
+            spacing: 5
 
             IconImage {
                 Layout.preferredWidth: 40
@@ -41,13 +41,20 @@ Pane {
                 color: Comp.ColorScheme.secondaryColor.dark
             }
 
-            Comp.Button {
+            Comp.Text {
                 Layout.alignment: Qt.AlignHCenter
                 text: "Browse image"
-                font.weight: Font.DemiBold
+                font.underline: true
                 font.pixelSize: 12
-                foregroundColor: Comp.ColorScheme.secondaryColor.dark
-                onClicked: fileDialog.open()
+                color: Comp.ColorScheme.secondaryColor.dark
+
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
+                }
+
+                TapHandler {
+                    onTapped: fileDialog.open()
+                }
             }
         }
     }

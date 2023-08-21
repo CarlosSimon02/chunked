@@ -4,7 +4,6 @@ import QtQuick.Layouts
 
 import components as Comp
 import popups as Pop
-import "./views/active_goals"
 
 Comp.Page {
     signal goalAdded
@@ -89,8 +88,6 @@ Comp.Page {
                 Layout.preferredWidth: (Math.floor(parent.width / cellWidth) * cellWidth)
                 Layout.preferredHeight: contentHeight
                 Layout.alignment: Qt.AlignHCenter
-                cellWidth: 400
-                cellHeight: 240
 
                 delegate: Item {
                     id: item
@@ -109,8 +106,10 @@ Comp.Page {
                         unit: model.progressUnit
 
                         Component.onCompleted: {
-                            if(item.GridView.view.cellWidth < implicitWidth) item.GridView.view.cellWidth = implicitWidth + 20
-                            if(item.GridView.view.cellHeight < implicitHeight) item.GridView.view.cellHeight = implicitHeight + 20
+                            if(item.GridView.view.cellWidth < implicitWidth)
+                                item.GridView.view.cellWidth = implicitWidth + 20
+                            if(item.GridView.view.cellHeight < implicitHeight)
+                                item.GridView.view.cellHeight = implicitHeight + 20
                         }
                     }
                 }

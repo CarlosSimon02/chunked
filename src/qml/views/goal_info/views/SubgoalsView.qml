@@ -19,15 +19,16 @@ GoalInfo.ScrollView {
             Layout.preferredHeight: contentHeight
             Layout.preferredWidth: (Math.floor(parent.width / cellWidth) * cellWidth)
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            cellWidth: 330
-            cellHeight: 390
 
-            delegate: Column {
-                id: columnLayout
+            delegate: Item {
+                id: item
+                width: GridView.view.cellWidth
+                height: GridView.view.cellHeight
 
                 Comp.GoalItemDelegate {
                     anchors.centerIn: parent
                     subGoal: true
+                    itemId: model.itemId
                     imageSource: model.imageSource
                     category: model.category
                     goalName: model.name
@@ -37,10 +38,10 @@ GoalInfo.ScrollView {
                     unit: model.progressUnit
 
                     Component.onCompleted: {
-                        if(columnLayout.GridView.view.cellWidth < implicitWidth)
-                            columnLayout.GridView.view.cellWidth = implicitWidth + 20
-                        if(columnLayout.GridView.view.cellHeight < implicitHeight)
-                            columnLayout.GridView.view.cellHeight = implicitHeight + 20
+                        if(item.GridView.view.cellWidth < implicitWidth)
+                            item.GridView.view.cellWidth = implicitWidth + 20
+                        if(item.GridView.view.cellHeight < implicitHeight)
+                            item.GridView.view.cellHeight = implicitHeight + 20
                     }
                 }
             }

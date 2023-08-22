@@ -8,7 +8,7 @@ Comp.TextArea {
 
     background: Rectangle {
         implicitHeight: 50
-        color: Comp.ColorScheme.primaryColor.light
+        color: "transparent"
         radius: Comp.Consts.commonRadius
         border.width: 1
         border.color: textArea.activeFocus ? Comp.ColorScheme.accentColor.regular :

@@ -24,16 +24,31 @@ Comp.Page {
         id: scrollView
         anchors.fill: parent
 
-        ColumnLayout {
+        Pane {
             width: scrollView.availableWidth
+            background: null
+            padding: 30
 
-            Tasks.TextArea {
-                Layout.preferredWidth: 700
-                Layout.topMargin: 20
-                Layout.alignment: Qt.AlignCenter
-                placeholderText: "Type your task here and press 'Enter' to save"
+            ColumnLayout {
+                width: parent.width
+                spacing: 15
+
+                Tasks.TextArea {
+                    Layout.fillWidth: true
+                    placeholderText: "Type your task here and press 'Enter' to save"
+                }
+
+                ListView {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: contentHeight
+                    interactive: false
+                    spacing: 8
+                    delegate: Tasks.TaskItemDelegate {
+                        width: ListView.view.width
+                    }
+                    model: 4
+                }
             }
         }
     }
-
 }

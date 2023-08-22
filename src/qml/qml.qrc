@@ -56,5 +56,6 @@
         <file>views/main/views/tasks/components/TextArea.qml</file>
         <file>components/impl/DropShadow.qml</file>
         <file>components/impl/qmldir</file>
+        <file>views/main/views/tasks/components/TaskItemDelegate.qml</file>
     </qresource>
 </RCC>

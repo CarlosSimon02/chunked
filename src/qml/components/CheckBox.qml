@@ -17,12 +17,26 @@ T.CheckBox {
     spacing: 6
 
     indicator: Rectangle {
-        implicitWidth: 15
-        implicitHeight: 15
+        implicitWidth: 18
+        implicitHeight: 18
         x: control.leftPadding
         y: parent.height / 2 - height / 2
         radius: 3
-        border.color: control.down ? "#17a81a" : "#21be2b"
+        color: control.checkState !== Qt.Unchecked ? Comp.ColorScheme.accentColor.dark :
+                                                     "transparent"
+        border.width: 1
+        border.color: Comp.ColorScheme.accentColor.dark
+
+        ColorImage {
+            x: (parent.width - width) / 2
+            y: (parent.height - height) / 2
+            width: 15
+            height: 15
+            defaultColor: "#353637"
+            color: Comp.ColorScheme.secondaryColor.regular
+            source: "qrc:/check_icon.svg"
+            visible: control.checkState === Qt.Checked
+        }
     }
 
     contentItem: CheckLabel {

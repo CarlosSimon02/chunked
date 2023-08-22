@@ -101,6 +101,7 @@ Comp.ModalPopup {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     currentIndex: listView.currentIndex
+                    clip: false
 
                     Comp.ScrollView {
                         Pop.ColumnLayout {

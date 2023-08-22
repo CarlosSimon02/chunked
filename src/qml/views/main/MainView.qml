@@ -18,7 +18,7 @@ RowLayout {
         id: bodyView
         Layout.fillWidth: true
         Layout.fillHeight: true
-//        source: sideMenu.currentViewSource
-        source: "qrc:/views/main/views/goals/GoalsView.qml"
+        source: sideMenu.currentViewSource
+//        source: "qrc:/views/main/views/goals/GoalsView.qml"
     }
 }

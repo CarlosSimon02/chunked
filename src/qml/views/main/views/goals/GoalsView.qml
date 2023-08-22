@@ -18,62 +18,6 @@ Comp.Page {
             font.weight: Font.Bold
             font.pixelSize: 28
         }
-
-//        RowLayout {
-//            anchors.bottom: parent.bottom
-//            anchors.bottomMargin: 0
-//            width: parent.width
-
-//            ListView {
-//                id: listView
-//                Layout.fillWidth: true
-//                Layout.preferredHeight: contentItem.childrenRect.height
-//                orientation: ListView.Horizontal
-//                currentIndex: 0
-//                spacing: 10
-//                clip: true
-//                highlightFollowsCurrentItem: false
-//                highlight: Rectangle {
-//                    height: 2
-//                    width: listView.currentItem.width
-//                    color: Comp.ColorScheme.accentColor.regular
-//                    x: listView.currentItem.x
-//                    y: listView.currentItem.y + listView.currentItem.height - height
-
-//                    Behavior on width { SmoothedAnimation { velocity: 100 } }
-//                    Behavior on x { SmoothedAnimation { velocity: 400 } }
-//                }
-
-//                delegate: Comp.ItemDelegate {
-//                    padding: 10
-//                    bottomPadding: 20
-//                    text: model.text
-//                    font.weight: Font.Normal
-//                    bottomInset: 10
-//                    highlighted: ListView.isCurrentItem
-//                    backgroundColor: "transparent"
-//                    onClicked: ListView.view.currentIndex = model.index
-//                }
-
-//                model: ListModel {
-//                    ListElement {
-//                        text: "Active"
-//                    }
-//                    ListElement {
-//                        text: "Achieved"
-//                    }
-//                    ListElement {
-//                        text: "Failed"
-//                    }
-//                    ListElement {
-//                        text: "Dreams"
-//                    }
-//                    ListElement {
-//                        text: "Templates"
-//                    }
-//                }
-//            }
-//        }
     }
 
     Comp.ScrollView {

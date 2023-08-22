@@ -53,5 +53,7 @@
         <file>components/TextArea.qml</file>
         <file>popups/components/ColumnLayout.qml</file>
         <file>components/GoalItemDelegate.qml</file>
+        <file>views/main/views/tasks/components/TextArea.qml</file>
+        <file>components/impl/DropShadow.qml</file>
     </qresource>
 </RCC>

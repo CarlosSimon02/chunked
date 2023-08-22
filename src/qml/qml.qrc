@@ -57,5 +57,6 @@
         <file>components/impl/DropShadow.qml</file>
         <file>components/impl/qmldir</file>
         <file>views/main/views/tasks/components/TaskItemDelegate.qml</file>
+        <file>components/CheckBox.qml</file>
     </qresource>
 </RCC>

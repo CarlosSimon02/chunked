@@ -4,7 +4,7 @@ import Qt5Compat.GraphicalEffects
 import QtQuick.Templates as T
 
 import components as Comp
-import "./impl" as Impl
+import components.impl as Impl
 
 T.ItemDelegate {
     id: itemDelegate

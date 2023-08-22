@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import components as Comp
+import "./components" as Tasks
 
 Comp.Page {
     signal goalAdded
@@ -26,10 +27,11 @@ Comp.Page {
         ColumnLayout {
             width: scrollView.availableWidth
 
-            Comp.TextArea {
+            Tasks.TextArea {
                 Layout.preferredWidth: 700
                 Layout.topMargin: 20
                 Layout.alignment: Qt.AlignCenter
+                placeholderText: "Type your task here and press 'Enter' to save"
             }
         }
     }

@@ -55,5 +55,6 @@
         <file>components/GoalItemDelegate.qml</file>
         <file>views/main/views/tasks/components/TextArea.qml</file>
         <file>components/impl/DropShadow.qml</file>
+        <file>components/impl/qmldir</file>
     </qresource>
 </RCC>

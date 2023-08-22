@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Templates as T
 
 import components as Comp
-import "./impl" as Impl
+import components.impl as Impl
 
 T.Button {
     id: button

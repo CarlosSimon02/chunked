@@ -18,7 +18,7 @@ Comp.ScrollView {
             width: parent.width
             spacing: 15
 
-            CommonViews.TextArea {
+            Comp.TextArea {
                 Layout.fillWidth: true
                 placeholderText: "Type your task here and press 'Enter' to save"
             }

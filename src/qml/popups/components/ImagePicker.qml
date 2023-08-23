@@ -82,7 +82,7 @@ Pane {
     Rectangle {
         anchors.fill: parent
         color: "transparent"
-        border.width: 1.5
+        border.width: 1
         border.color: Comp.ColorScheme.secondaryColor.dark
         radius: Comp.Consts.commonRadius
     }

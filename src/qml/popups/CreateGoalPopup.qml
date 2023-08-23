@@ -102,77 +102,83 @@ Comp.ModalPopup {
                     Layout.fillHeight: true
                     currentIndex: listView.currentIndex
 
-                    Pop.ColumnLayout {
-                        Comp.FieldColumnLayout {
-                            spacing: 12
+                    Comp.ScrollView {
+                        Pop.ColumnLayout {
+                            Comp.FieldColumnLayout {
+                                spacing: 12
 
-                            Comp.FieldLabel {
-                                text: "Goal Name"
-                            }
-
-                            Comp.TextArea {
-                                id: goalNameTextArea
-                                Layout.preferredWidth: 400
-                            }
-                        }
-
-                        Comp.FieldColumnLayout {
-                            Comp.FieldLabel {
-                                text: "Category"
-                            }
-
-                            Comp.ComboBox {
-                                id: categoryComboBox
-                                Layout.preferredWidth: 400
-                                model: ["Home","Personal","Work"]
-                                enabled: !createGoalPopup.parentGoal
-                                displayText: if(createGoalPopup.parentGoal) return createGoalPopup.parentGoal.category
-                            }
-                        }
-
-                        Comp.FieldColumnLayout {
-                            Comp.FieldLabel {
-                                text: "Image"
-                            }
-
-                            Pop.ImagePicker {
-                                id: imagePicker
-                                Layout.preferredWidth: 400
-                                Layout.preferredHeight: Layout.preferredWidth * 9 / 16
-                            }
-                        }
-                    }
-
-                    Pop.ColumnLayout {
-                        Comp.FieldColumnLayout {
-                            Comp.FieldLabel {
-                                text: "Parent Goal"
-                            }
-
-                            Pop.TreeViewComboBox {
-                                id: parentGoalIdComBoBox
-                                Layout.preferredWidth: 400
-                                model: GoalNamesTreeViewModel {}
-                                onItemIdChanged: {
-                                    if(itemId) createGoalPopup.parentGoal = dbAccess.getGoalItem(itemId)
-                                    else createGoalPopup.parentGoal = null
-
-                                    itemId =  createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
-                                    displayText = createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
+                                Comp.FieldLabel {
+                                    text: "Goal Name"
                                 }
 
-                                Component.onCompleted: {
-                                    itemId =  createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
-                                    displayText = createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
+                                Comp.TextArea {
+                                    id: goalNameTextArea
+                                    Layout.preferredWidth: 400
+                                }
+                            }
+
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Category"
+                                }
+
+                                Comp.ComboBox {
+                                    id: categoryComboBox
+                                    Layout.preferredWidth: 400
+                                    model: ["Home","Personal","Work"]
+                                    enabled: !createGoalPopup.parentGoal
+                                    displayText: if(createGoalPopup.parentGoal) return createGoalPopup.parentGoal.category
+                                }
+                            }
+
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Image"
+                                }
+
+                                Pop.ImagePicker {
+                                    id: imagePicker
+                                    Layout.preferredWidth: 400
+                                    Layout.preferredHeight: Layout.preferredWidth * 9 / 16
                                 }
                             }
                         }
                     }
 
+                    Comp.ScrollView {
+                        Pop.ColumnLayout {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Parent Goal"
+                                }
+
+                                Pop.TreeViewComboBox {
+                                    id: parentGoalIdComBoBox
+                                    Layout.preferredWidth: 400
+                                    model: GoalNamesTreeViewModel {}
+                                    onItemIdChanged: {
+                                        if(itemId) createGoalPopup.parentGoal = dbAccess.getGoalItem(itemId)
+                                        else createGoalPopup.parentGoal = null
+
+                                        itemId =  createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
+                                        displayText = createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
+                                    }
+
+                                    Component.onCompleted: {
+                                        itemId =  createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
+                                        displayText = createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     Pop.ColumnLayout {
+                        implicitWidth: parent.availableWidth
                         spacing: 40
 
                         RowLayout {
+                            Layout.leftMargin: 2
                             spacing: 15
 
                             Comp.FieldColumnLayout {
@@ -187,7 +193,7 @@ Comp.ModalPopup {
                                     property date chosenDate
                                     text: chosenDate.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                                     highlighted: true
-                                    border.width: 1.5
+                                    border.width: 1
                                     verticalPadding: 14
 
                                     onClicked: {
@@ -218,7 +224,7 @@ Comp.ModalPopup {
                                     property date chosenDate
                                     text: chosenDate.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                                     verticalPadding: 14
-                                    border.width: 1.5
+                                    border.width: 1
 
                                     onClicked: {
                                         highlighted = true
@@ -241,6 +247,7 @@ Comp.ModalPopup {
                         SwipeView {
                             id: swipeView
                             Layout.fillWidth: true
+                            Layout.leftMargin: 2
                             currentIndex: 0
                             clip: true
 
@@ -288,105 +295,107 @@ Comp.ModalPopup {
                         }
                     }
 
-                    Pop.ColumnLayout {
-                        Comp.FieldColumnLayout {
-                            Comp.FieldLabel {
-                                text: "Progress Tracker"
-                            }
+                    Comp.ScrollView {
+                        Pop.ColumnLayout {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Progress Tracker"
+                                }
 
-                            Comp.ComboBox {
-                                id: progressTrackerComboBox
-                                Layout.preferredWidth: 400
-                                model: Comp.Consts.goalProgressTrackers
+                                Comp.ComboBox {
+                                    id: progressTrackerComboBox
+                                    Layout.preferredWidth: 400
+                                    model: Comp.Consts.goalProgressTrackers
 
-                                onActivated: index => {
-                                   switch(index) {
-                                       case 0:
-                                       progressValueTextArea.text = 0
-                                       progressValueTextArea.enabled = false
-                                       targetValueTextArea.text = 0
-                                       targetValueTextArea.enabled = false
-                                       progressUnitTextArea.text = "task/s"
-                                       progressUnitTextArea.enabled = true
-                                       break
-                                       case 1:
-                                       progressValueTextArea.text = 0
-                                       progressValueTextArea.enabled = false
-                                       targetValueTextArea.text = 0
-                                       targetValueTextArea.enabled = false
-                                       progressUnitTextArea.text = "outcome/s"
-                                       progressUnitTextArea.enabled = true
-                                       break
-                                       case 2:
-                                       progressValueTextArea.text = 0
-                                       progressValueTextArea.enabled = false
-                                       targetValueTextArea.text = 0
-                                       targetValueTextArea.enabled = false
-                                       progressUnitTextArea.text = "subgoals' progress"
-                                       progressUnitTextArea.enabled = false
-                                       break
-                                       case 3:
-                                       progressValueTextArea.text = 0
-                                       progressValueTextArea.enabled = false
-                                       targetValueTextArea.text = 0
-                                       targetValueTextArea.enabled = false
-                                       progressUnitTextArea.text = "subgoal/s"
-                                       progressUnitTextArea.enabled = true
-                                       break
-                                       case 4:
-                                       progressValueTextArea.text = 0
-                                       progressValueTextArea.enabled = true
-                                       targetValueTextArea.text = 0
-                                       targetValueTextArea.enabled = true
-                                       progressUnitTextArea.text = ""
-                                       progressUnitTextArea.enabled = true
-                                       break
+                                    onActivated: index => {
+                                       switch(index) {
+                                           case 0:
+                                           progressValueTextArea.text = 0
+                                           progressValueTextArea.enabled = false
+                                           targetValueTextArea.text = 0
+                                           targetValueTextArea.enabled = false
+                                           progressUnitTextArea.text = "task/s"
+                                           progressUnitTextArea.enabled = true
+                                           break
+                                           case 1:
+                                           progressValueTextArea.text = 0
+                                           progressValueTextArea.enabled = false
+                                           targetValueTextArea.text = 0
+                                           targetValueTextArea.enabled = false
+                                           progressUnitTextArea.text = "outcome/s"
+                                           progressUnitTextArea.enabled = true
+                                           break
+                                           case 2:
+                                           progressValueTextArea.text = 0
+                                           progressValueTextArea.enabled = false
+                                           targetValueTextArea.text = 0
+                                           targetValueTextArea.enabled = false
+                                           progressUnitTextArea.text = "subgoals' progress"
+                                           progressUnitTextArea.enabled = false
+                                           break
+                                           case 3:
+                                           progressValueTextArea.text = 0
+                                           progressValueTextArea.enabled = false
+                                           targetValueTextArea.text = 0
+                                           targetValueTextArea.enabled = false
+                                           progressUnitTextArea.text = "subgoal/s"
+                                           progressUnitTextArea.enabled = true
+                                           break
+                                           case 4:
+                                           progressValueTextArea.text = 0
+                                           progressValueTextArea.enabled = true
+                                           targetValueTextArea.text = 0
+                                           targetValueTextArea.enabled = true
+                                           progressUnitTextArea.text = ""
+                                           progressUnitTextArea.enabled = true
+                                           break
+                                       }
                                    }
-                               }
-                            }
-                        }
-
-                        Comp.FieldColumnLayout {
-                            Comp.FieldLabel {
-                                text: "Unit"
+                                }
                             }
 
-                            Comp.TextArea {
-                                id: progressUnitTextArea
-                                Layout.preferredWidth: 400
-                                placeholderText: "e.g., book/s, project/s, item/s"
-                                text: "task/s"
-                                wrapMode: TextArea.NoWrap
-                            }
-                        }
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Unit"
+                                }
 
-                        Comp.FieldColumnLayout {
-                            Comp.FieldLabel {
-                                text: "Target"
-                            }
-
-                            Comp.TextArea {
-                                id: targetValueTextArea
-                                Layout.preferredWidth: 200
-                                text: "0"
-                                enabled: false
-                                wrapMode: TextArea.NoWrap
-                                horizontalAlignment: TextEdit.AlignRight
-                            }
-                        }
-
-                        Comp.FieldColumnLayout {
-                            Comp.FieldLabel {
-                                text: "Current Progress"
+                                Comp.TextArea {
+                                    id: progressUnitTextArea
+                                    Layout.preferredWidth: 400
+                                    placeholderText: "e.g., book/s, project/s, item/s"
+                                    text: "task/s"
+                                    wrapMode: TextArea.NoWrap
+                                }
                             }
 
-                            Comp.TextArea {
-                                id: progressValueTextArea
-                                Layout.preferredWidth: 200
-                                text: "0"
-                                enabled: false
-                                wrapMode: TextArea.NoWrap
-                                horizontalAlignment: TextEdit.AlignRight
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Target"
+                                }
+
+                                Comp.TextArea {
+                                    id: targetValueTextArea
+                                    Layout.preferredWidth: 200
+                                    text: "0"
+                                    enabled: false
+                                    wrapMode: TextArea.NoWrap
+                                    horizontalAlignment: TextEdit.AlignRight
+                                }
+                            }
+
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Current Progress"
+                                }
+
+                                Comp.TextArea {
+                                    id: progressValueTextArea
+                                    Layout.preferredWidth: 200
+                                    text: "0"
+                                    enabled: false
+                                    wrapMode: TextArea.NoWrap
+                                    horizontalAlignment: TextEdit.AlignRight
+                                }
                             }
                         }
                     }

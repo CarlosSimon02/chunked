@@ -59,7 +59,6 @@
         <file>commonViews/GoalsBodyView.qml</file>
         <file>commonViews/TasksBodyView.qml</file>
         <file>commonViews/components/TaskItemDelegate.qml</file>
-        <file>commonViews/components/TextArea.qml</file>
         <file>commonViews/qmldir</file>
     </qresource>
 </RCC>

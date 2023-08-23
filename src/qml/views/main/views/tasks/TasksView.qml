@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import components as Comp
-import "./components" as Tasks
+import commonViews as Views
 
 Comp.Page {
     signal goalAdded
@@ -20,35 +20,8 @@ Comp.Page {
         }
     }
 
-    Comp.ScrollView {
-        id: scrollView
+    Views.TasksBodyView {
         anchors.fill: parent
-
-        Pane {
-            width: scrollView.availableWidth
-            background: null
-            padding: 30
-
-            ColumnLayout {
-                width: parent.width
-                spacing: 15
-
-                Tasks.TextArea {
-                    Layout.fillWidth: true
-                    placeholderText: "Type your task here and press 'Enter' to save"
-                }
-
-                ListView {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: contentHeight
-                    interactive: false
-                    spacing: 8
-                    delegate: Tasks.TaskItemDelegate {
-                        width: ListView.view.width
-                    }
-                    model: 4
-                }
-            }
-        }
     }
+
 }

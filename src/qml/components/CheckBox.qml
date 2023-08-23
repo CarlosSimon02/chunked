@@ -32,10 +32,18 @@ T.CheckBox {
             y: (parent.height - height) / 2
             width: 15
             height: 15
-            defaultColor: "#353637"
             color: Comp.ColorScheme.secondaryColor.regular
             source: "qrc:/check_icon.svg"
             visible: control.checkState === Qt.Checked
+        }
+
+        Rectangle {
+            x: (parent.width - width) / 2
+            y: (parent.height - height) / 2
+            width: 15
+            height: 3
+            color: Comp.ColorScheme.secondaryColor.regular
+            visible: control.checkState === Qt.PartiallyChecked
         }
     }
 

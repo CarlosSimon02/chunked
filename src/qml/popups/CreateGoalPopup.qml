@@ -101,47 +101,44 @@ Comp.ModalPopup {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     currentIndex: listView.currentIndex
-                    clip: false
 
-                    Comp.ScrollView {
-                        Pop.ColumnLayout {
-                            Comp.FieldColumnLayout {
-                                spacing: 12
+                    Pop.ColumnLayout {
+                        Comp.FieldColumnLayout {
+                            spacing: 12
 
-                                Comp.FieldLabel {
-                                    text: "Goal Name"
-                                }
-
-                                Comp.TextArea {
-                                    id: goalNameTextArea
-                                    Layout.preferredWidth: 400
-                                }
+                            Comp.FieldLabel {
+                                text: "Goal Name"
                             }
 
-                            Comp.FieldColumnLayout {
-                                Comp.FieldLabel {
-                                    text: "Category"
-                                }
+                            Comp.TextArea {
+                                id: goalNameTextArea
+                                Layout.preferredWidth: 400
+                            }
+                        }
 
-                                Comp.ComboBox {
-                                    id: categoryComboBox
-                                    Layout.preferredWidth: 400
-                                    model: ["Home","Personal","Work"]
-                                    enabled: !createGoalPopup.parentGoal
-                                    displayText: if(createGoalPopup.parentGoal) return createGoalPopup.parentGoal.category
-                                }
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
+                                text: "Category"
                             }
 
-                            Comp.FieldColumnLayout {
-                                Comp.FieldLabel {
-                                    text: "Image"
-                                }
+                            Comp.ComboBox {
+                                id: categoryComboBox
+                                Layout.preferredWidth: 400
+                                model: ["Home","Personal","Work"]
+                                enabled: !createGoalPopup.parentGoal
+                                displayText: if(createGoalPopup.parentGoal) return createGoalPopup.parentGoal.category
+                            }
+                        }
 
-                                Pop.ImagePicker {
-                                    id: imagePicker
-                                    Layout.preferredWidth: 400
-                                    Layout.preferredHeight: Layout.preferredWidth * 9 / 16
-                                }
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
+                                text: "Image"
+                            }
+
+                            Pop.ImagePicker {
+                                id: imagePicker
+                                Layout.preferredWidth: 400
+                                Layout.preferredHeight: Layout.preferredWidth * 9 / 16
                             }
                         }
                     }
@@ -186,6 +183,7 @@ Comp.ModalPopup {
                                 Comp.Button {
                                     id: startButton
                                     Layout.fillWidth: true
+                                    Layout.preferredHeight: 52
                                     property date chosenDate
                                     text: chosenDate.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                                     highlighted: true
@@ -216,6 +214,7 @@ Comp.ModalPopup {
                                 Comp.Button {
                                     id: endButton
                                     Layout.fillWidth: true
+                                    Layout.preferredHeight: 52
                                     property date chosenDate
                                     text: chosenDate.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                                     verticalPadding: 14

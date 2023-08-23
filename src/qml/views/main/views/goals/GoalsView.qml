@@ -72,21 +72,21 @@ Comp.Page {
                 model: dbAccess.createGoalsTableModel()
             }
         }
-    }
 
-    Comp.AccentButton {
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.bottomMargin: 30
-        anchors.rightMargin: 30
-        padding: 10
-        icon.source: "qrc:/create_icon.svg"
-        onClicked: {
-            createGoalPopup.open()
-        }
+        Comp.AccentButton {
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.bottomMargin: 30
+            anchors.rightMargin: 30
+            padding: 10
+            icon.source: "qrc:/create_icon.svg"
+            onClicked: {
+                createGoalPopup.open()
+            }
 
-        Pop.CreateGoalPopup {
-            id: createGoalPopup
+            Pop.CreateGoalPopup {
+                id: createGoalPopup
+            }
         }
     }
 }

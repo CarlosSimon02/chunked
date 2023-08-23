@@ -8,6 +8,8 @@ import popups as Pop
 Comp.ScrollView {
     id: scrollView
     anchors.fill: parent
+    property int parentGoalId: 0
+    property alias gridView: gridView
 
     ColumnLayout {
         width: scrollView.availableWidth
@@ -34,6 +36,7 @@ Comp.ScrollView {
                     progressValue: model.progressValue
                     targetValue: model.targetValue
                     unit: model.progressUnit
+                    subGoal: scrollView.parentGoalId
 
                     Component.onCompleted: {
                         if(item.GridView.view.cellWidth < implicitWidth)
@@ -44,17 +47,12 @@ Comp.ScrollView {
                 }
             }
 
+            model: dbAccess.createGoalsTableModel(scrollView.parentGoalId)
+
             Connections {
                 target: createGoalPopup
                 function onSave() {gridView.model.refresh()}
             }
-
-            Connections {
-                target: mainView.StackView
-                function onActivating() {gridView.model.refresh()}
-            }
-
-            model: dbAccess.createGoalsTableModel()
         }
     }
 

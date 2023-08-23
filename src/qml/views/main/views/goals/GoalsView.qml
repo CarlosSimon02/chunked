@@ -22,6 +22,11 @@ Comp.Page {
 
     View.GoalsBodyView {
         anchors.fill: parent
+
+        Connections {
+            target: mainView.StackView
+            function onActivating() {gridView.model.refresh()}
+        }
     }
 }
 

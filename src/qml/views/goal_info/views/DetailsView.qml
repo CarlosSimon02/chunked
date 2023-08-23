@@ -59,11 +59,10 @@ Comp.Pane {
                 Layout.margins: 20
                 spacing: 40
 
-                ColumnLayout {
+                Column {
                     spacing: 10
 
                     Comp.Text {
-                        Layout.fillWidth: true
                         text: scrollView.goal.name
                         font.weight: Font.Bold
                         font.pixelSize: 24

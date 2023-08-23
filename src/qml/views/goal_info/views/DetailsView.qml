@@ -68,8 +68,6 @@ Comp.Pane {
                         font.weight: Font.Bold
                         font.pixelSize: 24
                         wrapMode: Text.Wrap
-                        maximumLineCount: 2
-                        elide: Text.ElideRight
                     }
 
                     Comp.Text {

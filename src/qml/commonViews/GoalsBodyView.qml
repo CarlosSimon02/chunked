@@ -64,6 +64,7 @@ Comp.ScrollView {
         padding: 10
         icon.source: "qrc:/create_icon.svg"
         onClicked: {
+            createGoalPopup.parentGoalId = scrollView.goal.itemId
             createGoalPopup.open()
         }
 

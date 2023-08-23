@@ -5,6 +5,7 @@ import Qt5Compat.GraphicalEffects
 import app
 
 import components as Comp
+import commonViews as View
 import "./views"
 
 Comp.Page {
@@ -137,7 +138,18 @@ Comp.Page {
                 clip: true
 
                 Component {id: descriptionView; DescriptionView {goal: page.goal}}
-                Component {id: subgoalsView; SubgoalsView {goal: page.goal}}
+                Component {
+                    id: subgoalsView
+
+                    View.GoalsBodyView {
+                        parentGoalId: page.goal.itemId
+
+                        Connections {
+                            target: page.StackView
+                            function onActivating() {gridView.model.refresh()}
+                        }
+                    }
+                }
                 Component {id: tasksView; TasksView {goal: page.goal}}
                 Component {id: habitsView; HabitsView {goal: page.goal}}
                 Component {id: journalView; JournalView {goal: page.goal}}

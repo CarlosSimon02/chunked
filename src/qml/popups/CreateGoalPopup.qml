@@ -12,7 +12,7 @@ Comp.ModalPopup {
     width: 750
     height: 630
 
-    property Goal parentGoalId: 0
+    property int parentGoalId: 0
     signal save
 
     Loader {
@@ -161,14 +161,14 @@ Comp.ModalPopup {
                                     model: GoalNamesTreeViewModel {}
                                     onItemIdChanged: {
                                         createGoalPopup.parentGoalId = itemId
-
-                                        itemId =  createGoalPopup.parentGoalId ? createGoalPopup.parentGoal.itemId : 0
-                                        displayText = createGoalPopup.parentGoalId ? createGoalPopup.parentGoal.name : "None(Top Level)"
+                                        displayText = createGoalPopup.parentGoal ? dbAccess.getValue("goals","name", createGoalPopup.parentGoalId) :
+                                                                                   "None(Top Level)"
                                     }
 
                                     Component.onCompleted: {
-                                        itemId =  createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
-                                        displayText = createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
+                                        itemId =  createGoalPopup.parentGoalId
+                                        displayText = createGoalPopup.parentGoalId ? dbAccess.getValue("goals","name", createGoalPopup.parentGoalId) :
+                                                                                     "None(Top Level)"
                                     }
                                 }
                             }
@@ -176,7 +176,6 @@ Comp.ModalPopup {
                     }
 
                     Pop.ColumnLayout {
-                        implicitWidth: parent.availableWidth
                         spacing: 40
 
                         RowLayout {

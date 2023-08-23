@@ -53,11 +53,6 @@ GoalInfo.ScrollView {
                 target: createGoalPopup
                 function onSave() {gridView.model.refresh()}
             }
-
-            Connections {
-                target: page.StackView
-                function onActivating() {gridView.model.refresh()}
-            }
         }
     }
 

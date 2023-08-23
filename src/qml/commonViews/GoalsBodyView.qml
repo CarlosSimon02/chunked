@@ -7,7 +7,6 @@ import popups as Pop
 
 Comp.ScrollView {
     id: scrollView
-    anchors.fill: parent
     property int parentGoalId: 0
     property alias gridView: gridView
 
@@ -64,7 +63,7 @@ Comp.ScrollView {
         padding: 10
         icon.source: "qrc:/create_icon.svg"
         onClicked: {
-            createGoalPopup.parentGoalId = scrollView.goal.itemId
+            createGoalPopup.parentGoalId = scrollView.parentGoalId
             createGoalPopup.open()
         }
 

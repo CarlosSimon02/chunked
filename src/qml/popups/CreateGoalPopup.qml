@@ -12,7 +12,7 @@ Comp.ModalPopup {
     width: 750
     height: 630
 
-    property Goal parentGoal: null
+    property Goal parentGoalId: 0
     signal save
 
     Loader {
@@ -126,8 +126,11 @@ Comp.ModalPopup {
                                     id: categoryComboBox
                                     Layout.preferredWidth: 400
                                     model: ["Home","Personal","Work"]
-                                    enabled: !createGoalPopup.parentGoal
-                                    displayText: if(createGoalPopup.parentGoal) return createGoalPopup.parentGoal.category
+                                    enabled: !createGoalPopup.parentGoalId
+                                    displayText: if(createGoalPopup.parentGoalId)
+                                                     return dbAccess.getValue("goals",
+                                                                              "category",
+                                                                              createGoalPopup.parentGoalId)
                                 }
                             }
 
@@ -157,11 +160,10 @@ Comp.ModalPopup {
                                     Layout.preferredWidth: 400
                                     model: GoalNamesTreeViewModel {}
                                     onItemIdChanged: {
-                                        if(itemId) createGoalPopup.parentGoal = dbAccess.getGoalItem(itemId)
-                                        else createGoalPopup.parentGoal = null
+                                        createGoalPopup.parentGoalId = itemId
 
-                                        itemId =  createGoalPopup.parentGoal ? createGoalPopup.parentGoal.itemId : 0
-                                        displayText = createGoalPopup.parentGoal ? createGoalPopup.parentGoal.name : "None(Top Level)"
+                                        itemId =  createGoalPopup.parentGoalId ? createGoalPopup.parentGoal.itemId : 0
+                                        displayText = createGoalPopup.parentGoalId ? createGoalPopup.parentGoal.name : "None(Top Level)"
                                     }
 
                                     Component.onCompleted: {

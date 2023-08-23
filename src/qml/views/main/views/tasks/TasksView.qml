@@ -20,8 +20,7 @@ Comp.Page {
         }
     }
 
-    Views.TasksBodyView {
+    View.TasksBodyView {
         anchors.fill: parent
     }
-
 }

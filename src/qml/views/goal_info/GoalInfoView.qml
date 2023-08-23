@@ -150,7 +150,12 @@ Comp.Page {
                         }
                     }
                 }
-                Component {id: tasksView; TasksView {goal: page.goal}}
+                Component {
+                    id: tasksView
+
+                    View.TasksBodyView {
+                    }
+                }
                 Component {id: habitsView; HabitsView {goal: page.goal}}
                 Component {id: journalView; JournalView {goal: page.goal}}
             }

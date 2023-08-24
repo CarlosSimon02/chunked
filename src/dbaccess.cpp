@@ -168,9 +168,47 @@ void DBAccess::saveGoalItem(Goal* goal)
         qWarning() << "DBAccess::saveGoalItem" << query.lastError().text();
 }
 
+void DBAccess::saveTaskItem(Task *task)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO tasks "
+                  "(name, imageSource, category, startDateTime, "
+                  "endDateTime, progressTracker, progressValue, targetValue, "
+                  "progressUnit, mission, vision, obstacles, resources, parentGoalId) "
+                  "VALUES "
+                  "(:name, :imageSource, :category, :startDateTime, "
+                  ":endDateTime, :progressTracker, :progressValue, :targetValue, "
+                  ":progressUnit, :mission, :vision, :obstacles, :resources, :parentGoalId);");
+    query.bindValue(":name", goal->name());
+    query.bindValue(":imageSource", goal->imageSource());
+    query.bindValue(":category", goal->category());
+    query.bindValue(":startDateTime", goal->startDateTime());
+    query.bindValue(":endDateTime", goal->endDateTime());
+    query.bindValue(":progressTracker", goal->progressTracker());
+    query.bindValue(":progressValue", goal->progressValue());
+    query.bindValue(":targetValue", goal->targetValue());
+    query.bindValue(":progressUnit", goal->progressUnit());
+    query.bindValue(":mission", goal->mission());
+    query.bindValue(":vision", goal->vision());
+    query.bindValue(":obstacles", goal->obstacles());
+    query.bindValue(":resources", goal->resources());
+    query.bindValue(":parentGoalId", goal->parentGoalId() ? goal->parentGoalId() : QVariant(QMetaType::fromType<int>()));
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << "DBAccess::saveTaskItem" << query.lastError().text();
+}
+
 GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
 {
     GoalsTableModel* model = new GoalsTableModel;
+    model->setParentGoalId(parentGoalId);
+    return model;
+}
+
+TasksTableModel *DBAccess::createTasksTableModel(int parentGoalId)
+{
+    TasksTableModel* model = new TasksTableModel;
     model->setParentGoalId(parentGoalId);
     return model;
 }

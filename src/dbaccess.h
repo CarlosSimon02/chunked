@@ -5,7 +5,9 @@
 #include <QtQml/qqml.h>
 
 #include "goal.h"
+#include "task.h"
 #include "models/goalstablemodel.h"
+#include "models/taskstablemodel.h"
 
 class DBAccess : public QObject
 {
@@ -24,7 +26,9 @@ public:
 
     Q_INVOKABLE Goal* getGoalItem(int itemId);
     Q_INVOKABLE void saveGoalItem(Goal* goal);
+    Q_INVOKABLE void saveTaskItem(Task* task);
     Q_INVOKABLE GoalsTableModel* createGoalsTableModel(int parentGoalId = 0);
+    Q_INVOKABLE TasksTableModel* createTasksTableModel(int parentGoalId = 0);
 
 private:
     void checkParentGoalUpdate(const QString& columnName,

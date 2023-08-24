@@ -95,7 +95,7 @@ int Task::outcome() const
     return m_outcome;
 }
 
-void Task::setOutcome(int outCome)
+void Task::setOutcome(int outcome)
 {
     if (outcome != m_outcome)
     {

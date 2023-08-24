@@ -1,5 +1,7 @@
 #include "basetablemodel.h"
 
+#include <QSqlRecord>
+
 BaseTableModel::BaseTableModel(QObject *parent)
     : QSqlQueryModel{parent}
 {

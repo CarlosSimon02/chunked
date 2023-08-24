@@ -15,7 +15,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     void setParentGoalId(int itemId);
     int parentGoalId();
-    virtual select() = 0;
+    virtual void select() = 0;
 
 private:
     int m_parentGoalId = 0;

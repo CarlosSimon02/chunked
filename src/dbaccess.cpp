@@ -257,5 +257,49 @@ void DBAccess::checkParentGoalUpdate(const QString &columnName, int itemId)
     }
 }
 
+void DBAccess::updateParentGoalTargetValue(int itemId)
+{
+    if(itemId)
+    {
+        switch (progressTracker)
+        {
+        case 0:
+            if(columnName == "targetValue")
+            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId;"), targetColumn = "targetValue";
+            else if(columnName == "progressValue")
+            query.prepare("SELECT SUM(progressValue) FROM goals WHERE parentGoalId = :parentGoalId;"), targetColumn = "progressValue";
+            else return;
+            break;
+        case 1:
+            if(columnName == "targetValue")
+            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId;"), targetColumn = "targetValue";
+            else if(columnName == "progressValue")
+            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId AND progressValue >= targetValue AND targetValue > 0;"), targetColumn = "progressValue";
+            else return;
+            break;
+        case 2:
+            if()
+            return;
+            break;
+        case 3:
+            return;
+            break;
+        case 4:
+            return;
+            break;
+        case 5:
+            return;
+            break;
+        case 6:
+            return;
+        }
+    }
+}
+
+void DBAccess::updateParentGoalProgressValue(int itemId)
+{
+
+}
+
 
 

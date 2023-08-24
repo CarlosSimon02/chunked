@@ -33,6 +33,8 @@ public:
 private:
     void checkParentGoalUpdate(const QString& columnName,
                                int itemId);
+    void updateParentGoalTargetValue(int itemId);
+    void updateParentGoalProgressValue(int itemId);
 
 signals:
 

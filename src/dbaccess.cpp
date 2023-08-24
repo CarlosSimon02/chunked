@@ -42,8 +42,12 @@ DBAccess::DBAccess(QObject *parent)
         query.exec("CREATE TABLE IF NOT EXISTS tasks ("
                    "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
                    "name TEXT, "
-                   "completed INTEGER, "
+                   "done INTEGER, "
+                   "startDateTime TEXT, "
+                   "endDateTime TEXT, "
+                   "actualDuration INTEGER, "
                    "outcome INTEGER, "
+                   "notes TEXT, "
                    "parentGoalId INTEGER, "
                    "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId)"
                    ");");
@@ -167,18 +171,7 @@ void DBAccess::saveGoalItem(Goal* goal)
 GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
 {
     GoalsTableModel* model = new GoalsTableModel;
-    model->setTable("goals");
-
-    if(parentGoalId)
-        model->setFilter("parentGoalId = "+QString::number(parentGoalId));
-    else
-        model->setFilter("parentGoalId IS NULL");
-
-    model->select();
-
-    if (model->lastError().isValid())
-        qWarning() << "DBAccess::createGoalsTableModel" << model->lastError().text();
-
+    model->setParentGoalId(parentGoalId);
     return model;
 }
 

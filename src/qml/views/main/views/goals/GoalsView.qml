@@ -25,7 +25,7 @@ Comp.Page {
 
         Connections {
             target: mainView.StackView
-            function onActivating() {gridView.model.refresh()}
+            function onActivating() {gridView.model.select()}
         }
     }
 }

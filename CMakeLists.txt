@@ -14,6 +14,8 @@ qt_add_executable(chunked
     src/application.cpp
     src/goal.h
     src/goal.cpp
+    src/task.h
+    src/task.cpp
     src/dbaccess.h
     src/dbaccess.cpp
     src/models/goalstablemodel.h

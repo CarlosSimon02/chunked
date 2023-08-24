@@ -60,5 +60,6 @@
         <file>commonViews/TasksBodyView.qml</file>
         <file>commonViews/components/TaskItemDelegate.qml</file>
         <file>commonViews/qmldir</file>
+        <file>components/TextField.qml</file>
     </qresource>
 </RCC>

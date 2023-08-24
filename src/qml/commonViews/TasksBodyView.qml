@@ -19,7 +19,7 @@ Comp.ScrollView {
             width: parent.width
             spacing: 15
 
-            TextField {
+            Comp.TextField {
                 id: textArea
                 Layout.fillWidth: true
                 placeholderText: "Type your task here and press 'Enter' to save"

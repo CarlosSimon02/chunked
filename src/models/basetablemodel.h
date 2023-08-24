@@ -1,0 +1,24 @@
+#ifndef BASETABLEMODEL_H
+#define BASETABLEMODEL_H
+
+#include <QSqlQueryModel>
+#include <QtQml/qqml.h>
+
+class BaseTableModel : public QSqlQueryModel
+{
+    Q_OBJECT
+    QML_ELEMENT
+
+public:
+    explicit BaseTableModel(QObject *parent = nullptr);
+    QHash<int, QByteArray> roleNames() const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    void setParentGoalId(int itemId);
+    int parentGoalId();
+    virtual select() = 0;
+
+private:
+    int m_parentGoalId = 0;
+};
+
+#endif // BASETABLEMODEL_H

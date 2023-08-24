@@ -18,10 +18,14 @@ qt_add_executable(chunked
     src/task.cpp
     src/dbaccess.h
     src/dbaccess.cpp
+    src/models/basetablemodel.h
+    src/models/basetablemodel.cpp
     src/models/goalstablemodel.h
     src/models/goalstablemodel.cpp
     src/models/goalnamestreeviewmodel.h
     src/models/goalnamestreeviewmodel.cpp
+    src/models/taskstablemodel.h
+    src/models/taskstablemodel.cpp
     src/main.cpp
     src/qml/qml.qrc
     src/icons/icons.qrc

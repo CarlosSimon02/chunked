@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import app
 
 import components as Comp
 import "./components" as CommonViews
@@ -18,12 +19,26 @@ Comp.ScrollView {
             width: parent.width
             spacing: 15
 
-            Comp.TextArea {
+            TextField {
+                id: textArea
                 Layout.fillWidth: true
                 placeholderText: "Type your task here and press 'Enter' to save"
+                wrapMode: TextArea.NoWrap
+                property Task task: Task{}
+
+                Keys.onReturnPressed: {
+                    if (textArea.length > 0)
+                    {
+                        console.log("Fuck youuuuuuuuuuuuuuuuu")
+                        task.name = textArea.text
+                        dbAccess.saveTaskItem(task)
+                        listView.model.select()
+                    }
+                }
             }
 
             ListView {
+                id: listView
                 Layout.fillWidth: true
                 Layout.preferredHeight: contentHeight
                 interactive: false
@@ -31,7 +46,7 @@ Comp.ScrollView {
                 delegate: CommonViews.TaskItemDelegate {
                     width: ListView.view.width
                 }
-                model: 4
+                model: dbAccess.createTasksTableModel();
             }
         }
     }

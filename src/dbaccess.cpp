@@ -210,8 +210,6 @@ void DBAccess::checkParentGoalUpdate(const QString &columnName, int itemId)
     if(itemId)
     {
         int progressTracker = getValue("goals", "progressTracker", itemId).toInt();
-        int value = 0;
-        QString targetColumn = "";
         QSqlQuery query;
 
         switch (progressTracker) {
@@ -261,28 +259,22 @@ void DBAccess::updateParentGoalTargetValue(int itemId)
 {
     if(itemId)
     {
+        int progressTracker = getValue("goals", "progressTracker", itemId).toInt();
+        QSqlQuery query;
+
         switch (progressTracker)
         {
         case 0:
-            if(columnName == "targetValue")
-            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId;"), targetColumn = "targetValue";
-            else if(columnName == "progressValue")
-            query.prepare("SELECT SUM(progressValue) FROM goals WHERE parentGoalId = :parentGoalId;"), targetColumn = "progressValue";
-            else return;
+            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId;");
             break;
         case 1:
-            if(columnName == "targetValue")
-            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId;"), targetColumn = "targetValue";
-            else if(columnName == "progressValue")
-            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId AND progressValue >= targetValue AND targetValue > 0;"), targetColumn = "progressValue";
-            else return;
+            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId;");
             break;
         case 2:
-            if()
-            return;
+            query.prepare("SELECT SUM(outcome) FROM tasks WHERE parentGoalId = :parentGoalId;");
             break;
         case 3:
-            return;
+            query.prepare("SELECT COUNT(*) FROM tasks WHERE parentGoalId = :parentGoalId;");
             break;
         case 4:
             return;
@@ -293,12 +285,58 @@ void DBAccess::updateParentGoalTargetValue(int itemId)
         case 6:
             return;
         }
+
+        query.bindValue(":parentGoalId",itemId);
+        query.exec();
+
+        if (query.lastError().isValid())
+            qWarning() << query.lastQuery() << "\n" << "DBAccess::updateParentGoalTargetValue" << query.lastError().text();
+
+        query.first();
+        updateValue("goals", "targetValue", itemId, query.value(0).toInt());
     }
 }
 
 void DBAccess::updateParentGoalProgressValue(int itemId)
 {
+    if(itemId)
+    {
+        int progressTracker = getValue("goals", "progressTracker", itemId).toInt();
+        QSqlQuery query;
 
+        switch (progressTracker)
+        {
+        case 0:
+            query.prepare("SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId;");
+            break;
+        case 1:
+            query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId;");
+            break;
+        case 2:
+            query.prepare("SELECT SUM(outcome) FROM tasks WHERE parentGoalId = :parentGoalId;");
+            break;
+        case 3:
+            query.prepare("SELECT COUNT(*) FROM tasks WHERE parentGoalId = :parentGoalId;");
+            break;
+        case 4:
+            return;
+            break;
+        case 5:
+            return;
+            break;
+        case 6:
+            return;
+        }
+
+        query.bindValue(":parentGoalId",itemId);
+        query.exec();
+
+        if (query.lastError().isValid())
+            qWarning() << query.lastQuery() << "\n" << "DBAccess::updateParentGoalTargetValue" << query.lastError().text();
+
+        query.first();
+        updateValue("goals", "targetValue", itemId, query.value(0).toInt());
+    }
 }
 
 

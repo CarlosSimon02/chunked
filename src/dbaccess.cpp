@@ -172,27 +172,19 @@ void DBAccess::saveTaskItem(Task *task)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO tasks "
-                  "(name, imageSource, category, startDateTime, "
-                  "endDateTime, progressTracker, progressValue, targetValue, "
-                  "progressUnit, mission, vision, obstacles, resources, parentGoalId) "
+                  "(name, done, startDateTime, endDateTime, actualDuration, "
+                  "outcome, notes, parentGoalId) "
                   "VALUES "
-                  "(:name, :imageSource, :category, :startDateTime, "
-                  ":endDateTime, :progressTracker, :progressValue, :targetValue, "
-                  ":progressUnit, :mission, :vision, :obstacles, :resources, :parentGoalId);");
-    query.bindValue(":name", goal->name());
-    query.bindValue(":imageSource", goal->imageSource());
-    query.bindValue(":category", goal->category());
-    query.bindValue(":startDateTime", goal->startDateTime());
-    query.bindValue(":endDateTime", goal->endDateTime());
-    query.bindValue(":progressTracker", goal->progressTracker());
-    query.bindValue(":progressValue", goal->progressValue());
-    query.bindValue(":targetValue", goal->targetValue());
-    query.bindValue(":progressUnit", goal->progressUnit());
-    query.bindValue(":mission", goal->mission());
-    query.bindValue(":vision", goal->vision());
-    query.bindValue(":obstacles", goal->obstacles());
-    query.bindValue(":resources", goal->resources());
-    query.bindValue(":parentGoalId", goal->parentGoalId() ? goal->parentGoalId() : QVariant(QMetaType::fromType<int>()));
+                  "(:name, :done, :startDateTime, :endDateTime, :actualDuration, "
+                  ":outcome, :notes, :parentGoalId);");
+    query.bindValue(":name", task->name());
+    query.bindValue(":done", task->done());
+    query.bindValue(":startDateTime", task->startDateTime());
+    query.bindValue(":endDateTime", task->endDateTime());
+    query.bindValue(":actualDuration", task->actualDuration());
+    query.bindValue(":outcome", task->outcome());
+    query.bindValue(":notes", task->notes());
+    query.bindValue(":parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()));
     query.exec();
 
     if (query.lastError().isValid())
@@ -222,7 +214,6 @@ void DBAccess::checkParentGoalUpdate(const QString &columnName, int itemId)
         QString targetColumn = "";
         QSqlQuery query;
 
-        //if
         switch (progressTracker) {
         case 0:
             if(columnName == "targetValue")
@@ -239,6 +230,7 @@ void DBAccess::checkParentGoalUpdate(const QString &columnName, int itemId)
             else return;
             break;
         case 2:
+            if()
             return;
             break;
         case 3:

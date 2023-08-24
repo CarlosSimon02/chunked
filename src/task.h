@@ -22,6 +22,16 @@ public:
     explicit Task(QObject *parent = nullptr);
 
 signals:
+    void itemIdChanged();
+    void nameChanged();
+    void doneChanged();
+    void startDateTimeChanged();
+    void endDateTimeChanged();
+    void actualDurationChanged();
+    void outcomeChanged();
+    void parentGoalIdChanged();
+    void notesChanged();
+    void parentGoalIdChanged();
 
 private:
     int m_itemId;

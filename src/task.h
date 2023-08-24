@@ -20,25 +20,23 @@ class Task : public QObject
 
 public:
     explicit Task(QObject *parent = nullptr);
-    int itemId();
+    int itemId() const;
     void setItemId(int itemId);
-    QString name();
+    QString name() const;
     void setName(const QString& name);
-    bool done();
+    bool done() const;
     void setDone(bool done);
-    QString startDateTime();
+    QString startDateTime() const;
     void setStartDateTime(const QString& startDateTime);
-    QString endDateTime();
+    QString endDateTime() const;
     void setEndDateTime(const QString& endDateTime);
-    int actualDuration();
+    int actualDuration() const;
     void setActualDuration(int actualDuration);
-    int outcome();
+    int outcome() const;
     void setOutcome(int outCome);
-    int parentGoalId();
-    void setParentGoalId(int parentGoalId);
-    QString notes();
+    QString notes() const;
     void setNotes(const QString& notes);
-    int parentGoalId();
+    int parentGoalId() const;
     void setParentGoalId(int parentGoalId);
 
 signals:
@@ -49,7 +47,6 @@ signals:
     void endDateTimeChanged();
     void actualDurationChanged();
     void outcomeChanged();
-    void parentGoalIdChanged();
     void notesChanged();
     void parentGoalIdChanged();
 

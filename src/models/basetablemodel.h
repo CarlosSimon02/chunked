@@ -7,7 +7,6 @@
 class BaseTableModel : public QSqlQueryModel
 {
     Q_OBJECT
-    QML_ELEMENT
 
 public:
     explicit BaseTableModel(QObject *parent = nullptr);

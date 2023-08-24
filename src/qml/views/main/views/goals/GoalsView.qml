@@ -21,11 +21,12 @@ Comp.Page {
     }
 
     View.GoalsBodyView {
+        id: goalsBodyView
         anchors.fill: parent
 
         Connections {
             target: mainView.StackView
-            function onActivating() {gridView.model.select()}
+            function onActivating() {goalsBodyView.gridView.model.select()}
         }
     }
 }

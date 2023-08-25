@@ -18,5 +18,7 @@
         <file>dropdown_close_icon.svg</file>
         <file>dropdown_open_icon.svg</file>
         <file>check_icon.svg</file>
+        <file>arrow_down_icon.svg</file>
+        <file>calendar_icon.svg</file>
     </qresource>
 </RCC>

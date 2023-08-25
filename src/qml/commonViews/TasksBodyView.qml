@@ -19,22 +19,9 @@ Comp.ScrollView {
             width: parent.width
             spacing: 15
 
-            Comp.TextField {
-                id: textArea
+            CommonViews.CreateTaskTextField {
+                id: createTaskTextField
                 Layout.fillWidth: true
-                placeholderText: "Type your task here and press 'Enter' to save"
-                wrapMode: TextArea.NoWrap
-                property Task task: Task{}
-
-                Keys.onReturnPressed: {
-                    if (textArea.length > 0)
-                    {
-                        console.log("Fuck youuuuuuuuuuuuuuuuu")
-                        task.name = textArea.text
-                        dbAccess.saveTaskItem(task)
-                        listView.model.select()
-                    }
-                }
             }
 
             ListView {
@@ -43,10 +30,16 @@ Comp.ScrollView {
                 Layout.preferredHeight: contentHeight
                 interactive: false
                 spacing: 8
+
                 delegate: CommonViews.TaskItemDelegate {
                     width: ListView.view.width
                 }
                 model: dbAccess.createTasksTableModel();
+
+                Connections {
+                    target: createTaskTextField
+                    function onSave() {listView.model.select()}
+                }
             }
         }
     }

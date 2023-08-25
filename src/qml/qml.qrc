@@ -40,8 +40,6 @@
         <file>views/main/views/reports/ReportsView.qml</file>
         <file>views/main/views/tasks/TasksView.qml</file>
         <file>views/main/views/vision_board/VisionBoardView.qml</file>
-        <file>popups/components/TimePicker.qml</file>
-        <file>popups/components/DatePicker.qml</file>
         <file>popups/components/Button.qml</file>
         <file>popups/components/TreeViewComboBox.qml</file>
         <file>views/goal_info/components/ScrollView.qml</file>
@@ -61,5 +59,9 @@
         <file>commonViews/components/TaskItemDelegate.qml</file>
         <file>commonViews/qmldir</file>
         <file>components/TextField.qml</file>
+        <file>commonViews/components/CreateTaskTextField.qml</file>
+        <file>components/DateTimeFramePicker.qml</file>
+        <file>components/DatePicker.qml</file>
+        <file>components/TimePicker.qml</file>
     </qresource>
 </RCC>

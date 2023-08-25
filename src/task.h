@@ -57,7 +57,7 @@ private:
     QString m_startDateTime;
     QString m_endDateTime;
     int m_actualDuration;
-    int m_outcome;
+    int m_outcome = 1;
     QString m_notes;
     int m_parentGoalId;
 };

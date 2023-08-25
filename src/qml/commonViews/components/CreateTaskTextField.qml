@@ -8,6 +8,7 @@ import components as Comp
 RowLayout {
     id: columnLayout
     spacing: -(buttonLayout.width + 15)
+    property Task task: Task{}
     signal save
 
     Comp.TextField {
@@ -16,7 +17,7 @@ RowLayout {
         rightPadding: 80
         placeholderText: "Type your task here and press 'Enter' to save"
         wrapMode: TextArea.NoWrap
-        property Task task: Task{}
+
 
         background: Rectangle {
             implicitHeight: 52
@@ -31,8 +32,8 @@ RowLayout {
         Keys.onReturnPressed: {
             if (textArea.length > 0)
             {
-                task.name = textArea.text
-                dbAccess.saveTaskItem(task)
+                columnLayout.task.name = textArea.text
+                dbAccess.saveTaskItem(columnLayout.task)
                 columnLayout.save()
             }
         }

@@ -6,7 +6,6 @@
 GoalsTableModel::GoalsTableModel(QObject *parent)
     : BaseTableModel(parent)
 {
-    select();
 }
 
 void GoalsTableModel::select()

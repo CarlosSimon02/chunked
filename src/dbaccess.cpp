@@ -207,6 +207,7 @@ void DBAccess::saveTaskItem(Task *task)
 GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
 {
     GoalsTableModel* model = new GoalsTableModel;
+    model->select();
     model->setParentGoalId(parentGoalId);
     return model;
 }
@@ -214,6 +215,7 @@ GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
 TasksTableModel *DBAccess::createTasksTableModel(int parentGoalId)
 {
     TasksTableModel* model = new TasksTableModel;
+    model->select();
     model->setParentGoalId(parentGoalId);
     return model;
 }

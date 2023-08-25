@@ -5,7 +5,6 @@
 TasksTableModel::TasksTableModel(QObject *parent)
     : BaseTableModel{parent}
 {
-
 }
 
 void TasksTableModel::select()

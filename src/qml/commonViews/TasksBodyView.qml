@@ -33,6 +33,7 @@ Comp.ScrollView {
 
                 delegate: CommonViews.TaskItemDelegate {
                     width: ListView.view.width
+                    onClicked: drawer.open()
                 }
                 model: dbAccess.createTasksTableModel();
 

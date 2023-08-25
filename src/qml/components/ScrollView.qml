@@ -12,6 +12,7 @@ T.ScrollView {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              contentHeight + topPadding + bottomPadding)
     leftPadding: 2
+    clip: true
 
     ScrollBar.vertical: Comp.ScrollBar {
         parent: control

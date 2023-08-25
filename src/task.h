@@ -59,7 +59,7 @@ private:
     int m_actualDuration;
     int m_outcome = 1;
     QString m_notes;
-    int m_parentGoalId;
+    int m_parentGoalId = 0;
 };
 
 #endif // TASK_H

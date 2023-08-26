@@ -10,6 +10,7 @@ import "./components" as CommonViews
 Pane {
     background: null
     padding: 0
+    clip: true
 
     Comp.ScrollView {
         id: scrollView
@@ -36,20 +37,24 @@ Pane {
                     Layout.preferredHeight: contentHeight
                     interactive: false
                     spacing: 8
+                    verticalLayoutDirection: ListView.BottomToTop
 
                     delegate: CommonViews.TaskItemDelegate {
                         width: ListView.view.width
-                        onClicked: {
-                            drawerPane.visible = true
+
+                        Component.onCompleted: {
+                            done = model.done
+                            name = model.name
                         }
 
+                        onClicked: drawerPane.opened = true
                     }
 
                     model: dbAccess.createTasksTableModel()
 
                     Connections {
                         target: createTaskTextField
-                        function onSave() {listView.model.select()}
+                        function onSave() {listView.model.refresh()}
                     }
                 }
             }
@@ -59,14 +64,14 @@ Pane {
     Pane {
         id: dimOverlayPane
         anchors.fill: parent
-        visible: drawerPane.visible
+        visible: drawerPane.opened
 
         background: Rectangle {
             color: Comp.Utils.setColorAlpha(Comp.ColorScheme.primaryColor.dark, 0.3)
         }
 
         TapHandler {
-
+            onTapped: drawerPane.opened = false
         }
     }
 
@@ -76,7 +81,8 @@ Pane {
         x: parent.width + 20
         height: parent.height - 40
         width: 350
-        visible: false
+        visible: x <= parent.width + 20
+        property bool opened: false
         property Task task
 
         background: Rectangle {
@@ -92,17 +98,11 @@ Pane {
 
         states: State {
             name: "opened"
-            when: drawerPane.visible
+            when: drawerPane.opened
 
             PropertyChanges {
                 target: drawerPane
                 x: parent.width - width - 20
-            }
-
-            AnchorChanges {
-                target: menuButton
-                anchors.horizontalCenter: undefined
-                anchors.right: listView.right
             }
         }
 
@@ -112,12 +112,7 @@ Pane {
 
             NumberAnimation {
                 target: drawerPane
-                property: "width"
-                duration: 500
-                easing.type: Easing.OutQuad
-            }
-
-            AnchorAnimation {
+                property: "x"
                 duration: 500
                 easing.type: Easing.OutQuad
             }

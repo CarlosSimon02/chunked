@@ -11,7 +11,6 @@ class GoalsTableModel : public BaseTableModel
 
 public:
     explicit GoalsTableModel(QObject *parent = nullptr);
-    Q_INVOKABLE void select() override;
 };
 
 #endif // GOALSTABLEMODEL_H

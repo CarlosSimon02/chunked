@@ -1,10 +1,10 @@
 #ifndef BASETABLEMODEL_H
 #define BASETABLEMODEL_H
 
-#include <QSqlQueryModel>
+#include <QSqlTableModel>
 #include <QtQml/qqml.h>
 
-class BaseTableModel : public QSqlQueryModel
+class BaseTableModel : public QSqlTableModel
 {
     Q_OBJECT
 
@@ -14,7 +14,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     void setParentGoalId(int itemId);
     int parentGoalId();
-    virtual void select() = 0;
+    Q_INVOKABLE void refresh();
 
 private:
     int m_parentGoalId = 0;

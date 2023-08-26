@@ -11,7 +11,6 @@ class TasksTableModel : public BaseTableModel
 
 public:
     explicit TasksTableModel(QObject *parent = nullptr);
-    Q_INVOKABLE void select() override;
 };
 
 #endif // TASKSTABLEMODEL_H

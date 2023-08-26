@@ -51,7 +51,7 @@ GoalInfo.ScrollView {
 
             Connections {
                 target: createGoalPopup
-                function onSave() {gridView.model.select()}
+                function onSave() {gridView.model.refresh()}
             }
         }
     }

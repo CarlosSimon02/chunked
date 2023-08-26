@@ -3,9 +3,9 @@
 #include <QSqlRecord>
 
 BaseTableModel::BaseTableModel(QObject *parent)
-    : QSqlQueryModel{parent}
+    : QSqlTableModel{parent}
 {
-
+    setEditStrategy(EditStrategy::OnFieldChange);
 }
 
 QHash<int, QByteArray> BaseTableModel::roleNames() const
@@ -22,22 +22,24 @@ QVariant BaseTableModel::data(const QModelIndex &index, int role) const
     if (index.isValid())
     {
         if (role < Qt::UserRole)
-            value = QSqlQueryModel::data(index, role);
+            value = QSqlTableModel::data(index, role);
         else
         {
             int columnIdx = role - Qt::UserRole - 1;
             QModelIndex modelIndex = this->index(index.row(), columnIdx);
-            value = QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
+            value = QSqlTableModel::data(modelIndex, Qt::DisplayRole);
         }
     }
     return value;
 }
 
-void BaseTableModel::setParentGoalId(int itemId)
+void BaseTableModel::setParentGoalId(int parentGoalId)
 {
-    if(itemId != m_parentGoalId)
+    if(parentGoalId != m_parentGoalId)
     {
-        m_parentGoalId = itemId;
+        m_parentGoalId = parentGoalId;
+        if(m_parentGoalId) setFilter("parentGoalId = " + QString::number(m_parentGoalId));
+        else setFilter("parentGoalId IS NULL");
         select();
     }
 }
@@ -45,4 +47,9 @@ void BaseTableModel::setParentGoalId(int itemId)
 int BaseTableModel::parentGoalId()
 {
     return m_parentGoalId;
+}
+
+void BaseTableModel::refresh()
+{
+    select();
 }

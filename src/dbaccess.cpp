@@ -199,15 +199,14 @@ void DBAccess::saveTaskItem(Task *task)
     if (query.lastError().isValid())
         qWarning() << "DBAccess::saveTaskItem" << query.lastError().text();
 
-//    updateParentGoalTargetValue(task->parentGoalId());
-//    if(task->done())
-//        updateParentGoalProgressValue(task->parentGoalId());
+    updateParentGoalTargetValue(task->parentGoalId());
+    if(task->done())
+        updateParentGoalProgressValue(task->parentGoalId());
 }
 
 GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
 {
     GoalsTableModel* model = new GoalsTableModel;
-    model->select();
     model->setParentGoalId(parentGoalId);
     return model;
 }
@@ -215,7 +214,6 @@ GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
 TasksTableModel *DBAccess::createTasksTableModel(int parentGoalId)
 {
     TasksTableModel* model = new TasksTableModel;
-    model->select();
     model->setParentGoalId(parentGoalId);
     return model;
 }

@@ -12,6 +12,9 @@ public:
     explicit BaseTableModel(QObject *parent = nullptr);
     QHash<int, QByteArray> roleNames() const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    bool setData(const QModelIndex &index,
+                 const QVariant &value,
+                 int role = Qt::EditRole) override;
     void setParentGoalId(int itemId);
     int parentGoalId();
     Q_INVOKABLE void refresh();

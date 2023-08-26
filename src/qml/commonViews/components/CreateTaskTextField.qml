@@ -14,10 +14,9 @@ RowLayout {
     Comp.TextField {
         id: textArea
         Layout.fillWidth: true
-        rightPadding: 80
+        rightPadding: 100
         placeholderText: "Type your task here and press 'Enter' to save"
         wrapMode: TextArea.NoWrap
-
 
         background: Rectangle {
             implicitHeight: 52

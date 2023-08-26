@@ -1,6 +1,7 @@
 #include "basetablemodel.h"
 
 #include <QSqlRecord>
+#include <QSqlError>
 
 BaseTableModel::BaseTableModel(QObject *parent)
     : QSqlTableModel{parent}
@@ -27,10 +28,35 @@ QVariant BaseTableModel::data(const QModelIndex &index, int role) const
         {
             int columnIdx = role - Qt::UserRole - 1;
             QModelIndex modelIndex = this->index(index.row(), columnIdx);
-            value = QSqlTableModel::data(modelIndex, Qt::DisplayRole);
+            value = QSqlTableModel::data(modelIndex, Qt::EditRole);
         }
     }
     return value;
+}
+
+bool BaseTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (!index.isValid() )
+    {
+        if(role == Qt::EditRole)
+        {
+            QSqlTableModel::setData(index, value, Qt::EditRole);
+            return true;
+        }
+        else
+        {
+            int columnIdx = role - Qt::UserRole - 1;
+            QModelIndex modelIndex = this->index(index.row(), columnIdx);
+            if (QSqlTableModel::setData(modelIndex, value, Qt::EditRole))
+                return true;
+            else {
+                qWarning() << "setData return false";
+                return false;
+            }
+        }
+    }
+
+    return false;
 }
 
 void BaseTableModel::setParentGoalId(int parentGoalId)

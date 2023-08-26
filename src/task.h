@@ -53,7 +53,7 @@ signals:
 private:
     int m_itemId;
     QString m_name;
-    bool m_done;
+    bool m_done = false;
     QString m_startDateTime;
     QString m_endDateTime;
     int m_actualDuration;

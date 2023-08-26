@@ -43,11 +43,11 @@ Pane {
                         width: ListView.view.width
 
                         Component.onCompleted: {
-                            done = model.done
+                            taskDone = model.done
                             name = model.name
                         }
 
-                        onClicked: drawerPane.opened = true
+                        onSetDone: model.done = taskDone
                     }
 
                     model: dbAccess.createTasksTableModel()

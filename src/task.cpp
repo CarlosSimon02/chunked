@@ -3,7 +3,6 @@
 Task::Task(QObject *parent)
     : QObject{parent}
 {
-
 }
 
 int Task::itemId() const

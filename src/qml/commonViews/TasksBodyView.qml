@@ -48,6 +48,7 @@ Pane {
                         }
 
                         onSetDone: model.done = taskDone
+                        onClicked: drawerPane.opened = true
                     }
 
                     model: dbAccess.createTasksTableModel()
@@ -93,7 +94,16 @@ Pane {
         }
 
         Loader {
+            anchors.fill: parent
+            sourceComponent: drawerPane.visible ? content : null
+        }
 
+        Component {
+            id: content
+
+            Comp.Text {
+                text: listView.mod
+            }
         }
 
         states: State {

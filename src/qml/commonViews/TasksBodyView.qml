@@ -6,42 +6,59 @@ import app
 import components as Comp
 import "./components" as CommonViews
 
-Comp.ScrollView {
-    id: scrollView
-    anchors.fill: parent
+Pane {
+    background: null
+    padding: 0
 
-    Pane {
-        width: scrollView.availableWidth
-        background: null
-        padding: 30
+    Comp.ScrollView {
+        id: scrollView
+        anchors.fill: parent
 
         ColumnLayout {
-            width: parent.width
-            spacing: 15
+            width: scrollView.availableWidth
 
-            CommonViews.CreateTaskTextField {
-                id: createTaskTextField
+            ColumnLayout {
                 Layout.fillWidth: true
-            }
+                Layout.maximumWidth: 1200
+                Layout.margins: 20
+                Layout.alignment: Qt.AlignHCenter
+                spacing: 15
 
-            ListView {
-                id: listView
-                Layout.fillWidth: true
-                Layout.preferredHeight: contentHeight
-                interactive: false
-                spacing: 8
-
-                delegate: CommonViews.TaskItemDelegate {
-                    width: ListView.view.width
-                    onClicked: drawer.open()
+                CommonViews.CreateTaskTextField {
+                    id: createTaskTextField
+                    Layout.fillWidth: true
                 }
-                model: dbAccess.createTasksTableModel();
 
-                Connections {
-                    target: createTaskTextField
-                    function onSave() {listView.model.select()}
+                ListView {
+                    id: listView
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: contentHeight
+                    interactive: false
+                    spacing: 8
+
+                    delegate: CommonViews.TaskItemDelegate {
+                        width: ListView.view.width
+                        onClicked: drawer.open()
+                    }
+
+                    model: dbAccess.createTasksTableModel()
+
+                    Connections {
+                        target: createTaskTextField
+                        function onSave() {listView.model.select()}
+                    }
                 }
             }
         }
     }
+
+//    Rectangle {
+//        id: dimOverlayRect
+//        anchors.fill: parent
+//        color: "red"
+//    }
+
+//    Pane {
+//        id: drawerPane
+//    }
 }

@@ -36,7 +36,7 @@ QVariant BaseTableModel::data(const QModelIndex &index, int role) const
 
 bool BaseTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (!index.isValid() )
+    if (index.isValid())
     {
         if(role == Qt::EditRole)
         {

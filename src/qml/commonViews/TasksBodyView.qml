@@ -42,13 +42,48 @@ Pane {
                     delegate: CommonViews.TaskItemDelegate {
                         width: ListView.view.width
 
-                        Component.onCompleted: {
-                            taskDone = model.done
-                            name = model.name
+                        taskDone: model.done
+                        name: model.name
+
+                        Component {
+                            id: popupContent
+
+                            ColumnLayout {
+                                Comp.Text {
+                                    text: model.name
+                                }
+
+                                Comp.CheckBox {
+                                    checkState: model.done
+                                }
+
+                                Comp.Text {
+                                    text: model.startDateTime
+                                }
+
+                                Comp.Text {
+                                    text: model.endDateTime
+                                }
+
+                                Comp.Text {
+                                    text: model.actualDuration.toString()
+                                }
+
+                                Comp.Text {
+                                    text: model.outcome.toString()
+                                }
+
+                                Comp.Text {
+                                    text: model.notes
+                                }
+                            }
                         }
 
                         onSetDone: model.done = taskDone
-                        onClicked: drawerPane.opened = true
+                        onClicked: {
+                            drawerPane.opened = true
+                            loader.sourceComponent = popupContent
+                        }
                     }
 
                     model: dbAccess.createTasksTableModel()
@@ -94,16 +129,8 @@ Pane {
         }
 
         Loader {
+            id: loader
             anchors.fill: parent
-            sourceComponent: drawerPane.visible ? content : null
-        }
-
-        Component {
-            id: content
-
-            Comp.Text {
-                text: listView.mod
-            }
         }
 
         states: State {

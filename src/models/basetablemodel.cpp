@@ -80,7 +80,7 @@ bool BaseTableModel::setData(const QString &fieldName, int row, const QVariant &
     if(col == -1)
     {
         qWarning() << "BaseTableModel::setData: field name not found";
-        return QVariant{};
+        return false;
     }
 
     return setData(index(row,col), value);

@@ -81,7 +81,7 @@ Pane {
 
                         onSetDone: model.done = taskDone
                         onClicked: {
-                            drawerPane.opened = true
+                            drawerPane.open()
                             drawerPane.index = model.index
                         }
                     }
@@ -119,7 +119,11 @@ Pane {
         width: 350
         visible: x <= parent.width + 20
         property bool opened: false
-        property int index
+        signal open
+        onOpen: {
+            opened = true
+            nameText.text = listView.model.data("name", drawerPane.index)
+        }
 
         background: Rectangle {
             color: Comp.ColorScheme.primaryColor.light
@@ -128,24 +132,14 @@ Pane {
             layer.effect: Impl.DropShadow {}
         }
 
-        Loader {
-            id: loader
-            anchors.fill: parent
-            sourceComponent: drawerPane.opened ? content : null
+        ColumnLayout {
+            Comp.Text {
+                id: nameText
+            }
 
-            Component {
-                id: content
-
-                ColumnLayout {
-                    Comp.Button {
-                        text: listView.model.data("name", drawerPane.index)
-                    }
-
-                    Comp.Button {
-                        text: "Change Name to Fuck you"
-                        onClicked: listView.model.setData("name", drawerPane.index, "Fuck you")
-                    }
-                }
+            Comp.Button {
+                text: "Change Name to Fuck you"
+                onClicked: listView.model.setData("name", drawerPane.index, "Fuck you")
             }
         }
 

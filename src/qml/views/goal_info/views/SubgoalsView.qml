@@ -47,7 +47,9 @@ GoalInfo.ScrollView {
                 }
             }
 
-            model: dbAccess.createGoalsTableModel(scrollView.goal.itemId)
+            model: GoalsTableModel {
+                parentGoalId: scrollView.goal.itemId
+            }
 
             Connections {
                 target: createGoalPopup

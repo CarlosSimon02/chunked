@@ -204,20 +204,6 @@ void DBAccess::saveTaskItem(Task *task)
         updateParentGoalProgressValue(task->parentGoalId());
 }
 
-GoalsTableModel *DBAccess::createGoalsTableModel(int parentGoalId)
-{
-    GoalsTableModel* model = new GoalsTableModel;
-    model->setParentGoalId(parentGoalId);
-    return model;
-}
-
-TasksTableModel *DBAccess::createTasksTableModel(int parentGoalId)
-{
-    TasksTableModel* model = new TasksTableModel;
-    model->setParentGoalId(parentGoalId);
-    return model;
-}
-
 void DBAccess::updateParentGoalTargetValue(int itemId)
 {
     if(itemId)

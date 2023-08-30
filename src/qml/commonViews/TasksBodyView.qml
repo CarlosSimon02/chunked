@@ -86,7 +86,7 @@ Pane {
                         }
                     }
 
-                    model: dbAccess.createTasksTableModel()
+                    model: TasksTableModel {}
 
                     Connections {
                         target: createTaskTextField

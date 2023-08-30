@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import app
 
 import components as Comp
 import popups as Pop
@@ -8,7 +9,8 @@ import popups as Pop
 Comp.ScrollView {
     id: scrollView
     property int parentGoalId: 0
-    property alias gridView: gridView
+    signal refresh
+    onRefresh: gridView.model.refresh()
 
     ColumnLayout {
         width: scrollView.availableWidth
@@ -46,7 +48,9 @@ Comp.ScrollView {
                 }
             }
 
-            model: dbAccess.createGoalsTableModel(scrollView.parentGoalId)
+            model: GoalsTableModel {
+                parentGoalId: scrollView.parentGoalId
+            }
 
             Connections {
                 target: createGoalPopup

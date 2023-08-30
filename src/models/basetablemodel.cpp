@@ -59,6 +59,11 @@ bool BaseTableModel::setData(const QModelIndex &index, const QVariant &value, in
     return false;
 }
 
+int BaseTableModel::parentGoalId()
+{
+    return m_parentGoalId;
+}
+
 void BaseTableModel::setParentGoalId(int parentGoalId)
 {
     if(parentGoalId != m_parentGoalId)
@@ -68,11 +73,6 @@ void BaseTableModel::setParentGoalId(int parentGoalId)
         else setFilter("parentGoalId IS NULL");
         select();
     }
-}
-
-int BaseTableModel::parentGoalId()
-{
-    return m_parentGoalId;
 }
 
 void BaseTableModel::refresh()

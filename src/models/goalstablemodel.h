@@ -7,6 +7,7 @@
 class GoalsTableModel : public BaseTableModel
 {
     Q_OBJECT
+    Q_PROPERTY(int parentGoalId READ parentGoalId WRITE setParentGoalId NOTIFY parentGoalIdChanged)
     QML_ELEMENT
 
 public:

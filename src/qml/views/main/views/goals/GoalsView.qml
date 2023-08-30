@@ -26,7 +26,7 @@ Comp.Page {
 
         Connections {
             target: mainView.StackView
-            function onActivating() {goalsBodyView.gridView.model.refresh()}
+            function onActivating() {refresh()}
         }
     }
 }

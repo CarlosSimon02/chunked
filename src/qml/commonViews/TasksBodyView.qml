@@ -140,6 +140,11 @@ Pane {
                     Comp.Button {
                         text: listView.model.data("name", drawerPane.index)
                     }
+
+                    Comp.Button {
+                        text: "Change Name to Fuck you"
+                        onClicked: listView.model.setData("name", drawerPane.index, "Fuck you")
+                    }
                 }
             }
         }

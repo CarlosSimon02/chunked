@@ -73,6 +73,19 @@ bool BaseTableModel::setData(const QModelIndex &index, const QVariant &value, in
     return false;
 }
 
+bool BaseTableModel::setData(const QString &fieldName, int row, const QVariant &value)
+{
+    int col = record().indexOf(fieldName);
+
+    if(col == -1)
+    {
+        qWarning() << "BaseTableModel::setData: field name not found";
+        return QVariant{};
+    }
+
+    return setData(index(row,col), value);
+}
+
 int BaseTableModel::parentGoalId()
 {
     return m_parentGoalId;

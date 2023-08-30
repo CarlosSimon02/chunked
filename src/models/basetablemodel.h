@@ -15,12 +15,15 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     Q_INVOKABLE QVariant data(const QModelIndex &index,
-                  int role = Qt::DisplayRole) const override;
+                              int role = Qt::DisplayRole) const override;
     Q_INVOKABLE QVariant data(const QString& fieldName, int row);
 
     Q_INVOKABLE bool setData(const QModelIndex &index,
-                 const QVariant &value,
-                 int role = Qt::EditRole) override;
+                             const QVariant &value,
+                             int role = Qt::EditRole) override;
+    Q_INVOKABLE bool setData(const QString& fieldName,
+                             int row,
+                             const QVariant &value);
 
     int parentGoalId();
     void setParentGoalId(int parentGoalId);

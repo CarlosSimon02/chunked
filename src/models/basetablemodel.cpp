@@ -2,6 +2,7 @@
 
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QDebug>
 
 BaseTableModel::BaseTableModel(QObject *parent)
     : QSqlTableModel{parent}
@@ -32,6 +33,19 @@ QVariant BaseTableModel::data(const QModelIndex &index, int role) const
         }
     }
     return value;
+}
+
+QVariant BaseTableModel::data(const QString &fieldName, int row)
+{
+    int col = record().indexOf(fieldName);
+
+    if(col == -1)
+    {
+        qWarning() << "BaseTableModel::data: field name not found";
+        return QVariant{};
+    }
+
+    return data(index(row,col));
 }
 
 bool BaseTableModel::setData(const QModelIndex &index, const QVariant &value, int role)

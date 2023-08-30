@@ -14,10 +14,11 @@ public:
     explicit BaseTableModel(QObject *parent = nullptr);
     QHash<int, QByteArray> roleNames() const override;
 
-    QVariant data(const QModelIndex &index,
+    Q_INVOKABLE QVariant data(const QModelIndex &index,
                   int role = Qt::DisplayRole) const override;
+    Q_INVOKABLE QVariant data(const QString& fieldName, int row);
 
-    bool setData(const QModelIndex &index,
+    Q_INVOKABLE bool setData(const QModelIndex &index,
                  const QVariant &value,
                  int role = Qt::EditRole) override;
 

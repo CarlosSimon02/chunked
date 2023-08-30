@@ -45,44 +45,44 @@ Pane {
                         taskDone: model.done
                         name: model.name
 
-                        Component {
-                            id: popupContent
+//                        Component {
+//                            id: popupContent
 
-                            ColumnLayout {
-                                Comp.Text {
-                                    text: model.name
-                                }
+//                            ColumnLayout {
+//                                Comp.Text {
+//                                    text: model.name
+//                                }
 
-                                Comp.CheckBox {
-                                    checkState: model.done
-                                }
+//                                Comp.CheckBox {
+//                                    checkState: model.done
+//                                }
 
-                                Comp.Text {
-                                    text: model.startDateTime
-                                }
+//                                Comp.Text {
+//                                    text: model.startDateTime
+//                                }
 
-                                Comp.Text {
-                                    text: model.endDateTime
-                                }
+//                                Comp.Text {
+//                                    text: model.endDateTime
+//                                }
 
-                                Comp.Text {
-                                    text: model.actualDuration.toString()
-                                }
+//                                Comp.Text {
+//                                    text: model.actualDuration.toString()
+//                                }
 
-                                Comp.Text {
-                                    text: model.outcome.toString()
-                                }
+//                                Comp.Text {
+//                                    text: model.outcome.toString()
+//                                }
 
-                                Comp.Text {
-                                    text: model.notes
-                                }
-                            }
-                        }
+//                                Comp.Text {
+//                                    text: model.notes
+//                                }
+//                            }
+//                        }
 
                         onSetDone: model.done = taskDone
                         onClicked: {
                             drawerPane.opened = true
-                            loader.sourceComponent = popupContent
+                            drawerPane.index = model.index
                         }
                     }
 
@@ -119,7 +119,7 @@ Pane {
         width: 350
         visible: x <= parent.width + 20
         property bool opened: false
-        property Task task
+        property int index
 
         background: Rectangle {
             color: Comp.ColorScheme.primaryColor.light
@@ -131,6 +131,17 @@ Pane {
         Loader {
             id: loader
             anchors.fill: parent
+            sourceComponent: drawerPane.opened ? content : null
+
+            Component {
+                id: content
+
+                ColumnLayout {
+                    Comp.Button {
+                        text: listView.model.data("name", drawerPane.index)
+                    }
+                }
+            }
         }
 
         states: State {

@@ -79,6 +79,17 @@ Comp.Pane {
         }
 
         Comp.Button {
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.top: parent.top
+            anchors.topMargin: 10
+            icon.source: "qrc:/delete_icon.svg"
+            visible: pane.hovered && image.status === Image.Ready
+            backgroundColor: Comp.ColorScheme.primaryColor.light
+            elevated: true
+        }
+
+        Comp.Button {
             anchors.right: parent.right
             anchors.rightMargin: 10
             anchors.top: parent.top
@@ -87,6 +98,7 @@ Comp.Pane {
             visible: pane.hovered && image.status === Image.Ready
             backgroundColor: Comp.ColorScheme.primaryColor.light
             elevated: true
+            onClicked: fileDialog.open()
         }
     }
 

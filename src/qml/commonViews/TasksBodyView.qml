@@ -7,7 +7,7 @@ import components as Comp
 import components.impl as Impl
 import "./components" as CommonViews
 
-Pane {
+Comp.Pane {
     background: null
     padding: 0
     clip: true
@@ -15,6 +15,11 @@ Pane {
     Comp.ScrollView {
         id: scrollView
         anchors.fill: parent
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: forceActiveFocus()
+        }
 
         ColumnLayout {
             width: scrollView.availableWidth
@@ -39,45 +44,16 @@ Pane {
                     spacing: 8
                     verticalLayoutDirection: ListView.BottomToTop
 
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: forceActiveFocus()
+                    }
+
                     delegate: CommonViews.TaskItemDelegate {
                         width: ListView.view.width
 
                         taskDone: model.done
                         name: model.name
-
-//                        Component {
-//                            id: popupContent
-
-//                            ColumnLayout {
-//                                Comp.Text {
-//                                    text: model.name
-//                                }
-
-//                                Comp.CheckBox {
-//                                    checkState: model.done
-//                                }
-
-//                                Comp.Text {
-//                                    text: model.startDateTime
-//                                }
-
-//                                Comp.Text {
-//                                    text: model.endDateTime
-//                                }
-
-//                                Comp.Text {
-//                                    text: model.actualDuration.toString()
-//                                }
-
-//                                Comp.Text {
-//                                    text: model.outcome.toString()
-//                                }
-
-//                                Comp.Text {
-//                                    text: model.notes
-//                                }
-//                            }
-//                        }
 
                         onSetDone: model.done = taskDone
                         onClicked: {

@@ -19,6 +19,11 @@ ApplicationWindow {
         color: Comp.ColorScheme.primaryColor.dark
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: forceActiveFocus()
+    }
+
     ColumnLayout {
         anchors.fill: parent
 

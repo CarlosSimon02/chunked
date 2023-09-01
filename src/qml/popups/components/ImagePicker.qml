@@ -77,6 +77,7 @@ Comp.Pane {
                 }
             }
         }
+
         onStatusChanged: {
             if(status === Image.Error) {
                 errorDialog.open()

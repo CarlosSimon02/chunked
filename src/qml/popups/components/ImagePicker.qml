@@ -77,6 +77,12 @@ Comp.Pane {
                 }
             }
         }
+        onStatusChanged: {
+            if(status === Image.Error) {
+                errorDialog.open()
+                image.source = ""
+            }
+        }
 
         Comp.Button {
             anchors.left: parent.left
@@ -100,6 +106,18 @@ Comp.Pane {
             backgroundColor: Comp.ColorScheme.primaryColor.light
             elevated: true
             onClicked: fileDialog.open()
+        }
+
+        Dialog {
+            id: errorDialog
+            parent: Overlay.overlay
+            anchors.centerIn: parent
+            title: "An Error Occurred"
+            standardButtons: Dialog.Ok
+
+            Label {
+                text: "Unsupported image format."
+            }
         }
     }
 

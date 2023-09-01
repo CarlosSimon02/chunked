@@ -62,5 +62,6 @@
         <file>components/DatePicker.qml</file>
         <file>components/TimePicker.qml</file>
         <file>components/ListView.qml</file>
+        <file>components/ScrollViewPane.qml</file>
     </qresource>
 </RCC>

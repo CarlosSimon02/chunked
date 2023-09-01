@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls.Fusion
+import QtQuick.Controls
 import QtQuick.Templates as T
 
 import components as Comp
@@ -13,11 +13,7 @@ T.ScrollView {
                              contentHeight + topPadding + bottomPadding)
     leftPadding: 2
     clip: true
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: forceActiveFocus()
-    }
+    focusPolicy: Qt.ClickFocus
 
     ScrollBar.vertical: Comp.ScrollBar {
         parent: control

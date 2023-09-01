@@ -149,26 +149,30 @@ Comp.ModalPopup {
                     }
 
                     Comp.ScrollView {
-                        Pop.ColumnLayout {
-                            Comp.FieldColumnLayout {
-                                Comp.FieldLabel {
-                                    text: "Parent Goal"
-                                }
+                        width: parent.width
 
-                                Pop.TreeViewComboBox {
-                                    id: parentGoalIdComBoBox
-                                    Layout.preferredWidth: 400
-                                    model: GoalNamesTreeViewModel {}
-                                    onItemIdChanged: {
-                                        createGoalPopup.parentGoalId = itemId
-                                        displayText = createGoalPopup.parentGoal ? dbAccess.getValue("goals","name", createGoalPopup.parentGoalId) :
-                                                                                   "None(Top Level)"
+                        Comp.ScrollViewPane {
+                            Pop.ColumnLayout {
+                                Comp.FieldColumnLayout {
+                                    Comp.FieldLabel {
+                                        text: "Parent Goal"
                                     }
 
-                                    Component.onCompleted: {
-                                        itemId =  createGoalPopup.parentGoalId
-                                        displayText = createGoalPopup.parentGoalId ? dbAccess.getValue("goals","name", createGoalPopup.parentGoalId) :
-                                                                                     "None(Top Level)"
+                                    Pop.TreeViewComboBox {
+                                        id: parentGoalIdComBoBox
+                                        Layout.preferredWidth: 400
+                                        model: GoalNamesTreeViewModel {}
+                                        onItemIdChanged: {
+                                            createGoalPopup.parentGoalId = itemId
+                                            displayText = createGoalPopup.parentGoal ? dbAccess.getValue("goals","name", createGoalPopup.parentGoalId) :
+                                                                                       "None(Top Level)"
+                                        }
+
+                                        Component.onCompleted: {
+                                            itemId =  createGoalPopup.parentGoalId
+                                            displayText = createGoalPopup.parentGoalId ? dbAccess.getValue("goals","name", createGoalPopup.parentGoalId) :
+                                                                                         "None(Top Level)"
+                                        }
                                     }
                                 }
                             }
@@ -329,8 +333,12 @@ Comp.ModalPopup {
 
                     onClicked: {
                         if(listView.currentIndex < listView.count - 1) {
-                           listView.currentIndex += 1
-                           listView.currentItem.enabled = true
+                           if(goalNameTextArea.length === 0)
+                               goalNameTextArea.hasInvalidInput = true
+                           else {
+                               listView.currentIndex += 1
+                               listView.currentItem.enabled = true
+                           }
                         }
                         else {
                             dbAccess.saveGoalItem(columnLayout.goal)

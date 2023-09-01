@@ -16,47 +16,49 @@ Comp.Pane {
         id: scrollView
         anchors.fill: parent
 
-        ColumnLayout {
-            width: scrollView.availableWidth
-
+        Comp.ScrollViewPane {
             ColumnLayout {
-                Layout.fillWidth: true
-                Layout.maximumWidth: 1200
-                Layout.margins: 20
-                Layout.alignment: Qt.AlignHCenter
-                spacing: 15
+                width: scrollView.availableWidth
 
-                CommonViews.CreateTaskTextField {
-                    id: createTaskTextField
+                ColumnLayout {
                     Layout.fillWidth: true
-                }
+                    Layout.maximumWidth: 1200
+                    Layout.margins: 20
+                    Layout.alignment: Qt.AlignHCenter
+                    spacing: 15
 
-                Comp.ListView {
-                    id: listView
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: contentHeight
-                    interactive: false
-                    spacing: 8
-                    verticalLayoutDirection: ListView.BottomToTop
-
-                    delegate: CommonViews.TaskItemDelegate {
-                        width: ListView.view.width
-
-                        taskDone: model.done
-                        name: model.name
-
-                        onSetDone: model.done = taskDone
-                        onClicked: {
-                            drawerPane.open()
-                            drawerPane.index = model.index
-                        }
+                    CommonViews.CreateTaskTextField {
+                        id: createTaskTextField
+                        Layout.fillWidth: true
                     }
 
-                    model: TasksTableModel {}
+                    Comp.ListView {
+                        id: listView
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: contentHeight
+                        interactive: false
+                        spacing: 8
+                        verticalLayoutDirection: ListView.BottomToTop
 
-                    Connections {
-                        target: createTaskTextField
-                        function onSave() {listView.model.refresh()}
+                        delegate: CommonViews.TaskItemDelegate {
+                            width: ListView.view.width
+
+                            taskDone: model.done
+                            name: model.name
+
+                            onSetDone: model.done = taskDone
+                            onClicked: {
+                                drawerPane.open()
+                                drawerPane.index = model.index
+                            }
+                        }
+
+                        model: TasksTableModel {}
+
+                        Connections {
+                            target: createTaskTextField
+                            function onSave() {listView.model.refresh()}
+                        }
                     }
                 }
             }

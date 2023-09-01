@@ -146,7 +146,7 @@ Comp.Page {
 
                         Connections {
                             target: page.StackView
-                            function onActivating() {gridView.model.refresh()}
+                            function onActivating() {refresh()}
                         }
                     }
                 }

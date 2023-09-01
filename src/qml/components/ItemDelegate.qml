@@ -23,6 +23,7 @@ T.ItemDelegate {
     icon.color: foregroundColor
     font.pixelSize: 14
     font.weight: Font.Medium
+    focusPolicy: Qt.ClickFocus
 
     property color foregroundColor: enabled ? highlighted ? Comp.ColorScheme.accentColor.regular :
                                              Comp.ColorScheme.secondaryColor.dark :

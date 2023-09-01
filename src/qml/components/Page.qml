@@ -10,6 +10,7 @@ Ctrl.Page {
     property color backgroundColor: Comp.ColorScheme.primaryColor.regular
     property bool elevated: false
     clip: false
+    focusPolicy: Qt.ClickFocus
 
     background: Rectangle {
         color: page.backgroundColor

@@ -11,7 +11,6 @@ T.ProgressBar {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-
     contentItem: Item {
         implicitWidth: 200
         implicitHeight: 7

@@ -4,7 +4,7 @@ import QtQuick.Layouts
 
 import components as Comp
 
-Pane {
+Comp.Pane {
     id: pane
     padding: 20
     bottomPadding: 12

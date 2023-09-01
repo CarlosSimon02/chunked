@@ -13,6 +13,7 @@ T.ScrollView {
                              contentHeight + topPadding + bottomPadding)
     leftPadding: 2
     clip: true
+    focusPolicy: Qt.ClickFocus
 
     ScrollBar.vertical: Comp.ScrollBar {
         parent: control

@@ -14,4 +14,9 @@ Comp.Popup {
     Overlay.modal: Rectangle {
         color: Comp.Utils.setColorAlpha(Comp.ColorScheme.primaryColor.dark, 0.3)
     }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: forceActiveFocus()
+    }
 }

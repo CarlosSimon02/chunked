@@ -77,6 +77,17 @@ Comp.Pane {
                 }
             }
         }
+
+        Comp.Button {
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            anchors.top: parent.top
+            anchors.topMargin: 10
+            text: "Change"
+            visible: pane.hovered && image.status === Image.Ready
+            backgroundColor: Comp.ColorScheme.primaryColor.light
+            elevated: true
+        }
     }
 
     Rectangle {

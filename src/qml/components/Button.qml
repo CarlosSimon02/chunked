@@ -48,6 +48,9 @@ T.Button {
         border.color: button.foregroundColor
         border.width: 0
 
+        layer.enabled: button.elevated
+        layer.effect: Impl.DropShadow {}
+
         Impl.FadeEffect {
             anchors.fill: parent
             colorEffect: button.fadeEffectColor

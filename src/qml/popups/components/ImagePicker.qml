@@ -87,6 +87,7 @@ Comp.Pane {
             visible: pane.hovered && image.status === Image.Ready
             backgroundColor: Comp.ColorScheme.primaryColor.light
             elevated: true
+            onClicked: image.source = ""
         }
 
         Comp.Button {

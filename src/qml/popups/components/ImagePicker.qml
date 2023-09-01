@@ -120,12 +120,14 @@ Comp.Pane {
 
         onExited: dragIndicator.color = "transparent"
         onDropped: drop => {
+                       dragIndicator.color = "transparent"
                        image.source = drop.urls[0]
                    }
     }
 
     FileDialog {
         id: fileDialog
+        nameFilters: ["PNG image (*.png)", "JPEG image (*.jpg)"]
         onAccepted: image.source = selectedFile
     }
 }

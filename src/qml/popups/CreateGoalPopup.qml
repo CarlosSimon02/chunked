@@ -116,6 +116,18 @@ Comp.ModalPopup {
                                         id: goalNameTextArea
                                         Layout.preferredWidth: 400
                                     }
+
+                                    Text {
+                                        id: goalNameTextAreaError
+                                        text: "This field is required and cannot be empty"
+                                        color: "red"
+                                        visible: false
+
+                                        Connections {
+                                            target: goalNameTextArea
+                                            function onTextChanged() {goalNameTextAreaError.visible = false}
+                                        }
+                                    }
                                 }
 
                                 Comp.FieldColumnLayout {
@@ -336,8 +348,10 @@ Comp.ModalPopup {
 
                     onClicked: {
                         if(listView.currentIndex < listView.count - 1) {
-                           if(goalNameTextArea.length === 0)
+                           if(goalNameTextArea.length === 0) {
                                goalNameTextArea.hasInvalidInput = true
+                               goalNameTextAreaError.visible = true
+                           }
                            else {
                                listView.currentIndex += 1
                                listView.currentItem.enabled = true

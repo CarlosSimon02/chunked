@@ -63,7 +63,7 @@ Comp.Page {
                     anchors.bottomMargin: 0
                     width: parent.width
 
-                    ListView {
+                    Comp.ListView {
                         id: listView
                         Layout.fillWidth: true
                         Layout.preferredHeight: contentItem.childrenRect.height

@@ -61,14 +61,13 @@ Comp.ModalPopup {
             }
 
             RowLayout {
-                ListView {
+                Comp.ListView {
                     id: listView
                     Layout.preferredWidth: 200
                     Layout.fillHeight: true
                     currentIndex: 0
                     highlightFollowsCurrentItem: false
                     spacing: 6
-                    interactive: false
                     highlight: Rectangle {
                         height: listView.currentItem.height - 6
                         width: 1.5

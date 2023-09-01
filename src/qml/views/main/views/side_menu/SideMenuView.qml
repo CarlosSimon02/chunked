@@ -18,11 +18,10 @@ Comp.Pane {
             anchors.horizontalCenter: listView.horizontalCenter
         }
 
-        ListView {
+        Comp.ListView {
             id: listView
             width: 40
             height: contentItem.childrenRect.height
-            interactive: false
             spacing: 10
             clip: true
 

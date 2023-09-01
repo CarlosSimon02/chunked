@@ -13,7 +13,11 @@ T.ScrollView {
                              contentHeight + topPadding + bottomPadding)
     leftPadding: 2
     clip: true
-    focusPolicy: Qt.ClickFocus
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: forceActiveFocus()
+    }
 
     ScrollBar.vertical: Comp.ScrollBar {
         parent: control

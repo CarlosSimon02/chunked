@@ -6,7 +6,7 @@ import Qt5Compat.GraphicalEffects
 
 import components as Comp
 
-Pane {
+Comp.Pane {
     id: pane
     implicitWidth: 300
     implicitHeight: 150

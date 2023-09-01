@@ -16,11 +16,6 @@ Comp.Pane {
         id: scrollView
         anchors.fill: parent
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: forceActiveFocus()
-        }
-
         ColumnLayout {
             width: scrollView.availableWidth
 
@@ -36,18 +31,13 @@ Comp.Pane {
                     Layout.fillWidth: true
                 }
 
-                ListView {
+                Comp.ListView {
                     id: listView
                     Layout.fillWidth: true
                     Layout.preferredHeight: contentHeight
                     interactive: false
                     spacing: 8
                     verticalLayoutDirection: ListView.BottomToTop
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: forceActiveFocus()
-                    }
 
                     delegate: CommonViews.TaskItemDelegate {
                         width: ListView.view.width

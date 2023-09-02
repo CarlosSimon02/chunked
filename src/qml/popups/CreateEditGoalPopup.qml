@@ -70,7 +70,7 @@ Comp.ModalPopup {
                 Layout.preferredWidth: Number.POSITIVE_INFINITY
 
                 Comp.Text {
-                    text: "Create Goal"
+                    text: modalPopup.itemId ? "Edit Goal" : "Create Goal"
                     font.pixelSize: 24
                     font.bold: true
                 }

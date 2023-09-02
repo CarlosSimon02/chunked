@@ -93,7 +93,6 @@ Comp.Pane {
             icon.source: "qrc:/delete_icon.svg"
             visible: pane.hovered && image.status === Image.Ready
             backgroundColor: Comp.ColorScheme.primaryColor.light
-            elevated: true
             onClicked: image.source = ""
         }
 
@@ -105,7 +104,6 @@ Comp.Pane {
             text: "Change"
             visible: pane.hovered && image.status === Image.Ready
             backgroundColor: Comp.ColorScheme.primaryColor.light
-            elevated: true
             onClicked: fileDialog.open()
         }
 

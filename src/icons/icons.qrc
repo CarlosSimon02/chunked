@@ -21,5 +21,6 @@
         <file>arrow_down_icon.svg</file>
         <file>calendar_icon.svg</file>
         <file>delete_icon.svg</file>
+        <file>edit_icon.svg</file>
     </qresource>
 </RCC>

@@ -25,15 +25,24 @@ Comp.Page {
         height: 80
 
         RowLayout {
-            Comp.Button {
-                icon.source: "qrc:/back_icon.svg"
-                onClicked: stackView.pop()
+            width: parent.width
+
+            RowLayout {
+                Comp.Button {
+                    icon.source: "qrc:/back_icon.svg"
+                    onClicked: stackView.pop()
+                }
+
+                Comp.Text {
+                   text: "Goal Info"
+                   font.weight: Font.Bold
+                   font.pixelSize: 28
+                }
             }
 
-            Comp.Text {
-               text: "Goal Info"
-               font.weight: Font.Bold
-               font.pixelSize: 28
+            Comp.Button {
+                Layout.alignment: Qt.AlignRight
+                icon.source: "qrc:/edit_icon.svg"
             }
         }
     }

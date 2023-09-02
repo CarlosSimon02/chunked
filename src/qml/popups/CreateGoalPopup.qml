@@ -13,6 +13,7 @@ Comp.ModalPopup {
     height: 630
 
     property int parentGoalId: 0
+    property int itemId: 0
     signal save
 
     Loader {

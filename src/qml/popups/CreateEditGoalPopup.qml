@@ -194,10 +194,9 @@ Comp.ModalPopup {
                                         text: "Parent Goal"
                                     }
 
-                                    Pop.TreeViewComboBox {
+                                    Comp.GoalNamesTreeViewComboBox {
                                         id: parentGoalIdComBoBox
                                         Layout.preferredWidth: 400
-                                        model: GoalNamesTreeViewModel {}
                                         onItemIdChanged: {
                                             modalPopup.parentGoalId = itemId
                                             displayText = modalPopup.parentGoal ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :

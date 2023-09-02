@@ -20,6 +20,8 @@ Comp.ComboBox {
     property int itemId: 0
     property int trackerType: GoalNamesTreeViewComboBox.TrackerType.Goals
 
+    model: GoalNamesTreeViewModel {}
+
     popup: Comp.Popup {
         y: comboBox.height
         width: comboBox.width
@@ -64,6 +66,14 @@ Comp.ComboBox {
                     height: 40
                     x: item.indent * item.depth
                     highlighted: comboBox.itemId === model.id
+                    font.strikeout: !enabled
+                    enabled: {
+                        if(model.id === 0) return true
+                        else if((model.progressTracker === 0 || model.progressTracker === 1) && comboBox.trackerType === 0) return true
+                        else if((model.progressTracker === 2 || model.progressTracker === 3) && comboBox.trackerType === 1) return true
+                        else if((model.progressTracker === 4 || model.progressTracker === 5) && comboBox.trackerType === 2) return true
+                        return false
+                    }
 
                     onClicked: {
                         comboBox.itemId = model.id

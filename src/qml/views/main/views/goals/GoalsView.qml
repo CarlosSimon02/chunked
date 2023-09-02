@@ -26,7 +26,7 @@ Comp.Page {
 
         Connections {
             target: mainView.StackView
-            function onActivating() {refresh()}
+            function onActivating() {goalsBodyView.refresh()}
         }
     }
 }

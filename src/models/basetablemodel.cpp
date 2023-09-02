@@ -99,6 +99,7 @@ void BaseTableModel::setParentGoalId(int parentGoalId)
         if(m_parentGoalId) setFilter("parentGoalId = " + QString::number(m_parentGoalId));
         else setFilter("parentGoalId IS NULL");
         select();
+        emit parentGoalIdChanged();
     }
 }
 

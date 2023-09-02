@@ -189,6 +189,18 @@ Comp.ModalPopup {
                     Comp.ScrollView {
                         Comp.ScrollViewPane {
                             Pop.ColumnLayout {
+                                Label {
+                                    Layout.bottomMargin: 10
+                                    padding: 10
+                                    text: "*Note: You can only choose parent goal which progress tracker depends on goals."
+                                    font.pixelSize: 12
+                                    color: "darkgoldenrod"
+                                    background: Rectangle {
+                                        radius: Comp.Consts.commonRadius
+                                        color: Comp.Utils.setColorAlpha(note.color, 0.05)
+                                    }
+                                }
+
                                 Comp.FieldColumnLayout {
                                     Comp.FieldLabel {
                                         text: "Parent Goal"

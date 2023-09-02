@@ -50,6 +50,7 @@ Comp.ModalPopup {
             }
 
             property Goal goal: Goal {
+                itemId: modalPopup.itemId
                 name: goalNameTextArea.text
                 imageSource: imagePicker.source.toString()
                 category: categoryComboBox.displayText
@@ -380,6 +381,7 @@ Comp.ModalPopup {
                            }
                         }
                         else {
+                            if(columnLayout.goal.itemId)
                             dbAccess.saveGoalItem(columnLayout.goal)
                             modalPopup.save()
                             modalPopup.close()

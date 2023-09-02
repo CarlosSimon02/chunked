@@ -24,6 +24,7 @@ public:
 
     Q_INVOKABLE Goal* getGoalItem(int itemId);
     Q_INVOKABLE void saveGoalItem(Goal* goal);
+    Q_INVOKABLE void updateGoalItem(Goal* goal);
     Q_INVOKABLE void saveTaskItem(Task* task);
 
 private:

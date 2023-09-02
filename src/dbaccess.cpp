@@ -177,6 +177,19 @@ void DBAccess::saveGoalItem(Goal* goal)
         updateParentGoalProgressValue(goal->parentGoalId());
 }
 
+void DBAccess::updateGoalItem(Goal *goal)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE goals "
+                  "SET name = :name, imageSource = :imageSource, category = :category, "
+                  "startDateTime = :startDateTime, endDateTime = :endDateTime, "
+                  "progressTracker = :progressTracker, progressValue = :progressValue, "
+                  "targetValue = :targetValue, progressUnit = :progressUnit, mission = :mission"
+                  "vision = :vision, obstacles = :obstacles, resources = :resources, parentGoalId = :parentGoalId "
+                  "WHERE itemId = :itemId;");
+
+}
+
 void DBAccess::saveTaskItem(Task *task)
 {
     QSqlQuery query;

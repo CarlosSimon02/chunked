@@ -24,6 +24,26 @@ Comp.ModalPopup {
     Component {
         id: content
 
+        onCompleted: {
+            if(modalPopup.itemId) {
+                let goal = dbAccess.getGoalItem(modalPopup.itemId)
+
+                goalNameTextArea.text = goal.name
+                imagePicker.source = goal.imageSource
+                categoryComboBox.displayText = goal.category
+                dateTimeFramePicker.startDateTimeText = goal.startDateTime
+                dateTimeFramePicker.endDateTimeText = goal.endDateTime
+                progressTrackerComboBox.currentIndex = goal.progressTracker
+                progressValueTextArea.text = goal.progressValue
+                targetValueTextArea.text = goal.targetValue
+                progressUnitTextArea.text = goal.progressUnit
+                missionTextArea.text = goal.mission
+                visionTextArea.text = goal.vision
+                obstaclesTextArea.text = goal.obstacles
+                resourcesTextArea.text = goal.resources
+            }
+        }
+
         ColumnLayout {
             id: columnLayout
             spacing: 20

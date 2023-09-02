@@ -119,11 +119,11 @@ Comp.Page {
                             onClicked: {
                                 ListView.view.currentIndex = model.index
 
-                                if(listView.currentItem.text === "Subgoals") loader.sourceComponent = subgoalsView;
-                                else if(listView.currentItem.text === "Habits") loader.sourceComponent = habitsView;
-                                else if(listView.currentItem.text === "Tasks") loader.sourceComponent = tasksView;
-                                else if(listView.currentItem.text === "Description") loader.sourceComponent = descriptionView
-                                else if(listView.currentItem.text === "Journal") loader.sourceComponent = journalView
+                                if(listView.currentItem.text === "Subgoals") loader.sourceComponent = subgoalsViewComp;
+                                else if(listView.currentItem.text === "Habits") loader.sourceComponent = habitsViewComp;
+                                else if(listView.currentItem.text === "Tasks") loader.sourceComponent = tasksViewComp;
+                                else if(listView.currentItem.text === "Description") loader.sourceComponent = descriptionViewComp
+                                else if(listView.currentItem.text === "Journal") loader.sourceComponent = journalViewComp
                             }
                         }
 
@@ -132,18 +132,18 @@ Comp.Page {
                                 switch(page.goal.progressTracker) {
                                 case 0: case 1:
                                             append({"data":"Subgoals"});
-                                            loader.sourceComponent = subgoalsView
+                                            loader.sourceComponent = subgoalsViewComp
                                             break;
                                 case 2: case 3:
                                             append({"data":"Tasks"});
-                                            loader.sourceComponent = tasksView
+                                            loader.sourceComponent = tasksViewComp
                                             break;
                                 case 4: case 5:
                                             append({"data":"Habits"});
-                                            loader.sourceComponent = habitsView
+                                            loader.sourceComponent = habitsViewComp
                                             break;
                                 case 6:
-                                    loader.sourceComponent = descriptionView
+                                    loader.sourceComponent = descriptionViewComp
                                     break;
                                 }
 
@@ -160,27 +160,33 @@ Comp.Page {
                 anchors.fill: parent
                 clip: true
 
-                Component {id: descriptionView; DescriptionView {goal: page.goal}}
+                Component {id: descriptionViewComp; DescriptionView {goal: page.goal}}
                 Component {
-                    id: subgoalsView
+                    id: subgoalsViewComp
 
                     View.GoalsBodyView {
+                        id: subgoalsView
                         parentGoalId: page.goal.itemId
 
                         Connections {
                             target: page.StackView
                             function onActivating() {refresh()}
                         }
+
+                        Connections {
+                            target: subgoalsView
+                            function onRefresh() {page.goal = dbAccess.getGoalItem(page.goal.itemId)}
+                        }
                     }
                 }
                 Component {
-                    id: tasksView
+                    id: tasksViewComp
 
                     View.TasksBodyView {
                     }
                 }
-                Component {id: habitsView; HabitsView {goal: page.goal}}
-                Component {id: journalView; JournalView {goal: page.goal}}
+                Component {id: habitsViewComp; HabitsView {goal: page.goal}}
+                Component {id: journalViewComp; JournalView {goal: page.goal}}
             }
         }
     }

@@ -247,25 +247,25 @@ Comp.ModalPopup {
                                         model: Comp.Consts.goalProgressTrackers
 
                                         onActivated: index => {
-                                                         progressValueTextArea.enabled = false
-                                                         targetValueTextArea.enabled = false
-                                                         progressValueTextArea.text = 0
-                                                         targetValueTextArea.text = 0
+                                            progressValueTextArea.enabled = false
+                                            targetValueTextArea.enabled = false
+                                            progressValueTextArea.text = 0
+                                            targetValueTextArea.text = 0
 
-                                                         switch(index) {
-                                                             case 0: progressUnitTextArea.text = "goals' progress"; break;
-                                                             case 1: progressUnitTextArea.text = "goals"; break;
-                                                             case 2: progressUnitTextArea.text = "outcomes"; break;
-                                                             case 3: progressUnitTextArea.text = "tasks"; break;
-                                                             case 4: progressUnitTextArea.text = "habits' progress"; break;
-                                                             case 5: progressUnitTextArea.text = "habits"; break;
-                                                             case 6:
-                                                             progressUnitTextArea.text = "";
-                                                             progressValueTextArea.enabled = true
-                                                             targetValueTextArea.enabled = true
-                                                             break;
-                                                         }
-                                       }
+                                            switch(index) {
+                                                case 0: progressUnitTextArea.text = "goals' progress"; break;
+                                                case 1: progressUnitTextArea.text = "goals"; break;
+                                                case 2: progressUnitTextArea.text = "outcomes"; break;
+                                                case 3: progressUnitTextArea.text = "tasks"; break;
+                                                case 4: progressUnitTextArea.text = "habits' progress"; break;
+                                                case 5: progressUnitTextArea.text = "habits"; break;
+                                                case 6:
+                                                progressUnitTextArea.text = "";
+                                                progressValueTextArea.enabled = true
+                                                targetValueTextArea.enabled = true
+                                                break;
+                                            }
+                                        }
                                     }
                                 }
 

@@ -11,7 +11,8 @@ class GoalNamesTreeViewModel : public QStandardItemModel
 
     enum Roles {
         GoalName = Qt::UserRole + 1,
-        ID
+        ID,
+        ProgressTracker
     };
 
 public:

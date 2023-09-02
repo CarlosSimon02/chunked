@@ -20,6 +20,7 @@ QHash<int, QByteArray> GoalNamesTreeViewModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles.insert(GoalName,"goalName");
     roles.insert(ID,"id");
+    roles.insert(ProgressTracker,"progressTracker");
     return roles;
 }
 
@@ -35,6 +36,8 @@ QVariant GoalNamesTreeViewModel::data(const QModelIndex &index, int role) const
         return item->data(GoalName);
     case ID:
         return item->data(ID);
+    case ProgressTracker:
+        return item->data(ProgressTracker);
     default:
         return QStandardItemModel::data(index, role);
     }
@@ -44,10 +47,10 @@ void GoalNamesTreeViewModel::setChildrenOfItem(QStandardItem *item)
 {
     QSqlQuery query;
     if(item == invisibleRootItem())
-        query.prepare("SELECT name,itemId FROM goals WHERE parentGoalId IS NULL;");
+        query.prepare("SELECT name,itemId,progressTracker FROM goals WHERE parentGoalId IS NULL;");
     else
     {
-        query.prepare("SELECT name,itemId FROM goals WHERE parentGoalId=:parentGoalId;");
+        query.prepare("SELECT name,itemId,progressTracker FROM goals WHERE parentGoalId=:parentGoalId;");
         query.bindValue(":parentGoalId", item->data(ID));
     }
 
@@ -64,6 +67,7 @@ void GoalNamesTreeViewModel::setChildrenOfItem(QStandardItem *item)
         QStandardItem* childItem = new QStandardItem;
         childItem->setData(query.value(0), GoalName);
         childItem->setData(query.value(1),ID);
+        childItem->setData(query.value(2),ProgressTracker);
         setChildrenOfItem(childItem);
         item->appendRow(childItem);
     }

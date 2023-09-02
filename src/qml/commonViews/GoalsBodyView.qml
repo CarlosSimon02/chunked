@@ -54,7 +54,7 @@ Comp.ScrollView {
 
             Connections {
                 target: createEditGoalPopup
-                function onSave() {gridView.model.refresh()}
+                function onSave() {scrollView.refresh()}
             }
         }
     }

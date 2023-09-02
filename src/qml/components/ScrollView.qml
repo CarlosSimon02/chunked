@@ -11,7 +11,6 @@ T.ScrollView {
                             contentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              contentHeight + topPadding + bottomPadding)
-    leftPadding: 2
     clip: true
     focusPolicy: Qt.ClickFocus
 

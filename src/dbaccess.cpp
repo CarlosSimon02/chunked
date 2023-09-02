@@ -18,6 +18,7 @@ DBAccess::DBAccess(QObject *parent)
 
         //initialize database schema
         QSqlQuery query;
+        query.exec("PRAGMA foreign_keys = ON;");
         query.exec("CREATE TABLE IF NOT EXISTS goals ("
                    "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
                    "name TEXT, "
@@ -34,7 +35,7 @@ DBAccess::DBAccess(QObject *parent)
                    "obstacles TEXT, "
                    "resources TEXT, "
                    "parentGoalId INTEGER, "
-                   "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId)"
+                   "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId) ON DELETE CASCADE"
                    ");");
         if (query.lastError().isValid())
             qWarning() << "DBAccess::DBAccess" << query.lastError().text();
@@ -49,7 +50,7 @@ DBAccess::DBAccess(QObject *parent)
                    "outcome INTEGER, "
                    "notes TEXT, "
                    "parentGoalId INTEGER, "
-                   "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId)"
+                   "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId) ON DELETE CASCADE"
                    ");");
         if (query.lastError().isValid())
             qWarning() << "DBAccess::DBAccess" << query.lastError().text();
@@ -180,6 +181,14 @@ void DBAccess::saveGoalItem(Goal* goal)
 void DBAccess::updateGoalItem(Goal *goal)
 {
     QSqlQuery query;
+
+    //if progress tracker was changed, delete all child items
+    if(goal->progressTracker() != getValue("goals", "progressTracker",goal->itemId()))
+    {
+        query.exec("DELETE FROM goals WHERE parentGoalId = " + goal->item());
+        query.exec("DELETE FROM tasks WHERE parentGoalId = " + goal->item());
+    }
+
     query.prepare("UPDATE goals "
                   "SET name = :name, imageSource = :imageSource, category = :category, "
                   "startDateTime = :startDateTime, endDateTime = :endDateTime, "

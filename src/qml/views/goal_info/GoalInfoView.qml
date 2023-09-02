@@ -6,6 +6,7 @@ import app
 
 import components as Comp
 import commonViews as View
+import popups as Pop
 import "./views"
 
 Comp.Page {
@@ -43,6 +44,14 @@ Comp.Page {
             Comp.Button {
                 Layout.alignment: Qt.AlignRight
                 icon.source: "qrc:/edit_icon.svg"
+                onClicked: {
+                    createEditGoalPopup.itemId = goal.itemId
+                    createEditGoalPopup.open()
+                }
+
+                Pop.CreateEditGoalPopup {
+                    id: createEditGoalPopup
+                }
             }
         }
     }

@@ -24,29 +24,30 @@ Comp.ModalPopup {
     Component {
         id: content
 
-        onCompleted: {
-            if(modalPopup.itemId) {
-                let goal = dbAccess.getGoalItem(modalPopup.itemId)
-
-                goalNameTextArea.text = goal.name
-                imagePicker.source = goal.imageSource
-                categoryComboBox.displayText = goal.category
-                dateTimeFramePicker.startDateTimeText = goal.startDateTime
-                dateTimeFramePicker.endDateTimeText = goal.endDateTime
-                progressTrackerComboBox.currentIndex = goal.progressTracker
-                progressValueTextArea.text = goal.progressValue
-                targetValueTextArea.text = goal.targetValue
-                progressUnitTextArea.text = goal.progressUnit
-                missionTextArea.text = goal.mission
-                visionTextArea.text = goal.vision
-                obstaclesTextArea.text = goal.obstacles
-                resourcesTextArea.text = goal.resources
-            }
-        }
-
         ColumnLayout {
             id: columnLayout
             spacing: 20
+
+            Component.onCompleted: {
+                if(modalPopup.itemId) {
+                    let tempGoal = dbAccess.getGoalItem(modalPopup.itemId)
+
+                    goalNameTextArea.text = tempGoal.name
+                    imagePicker.source = tempGoal.imageSource
+                    categoryComboBox.displayText = tempGoal.category
+                    dateTimeFramePicker.startDateTimeText = tempGoal.startDateTime
+                    dateTimeFramePicker.endDateTimeText = tempGoal.endDateTime
+                    progressTrackerComboBox.currentIndex = tempGoal.progressTracker
+                    progressValueTextArea.text = tempGoal.progressValue
+                    targetValueTextArea.text = tempGoal.targetValue
+                    progressUnitTextArea.text = tempGoal.progressUnit
+                    missionTextArea.text = tempGoal.mission
+                    visionTextArea.text = tempGoal.vision
+                    obstaclesTextArea.text = tempGoal.obstacles
+                    resourcesTextArea.text = tempGoal.resources
+                    parentGoalIdComBoBox.itemId = tempGoal.parentGoalId
+                }
+            }
 
             property Goal goal: Goal {
                 name: goalNameTextArea.text

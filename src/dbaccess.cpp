@@ -187,7 +187,28 @@ void DBAccess::updateGoalItem(Goal *goal)
                   "targetValue = :targetValue, progressUnit = :progressUnit, mission = :mission"
                   "vision = :vision, obstacles = :obstacles, resources = :resources, parentGoalId = :parentGoalId "
                   "WHERE itemId = :itemId;");
+    query.bindValue(":name", goal->name());
+    query.bindValue(":imageSource", goal->imageSource());
+    query.bindValue(":category", goal->category());
+    query.bindValue(":startDateTime", goal->startDateTime());
+    query.bindValue(":endDateTime", goal->endDateTime());
+    query.bindValue(":progressTracker", goal->progressTracker());
+    query.bindValue(":progressValue", goal->progressValue());
+    query.bindValue(":targetValue", goal->targetValue());
+    query.bindValue(":progressUnit", goal->progressUnit());
+    query.bindValue(":mission", goal->mission());
+    query.bindValue(":vision", goal->vision());
+    query.bindValue(":obstacles", goal->obstacles());
+    query.bindValue(":resources", goal->resources());
+    query.bindValue(":parentGoalId", goal->parentGoalId() ? goal->parentGoalId() : QVariant(QMetaType::fromType<int>()));
+    query.bindValue(":itemId", goal->itemId());
+    query.exec();
 
+    if (query.lastError().isValid())
+        qWarning() << query.lastQuery() << "DBAccess::updateGoalItem" << query.lastError().text();
+
+    updateParentGoalTargetValue(goal->parentGoalId());
+    updateParentGoalProgressValue(goal->parentGoalId());
 }
 
 void DBAccess::saveTaskItem(Task *task)

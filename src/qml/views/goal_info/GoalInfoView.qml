@@ -21,6 +21,11 @@ Comp.Page {
                            goal.progressValue = dbAccess.getValue("goals", "progressValue", goal.itemId)
                         }
 
+    Connections {
+        target: createEditGoalPopup
+        function onSave() {page.goal = dbAccess.getGoalItem(page.goal.itemId)}
+    }
+
     header: Comp.PageHeader {
         background: null
         height: 80

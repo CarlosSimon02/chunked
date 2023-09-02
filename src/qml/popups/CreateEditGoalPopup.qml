@@ -382,7 +382,9 @@ Comp.ModalPopup {
                         }
                         else {
                             if(columnLayout.goal.itemId)
-                            dbAccess.saveGoalItem(columnLayout.goal)
+                                dbAccess.updateGoalItem(columnLayout.goal)
+                            else
+                                dbAccess.saveGoalItem(columnLayout.goal)
                             modalPopup.save()
                             modalPopup.close()
                         }

@@ -39,7 +39,6 @@
         <file>views/main/views/tasks/TasksView.qml</file>
         <file>views/main/views/vision_board/VisionBoardView.qml</file>
         <file>popups/components/Button.qml</file>
-        <file>popups/components/TreeViewComboBox.qml</file>
         <file>views/goal_info/components/ScrollView.qml</file>
         <file>components/Popup.qml</file>
         <file>views/goal_info/views/DetailsView.qml</file>

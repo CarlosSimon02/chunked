@@ -24,7 +24,7 @@
         <file>components/PageTitleText.qml</file>
         <file>components/PageHeader.qml</file>
         <file>popups/components/ImagePicker.qml</file>
-        <file>popups/CreateGoalPopup.qml</file>
+        <file>popups/CreateEditGoalPopup.qml</file>
         <file>popups/qmldir</file>
         <file>views/main/views/goals/GoalsView.qml</file>
         <file>views/main/views/settings/SettingsView.qml</file>

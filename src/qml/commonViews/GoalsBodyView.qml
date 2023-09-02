@@ -53,7 +53,7 @@ Comp.ScrollView {
             }
 
             Connections {
-                target: createGoalPopup
+                target: createEditGoalPopup
                 function onSave() {gridView.model.refresh()}
             }
         }
@@ -67,12 +67,12 @@ Comp.ScrollView {
         padding: 10
         icon.source: "qrc:/create_icon.svg"
         onClicked: {
-            createGoalPopup.parentGoalId = scrollView.parentGoalId
-            createGoalPopup.open()
+            createEditGoalPopup.parentGoalId = scrollView.parentGoalId
+            createEditGoalPopup.open()
         }
 
-        Pop.CreateGoalPopup {
-            id: createGoalPopup
+        Pop.CreateEditGoalPopup {
+            id: createEditGoalPopup
         }
     }
 }

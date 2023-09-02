@@ -8,7 +8,7 @@ import components as Comp
 import "./components" as Pop
 
 Comp.ModalPopup {
-    id: createGoalPopup
+    id: modalPopup
     width: 750
     height: 630
 
@@ -18,7 +18,7 @@ Comp.ModalPopup {
 
     Loader {
         anchors.fill: parent
-        sourceComponent: createGoalPopup.opened ? content : null
+        sourceComponent: modalPopup.opened ? content : null
     }
 
     Component {
@@ -57,7 +57,7 @@ Comp.ModalPopup {
                 Comp.Button {
                     Layout.alignment: Qt.AlignRight
                     icon.source: "qrc:/close_icon.svg"
-                    onClicked: createGoalPopup.close()
+                    onClicked: modalPopup.close()
                 }
             }
 
@@ -140,11 +140,11 @@ Comp.ModalPopup {
                                         id: categoryComboBox
                                         Layout.preferredWidth: 400
                                         model: ["Home","Personal","Work"]
-                                        enabled: !createGoalPopup.parentGoalId
-                                        displayText: if(createGoalPopup.parentGoalId)
+                                        enabled: !modalPopup.parentGoalId
+                                        displayText: if(modalPopup.parentGoalId)
                                                          return dbAccess.getValue("goals",
                                                                                   "category",
-                                                                                  createGoalPopup.parentGoalId)
+                                                                                  modalPopup.parentGoalId)
                                     }
                                 }
 
@@ -176,14 +176,14 @@ Comp.ModalPopup {
                                         Layout.preferredWidth: 400
                                         model: GoalNamesTreeViewModel {}
                                         onItemIdChanged: {
-                                            createGoalPopup.parentGoalId = itemId
-                                            displayText = createGoalPopup.parentGoal ? dbAccess.getValue("goals","name", createGoalPopup.parentGoalId) :
+                                            modalPopup.parentGoalId = itemId
+                                            displayText = modalPopup.parentGoal ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :
                                                                                        "None(Top Level)"
                                         }
 
                                         Component.onCompleted: {
-                                            itemId =  createGoalPopup.parentGoalId
-                                            displayText = createGoalPopup.parentGoalId ? dbAccess.getValue("goals","name", createGoalPopup.parentGoalId) :
+                                            itemId =  modalPopup.parentGoalId
+                                            displayText = modalPopup.parentGoalId ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :
                                                                                          "None(Top Level)"
                                         }
                                     }
@@ -360,8 +360,8 @@ Comp.ModalPopup {
                         }
                         else {
                             dbAccess.saveGoalItem(columnLayout.goal)
-                            createGoalPopup.save()
-                            createGoalPopup.close()
+                            modalPopup.save()
+                            modalPopup.close()
                         }
                     }
                 }

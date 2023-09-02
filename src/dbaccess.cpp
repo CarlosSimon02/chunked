@@ -173,8 +173,8 @@ void DBAccess::updateGoalItem(Goal *goal)
     //if progress tracker was changed, delete all child items
     if(goal->progressTracker() != getValue("goals", "progressTracker",goal->itemId()))
     {
-        query.exec("DELETE FROM goals WHERE parentGoalId = " + goal->item());
-        query.exec("DELETE FROM tasks WHERE parentGoalId = " + goal->item());
+        query.exec("DELETE FROM goals WHERE parentGoalId = " + goal->itemId());
+        query.exec("DELETE FROM tasks WHERE parentGoalId = " + goal->itemId());
     }
 
     query.prepare("UPDATE goals "

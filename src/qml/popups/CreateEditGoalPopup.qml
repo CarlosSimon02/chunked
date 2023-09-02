@@ -145,6 +145,7 @@ Comp.ModalPopup {
                                         text: "This field is required and cannot be empty"
                                         color: "red"
                                         visible: false
+                                        font.pixelSize: 12
 
                                         Connections {
                                             target: goalNameTextArea
@@ -222,6 +223,20 @@ Comp.ModalPopup {
                         Comp.ScrollViewPane {
                             Pop.ColumnLayout {
                                 Comp.FieldColumnLayout {
+                                    Label {
+                                        id: note
+                                        Layout.bottomMargin: 10
+                                        padding: 10
+                                        text: "*Note: Changing the progress tracker will result to deletion of child items"
+                                        font.pixelSize: 12
+                                        color: "darkgoldenrod"
+                                        visible: modalPopup.itemId
+                                        background: Rectangle {
+                                            radius: Comp.Consts.commonRadius
+                                            color: Comp.Utils.setColorAlpha(note.color, 0.05)
+                                        }
+                                    }
+
                                     Comp.FieldLabel {
                                         text: "Progress Tracker"
                                     }

@@ -16,10 +16,10 @@ Comp.Page {
 
     required property Goal goal
 
-    StackView.onActivating: if(goal.progressTracker !== 6) {
-                           goal.targetValue = dbAccess.getValue("goals", "targetValue", goal.itemId)
-                           goal.progressValue = dbAccess.getValue("goals", "progressValue", goal.itemId)
-                        }
+    StackView.onActivating: {
+        if(goal.progressTracker !== 6)
+            page.goal = dbAccess.getGoalItem(page.goal.itemId)
+    }
 
     Connections {
         target: createEditGoalPopup

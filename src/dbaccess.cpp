@@ -54,18 +54,6 @@ DBAccess::DBAccess(QObject *parent)
                    ");");
         if (query.lastError().isValid())
             qWarning() << "DBAccess::DBAccess" << query.lastError().text();
-
-//        //just example data --to be deleted
-//        for(int i = 0; i < 10; i++)
-//        {
-//            query.exec("INSERT INTO goals (name,imageSource,category,startDateTime,endDateTime,progressTracker,progressValue,targetValue,progressUnit) VALUES ("
-//                       "'Become a Freaking Software Engineer', 'file:/Users/Carlos Simon/Downloads/643b8d08354c7818786eb7a9_Prompt engineer.png', 'Home', "
-//                       "'02 Sep 2023 11:59 PM', '02 Sep 2023 11:59 PM',"
-//                       "0, 70, 100, 'plates');");
-//        }
-
-//        if (query.lastError().isValid())
-//            qWarning() << query.lastError().text();
     }
 }
 

@@ -63,5 +63,6 @@
         <file>components/ListView.qml</file>
         <file>components/ScrollViewPane.qml</file>
         <file>components/GoalNamesTreeViewComboBox.qml</file>
+        <file>components/Dialog.qml</file>
     </qresource>
 </RCC>

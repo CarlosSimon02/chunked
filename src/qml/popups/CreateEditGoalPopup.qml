@@ -193,7 +193,8 @@ Comp.ModalPopup {
                                     Layout.bottomMargin: 10
                                     padding: 10
                                     text: "*Note: You can only choose parent goal which progress tracker depends on goals."
-                                    font.pixelSize: 12
+                                    wrapMode: Label.Wrap
+                                    font.pixelSize: 11
                                     color: "darkgoldenrod"
                                     background: Rectangle {
                                         radius: Comp.Consts.commonRadius

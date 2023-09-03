@@ -31,9 +31,10 @@ Ctrl.Dialog {
 
     header: Ctrl.Label {
         text: dialog.title
-        font.pixelSize: 16
+        font.pixelSize: 18
         font.bold: true
         padding: dialog.padding
+        bottomPadding: 6
         color: Comp.ColorScheme.secondaryColor.regular
     }
 
@@ -44,6 +45,7 @@ Ctrl.Dialog {
 
     footer: Ctrl.DialogButtonBox {
         padding: dialog.padding
+        topPadding: 0
         alignment: Qt.AlignRight
         background: null
 
@@ -54,6 +56,7 @@ Ctrl.Dialog {
 
         Comp.Button {
             implicitWidth: 80
+            border.width: 1
             text: "Cancel"
         }
     }

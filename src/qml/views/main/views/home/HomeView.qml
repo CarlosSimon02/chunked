@@ -10,7 +10,7 @@ Comp.Page {
 
         Comp.Dialog {
             id: dialog
-            title: "Test"
+            title: "Dialog"
             contentText: "This is just a test Dialog"
         }
     }

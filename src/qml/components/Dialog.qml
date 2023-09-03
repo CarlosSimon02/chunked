@@ -49,15 +49,15 @@ Ctrl.Dialog {
         alignment: Qt.AlignRight
         background: null
 
-        Comp.AccentButton {
+        delegate: Comp.Button {
             implicitWidth: 80
-            text: "OK"
-        }
-
-        Comp.Button {
-            implicitWidth: 80
-            border.width: 1
-            text: "Cancel"
+            property bool isAccent: Ctrl.DialogButtonBox.buttonRole === Ctrl.DialogButtonBox.AcceptRole ||
+                                    Ctrl.DialogButtonBox.buttonRole === Ctrl.DialogButtonBox.YesRole ||
+                                    Ctrl.DialogButtonBox.buttonRole === Ctrl.DialogButtonBox.ApplyRole
+            foregroundColor: isAccent ? Comp.ColorScheme.secondaryColor.regular : Comp.ColorScheme.secondaryColor.regular
+            backgroundColor: isAccent ? Comp.ColorScheme.accentColor.dark : "transparent"
+            fadeEffectColor: isAccent ? "black" : Comp.ColorScheme.secondaryColor.regular
+            border.width: isAccent ? 0 : 1
         }
     }
 }

@@ -299,13 +299,14 @@ Comp.ModalPopup {
                                         text: "Target"
                                     }
 
-                                    Comp.TextArea {
+                                    Comp.TextField {
                                         id: targetValueTextArea
                                         Layout.preferredWidth: 200
                                         text: "0"
                                         enabled: false
-                                        wrapMode: TextArea.NoWrap
                                         horizontalAlignment: TextEdit.AlignRight
+                                        validator: RegularExpressionValidator { regularExpression: /[0-9]+\.[0-9]+/ }
+                                        onEditingFinished: if(text === "") text = "0"
                                     }
                                 }
 
@@ -314,13 +315,23 @@ Comp.ModalPopup {
                                         text: "Current Progress"
                                     }
 
-                                    Comp.TextArea {
+                                    Comp.TextField {
                                         id: progressValueTextArea
                                         Layout.preferredWidth: 200
                                         text: "0"
                                         enabled: false
-                                        wrapMode: TextArea.NoWrap
                                         horizontalAlignment: TextEdit.AlignRight
+
+                                        validator: DoubleValidator {
+                                            bottom: 0
+                                            top: parseInt(targetValueTextArea.text)
+                                        }
+
+                                        onTextChanged: {
+                                            if(!acceptableInput)
+                                                progressValueTextArea.text = progressValueTextArea.text.substring(1)
+                                        }
+                                        onEditingFinished: if(text === "") text = "0"
                                     }
                                 }
                             }

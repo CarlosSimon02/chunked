@@ -108,18 +108,13 @@ Comp.Pane {
             onClicked: fileDialog.open()
         }
 
-        Dialog {
+        Comp.Dialog {
             id: errorDialog
-            implicitWidth: 300
-            implicitHeight: 200
             parent: Overlay.overlay
             anchors.centerIn: parent
-            title: "An Error Occurred"
+            title: "Error"
             standardButtons: Dialog.Ok
-
-            Label {
-                text: "Unsupported image format."
-            }
+            contentText: "Can't load image. Unsupported image format."
         }
     }
 

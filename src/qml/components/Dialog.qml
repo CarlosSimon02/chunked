@@ -31,6 +31,7 @@ Ctrl.Dialog {
 
     header: Ctrl.Label {
         text: dialog.title
+        wrapMode: Ctrl.Label.Wrap
         font.pixelSize: 18
         font.bold: true
         padding: dialog.padding
@@ -40,6 +41,7 @@ Ctrl.Dialog {
 
     Comp.Text {
         id: contentText
+        width: dialog.availableWidth
         wrapMode: Text.Wrap
     }
 

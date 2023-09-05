@@ -21,9 +21,11 @@ T.Button {
     icon.color: foregroundColor
     font.pixelSize: 14
 
-    property color foregroundColor: enabled ? highlighted ? Comp.ColorScheme.accentColor.regular :
-                                                            Comp.ColorScheme.secondaryColor.regular :
-                                              Comp.ColorScheme.secondaryColor.veryDark
+    property color foregroundColor: enabled ?
+                                        highlighted ? Comp.ColorScheme.accentColor.regular :
+                                                      Comp.ColorScheme.secondaryColor.regular :
+                                        Comp.ColorScheme.secondaryColor.veryDark
+
     property color backgroundColor: "transparent"
     property color fadeEffectColor: Comp.ColorScheme.secondaryColor.regular
     property bool elevated: false

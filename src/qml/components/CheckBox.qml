@@ -19,29 +19,37 @@ T.CheckBox {
     indicator: Rectangle {
         implicitWidth: 18
         implicitHeight: 18
+
         x: control.leftPadding
         y: parent.height / 2 - height / 2
+
         radius: 3
-        color: control.checkState !== Qt.Unchecked ? Comp.ColorScheme.accentColor.dark :
-                                                     "transparent"
+        color: control.checkState !== Qt.Unchecked ?
+                   Comp.ColorScheme.accentColor.dark :
+                   "transparent"
+
         border.width: 1
         border.color: Comp.ColorScheme.accentColor.dark
 
         ColorImage {
-            x: (parent.width - width) / 2
-            y: (parent.height - height) / 2
             width: 15
             height: 15
+
+            x: (parent.width - width) / 2
+            y: (parent.height - height) / 2
+
             color: Comp.ColorScheme.secondaryColor.regular
             source: "qrc:/check_icon.svg"
             visible: control.checkState === Qt.Checked
         }
 
         Rectangle {
-            x: (parent.width - width) / 2
-            y: (parent.height - height) / 2
             width: 15
             height: 3
+
+            x: (parent.width - width) / 2
+            y: (parent.height - height) / 2
+
             color: Comp.ColorScheme.secondaryColor.regular
             visible: control.checkState === Qt.PartiallyChecked
         }

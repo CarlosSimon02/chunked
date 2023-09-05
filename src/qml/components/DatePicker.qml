@@ -13,6 +13,8 @@ StackView {
     clip: true
 
     property date chosenDate: new Date()
+    property bool hasStartDate: false
+    property date startDate: new Date()
     signal chooseDate
     readonly property var months: ["January","February","March","April","May",
     "June","July","August","September","October","November","December"]

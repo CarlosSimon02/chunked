@@ -107,8 +107,14 @@ Item {
                                     chosenDate.getMonth(),
                                     chosenDate.getDate())
 
-                        if(endDatePicker.chosenDate < chosenDate)
-                            endDatePicker.chosenDate = chosenDate
+                        if(startButton.chosenDate > endButton.chosenDate)
+                        {
+                            endButton.chosenDate = startButton.chosenDate
+                            endButton.chosenDate.setMinutes(endButton.chosenDate.getMinutes() + 1)
+                            endDatePicker.chosenDate = endButton.chosenDate
+                            endTimePicker.chosenTime = endButton.chosenDate
+                        }
+
                     }
                 }
 

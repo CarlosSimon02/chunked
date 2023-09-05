@@ -10,6 +10,8 @@ RowLayout {
 
     property date chosenTime
     signal chooseTime
+    property bool hasStartTime: false
+    property date startTime
 
     Comp.ListView {
         id: hourListView
@@ -26,14 +28,18 @@ RowLayout {
             width: 36
             horizontalPadding: 0
             text: (model.index + 1).toString().padStart(2,"0")
-            enabled: model.index < 12
+            font.strikeout: !enabled
+            enabled: model.index < 12 || time < rowLayout.chosenTime
             visible: model.index < 12
             highlighted: ListView.isCurrentItem
             backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
+            property date time: rowLayout.chosenTime
+
+            Component.onCompleted: time.setHours(Date.fromLocaleTimeString(Qt.locale(), text + ":" + minuteListView.currentItem.text + " " + amPmListView.currentItem.text, "hh:mm AP").getHours())
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                rowLayout.chosenTime.setHours(Date.fromLocaleTimeString(Qt.locale(), hourListView.currentItem.text + ":" + minuteListView.currentItem.text + " " + amPmListView.currentItem.text, "hh:mm AP").getHours())
+                rowLayout.chosenTime.setHours(time.getHours())
                 rowLayout.chooseTime()
             }
         }
@@ -56,10 +62,13 @@ RowLayout {
             width: 36
             horizontalPadding: 0
             text: model.index.toString().padStart(2,"0")
-            enabled: model.index < 60
+            font.strikeout: !enabled
+            enabled: model.index < 60 || time < rowLayout.chosenTime
             visible: model.index < 60
             highlighted: ListView.isCurrentItem
             backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
+            property date time: rowLayout.chosenTime
+            Component.onCompleted: time.setMinutes(model.index)
 
             onClicked: {
                 ListView.view.currentIndex = model.index
@@ -86,14 +95,17 @@ RowLayout {
             width: 36
             horizontalPadding: 0
             text: model.ap
-            enabled: model.index < 2
+            font.strikeout: !enabled
+            enabled: model.index < 2 || time < rowLayout.chosenTime
             visible: model.index < 2
             highlighted: ListView.isCurrentItem
             backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
+            property date time: rowLayout.chosenTime
+            Component.onCompleted: time.setHours(Date.fromLocaleTimeString(Qt.locale(), hourListView.currentItem.text + ":" + minuteListView.currentItem.text + " " + model.ap, "hh:mm AP").getHours())
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                rowLayout.chosenTime.setHours(Date.fromLocaleTimeString(Qt.locale(), hourListView.currentItem.text + ":" + minuteListView.currentItem.text + " " + amPmListView.currentItem.text, "hh:mm AP").getHours())
+                rowLayout.chosenTime.setHours()
                 rowLayout.chooseTime()
             }
         }

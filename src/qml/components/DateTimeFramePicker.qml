@@ -114,7 +114,6 @@ Item {
                             endDatePicker.chosenDate = endButton.chosenDate
                             endTimePicker.chosenTime = endButton.chosenDate
                         }
-
                     }
                 }
 
@@ -122,7 +121,19 @@ Item {
                     id: startTimePicker
                     Layout.maximumHeight: startDatePicker.height
 
-                    onChooseTime: startButton.chosenDate.setHours(chosenTime.getHours(),chosenTime.getMinutes())
+                    onChooseTime: {
+                        startButton.chosenDate.setHours(
+                                    chosenTime.getHours(),
+                                    chosenTime.getMinutes())
+
+                        if(startButton.chosenDate > endButton.chosenDate)
+                        {
+                            endButton.chosenDate = startButton.chosenDate
+                            endButton.chosenDate.setMinutes(endButton.chosenDate.getMinutes() + 1)
+                            endDatePicker.chosenDate = endButton.chosenDate
+                            endTimePicker.chosenTime = endButton.chosenDate
+                        }
+                    }
                 }
             }
 
@@ -151,6 +162,8 @@ Item {
                 Comp.TimePicker {
                     id: endTimePicker
                     Layout.maximumHeight: endDatePicker.height
+                    hasStartTime: true
+                    startTime: startTimePicker.chosenTime
 
                     onChooseTime: endButton.chosenDate.setHours(chosenTime.getHours(),chosenTime.getMinutes())
                 }

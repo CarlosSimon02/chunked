@@ -17,7 +17,7 @@ RowLayout {
         id: hourListView
         Layout.preferredWidth: contentItem.childrenRect.width
         Layout.fillHeight: true
-        currentIndex: parseInt(rowLayout.chosenTime.toLocaleTimeString(Qt.locale, "hh AP").substring(0,2)) - 1
+        currentIndex: rowLayout.chosenTime.getHours()
         clip: true
         spacing: 8
         interactive: true
@@ -25,26 +25,41 @@ RowLayout {
         onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
 
         delegate: Comp.Button {
-            width: 36
+            id: hourDelegate
+            width: 42
             horizontalPadding: 0
-            text: (model.index + 1).toString().padStart(2,"0")
+            text: (model.index).toString().padStart(2,"0")
             font.strikeout: !enabled
-            enabled: model.index < 12 || time < rowLayout.chosenTime
-            visible: model.index < 12
+            enabled: model.index < 24 ||
+                     (rowLayout.hasStartTime ?
+                         time < rowLayout.startTime : true)
+            visible: model.index < 24
             highlighted: ListView.isCurrentItem
             backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
-            property date time: rowLayout.chosenTime
+            property date time
 
-            Component.onCompleted: time.setHours(Date.fromLocaleTimeString(Qt.locale(), text + ":" + minuteListView.currentItem.text + " " + amPmListView.currentItem.text, "hh:mm AP").getHours())
+            Component.onCompleted: {
+                time = rowLayout.chosenTime
+                time.setHours(model.index)
+            }
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                rowLayout.chosenTime.setHours(time.getHours())
+                rowLayout.chosenTime.setHours(model.index)
                 rowLayout.chooseTime()
+            }
+
+            Connections {
+                target: rowLayout
+                function onChosenTimeChanged() {
+                    hourDelegate.time = rowLayout.chosenTime
+                    hourDelegate.time.setHours(model.index)
+                     console.log("run")
+                }
             }
         }
 
-        model: 20
+        model: 32
     }
 
     Comp.ListView {
@@ -59,76 +74,40 @@ RowLayout {
         onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
 
         delegate: Comp.Button {
-            width: 36
+            id: minuteDelegate
+            width: 42
             horizontalPadding: 0
             text: model.index.toString().padStart(2,"0")
             font.strikeout: !enabled
-            enabled: model.index < 60 || time < rowLayout.chosenTime
+            enabled: model.index < 60 ||
+                     (rowLayout.hasStartTime ?
+                         time < rowLayout.startTime : true)
             visible: model.index < 60
             highlighted: ListView.isCurrentItem
             backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
-            property date time: rowLayout.chosenTime
-            Component.onCompleted: time.setMinutes(model.index)
+            property date time
+
+            Component.onCompleted: {
+                time = rowLayout.chosenTime
+                time.setMinutes(model.index)
+            }
 
             onClicked: {
                 ListView.view.currentIndex = model.index
                 rowLayout.chosenTime.setMinutes(model.index)
                 rowLayout.chooseTime()
             }
-        }
 
-        model: 68
-    }
-
-    Comp.ListView {
-        id: amPmListView
-        Layout.preferredWidth: contentItem.childrenRect.width
-        Layout.fillHeight: true
-        currentIndex: Math.floor(rowLayout.chosenTime.getHours() / 12)
-        clip: true
-        spacing: 8
-        interactive: true
-
-        onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
-
-        delegate: Comp.Button {
-            width: 36
-            horizontalPadding: 0
-            text: model.ap
-            font.strikeout: !enabled
-            enabled: model.index < 2 || time < rowLayout.chosenTime
-            visible: model.index < 2
-            highlighted: ListView.isCurrentItem
-            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
-            property date time: rowLayout.chosenTime
-            Component.onCompleted: time.setHours(Date.fromLocaleTimeString(Qt.locale(), hourListView.currentItem.text + ":" + minuteListView.currentItem.text + " " + model.ap, "hh:mm AP").getHours())
-
-            onClicked: {
-                ListView.view.currentIndex = model.index
-                rowLayout.chosenTime.setHours(time.getHours())
-                rowLayout.chooseTime()
+            Connections {
+                target: rowLayout
+                function onChosenTimeChanged() {
+                    minuteDelegate.time = rowLayout.chosenTime
+                    minuteDelegate.time.setMinutes(model.index)
+                    console.log("run")
+                }
             }
         }
 
-        model: ListModel {
-            ListElement {ap: "AM"}
-            ListElement {ap: "PM"}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-            ListElement {ap: ""}
-        }
+        model: 68
     }
 }

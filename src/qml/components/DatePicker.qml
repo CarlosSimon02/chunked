@@ -89,9 +89,7 @@ StackView {
                 delegate: Comp.Button {
                     text: model.day
                     font.strikeout: !enabled
-                    enabled: stackView.hasStartDate ? stackView.startDate.getDate() < model.date.getDate() &&
-                                                      stackView.startDate.getMonth() <= model.month &&
-                                                      stackView.startDate.getFullYear() <= model.year: true
+                    enabled: stackView.hasStartDate ? stackView.startDate <= model.date : true
                     highlighted: stackView.chosenDate.getDate() === model.date.getDate() &&
                              stackView.chosenDate.getMonth() === model.month &&
                              stackView.chosenDate.getFullYear() === model.year

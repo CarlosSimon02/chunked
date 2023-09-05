@@ -97,9 +97,15 @@ Item {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignTop
 
-                    onChooseDate: startButton.chosenDate.setFullYear(chosenDate.getFullYear(),
-                                                                     chosenDate.getMonth(),
-                                                                     chosenDate.getDate())
+                    onChooseDate: {
+                        startButton.chosenDate.setFullYear(
+                                    chosenDate.getFullYear(),
+                                    chosenDate.getMonth(),
+                                    chosenDate.getDate())
+
+                        if(endDatePicker.chosenDate < chosenDate)
+                            endDatePicker.chosenDate = chosenDate
+                    }
                 }
 
                 Comp.TimePicker {

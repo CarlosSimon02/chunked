@@ -102,6 +102,10 @@ Item {
                                     chosenDate.getFullYear(),
                                     chosenDate.getMonth(),
                                     chosenDate.getDate())
+                        startTimePicker.chosenTime.setFullYear(
+                                    chosenDate.getFullYear(),
+                                    chosenDate.getMonth(),
+                                    chosenDate.getDate())
 
                         if(endDatePicker.chosenDate < chosenDate)
                             endDatePicker.chosenDate = chosenDate
@@ -126,9 +130,16 @@ Item {
                     hasStartDate: true
                     startDate: startDatePicker.chosenDate
 
-                    onChooseDate: endButton.chosenDate.setFullYear(chosenDate.getFullYear(),
-                                                                   chosenDate.getMonth(),
-                                                                   chosenDate.getDate())
+                    onChooseDate: {
+                        endButton.chosenDate.setFullYear(
+                                  chosenDate.getFullYear(),
+                                  chosenDate.getMonth(),
+                                  chosenDate.getDate())
+                        endTimePicker.chosenTime.setFullYear(
+                                    chosenDate.getFullYear(),
+                                    chosenDate.getMonth(),
+                                    chosenDate.getDate())
+                    }
                 }
 
                 Comp.TimePicker {

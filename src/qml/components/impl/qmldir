@@ -1,0 +1,3 @@
+module components.impl
+DropShadow 1.0 DropShadow.qml
+FadeEffect 1.0 FadeEffect.qml

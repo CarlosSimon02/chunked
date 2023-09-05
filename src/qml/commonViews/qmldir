@@ -1,0 +1,3 @@
+module commonViews
+GoalsBodyView 1.0 GoalsBodyView.qml
+TasksBodyView 1.0 TasksBodyView.qml

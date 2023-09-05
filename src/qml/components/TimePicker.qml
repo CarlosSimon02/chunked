@@ -105,7 +105,7 @@ RowLayout {
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                rowLayout.chosenTime.setHours()
+                rowLayout.chosenTime.setHours(time.getHours())
                 rowLayout.chooseTime()
             }
         }

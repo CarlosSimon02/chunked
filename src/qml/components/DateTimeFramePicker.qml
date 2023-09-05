@@ -117,6 +117,8 @@ Item {
                     id: endDatePicker
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignTop
+                    hasStartDate: true
+                    startDate: startDatePicker.chosenDate
 
                     onChooseDate: endButton.chosenDate.setFullYear(chosenDate.getFullYear(),
                                                                    chosenDate.getMonth(),

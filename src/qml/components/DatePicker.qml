@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import components as Comp
-import "." as Pop
 
 StackView {
     id: stackView
@@ -89,6 +88,10 @@ StackView {
 
                 delegate: Comp.Button {
                     text: model.day
+                    font.strikeout: !enabled
+                    enabled: stackView.hasStartDate ? stackView.startDate.getDate() < model.date.getDate() &&
+                                                      stackView.startDate.getMonth() <= model.month &&
+                                                      stackView.startDate.getFullYear() <= model.year: true
                     highlighted: stackView.chosenDate.getDate() === model.date.getDate() &&
                              stackView.chosenDate.getMonth() === model.month &&
                              stackView.chosenDate.getFullYear() === model.year
@@ -131,7 +134,7 @@ StackView {
                     cellWidth: width / 3
                     cellHeight: height / 4
 
-                    delegate: Pop.Button {
+                    delegate: Comp.Button {
                         width: GridView.view.cellWidth
                         height: GridView.view.cellHeight
                         text: stackView.months[model.index]
@@ -201,7 +204,7 @@ StackView {
 
                     property int startingYear: Math.floor(stackView.chosenDate.getFullYear() / 16) * 16
 
-                    delegate: Pop.Button {
+                    delegate: Comp.Button {
                         width: GridView.view.cellWidth
                         height: GridView.view.cellHeight
                         text: gridView.startingYear + model.index

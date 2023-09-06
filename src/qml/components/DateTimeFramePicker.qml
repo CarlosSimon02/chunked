@@ -150,7 +150,7 @@ Item {
                     id: endTimePicker
                     Layout.maximumHeight: endDatePicker.height
                     hasStartDateTime: true
-                    startTime: startTimePicker.chosenDateTime
+                    startDateTime: startTimePicker.chosenDateTime
 
                     onChooseTime: {
                         endButton.chosenDateTime = chosenDateTime

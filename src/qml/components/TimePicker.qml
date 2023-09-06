@@ -25,7 +25,7 @@ RowLayout {
         onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
 
         delegate: Comp.Button {
-            id: hourListView
+            id: hourListViewDelegate
             width: 42
             horizontalPadding: 0
             text: (model.index).toString().padStart(2,"0")
@@ -50,13 +50,13 @@ RowLayout {
             Connections {
                 target: rowLayout
                 function onChosenDateTimeChanged() {
-                    time = rowLayout.chosenDateTime
-                    time.setHours(model.index)
-                    enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= time : true
+                    hourListViewDelegate.time = rowLayout.chosenDateTime
+                    hourListViewDelegate.time.setHours(model.index)
+                    hourListViewDelegate.enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= hourListViewDelegate.time : true
                 }
 
                 function onStartDateTimeChanged() {
-                    enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= time : true
+                    hourListViewDelegate.enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= hourListViewDelegate.time : true
                 }
             }
         }
@@ -81,11 +81,6 @@ RowLayout {
             horizontalPadding: 0
             text: model.index.toString().padStart(2,"0")
             font.strikeout: !enabled
-            enabled: model.index < 60 &&
-                     (rowLayout.hasStartDateTime ?
-                         internal.sameDay &&
-                         chosenDateTime.getHours() >= startDateTime.getHours() ?
-                         rowLayout.startDateTime.getMinutes() < model.index : true : true)
             visible: model.index < 60
             highlighted: ListView.isCurrentItem
             backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
@@ -100,7 +95,7 @@ RowLayout {
             Component.onCompleted: {
                 time = rowLayout.chosenDateTime
                 time.setMinutes(model.index)
-                enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= time : true
+                enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < time : true
             }
 
             Connections {
@@ -108,11 +103,11 @@ RowLayout {
                 function onChosenDateTimeChanged() {
                     minuteListViewDelegate.time = rowLayout.chosenDateTime
                     minuteListViewDelegate.time.setMinutes(model.index)
-                    enabled = model.index < 60 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < minuteListViewDelegate.time : true
+                    minuteListViewDelegate.enabled = model.index < 60 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < minuteListViewDelegate.time : true
                 }
 
                 function onStartDateTimeChanged() {
-                    enabled = model.index < 60 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < minuteListViewDelegate.time : true
+                    minuteListViewDelegate.enabled = model.index < 60 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < minuteListViewDelegate.time : true
                 }
             }
         }

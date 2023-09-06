@@ -87,9 +87,9 @@ StackView {
                 year: stackView.chosenDate.getFullYear()
 
                 delegate: Comp.Button {
+                    id: monthGridDelegate
                     text: model.day
                     font.strikeout: !enabled
-                    enabled: stackView.hasStartDate ? stackView.startDate <= model.date : true
                     highlighted: stackView.chosenDate.getDate() === model.date.getDate() &&
                              stackView.chosenDate.getMonth() === model.month &&
                              stackView.chosenDate.getFullYear() === model.year
@@ -106,6 +106,27 @@ StackView {
                     onClicked: {
                         stackView.chosenDate.setFullYear(model.year, model.month, model.day)
                         stackView.chooseDate()
+                    }
+
+                    Component.onCompleted: {
+                        model.date.setHours(stackView.chosenDate.getHours(),
+                                            stackView.chosenDate.getMinutes())
+
+                        enabled = stackView.hasStartDate ? stackView.startDate < model.date : true
+                    }
+
+                    Connections {
+                        target: stackView
+                        function onChosenDateChanged() {
+                            model.date.setHours(stackView.chosenDate.getHours(),
+                                                stackView.chosenDate.getMinutes())
+
+                            monthGridDelegate.enabled = stackView.hasStartDate ? stackView.startDate < model.date : true
+                        }
+
+                        function onStartDateChanged() {
+                            monthGridDelegate.enabled = stackView.hasStartDate ? stackView.startDate < model.date : true
+                        }
                     }
                 }
             }

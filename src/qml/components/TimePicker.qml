@@ -8,23 +8,23 @@ import "." as Pop
 RowLayout {
     id: rowLayout
 
-    property date chosenTime
+    property date chosenDateTime
     signal chooseTime
-    property bool hasStartTime: false
+    property bool hasStartDateTime: false
     property date startTime
 
     QtObject {
         id: internal
-        property bool sameDay: chosenTime.getFullYear() === startTime.getFullYear() &&
-                               chosenTime.getMonth() === startTime.getMonth() &&
-                               chosenTime.getDate() === startTime.getDate()
+        property bool sameDay: chosenDateTime.getFullYear() === startTime.getFullYear() &&
+                               chosenDateTime.getMonth() === startTime.getMonth() &&
+                               chosenDateTime.getDate() === startTime.getDate()
     }
 
     Comp.ListView {
         id: hourListView
         Layout.preferredWidth: contentItem.childrenRect.width
         Layout.fillHeight: true
-        currentIndex: rowLayout.chosenTime.getHours()
+        currentIndex: rowLayout.chosenDateTime.getHours()
         clip: true
         spacing: 8
         interactive: true
@@ -37,7 +37,7 @@ RowLayout {
             text: (model.index).toString().padStart(2,"0")
             font.strikeout: !enabled
             enabled: model.index < 24 &&
-                     (rowLayout.hasStartTime ?
+                     (rowLayout.hasStartDateTime ?
                          internal.sameDay ? rowLayout.startTime.getHours() <= model.index : true : true)
             visible: model.index < 24
             highlighted: ListView.isCurrentItem
@@ -45,7 +45,7 @@ RowLayout {
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                rowLayout.chosenTime.setHours(model.index)
+                rowLayout.chosenDateTime.setHours(model.index)
                 rowLayout.chooseTime()
             }
         }
@@ -57,7 +57,7 @@ RowLayout {
         id: minuteListView
         Layout.preferredWidth: contentItem.childrenRect.width
         Layout.fillHeight: true
-        currentIndex: rowLayout.chosenTime.getMinutes()
+        currentIndex: rowLayout.chosenDateTime.getMinutes()
         clip: true
         spacing: 8
         interactive: true
@@ -70,9 +70,9 @@ RowLayout {
             text: model.index.toString().padStart(2,"0")
             font.strikeout: !enabled
             enabled: model.index < 60 &&
-                     (rowLayout.hasStartTime ?
+                     (rowLayout.hasStartDateTime ?
                          internal.sameDay &&
-                         chosenTime.getHours() >= startTime.getHours() ?
+                         chosenDateTime.getHours() >= startTime.getHours() ?
                          rowLayout.startTime.getMinutes() < model.index : true : true)
             visible: model.index < 60
             highlighted: ListView.isCurrentItem
@@ -80,7 +80,7 @@ RowLayout {
 
             onClicked: {
                 ListView.view.currentIndex = model.index
-                rowLayout.chosenTime.setMinutes(model.index)
+                rowLayout.chosenDateTime.setMinutes(model.index)
                 rowLayout.chooseTime()
             }
         }

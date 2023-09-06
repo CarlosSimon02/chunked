@@ -11,9 +11,9 @@ StackView {
 
     clip: true
 
-    property date chosenDate: new Date()
-    property bool hasStartDate: false
-    property date startDate: new Date()
+    property date chosenDateTime: new Date()
+    property bool hasStartDateTime: false
+    property date startDateTime: new Date()
     signal chooseDate
     readonly property var months: ["January","February","March","April","May",
     "June","July","August","September","October","November","December"]
@@ -83,16 +83,16 @@ StackView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                month: stackView.chosenDate.getMonth()
-                year: stackView.chosenDate.getFullYear()
+                month: stackView.chosenDateTime.getMonth()
+                year: stackView.chosenDateTime.getFullYear()
 
                 delegate: Comp.Button {
                     id: monthGridDelegate
                     text: model.day
                     font.strikeout: !enabled
-                    highlighted: stackView.chosenDate.getDate() === model.date.getDate() &&
-                             stackView.chosenDate.getMonth() === model.month &&
-                             stackView.chosenDate.getFullYear() === model.year
+                    highlighted: stackView.chosenDateTime.getDate() === model.date.getDate() &&
+                             stackView.chosenDateTime.getMonth() === model.month &&
+                             stackView.chosenDateTime.getFullYear() === model.year
                     foregroundColor: monthGrid.month === model.month ?
                                          highlighted ? Comp.ColorScheme.accentColor.regular :
                                                        Comp.ColorScheme.secondaryColor.regular :
@@ -104,28 +104,28 @@ StackView {
                                         "transparent"
 
                     onClicked: {
-                        stackView.chosenDate.setFullYear(model.year, model.month, model.day)
+                        stackView.chosenDateTime.setFullYear(model.year, model.month, model.day)
                         stackView.chooseDate()
                     }
 
                     Component.onCompleted: {
-                        model.date.setHours(stackView.chosenDate.getHours(),
-                                            stackView.chosenDate.getMinutes())
+                        model.date.setHours(stackView.chosenDateTime.getHours(),
+                                            stackView.chosenDateTime.getMinutes())
 
-                        enabled = stackView.hasStartDate ? stackView.startDate < model.date : true
+                        enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
                     }
 
                     Connections {
                         target: stackView
                         function onChosenDateChanged() {
-                            model.date.setHours(stackView.chosenDate.getHours(),
-                                                stackView.chosenDate.getMinutes())
+                            model.date.setHours(stackView.chosenDateTime.getHours(),
+                                                stackView.chosenDateTime.getMinutes())
 
-                            monthGridDelegate.enabled = stackView.hasStartDate ? stackView.startDate < model.date : true
+                            monthGridDelegate.enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
                         }
 
                         function onStartDateChanged() {
-                            monthGridDelegate.enabled = stackView.hasStartDate ? stackView.startDate < model.date : true
+                            monthGridDelegate.enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
                         }
                     }
                 }
@@ -221,7 +221,7 @@ StackView {
                     cellWidth: width / 4
                     cellHeight: height / 4
 
-                    property int startingYear: Math.floor(stackView.chosenDate.getFullYear() / 16) * 16
+                    property int startingYear: Math.floor(stackView.chosenDateTime.getFullYear() / 16) * 16
 
                     delegate: Comp.Button {
                         width: GridView.view.cellWidth

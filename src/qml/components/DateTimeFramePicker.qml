@@ -28,8 +28,8 @@ Item {
                     id: startButton
                     Layout.fillWidth: true
                     Layout.preferredHeight: 52
-                    property date chosenDate
-                    text: chosenDate.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                    property date chosenDateTime
+                    text: chosenDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                     highlighted: true
                     border.width: 1
                     verticalPadding: 14
@@ -43,9 +43,9 @@ Item {
                     Component.onCompleted: {
                         var date = new Date()
                         date.setHours(0,0)
-                        chosenDate = date
-                        startDatePicker.chosenDate = date
-                        startTimePicker.chosenTime = date
+                        chosenDateTime = date
+                        startDatePicker.chosenDateTime = date
+                        startTimePicker.chosenDateTime = date
                     }
                 }
             }
@@ -59,8 +59,8 @@ Item {
                     id: endButton
                     Layout.fillWidth: true
                     Layout.preferredHeight: 52
-                    property date chosenDate
-                    text: chosenDate.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                    property date chosenDateTime
+                    text: chosenDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                     verticalPadding: 14
                     border.width: 1
 
@@ -74,9 +74,9 @@ Item {
                         var date = new Date()
                         date.setDate(date.getDate() + 1)
                         date.setHours(0,0)
-                        chosenDate = date
-                        endDatePicker.chosenDate = date
-                        endTimePicker.chosenTime = date
+                        chosenDateTime = date
+                        endDatePicker.chosenDateTime = date
+                        endTimePicker.chosenDateTime = date
                     }
                 }
             }
@@ -98,21 +98,15 @@ Item {
                     Layout.alignment: Qt.AlignTop
 
                     onChooseDate: {
-                        startButton.chosenDate.setFullYear(
-                                    chosenDate.getFullYear(),
-                                    chosenDate.getMonth(),
-                                    chosenDate.getDate())
-                        startTimePicker.chosenTime.setFullYear(
-                                    chosenDate.getFullYear(),
-                                    chosenDate.getMonth(),
-                                    chosenDate.getDate())
+                        startButton.chosenDateTime = chosenDateTime
+                        startTimePicker.chosenDateTime = startButton.chosenDateTime
 
-                        if(startButton.chosenDate > endButton.chosenDate)
+                        if(startButton.chosenDateTime > endButton.chosenDateTime)
                         {
-                            endButton.chosenDate = startButton.chosenDate
-                            endButton.chosenDate.setMinutes(endButton.chosenDate.getMinutes() + 1)
-                            endDatePicker.chosenDate = endButton.chosenDate
-                            endTimePicker.chosenTime = endButton.chosenDate
+                            endButton.chosenDateTime = startButton.chosenDateTime
+                            endButton.chosenDateTime.setMinutes(endButton.chosenDateTime.getMinutes() + 1)
+                            endDatePicker.chosenDateTime = endButton.chosenDateTime
+                            endTimePicker.chosenDateTime = endButton.chosenDateTime
                         }
                     }
                 }
@@ -122,16 +116,15 @@ Item {
                     Layout.maximumHeight: startDatePicker.height
 
                     onChooseTime: {
-                        startButton.chosenDate.setHours(
-                                    chosenTime.getHours(),
-                                    chosenTime.getMinutes())
+                        startButton.chosenDateTime = chosenDateTime
+                        startDatePicker.chosenDateTime = chosenDateTime
 
-                        if(startButton.chosenDate > endButton.chosenDate)
+                        if(startButton.chosenDateTime > endButton.chosenDateTime)
                         {
-                            endButton.chosenDate = startButton.chosenDate
-                            endButton.chosenDate.setMinutes(endButton.chosenDate.getMinutes() + 1)
-                            endDatePicker.chosenDate = endButton.chosenDate
-                            endTimePicker.chosenTime = endButton.chosenDate
+                            endButton.chosenDateTime = startButton.chosenDateTime
+                            endButton.chosenDateTime.setMinutes(endButton.chosenDateTime.getMinutes() + 1)
+                            endDatePicker.chosenDateTime = endButton.chosenDateTime
+                            endTimePicker.chosenDateTime = endButton.chosenDateTime
                         }
                     }
                 }
@@ -144,28 +137,25 @@ Item {
                     id: endDatePicker
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignTop
-                    hasStartDate: true
-                    startDate: startDatePicker.chosenDate
+                    hasStartDateTime: true
+                    startDateTime: startDatePicker.chosenDateTime
 
                     onChooseDate: {
-                        endButton.chosenDate.setFullYear(
-                                  chosenDate.getFullYear(),
-                                  chosenDate.getMonth(),
-                                  chosenDate.getDate())
-                        endTimePicker.chosenTime.setFullYear(
-                                    chosenDate.getFullYear(),
-                                    chosenDate.getMonth(),
-                                    chosenDate.getDate())
+                        endButton.chosenDateTime = chosenDateTime
+                        endTimePicker.chosenDateTime = chosenDateTime
                     }
                 }
 
                 Comp.TimePicker {
                     id: endTimePicker
                     Layout.maximumHeight: endDatePicker.height
-                    hasStartTime: true
-                    startTime: startTimePicker.chosenTime
+                    hasStartDateTime: true
+                    startTime: startTimePicker.chosenDateTime
 
-                    onChooseTime: endButton.chosenDate.setHours(chosenTime.getHours(),chosenTime.getMinutes())
+                    onChooseTime: {
+                        endButton.chosenDateTime = chosenDateTime
+                        endTimePicker.chosenDateTime = chosenDateTime
+                    }
                 }
             }
         }

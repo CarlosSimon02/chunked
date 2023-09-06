@@ -11,14 +11,7 @@ RowLayout {
     property date chosenDateTime
     signal chooseTime
     property bool hasStartDateTime: false
-    property date startTime
-
-    QtObject {
-        id: internal
-        property bool sameDay: chosenDateTime.getFullYear() === startTime.getFullYear() &&
-                               chosenDateTime.getMonth() === startTime.getMonth() &&
-                               chosenDateTime.getDate() === startTime.getDate()
-    }
+    property date startDateTime
 
     Comp.ListView {
         id: hourListView
@@ -32,21 +25,39 @@ RowLayout {
         onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
 
         delegate: Comp.Button {
+            id: hourListView
             width: 42
             horizontalPadding: 0
             text: (model.index).toString().padStart(2,"0")
             font.strikeout: !enabled
-            enabled: model.index < 24 &&
-                     (rowLayout.hasStartDateTime ?
-                         internal.sameDay ? rowLayout.startTime.getHours() <= model.index : true : true)
             visible: model.index < 24
             highlighted: ListView.isCurrentItem
             backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
+            property date time
 
             onClicked: {
                 ListView.view.currentIndex = model.index
                 rowLayout.chosenDateTime.setHours(model.index)
                 rowLayout.chooseTime()
+            }
+
+            Component.onCompleted: {
+                time = rowLayout.chosenDateTime
+                time.setHours(model.index)
+                enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= time : true
+            }
+
+            Connections {
+                target: rowLayout
+                function onChosenDateTimeChanged() {
+                    time = rowLayout.chosenDateTime
+                    time.setHours(model.index)
+                    enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= time : true
+                }
+
+                function onStartDateTimeChanged() {
+                    enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= time : true
+                }
             }
         }
 
@@ -65,6 +76,7 @@ RowLayout {
         onCurrentIndexChanged: positionViewAtIndex(currentIndex, ListView.Beginning)
 
         delegate: Comp.Button {
+            id: minuteListViewDelegate
             width: 42
             horizontalPadding: 0
             text: model.index.toString().padStart(2,"0")
@@ -72,16 +84,36 @@ RowLayout {
             enabled: model.index < 60 &&
                      (rowLayout.hasStartDateTime ?
                          internal.sameDay &&
-                         chosenDateTime.getHours() >= startTime.getHours() ?
-                         rowLayout.startTime.getMinutes() < model.index : true : true)
+                         chosenDateTime.getHours() >= startDateTime.getHours() ?
+                         rowLayout.startDateTime.getMinutes() < model.index : true : true)
             visible: model.index < 60
             highlighted: ListView.isCurrentItem
             backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
+            property date time
 
             onClicked: {
                 ListView.view.currentIndex = model.index
                 rowLayout.chosenDateTime.setMinutes(model.index)
                 rowLayout.chooseTime()
+            }
+
+            Component.onCompleted: {
+                time = rowLayout.chosenDateTime
+                time.setMinutes(model.index)
+                enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime <= time : true
+            }
+
+            Connections {
+                target: rowLayout
+                function onChosenDateTimeChanged() {
+                    minuteListViewDelegate.time = rowLayout.chosenDateTime
+                    minuteListViewDelegate.time.setMinutes(model.index)
+                    enabled = model.index < 60 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < minuteListViewDelegate.time : true
+                }
+
+                function onStartDateTimeChanged() {
+                    enabled = model.index < 60 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < minuteListViewDelegate.time : true
+                }
             }
         }
 

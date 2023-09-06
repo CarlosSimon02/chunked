@@ -117,14 +117,14 @@ StackView {
 
                     Connections {
                         target: stackView
-                        function onChosenDateChanged() {
+                        function onChosenDateTimeChanged() {
                             model.date.setHours(stackView.chosenDateTime.getHours(),
                                                 stackView.chosenDateTime.getMinutes())
 
                             monthGridDelegate.enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
                         }
 
-                        function onStartDateChanged() {
+                        function onStartDateTimeChanged() {
                             monthGridDelegate.enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
                         }
                     }

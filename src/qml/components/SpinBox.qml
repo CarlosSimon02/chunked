@@ -15,9 +15,13 @@ T.SpinBox {
                              implicitContentHeight + topPadding + bottomPadding,
                              up.implicitIndicatorHeight, down.implicitIndicatorHeight)
 
+    leftPadding: 15
     rightPadding: padding + (control.mirrored ? (down.indicator ? down.indicator.width + 4 : 0) : (up.indicator ? up.indicator.width : 0))
 
     editable: true
+
+    from: 0
+    to: 999999999
 
     validator: IntValidator {
         locale: control.locale.name
@@ -29,13 +33,11 @@ T.SpinBox {
         z: 2
         text: control.displayText
         clip: width < implicitWidth
-        padding: 6
 
         font: control.font
         color: Comp.ColorScheme.secondaryColor.regular
         selectionColor: control.palette.highlight
         selectedTextColor: control.palette.highlightedText
-        horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
 
         readOnly: !control.editable

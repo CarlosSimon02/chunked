@@ -34,8 +34,8 @@ RowLayout {
                 columnLayout.task.name = textArea.text
                 columnLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
                 columnLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
-                columnLayout.task.actualDuration = actualDurationTextArea.value
-                columnLayout.task.outcome = parseInt(outcomeTextArea.text)
+                columnLayout.task.actualDuration = actualDurationSpinBox.value
+                columnLayout.task.outcome = parseInt(outcomeSpinBox.text)
                 columnLayout.task.notes = notesTextArea.text
                 dbAccess.saveTaskItem(columnLayout.task)
                 columnLayout.save()
@@ -84,8 +84,8 @@ RowLayout {
                 padding: 15
 
                 function reset() {
-                    actualDurationTextArea.value = 0
-                    outcomeTextArea.text = "1"
+                    actualDurationSpinBox.value = 0
+                    outcomeSpinBox.value = 1
                     notesTextArea.text = ""
                 }
 
@@ -95,24 +95,24 @@ RowLayout {
 
                         Comp.FieldColumnLayout {
                             Comp.FieldLabel {
-                                text: "Actual Duration (in minutes)"
+                                text: "Outcome"
                             }
 
                             Comp.SpinBox {
-                                id: actualDurationTextArea
+                                id: outcomeSpinBox
                                 Layout.preferredWidth: 200
+                                value: 1
                             }
                         }
 
                         Comp.FieldColumnLayout {
                             Comp.FieldLabel {
-                                text: "Outcome"
+                                text: "Actual Duration (in minutes)"
                             }
 
                             Comp.SpinBox {
-                                id: outcomeTextArea
+                                id: actualDurationSpinBox
                                 Layout.preferredWidth: 200
-                                value: 1
                             }
                         }
 

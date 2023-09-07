@@ -22,6 +22,8 @@ Item {
         endButton.chosenDateTime = date
         endDatePicker.chosenDateTime = date
         endTimePicker.chosenDateTime = date
+
+        swipeView.currentIndex = 0
     }
 
     Component.onCompleted: reset()

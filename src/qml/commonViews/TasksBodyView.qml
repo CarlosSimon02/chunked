@@ -8,9 +8,11 @@ import components.impl as Impl
 import "./components" as CommonViews
 
 Comp.Pane {
+    id: pane
     background: null
     padding: 0
     clip: true
+    property int parentGoalId: 0
 
     Comp.ScrollView {
         id: scrollView
@@ -30,6 +32,7 @@ Comp.Pane {
                     CommonViews.CreateTaskTextField {
                         id: createTaskTextField
                         Layout.fillWidth: true
+                        task.parentGoalId: pane.parentGoalId
                     }
 
                     Comp.ListView {
@@ -53,7 +56,9 @@ Comp.Pane {
                             }
                         }
 
-                        model: TasksTableModel {}
+                        model: TasksTableModel {
+                            parentGoalId: pane.parentGoalId
+                        }
 
                         Connections {
                             target: createTaskTextField

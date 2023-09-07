@@ -35,10 +35,15 @@ RowLayout {
                 columnLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
                 columnLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
                 columnLayout.task.done = doneCheckBox.state
+                columnLayout.task.actualDuration = parseInt(actualDurationTextArea.text)
+                columnLayout.task.outcome = parseInt(outcomeTextArea.text)
+                columnLayout.task.notes = notesTextArea.text
                 dbAccess.saveTaskItem(columnLayout.task)
                 columnLayout.save()
 
+                textArea.text = ""
                 dateTimeFramePicker.reset()
+                taskDetailsPopup.reset()
             }
         }
     }
@@ -78,6 +83,13 @@ RowLayout {
                 id: taskDetailsPopup
                 x: parent.width - width
 
+                function reset() {
+                    doneCheckBox.state = 0
+                    actualDurationTextArea.text = "0"
+                    outcomeTextArea.text = "1"
+                    notesTextArea.text = ""
+                }
+
                 ColumnLayout {
                     spacing: 25
                     Comp.FieldColumnLayout {
@@ -98,6 +110,7 @@ RowLayout {
                         Comp.TextArea {
                             id: actualDurationTextArea
                             Layout.preferredWidth: 200
+                            text: "0"
                         }
                     }
 
@@ -109,6 +122,7 @@ RowLayout {
                         Comp.TextArea {
                             id: outcomeTextArea
                             Layout.preferredWidth: 200
+                            text: "1"
                         }
                     }
 

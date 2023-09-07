@@ -90,18 +90,12 @@ StackView {
                     id: monthGridDelegate
                     text: model.day
                     font.strikeout: !enabled
+                    opacity: monthGrid.month === model.month ? 0.0 : 0.2
                     highlighted: stackView.chosenDateTime.getDate() === model.date.getDate() &&
                              stackView.chosenDateTime.getMonth() === model.month &&
                              stackView.chosenDateTime.getFullYear() === model.year
-                    foregroundColor: monthGrid.month === model.month ?
-                                         highlighted ? Comp.ColorScheme.accentColor.regular :
-                                                       Comp.ColorScheme.secondaryColor.regular :
-                                         highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.2) :
-                                             Comp.Utils.setColorAlpha(Comp.ColorScheme.secondaryColor.regular,0.1)
-                    backgroundColor: highlighted ? monthGrid.month === model.month ?
-                                                       Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) :
-                                                       Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.03) :
-                                        "transparent"
+                    foregroundColor: highlighted ? Comp.ColorScheme.accentColor.regular : Comp.ColorScheme.secondaryColor.regular
+                    backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
 
                     onClicked: {
                         stackView.chosenDateTime.setFullYear(model.year, model.month, model.day)

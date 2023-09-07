@@ -87,6 +87,7 @@ Comp.Pane {
         width: 350
         visible: x <= parent.width + 20
         property bool opened: false
+        property int index
         signal open
         onOpen: {
             opened = true

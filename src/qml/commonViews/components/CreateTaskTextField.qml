@@ -32,8 +32,13 @@ RowLayout {
             if (textArea.length > 0)
             {
                 columnLayout.task.name = textArea.text
+                columnLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
+                columnLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
+                columnLayout.task.done = doneCheckBox.state
                 dbAccess.saveTaskItem(columnLayout.task)
                 columnLayout.save()
+
+                dateTimeFramePicker.reset()
             }
         }
     }
@@ -56,6 +61,7 @@ RowLayout {
                 x: parent.width - width
 
                 Comp.DateTimeFramePicker {
+                    id: dateTimeFramePicker
                 }
             }
         }
@@ -79,7 +85,9 @@ RowLayout {
                             text: "Done"
                         }
 
-                        Comp.CheckBox {}
+                        Comp.CheckBox {
+                            id: doneCheckBox
+                        }
                     }
 
                     Comp.FieldColumnLayout {
@@ -88,6 +96,7 @@ RowLayout {
                         }
 
                         Comp.TextArea {
+                            id: actualDurationTextArea
                             Layout.preferredWidth: 200
                         }
                     }
@@ -98,6 +107,7 @@ RowLayout {
                         }
 
                         Comp.TextArea {
+                            id: outcomeTextArea
                             Layout.preferredWidth: 200
                         }
                     }
@@ -108,16 +118,7 @@ RowLayout {
                         }
 
                         Comp.TextArea {
-                            Layout.preferredWidth: 200
-                        }
-                    }
-
-                    Comp.FieldColumnLayout {
-                        Comp.FieldLabel {
-                            text: "Parent Goal"
-                        }
-
-                        Comp.TextArea {
+                            id: notesTextArea
                             Layout.preferredWidth: 200
                         }
                     }

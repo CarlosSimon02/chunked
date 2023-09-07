@@ -11,6 +11,21 @@ Item {
     property alias startDateTimeText: startButton.text
     property alias endDateTimeText: endButton.text
 
+    function reset() {
+        var date = new Date()
+        date.setHours(0,0)
+        startButton.chosenDateTime = date
+        startDatePicker.chosenDateTime = date
+        startTimePicker.chosenDateTime = date
+
+        date.setDate(date.getDate() + 1)
+        endButton.chosenDateTime = date
+        endDatePicker.chosenDateTime = date
+        endTimePicker.chosenDateTime = date
+    }
+
+    Component.onCompleted: reset()
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 40
@@ -39,14 +54,6 @@ Item {
                         endButton.highlighted = false
                         swipeView.currentIndex = 0
                     }
-
-                    Component.onCompleted: {
-                        var date = new Date()
-                        date.setHours(0,0)
-                        chosenDateTime = date
-                        startDatePicker.chosenDateTime = date
-                        startTimePicker.chosenDateTime = date
-                    }
                 }
             }
 
@@ -68,15 +75,6 @@ Item {
                         highlighted = true
                         startButton.highlighted = false
                         swipeView.currentIndex = 1
-                    }
-
-                    Component.onCompleted: {
-                        var date = new Date()
-                        date.setDate(date.getDate() + 1)
-                        date.setHours(0,0)
-                        chosenDateTime = date
-                        endDatePicker.chosenDateTime = date
-                        endTimePicker.chosenDateTime = date
                     }
                 }
             }

@@ -35,7 +35,7 @@ RowLayout {
                 columnLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
                 columnLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
                 columnLayout.task.done = doneCheckBox.checked
-                columnLayout.task.actualDuration = parseInt(actualDurationTextArea.text)
+                columnLayout.task.actualDuration = actualDurationTextArea.value
                 columnLayout.task.outcome = parseInt(outcomeTextArea.text)
                 columnLayout.task.notes = notesTextArea.text
                 dbAccess.saveTaskItem(columnLayout.task)
@@ -82,10 +82,11 @@ RowLayout {
             Comp.Popup {
                 id: taskDetailsPopup
                 x: parent.width - width
+                padding: 15
 
                 function reset() {
                     doneCheckBox.checked = false
-                    actualDurationTextArea.text = "0"
+                    actualDurationTextArea.value = 0
                     outcomeTextArea.text = "1"
                     notesTextArea.text = ""
                 }
@@ -104,13 +105,12 @@ RowLayout {
 
                     Comp.FieldColumnLayout {
                         Comp.FieldLabel {
-                            text: "Actual Duration"
+                            text: "Actual Duration (in minutes)"
                         }
 
-                        Comp.TextArea {
+                        Comp.SpinBox {
                             id: actualDurationTextArea
                             Layout.preferredWidth: 200
-                            text: "0"
                         }
                     }
 
@@ -119,10 +119,10 @@ RowLayout {
                             text: "Outcome"
                         }
 
-                        Comp.TextArea {
+                        Comp.SpinBox {
                             id: outcomeTextArea
                             Layout.preferredWidth: 200
-                            text: "1"
+                            value: 1
                         }
                     }
 

@@ -143,6 +143,14 @@ Item {
                     onChooseDate: {
                         endButton.chosenDateTime = chosenDateTime
                         endTimePicker.chosenDateTime = chosenDateTime
+
+                        if(startButton.chosenDateTime > endButton.chosenDateTime)
+                        {
+                            endButton.chosenDateTime = startButton.chosenDateTime
+                            endButton.chosenDateTime.setMinutes(endButton.chosenDateTime.getMinutes() + 1)
+                            endDatePicker.chosenDateTime = endButton.chosenDateTime
+                            endTimePicker.chosenDateTime = endButton.chosenDateTime
+                        }
                     }
                 }
 

@@ -95,7 +95,8 @@ RowLayout {
             Component.onCompleted: {
                 time = rowLayout.chosenDateTime
                 time.setMinutes(model.index)
-                enabled = model.index < 24 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < time : true
+                enabled = model.index < 24 && rowLayout.hasStartDateTime ?
+                            rowLayout.startDateTime < time : true
             }
 
             Connections {
@@ -103,11 +104,13 @@ RowLayout {
                 function onChosenDateTimeChanged() {
                     minuteListViewDelegate.time = rowLayout.chosenDateTime
                     minuteListViewDelegate.time.setMinutes(model.index)
-                    minuteListViewDelegate.enabled = model.index < 60 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < minuteListViewDelegate.time : true
+                    minuteListViewDelegate.enabled = model.index < 60 && rowLayout.hasStartDateTime ?
+                                rowLayout.startDateTime < minuteListViewDelegate.time : true
                 }
 
                 function onStartDateTimeChanged() {
-                    minuteListViewDelegate.enabled = model.index < 60 && rowLayout.hasStartDateTime ? rowLayout.startDateTime < minuteListViewDelegate.time : true
+                    minuteListViewDelegate.enabled = model.index < 60 && rowLayout.hasStartDateTime ?
+                                rowLayout.startDateTime < minuteListViewDelegate.time : true
                 }
             }
         }

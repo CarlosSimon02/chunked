@@ -100,7 +100,6 @@ Item {
                     onChooseDate: {
                         startButton.chosenDateTime = chosenDateTime
                         startTimePicker.chosenDateTime = chosenDateTime
-                        endDatePicker.startDateTime = chosenDateTime
 
                         if(startButton.chosenDateTime > endButton.chosenDateTime)
                         {

@@ -101,7 +101,7 @@ Item {
                         startButton.chosenDateTime = chosenDateTime
                         startTimePicker.chosenDateTime = chosenDateTime
 
-                        if(startButton.chosenDateTime > endButton.chosenDateTime)
+                        if(startButton.chosenDateTime >= endButton.chosenDateTime)
                         {
                             endButton.chosenDateTime = startButton.chosenDateTime
                             endButton.chosenDateTime.setMinutes(endButton.chosenDateTime.getMinutes() + 1)
@@ -119,7 +119,7 @@ Item {
                         startButton.chosenDateTime = chosenDateTime
                         startDatePicker.chosenDateTime = chosenDateTime
 
-                        if(startButton.chosenDateTime > endButton.chosenDateTime)
+                        if(startButton.chosenDateTime >= endButton.chosenDateTime)
                         {
                             endButton.chosenDateTime = startButton.chosenDateTime
                             endButton.chosenDateTime.setMinutes(endButton.chosenDateTime.getMinutes() + 1)
@@ -144,7 +144,7 @@ Item {
                         endButton.chosenDateTime = chosenDateTime
                         endTimePicker.chosenDateTime = chosenDateTime
 
-                        if(startButton.chosenDateTime > endButton.chosenDateTime)
+                        if(startButton.chosenDateTime >= endButton.chosenDateTime)
                         {
                             endButton.chosenDateTime = startButton.chosenDateTime
                             endButton.chosenDateTime.setMinutes(endButton.chosenDateTime.getMinutes() + 1)

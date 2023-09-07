@@ -13,7 +13,7 @@ StackView {
 
     property date chosenDateTime: new Date()
     property bool hasStartDateTime: false
-    property date startDateTime: new Date()
+    property date startDateTime
     signal chooseDate
     readonly property var months: ["January","February","March","April","May",
     "June","July","August","September","October","November","December"]
@@ -101,24 +101,33 @@ StackView {
                         stackView.chooseDate()
                     }
 
-                    Component.onCompleted: {
+                    function setEnabled() {
+                        model.date.setHours(stackView.chosenDateTime.getHours(),stackView.chosenDateTime.getMinutes())
                         enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
+                    }
+
+                    Component.onCompleted: {
+                        setEnabled()
                     }
 
                     Connections {
                         target: stackView
                         function onChosenDateTimeChanged() {
-                            var cellDate = stackView.chosenDateTime
-                            cellDate.setFullYear(model.year, model.month, model.day)
-
-                            monthGridDelegate.enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
+                            monthGridDelegate.setEnabled()
                         }
 
                         function onStartDateTimeChanged() {
-                            var cellDate = stackView.chosenDateTime
-                            cellDate.setFullYear(model.year, model.month, model.day)
+                            monthGridDelegate.setEnabled()
+                        }
+                    }
 
-                            monthGridDelegate.enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
+                    Connections {
+                        target: monthGrid
+                        function onMonthChanged() {
+                            monthGridDelegate.setEnabled()
+                        }
+                        function onYearChanged() {
+                            monthGridDelegate.setEnabled()
                         }
                     }
                 }

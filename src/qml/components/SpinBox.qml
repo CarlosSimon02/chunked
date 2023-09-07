@@ -18,6 +18,8 @@ T.SpinBox {
     leftPadding: padding + (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
     rightPadding: padding + (control.mirrored ? (down.indicator ? down.indicator.width : 0) : (up.indicator ? up.indicator.width : 0))
 
+    editable: true
+
     validator: IntValidator {
         locale: control.locale.name
         bottom: Math.min(control.from, control.to)
@@ -31,7 +33,7 @@ T.SpinBox {
         padding: 6
 
         font: control.font
-        color: control.palette.text
+        color: Comp.ColorScheme.secondaryColor.regular
         selectionColor: control.palette.highlight
         selectedTextColor: control.palette.highlightedText
         horizontalAlignment: Qt.AlignHCenter
@@ -40,15 +42,6 @@ T.SpinBox {
         readOnly: !control.editable
         validator: control.validator
         inputMethodHints: control.inputMethodHints
-
-        Rectangle {
-            width: parent.width
-            height: parent.height
-            visible: control.activeFocus
-            color: "transparent"
-            border.color: control.palette.highlight
-            border.width: 2
-        }
     }
 
     up.indicator: Rectangle {
@@ -59,11 +52,19 @@ T.SpinBox {
         radius: Comp.Consts.commonRadius
         color: "transparent"
 
+        Comp.Text {
+            anchors.centerIn: parent
+            font.pixelSize: 24
+            font.bold: true
+            color: enabled ? Comp.ColorScheme.secondaryColor.regular : Comp.ColorScheme.secondaryColor.veryDark
+            text: "+"
+        }
+
         Impl.FadeEffect {
             anchors.fill: parent
             colorEffect: Comp.ColorScheme.secondaryColor.regular
-            controlIsHovered: control.down.hovered
-            controlIsDown: control.down.pressed
+            controlIsHovered: control.up.hovered
+            controlIsDown: control.up.pressed
             controlIsHighlighted: false
             controlIsEnabled: enabled
         }
@@ -77,19 +78,31 @@ T.SpinBox {
         radius: Comp.Consts.commonRadius
         color: "transparent"
 
+        Comp.Text {
+            anchors.centerIn: parent
+            font.pixelSize: 24
+            font.bold: true
+            color: enabled ? Comp.ColorScheme.secondaryColor.regular : Comp.ColorScheme.secondaryColor.veryDark
+            text: "-"
+        }
+
         Impl.FadeEffect {
             anchors.fill: parent
             colorEffect: Comp.ColorScheme.secondaryColor.regular
-            controlIsHovered: control.up.hovered
-            controlIsDown: control.up.pressed
+            controlIsHovered: control.down.hovered
+            controlIsDown: control.down.pressed
             controlIsHighlighted: false
             controlIsEnabled: enabled
         }
     }
 
     background: Rectangle {
+        implicitHeight: 52
         implicitWidth: 140
-        color: enabled ? control.palette.base : control.palette.button
-        border.color: control.palette.button
+        color: "transparent"
+        border.width: 1
+        border.color: control.activeFocus ? Comp.ColorScheme.accentColor.regular :
+                Comp.ColorScheme.secondaryColor.dark
+        radius: Comp.Consts.commonRadius
     }
 }

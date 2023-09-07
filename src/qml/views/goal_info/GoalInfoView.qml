@@ -183,6 +183,8 @@ Comp.Page {
                     id: tasksViewComp
 
                     View.TasksBodyView {
+                        id: taskView
+                        parentGoalId: page.goal.itemId
                     }
                 }
                 Component {id: habitsViewComp; HabitsView {goal: page.goal}}

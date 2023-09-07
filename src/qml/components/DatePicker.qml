@@ -89,13 +89,12 @@ StackView {
                 delegate: Comp.Button {
                     id: monthGridDelegate
                     text: model.day
-                    font.strikeout: !enabled
-                    opacity: monthGrid.month === model.month ? 0.0 : 0.2
+                    opacity: monthGrid.month === model.month ? 1.0 : 0.3
                     highlighted: stackView.chosenDateTime.getDate() === model.date.getDate() &&
                              stackView.chosenDateTime.getMonth() === model.month &&
                              stackView.chosenDateTime.getFullYear() === model.year
-                    foregroundColor: highlighted ? Comp.ColorScheme.accentColor.regular : Comp.ColorScheme.secondaryColor.regular
-                    backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
+                    foregroundColor: enabled ? highlighted ? Comp.ColorScheme.accentColor.regular : Comp.ColorScheme.secondaryColor.regular : "red"
+                    backgroundColor: enabled ? highlighted ? Comp.Utils.setColorAlpha(foregroundColor, 0.1) : "transparent" : Comp.Utils.setColorAlpha(foregroundColor, 0.1)
 
                     onClicked: {
                         stackView.chosenDateTime.setFullYear(model.year, model.month, model.day)
@@ -103,22 +102,22 @@ StackView {
                     }
 
                     Component.onCompleted: {
-                        model.date.setHours(stackView.chosenDateTime.getHours(),
-                                            stackView.chosenDateTime.getMinutes())
-
                         enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
                     }
 
                     Connections {
                         target: stackView
                         function onChosenDateTimeChanged() {
-                            model.date.setHours(stackView.chosenDateTime.getHours(),
-                                                stackView.chosenDateTime.getMinutes())
+                            var cellDate = stackView.chosenDateTime
+                            cellDate.setFullYear(model.year, model.month, model.day)
 
                             monthGridDelegate.enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
                         }
 
                         function onStartDateTimeChanged() {
+                            var cellDate = stackView.chosenDateTime
+                            cellDate.setFullYear(model.year, model.month, model.day)
+
                             monthGridDelegate.enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date : true
                         }
                     }

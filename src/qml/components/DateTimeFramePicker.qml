@@ -99,7 +99,8 @@ Item {
 
                     onChooseDate: {
                         startButton.chosenDateTime = chosenDateTime
-                        startTimePicker.chosenDateTime = startButton.chosenDateTime
+                        startTimePicker.chosenDateTime = chosenDateTime
+                        endDatePicker.startDateTime = chosenDateTime
 
                         if(startButton.chosenDateTime > endButton.chosenDateTime)
                         {
@@ -158,7 +159,7 @@ Item {
                     id: endTimePicker
                     Layout.maximumHeight: endDatePicker.height
                     hasStartDateTime: true
-                    startDateTime: startTimePicker.chosenDateTime
+                    startDateTime: startDatePicker.chosenDateTime
 
                     onChooseTime: {
                         endButton.chosenDateTime = chosenDateTime

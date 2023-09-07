@@ -34,7 +34,6 @@ RowLayout {
                 columnLayout.task.name = textArea.text
                 columnLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
                 columnLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
-                columnLayout.task.done = doneCheckBox.checked
                 columnLayout.task.actualDuration = actualDurationTextArea.value
                 columnLayout.task.outcome = parseInt(outcomeTextArea.text)
                 columnLayout.task.notes = notesTextArea.text
@@ -85,7 +84,6 @@ RowLayout {
                 padding: 15
 
                 function reset() {
-                    doneCheckBox.checked = false
                     actualDurationTextArea.value = 0
                     outcomeTextArea.text = "1"
                     notesTextArea.text = ""

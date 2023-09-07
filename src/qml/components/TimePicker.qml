@@ -29,10 +29,10 @@ RowLayout {
             width: 42
             horizontalPadding: 0
             text: (model.index).toString().padStart(2,"0")
-            font.strikeout: !enabled
             visible: model.index < 24
             highlighted: ListView.isCurrentItem
-            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
+            foregroundColor: enabled ? highlighted ? Comp.ColorScheme.accentColor.regular : Comp.ColorScheme.secondaryColor.regular : "red"
+            backgroundColor: enabled ? highlighted ? Comp.Utils.setColorAlpha(foregroundColor, 0.1) : "transparent" : Comp.Utils.setColorAlpha(foregroundColor, 0.1)
             property date time
 
             onClicked: {
@@ -80,10 +80,10 @@ RowLayout {
             width: 42
             horizontalPadding: 0
             text: model.index.toString().padStart(2,"0")
-            font.strikeout: !enabled
             visible: model.index < 60
             highlighted: ListView.isCurrentItem
-            backgroundColor: highlighted ? Comp.Utils.setColorAlpha(Comp.ColorScheme.accentColor.regular,0.1) : "transparent"
+            foregroundColor: enabled ? highlighted ? Comp.ColorScheme.accentColor.regular : Comp.ColorScheme.secondaryColor.regular : "red"
+            backgroundColor: enabled ? highlighted ? Comp.Utils.setColorAlpha(foregroundColor, 0.1) : "transparent" : Comp.Utils.setColorAlpha(foregroundColor, 0.1)
             property date time
 
             onClicked: {

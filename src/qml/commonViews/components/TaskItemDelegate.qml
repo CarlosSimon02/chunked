@@ -16,7 +16,7 @@ Comp.ItemDelegate {
     font.weight: Font.Normal
     signal setDone
 
-    property alias taskDone: checkBox.checkState
+    property alias taskDone: checkBox.checked
     property alias name: name.text
 
     contentItem: Item {

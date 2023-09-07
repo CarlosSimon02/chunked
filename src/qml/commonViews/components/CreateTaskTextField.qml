@@ -34,7 +34,7 @@ RowLayout {
                 columnLayout.task.name = textArea.text
                 columnLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
                 columnLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
-                columnLayout.task.done = doneCheckBox.state
+                columnLayout.task.done = doneCheckBox.checked
                 columnLayout.task.actualDuration = parseInt(actualDurationTextArea.text)
                 columnLayout.task.outcome = parseInt(outcomeTextArea.text)
                 columnLayout.task.notes = notesTextArea.text
@@ -84,7 +84,7 @@ RowLayout {
                 x: parent.width - width
 
                 function reset() {
-                    doneCheckBox.state = 0
+                    doneCheckBox.checked = false
                     actualDurationTextArea.text = "0"
                     outcomeTextArea.text = "1"
                     notesTextArea.text = ""

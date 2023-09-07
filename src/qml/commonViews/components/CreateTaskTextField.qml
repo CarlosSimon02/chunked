@@ -91,49 +91,42 @@ RowLayout {
                     notesTextArea.text = ""
                 }
 
-                ColumnLayout {
-                    spacing: 25
-                    Comp.FieldColumnLayout {
-                        Comp.FieldLabel {
-                            text: "Done"
+                Comp.Pane {
+                    ColumnLayout {
+                        spacing: 25
+
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
+                                text: "Actual Duration (in minutes)"
+                            }
+
+                            Comp.SpinBox {
+                                id: actualDurationTextArea
+                                Layout.preferredWidth: 200
+                            }
                         }
 
-                        Comp.CheckBox {
-                            id: doneCheckBox
-                        }
-                    }
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
+                                text: "Outcome"
+                            }
 
-                    Comp.FieldColumnLayout {
-                        Comp.FieldLabel {
-                            text: "Actual Duration (in minutes)"
-                        }
-
-                        Comp.SpinBox {
-                            id: actualDurationTextArea
-                            Layout.preferredWidth: 200
-                        }
-                    }
-
-                    Comp.FieldColumnLayout {
-                        Comp.FieldLabel {
-                            text: "Outcome"
+                            Comp.SpinBox {
+                                id: outcomeTextArea
+                                Layout.preferredWidth: 200
+                                value: 1
+                            }
                         }
 
-                        Comp.SpinBox {
-                            id: outcomeTextArea
-                            Layout.preferredWidth: 200
-                            value: 1
-                        }
-                    }
+                        Comp.FieldColumnLayout {
+                            Comp.FieldLabel {
+                                text: "Notes"
+                            }
 
-                    Comp.FieldColumnLayout {
-                        Comp.FieldLabel {
-                            text: "Notes"
-                        }
-
-                        Comp.TextArea {
-                            id: notesTextArea
-                            Layout.preferredWidth: 200
+                            Comp.TextArea {
+                                id: notesTextArea
+                                Layout.preferredWidth: 200
+                            }
                         }
                     }
                 }

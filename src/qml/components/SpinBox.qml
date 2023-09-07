@@ -15,8 +15,7 @@ T.SpinBox {
                              implicitContentHeight + topPadding + bottomPadding,
                              up.implicitIndicatorHeight, down.implicitIndicatorHeight)
 
-    leftPadding: padding + (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
-    rightPadding: padding + (control.mirrored ? (down.indicator ? down.indicator.width : 0) : (up.indicator ? up.indicator.width : 0))
+    rightPadding: padding + (control.mirrored ? (down.indicator ? down.indicator.width + 4 : 0) : (up.indicator ? up.indicator.width : 0))
 
     editable: true
 
@@ -45,19 +44,21 @@ T.SpinBox {
     }
 
     up.indicator: Rectangle {
-        x: control.mirrored ? 0 : control.width - width
-        height: control.height
+        x: control.mirrored ? 0 : control.width - width - 4
+        y: 4
+        height: control.height/2 - 4
         implicitWidth: 40
-        implicitHeight: 40
+        implicitHeight: 20
         radius: Comp.Consts.commonRadius
         color: "transparent"
 
-        Comp.Text {
+        ColorImage {
             anchors.centerIn: parent
-            font.pixelSize: 24
-            font.bold: true
+            sourceSize.width: 10
+            sourceSize.height: 10
             color: enabled ? Comp.ColorScheme.secondaryColor.regular : Comp.ColorScheme.secondaryColor.veryDark
-            text: "+"
+            source: "qrc:/arrow_down_icon.svg"
+            mirrorVertically: true
         }
 
         Impl.FadeEffect {
@@ -71,19 +72,20 @@ T.SpinBox {
     }
 
     down.indicator: Rectangle {
-        x: control.mirrored ? parent.width - width : 0
-        height: control.height
+        x: control.mirrored ? 0 : control.width - width - 4
+        y: control.up.indicator.y + control.up.indicator.height
+        height: control.height/2 - 4
         implicitWidth: 40
-        implicitHeight: 40
+        implicitHeight: 20
         radius: Comp.Consts.commonRadius
         color: "transparent"
 
-        Comp.Text {
+        ColorImage {
             anchors.centerIn: parent
-            font.pixelSize: 24
-            font.bold: true
+            sourceSize.width: 10
+            sourceSize.height: 10
             color: enabled ? Comp.ColorScheme.secondaryColor.regular : Comp.ColorScheme.secondaryColor.veryDark
-            text: "-"
+            source: "qrc:/arrow_down_icon.svg"
         }
 
         Impl.FadeEffect {

@@ -36,6 +36,7 @@ Comp.Pane {
 
                         onSave: {
                             listView.model.insertTask(task)
+                            console.log(listView.model.data("name", 1))
                         }
                     }
 
@@ -47,8 +48,6 @@ Comp.Pane {
                         spacing: 8
                         currentIndex: -1
                         clip: false
-                        displayMarginBeginning: 100
-                        displayMarginEnd: 100
 
                         displaced: Transition {
                             NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }

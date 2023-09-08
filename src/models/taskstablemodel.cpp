@@ -16,7 +16,7 @@ TasksTableModel::TasksTableModel(QObject *parent)
 void TasksTableModel::insertTask(Task *task)
 {
     QSqlRecord rec = record();
-//    rec.setValue("itemId", QVariant());
+    rec.setGenerated("itemId",false);
     rec.setValue("name", task->name());
     rec.setValue("done", 0);
 //    rec.setValue("startDateTime", task->startDateTime());
@@ -28,9 +28,7 @@ void TasksTableModel::insertTask(Task *task)
 
 //    qWarning() << rec.value("name");
 
-    if(rowCount() == 0)
-        beginInsertRows(QModelIndex(),0,1);
-
     if (!insertRecord(0,rec))
         qWarning() << "TasksTableModel::insertTask: Cannot insert task";
+
 }

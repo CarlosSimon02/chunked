@@ -49,12 +49,6 @@ Comp.Pane {
                         clip: false
                         displayMarginBeginning: 100
                         displayMarginEnd: 100
-//                        verticalLayoutDirection: ListView.BottomToTop
-                        header: Rectangle {
-                            color: "white"
-                            width: parent.width
-                            height: 20
-                        }
 
                         displaced: Transition {
                             NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }

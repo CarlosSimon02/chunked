@@ -33,6 +33,10 @@ Comp.Pane {
                         id: createTaskTextField
                         Layout.fillWidth: true
                         task.parentGoalId: pane.parentGoalId
+
+                        onSave: {
+                            listView.model.insertTask(task)
+                        }
                     }
 
                     Comp.ListView {
@@ -41,13 +45,51 @@ Comp.Pane {
                         Layout.preferredHeight: contentHeight
                         interactive: false
                         spacing: 8
-                        verticalLayoutDirection: ListView.BottomToTop
+                        currentIndex: -1
+                        clip: false
+                        displayMarginBeginning: 100
+                        displayMarginEnd: 100
+//                        verticalLayoutDirection: ListView.BottomToTop
+                        header: Rectangle {
+                            color: "white"
+                            width: parent.width
+                            height: 20
+                        }
+
+                        displaced: Transition {
+                            NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
+
+                            // ensure opacity and scale values return to 1.0
+                            NumberAnimation { property: "opacity"; to: 1.0 }
+                            NumberAnimation { property: "scale"; to: 1.0 }
+                        }
 
                         delegate: CommonViews.TaskItemDelegate {
+                            id: taskItemDelegate
                             width: ListView.view.width
+                            property bool added: false
+                            opacity: 0
+                            scale: 0
 
-                            taskDone: model.done
-                            name: model.name
+                            ListView.onAdd: {
+                                added = true
+//                                taskDone = model.done
+//                                name = model.name
+                                console.log("added")
+                            }
+
+                            states: State {
+                                name: "added"; when: taskItemDelegate.added
+                                PropertyChanges { target: taskItemDelegate; scale: 1; opacity: 1 }
+                            }
+
+                            transitions: Transition {
+                                to: "added"
+                                reversible: true
+
+                                NumberAnimation { property: "opacity"; duration: 400 }
+                                NumberAnimation { property: "scale"; duration: 400 }
+                            }
 
                             onSetDone: model.done = taskDone
                             onClicked: {
@@ -60,10 +102,10 @@ Comp.Pane {
                             parentGoalId: pane.parentGoalId
                         }
 
-                        Connections {
-                            target: createTaskTextField
-                            function onSave() {listView.model.refresh()}
-                        }
+//                        Connections {
+//                            target: createTaskTextField
+//                            function onSave() {listView.model.refresh()}
+//                        }
                     }
                 }
             }

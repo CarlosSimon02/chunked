@@ -35,9 +35,8 @@ RowLayout {
                 columnLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
                 columnLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
                 columnLayout.task.actualDuration = actualDurationSpinBox.value
-                columnLayout.task.outcome = parseInt(outcomeSpinBox.text)
+                columnLayout.task.outcome = parseInt(outcomeSpinBox.value)
                 columnLayout.task.notes = notesTextArea.text
-                dbAccess.saveTaskItem(columnLayout.task)
                 columnLayout.save()
 
                 textArea.text = ""

@@ -63,6 +63,7 @@ RowLayout {
             Comp.Popup {
                 id: dateTimeFramePickerPopup
                 x: parent.width - width
+                padding: 25
 
                 Comp.DateTimeFramePicker {
                     id: dateTimeFramePicker
@@ -81,7 +82,6 @@ RowLayout {
             Comp.Popup {
                 id: taskDetailsPopup
                 x: parent.width - width
-                padding: 15
 
                 function reset() {
                     actualDurationSpinBox.value = 0
@@ -90,6 +90,8 @@ RowLayout {
                 }
 
                 Comp.Pane {
+                    padding: 20
+
                     ColumnLayout {
                         spacing: 25
 
@@ -123,7 +125,8 @@ RowLayout {
 
                             Comp.TextArea {
                                 id: notesTextArea
-                                Layout.preferredWidth: 200
+                                Layout.preferredWidth: 400
+                                Layout.preferredHeight: 104
                             }
                         }
                     }

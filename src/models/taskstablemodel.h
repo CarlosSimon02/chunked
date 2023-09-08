@@ -4,6 +4,8 @@
 #include <QQmlEngine>
 #include "models/basetablemodel.h"
 
+class Task;
+
 class TasksTableModel : public BaseTableModel
 {
     Q_OBJECT
@@ -12,6 +14,7 @@ class TasksTableModel : public BaseTableModel
 
 public:
     explicit TasksTableModel(QObject *parent = nullptr);
+    Q_INVOKABLE void insertTask(Task* task);
 };
 
 #endif // TASKSTABLEMODEL_H

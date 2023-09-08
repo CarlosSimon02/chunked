@@ -61,14 +61,16 @@ Comp.Pane {
                         delegate: CommonViews.TaskItemDelegate {
                             id: taskItemDelegate
                             width: ListView.view.width
-                            property bool added: false
                             opacity: 0
-                            scale: 0
+                            scale: 0.7
+                            taskDone: model.done
+                            name: model.name
+
+                            property bool added: false
 
                             ListView.onAdd: {
                                 added = true
-//                                taskDone = model.done
-//                                name = model.name
+
                                 console.log("added")
                             }
 

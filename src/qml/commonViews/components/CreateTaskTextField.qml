@@ -81,6 +81,7 @@ RowLayout {
             Comp.Popup {
                 id: taskDetailsPopup
                 x: parent.width - width
+                padding: 0
 
                 function reset() {
                     actualDurationSpinBox.value = 0

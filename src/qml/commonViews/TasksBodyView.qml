@@ -137,10 +137,11 @@ Comp.Pane {
 
             Comp.ScrollViewPane {
                 implicitWidth: drawerScrollView.width
-                padding: 15
+                padding: 20
 
                 ColumnLayout {
                     width: parent.width
+                    spacing: 25
 
                     Comp.FieldColumnLayout {
                         Comp.FieldLabel {

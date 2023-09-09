@@ -150,6 +150,7 @@ Comp.Pane {
                         Layout.bottomMargin: 10
                         Comp.CheckBox {
                             id: doneCheckBox
+                            onCheckedChanged: listView.model.setData("done", drawerPane.index, checked)
                         }
 
                         Comp.Text {
@@ -197,6 +198,7 @@ Comp.Pane {
                         Comp.TextArea {
                             id: nameTextArea
                             Layout.fillWidth: true
+                            onTextChanged: listView.model.setData("name", drawerPane.index, text)
                         }
                     }
 
@@ -209,6 +211,7 @@ Comp.Pane {
                             id: outcomeSpinBox
                             Layout.fillWidth: true
                             value: 1
+                            onValueChanged: listView.model.setData("outcome", drawerPane.index, value)
                         }
                     }
 
@@ -220,6 +223,7 @@ Comp.Pane {
                         Comp.SpinBox {
                             id: actualDurationSpinBox
                             Layout.fillWidth: true
+                            onValueChanged: listView.model.setData("actualDuration", drawerPane.index, value)
                         }
                     }
 
@@ -232,6 +236,7 @@ Comp.Pane {
                             id: notesTextArea
                             Layout.fillWidth: true
                             Layout.preferredHeight: 104
+                            onTextChanged: listView.model.setData("notes", drawerPane.index, text)
                         }
                     }
                 }

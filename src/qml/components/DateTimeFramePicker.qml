@@ -10,18 +10,22 @@ Item {
 
     property alias startDateTimeText: startButton.text
     property alias endDateTimeText: endButton.text
+    property alias startDateTime: startButton.chosenDateTime
+    property alias endDateTime: endButton.chosenDateTime
+    signal setInitDateTimes
 
     function reset() {
         var date = new Date()
         date.setHours(0,0)
         startButton.chosenDateTime = date
-        startDatePicker.chosenDateTime = date
-        startTimePicker.chosenDateTime = date
-
         date.setDate(date.getDate() + 1)
         endButton.chosenDateTime = date
-        endDatePicker.chosenDateTime = date
-        endTimePicker.chosenDateTime = date
+        setInitDateTimes()
+
+        startDatePicker.chosenDateTime = startButton.chosenDateTime
+        startTimePicker.chosenDateTime = startButton.chosenDateTime
+        endDatePicker.chosenDateTime = endButton.chosenDateTime
+        endTimePicker.chosenDateTime = endButton.chosenDateTime
 
         swipeView.currentIndex = 0
     }

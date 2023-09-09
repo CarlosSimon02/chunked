@@ -82,6 +82,8 @@ Comp.Pane {
                             drawerPane.open()
                             doneCheckBox.checked = model.done
                             timeFrameText.text = model.startDateTime + " -\n" + model.endDateTime
+                            dateTimeFramePicker.startDateTime = Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
+                            dateTimeFramePicker.endDateTime = Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
                             nameTextArea.text = model.name
                             outcomeSpinBox.value = model.outcome
                             actualDurationSpinBox.value = model.actualDuration

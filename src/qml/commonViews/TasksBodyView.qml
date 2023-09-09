@@ -80,8 +80,9 @@ Comp.Pane {
                         onSetDone: model.done = taskDone
                         onClicked: {
                             drawerPane.open()
+                            doneCheckBox.checked = model.done
+                            timeFrameText.text = model.startDateTime + " -\n" + model.endDateTime
                             nameTextArea.text = model.name
-                            timeFrameTextArea.text = model.startDateTime + " - " + model.endDateTime
                             outcomeSpinBox.value = model.outcome
                             actualDurationSpinBox.value = model.actualDuration
                             notesTextArea.text = model.notes
@@ -135,11 +136,54 @@ Comp.Pane {
             id: drawerScrollView
             anchors.fill: parent
 
-            Comp.ScrollViewPane {
+            Comp.Page {
                 implicitWidth: drawerScrollView.width
                 height: Math.max(implicitHeight,parent.parent.height)
                 background: null
                 padding: 20
+
+                header: ColumnLayout {
+                    spacing: 10
+
+                    RowLayout {
+                        Layout.margins: 20
+                        Layout.bottomMargin: 10
+                        Comp.CheckBox {
+                            id: doneCheckBox
+                        }
+
+                        Comp.Text {
+                            id: timeFrameText
+                            Layout.fillWidth: true
+                            color: Comp.ColorScheme.secondaryColor.veryDark
+                        }
+
+                        Comp.Button {
+                            Layout.preferredWidth: 36
+                            Layout.preferredHeight: 36
+                            icon.source: "qrc:/calendar_icon.svg"
+                            icon.width: 20
+                            icon.height: 20
+                            onClicked: dateTimeFramePickerPopup.open()
+
+                            Comp.Popup {
+                                id: dateTimeFramePickerPopup
+                                x: parent.width - width
+                                padding: 25
+
+                                Comp.DateTimeFramePicker {
+                                    id: dateTimeFramePicker
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 1
+                        color: Comp.ColorScheme.secondaryColor.veryDark
+                    }
+                }
 
                 ColumnLayout {
                     width: parent.width
@@ -153,18 +197,6 @@ Comp.Pane {
                         Comp.TextArea {
                             id: nameTextArea
                             Layout.fillWidth: true
-                        }
-                    }
-
-                    Comp.FieldColumnLayout {
-                        Comp.FieldLabel {
-                            text: "Time Frame"
-                        }
-
-                        Comp.TextArea {
-                            id: timeFrameTextArea
-                            Layout.fillWidth: true
-
                         }
                     }
 

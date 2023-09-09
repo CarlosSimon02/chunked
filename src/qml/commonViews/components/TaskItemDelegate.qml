@@ -31,10 +31,12 @@ Comp.ItemDelegate {
 
                 Label {
                     id: outcome
-                    leftPadding: 10
-                    rightPadding: 10
+                    Layout.preferredWidth: Math.max(40, implicitWidth)
+                    horizontalAlignment: Text.AlignHCenter
                     topPadding: 3
                     bottomPadding: 3
+                    leftPadding: 10
+                    rightPadding: 10
                     text: "15"
                     visible: itemDelegate.isOutcomeVisible
                     color: Comp.ColorScheme.secondaryColor.dark

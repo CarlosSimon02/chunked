@@ -96,122 +96,122 @@ Comp.Pane {
         }
     }
 
-//    Pane {
-//        id: dimOverlayPane
-//        anchors.fill: parent
-//        visible: drawerPane.opened
+    Pane {
+        id: dimOverlayPane
+        anchors.fill: parent
+        visible: drawerPane.opened
 
-//        background: Rectangle {
-//            color: Comp.Utils.setColorAlpha(Comp.ColorScheme.primaryColor.dark, 0.3)
-//        }
+        background: Rectangle {
+            color: Comp.Utils.setColorAlpha(Comp.ColorScheme.primaryColor.dark, 0.3)
+        }
 
-//        TapHandler {
-//            onTapped: drawerPane.opened = false
-//        }
-//    }
+        TapHandler {
+            onTapped: drawerPane.opened = false
+        }
+    }
 
-//    Pane {
-//        id: drawerPane
-//        anchors.verticalCenter: parent.verticalCenter
-//        x: parent.width + 20
-//        height: parent.height - 40
-//        width: 350
-//        visible: x <= parent.width + 20
-//        property bool opened: false
-//        property int index
-//        signal open
+    Pane {
+        id: drawerPane
+        anchors.verticalCenter: parent.verticalCenter
+        x: parent.width + 20
+        height: parent.height - 40
+        width: 350
+        visible: x <= parent.width + 20
+        property bool opened: false
+        property int index
+        signal open
 
-//        onOpen: opened = true
+        onOpen: opened = true
 
-//        background: Rectangle {
-//            color: Comp.ColorScheme.primaryColor.light
-//            radius: Comp.Consts.commonRadius
-//            layer.enabled: true
-//            layer.effect: Impl.DropShadow {}
-//        }
+        background: Rectangle {
+            color: Comp.ColorScheme.primaryColor.light
+            radius: Comp.Consts.commonRadius
+            layer.enabled: true
+            layer.effect: Impl.DropShadow {}
+        }
 
-//        ColumnLayout {
-//            anchors.fill: parent
+        ColumnLayout {
+            anchors.fill: parent
 
-//            Comp.FieldColumnLayout {
-//                Comp.FieldLabel {
-//                    text: "Name"
-//                }
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Name"
+                }
 
-//                Comp.TextArea {
-//                    id: nameTextArea
-//                    Layout.fillWidth: true
-//                }
-//            }
+                Comp.TextArea {
+                    id: nameTextArea
+                    Layout.fillWidth: true
+                }
+            }
 
-//            Comp.FieldColumnLayout {
-//                Comp.FieldLabel {
-//                    text: "Time Frame"
-//                }
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Time Frame"
+                }
 
-//                Comp.TextArea {
-//                    id: timeFrameTextArea
-//                    Layout.fillWidth: true
+                Comp.TextArea {
+                    id: timeFrameTextArea
+                    Layout.fillWidth: true
 
-//                }
-//            }
+                }
+            }
 
-//            Comp.FieldColumnLayout {
-//                Comp.FieldLabel {
-//                    text: "Outcome"
-//                }
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Outcome"
+                }
 
-//                Comp.SpinBox {
-//                    id: outcomeSpinBox
-//                    Layout.fillWidth: true
-//                    value: 1
-//                }
-//            }
+                Comp.SpinBox {
+                    id: outcomeSpinBox
+                    Layout.fillWidth: true
+                    value: 1
+                }
+            }
 
-//            Comp.FieldColumnLayout {
-//                Comp.FieldLabel {
-//                    text: "Actual Duration (in minutes)"
-//                }
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Actual Duration (in minutes)"
+                }
 
-//                Comp.SpinBox {
-//                    id: actualDurationSpinBox
-//                    Layout.fillWidth: true
-//                }
-//            }
+                Comp.SpinBox {
+                    id: actualDurationSpinBox
+                    Layout.fillWidth: true
+                }
+            }
 
-//            Comp.FieldColumnLayout {
-//                Comp.FieldLabel {
-//                    text: "Notes"
-//                }
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Notes"
+                }
 
-//                Comp.TextArea {
-//                    id: notesTextArea
-//                    Layout.fillWidth: true
-//                    Layout.preferredHeight: 104
-//                }
-//            }
-//        }
+                Comp.TextArea {
+                    id: notesTextArea
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 104
+                }
+            }
+        }
 
-//        states: State {
-//            name: "opened"
-//            when: drawerPane.opened
+        states: State {
+            name: "opened"
+            when: drawerPane.opened
 
-//            PropertyChanges {
-//                target: drawerPane
-//                x: parent.width - width - 20
-//            }
-//        }
+            PropertyChanges {
+                target: drawerPane
+                x: parent.width - width - 20
+            }
+        }
 
-//        transitions: Transition {
-//            to: "opened"
-//            reversible: true
+        transitions: Transition {
+            to: "opened"
+            reversible: true
 
-//            NumberAnimation {
-//                target: drawerPane
-//                property: "x"
-//                duration: 500
-//                easing.type: Easing.OutQuad
-//            }
-//        }
-//    }
+            NumberAnimation {
+                target: drawerPane
+                property: "x"
+                duration: 500
+                easing.type: Easing.OutQuad
+            }
+        }
+    }
 }

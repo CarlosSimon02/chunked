@@ -62,10 +62,6 @@ Comp.Pane {
 
                             property bool added
 
-                            ListView.onAdd: {
-                                added = true
-                            }
-
                             states: State {
                                 name: "added"; when: taskItemDelegate.added
                                 PropertyChanges { target: taskItemDelegate; scale: 1; opacity: 1 }
@@ -76,9 +72,10 @@ Comp.Pane {
                                 reversible: true
 
                                 NumberAnimation { property: "opacity"; from: 0; duration: 400 }
-                                NumberAnimation { property: "scale"; from: 0.9; duration: 400 }
+                                NumberAnimation { property: "scale"; from: 0.7; duration: 400 }
                             }
 
+                            ListView.onAdd: added = true
                             onSetDone: model.done = taskDone
                             onClicked: {
                                 drawerPane.open()
@@ -137,6 +134,28 @@ Comp.Pane {
         }
 
         ColumnLayout {
+            anchors.fill: parent
+
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Name"
+                }
+
+                Comp.TextArea {
+                    Layout.fillWidth: true
+                }
+            }
+
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Name"
+                }
+
+                Comp.TextArea {
+                    Layout.fillWidth: true
+                }
+            }
+
             Comp.Text {
                 id: nameText
             }

@@ -116,6 +116,7 @@ Comp.Pane {
         x: parent.width + 20
         height: parent.height - 40
         width: 350
+        padding: 0
         visible: x <= parent.width + 20
         property bool opened: false
         property int index
@@ -136,6 +137,7 @@ Comp.Pane {
 
             Comp.ScrollViewPane {
                 implicitWidth: drawerScrollView.width
+                padding: 15
 
                 ColumnLayout {
                     width: parent.width

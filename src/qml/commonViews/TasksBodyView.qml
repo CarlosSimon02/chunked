@@ -43,10 +43,8 @@ Comp.Pane {
                         id: listView
                         Layout.fillWidth: true
                         Layout.preferredHeight: contentHeight
-                        interactive: false
                         spacing: 8
                         currentIndex: -1
-                        clip: false
 
                         displaced: Transition {
                             NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
@@ -59,17 +57,13 @@ Comp.Pane {
                         delegate: CommonViews.TaskItemDelegate {
                             id: taskItemDelegate
                             width: ListView.view.width
-                            opacity: 0
-                            scale: 0.7
                             taskDone: model.done
                             name: model.name
 
-                            property bool added: false
+                            property bool added
 
                             ListView.onAdd: {
                                 added = true
-
-                                console.log("added")
                             }
 
                             states: State {
@@ -81,8 +75,8 @@ Comp.Pane {
                                 to: "added"
                                 reversible: true
 
-                                NumberAnimation { property: "opacity"; duration: 400 }
-                                NumberAnimation { property: "scale"; duration: 400 }
+                                NumberAnimation { property: "opacity"; from: 0; duration: 400 }
+                                NumberAnimation { property: "scale"; from: 0.9; duration: 400 }
                             }
 
                             onSetDone: model.done = taskDone

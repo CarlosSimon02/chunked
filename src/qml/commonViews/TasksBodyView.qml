@@ -77,10 +77,7 @@ Comp.Pane {
 
                             ListView.onAdd: added = true
                             onSetDone: model.done = taskDone
-                            onClicked: {
-                                drawerPane.open()
-                                drawerPane.index = model.index
-                            }
+                            onClicked: drawerPane.index = model.index
                         }
 
                         model: TasksTableModel {
@@ -118,13 +115,7 @@ Comp.Pane {
         height: parent.height - 40
         width: 350
         visible: x <= parent.width + 20
-        property bool opened: false
         property int index
-        signal open
-        onOpen: {
-            opened = true
-            nameText.text = listView.model.data("name", drawerPane.index)
-        }
 
         background: Rectangle {
             color: Comp.ColorScheme.primaryColor.light
@@ -142,27 +133,56 @@ Comp.Pane {
                 }
 
                 Comp.TextArea {
+                    id: nameTextArea
+                    Layout.fillWidth: true
+                    text: listView.model.data("name", drawerPane.index)
+                }
+            }
+
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Time Frame"
+                }
+
+                Comp.TextArea {
+                    id: timeFrameTextArea
                     Layout.fillWidth: true
                 }
             }
 
             Comp.FieldColumnLayout {
                 Comp.FieldLabel {
-                    text: "Name"
+                    text: "Outcome"
                 }
 
-                Comp.TextArea {
+                Comp.SpinBox {
+                    id: outcomeSpinBox
+                    Layout.fillWidth: true
+                    value: 1
+                }
+            }
+
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Actual Duration (in minutes)"
+                }
+
+                Comp.SpinBox {
+                    id: actualDurationSpinBox
                     Layout.fillWidth: true
                 }
             }
 
-            Comp.Text {
-                id: nameText
-            }
+            Comp.FieldColumnLayout {
+                Comp.FieldLabel {
+                    text: "Notes"
+                }
 
-            Comp.Button {
-                text: "Change Name to Fuck you"
-                onClicked: listView.model.setData("name", drawerPane.index, "Fuck you")
+                Comp.TextArea {
+                    id: notesTextArea
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 104
+                }
             }
         }
 

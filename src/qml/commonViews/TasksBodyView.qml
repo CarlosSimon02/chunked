@@ -130,67 +130,78 @@ Comp.Pane {
             layer.effect: Impl.DropShadow {}
         }
 
-        ColumnLayout {
+        Comp.ScrollView {
+            id: drawerScrollView
             anchors.fill: parent
 
-            Comp.FieldColumnLayout {
-                Comp.FieldLabel {
-                    text: "Name"
-                }
+            Comp.ScrollViewPane {
+                implicitWidth: drawerScrollView.width
 
-                Comp.TextArea {
-                    id: nameTextArea
-                    Layout.fillWidth: true
-                }
-            }
+                ColumnLayout {
+                    width: parent.width
 
-            Comp.FieldColumnLayout {
-                Comp.FieldLabel {
-                    text: "Time Frame"
-                }
+                    Comp.FieldColumnLayout {
+                        Comp.FieldLabel {
+                            text: "Name"
+                        }
 
-                Comp.TextArea {
-                    id: timeFrameTextArea
-                    Layout.fillWidth: true
+                        Comp.TextArea {
+                            id: nameTextArea
+                            Layout.fillWidth: true
+                        }
+                    }
 
-                }
-            }
+                    Comp.FieldColumnLayout {
+                        Comp.FieldLabel {
+                            text: "Time Frame"
+                        }
 
-            Comp.FieldColumnLayout {
-                Comp.FieldLabel {
-                    text: "Outcome"
-                }
+                        Comp.TextArea {
+                            id: timeFrameTextArea
+                            Layout.fillWidth: true
 
-                Comp.SpinBox {
-                    id: outcomeSpinBox
-                    Layout.fillWidth: true
-                    value: 1
-                }
-            }
+                        }
+                    }
 
-            Comp.FieldColumnLayout {
-                Comp.FieldLabel {
-                    text: "Actual Duration (in minutes)"
-                }
+                    Comp.FieldColumnLayout {
+                        Comp.FieldLabel {
+                            text: "Outcome"
+                        }
 
-                Comp.SpinBox {
-                    id: actualDurationSpinBox
-                    Layout.fillWidth: true
-                }
-            }
+                        Comp.SpinBox {
+                            id: outcomeSpinBox
+                            Layout.fillWidth: true
+                            value: 1
+                        }
+                    }
 
-            Comp.FieldColumnLayout {
-                Comp.FieldLabel {
-                    text: "Notes"
-                }
+                    Comp.FieldColumnLayout {
+                        Comp.FieldLabel {
+                            text: "Actual Duration (in minutes)"
+                        }
 
-                Comp.TextArea {
-                    id: notesTextArea
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 104
+                        Comp.SpinBox {
+                            id: actualDurationSpinBox
+                            Layout.fillWidth: true
+                        }
+                    }
+
+                    Comp.FieldColumnLayout {
+                        Comp.FieldLabel {
+                            text: "Notes"
+                        }
+
+                        Comp.TextArea {
+                            id: notesTextArea
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 104
+                        }
+                    }
                 }
             }
         }
+
+
 
         states: State {
             name: "opened"

@@ -137,6 +137,8 @@ Comp.Pane {
 
             Comp.ScrollViewPane {
                 implicitWidth: drawerScrollView.width
+                height: Math.max(implicitHeight,parent.parent.height)
+                background: null
                 padding: 20
 
                 ColumnLayout {

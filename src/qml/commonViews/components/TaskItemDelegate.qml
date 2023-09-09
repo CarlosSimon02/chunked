@@ -19,10 +19,13 @@ Comp.ItemDelegate {
     property alias taskDone: checkBox.checked
     property alias name: name.text
     property alias outcome: outcome.text
+    property date startDateTime
+    property date endDateTime
     property bool isOutcomeVisible
 
     contentItem: Item {
         RowLayout {
+            width: parent.width
             anchors.verticalCenter: parent.verticalCenter
             spacing: 10
 
@@ -55,6 +58,16 @@ Comp.ItemDelegate {
             Comp.Text {
                 id: name
                 font: itemDelegate.font
+            }
+
+            Comp.Text {
+                id: timeRemaining
+                Layout.fillWidth: true
+                Layout.maximumWidth: Number.POSITIVE_INFINITY
+                horizontalAlignment: Text.AlignRight
+                text: new Date() > itemDelegate.startDateTime ? Comp.Utils.getTimeFrame(new Date(), itemDelegate.endDateTime) + " remaining" :
+                                                                "Start on " + itemDelegate.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                color: Comp.ColorScheme.secondaryColor.dark
             }
         }
     }

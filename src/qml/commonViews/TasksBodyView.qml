@@ -60,6 +60,8 @@ Comp.Pane {
                         name: model.name
                         outcome: model.outcome
                         isOutcomeVisible: ListView.view.isOutcomeVisible
+                        startDateTime: Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
+                        endDateTime: Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
 
                         property bool added
 
@@ -177,8 +179,15 @@ Comp.Pane {
                                 Comp.DateTimeFramePicker {
                                     id: dateTimeFramePicker
 
-                                    onStartDateTimeTextChanged: listView.model.setData("startDateTime", drawerPane.index, startDateTimeText)
-                                    onEndDateTimeTextChanged: listView.model.setData("endDateTime", drawerPane.index, endDateTimeText)
+                                    onStartDateTimeTextChanged: {
+                                        listView.model.setData("startDateTime", drawerPane.index, startDateTimeText)
+                                        timeFrameText.text = startDateTimeText + " -\n" + endDateTimeText
+                                    }
+
+                                    onEndDateTimeTextChanged: {
+                                        listView.model.setData("endDateTime", drawerPane.index, endDateTimeText)
+                                        timeFrameText.text = startDateTimeText + " -\n" + endDateTimeText
+                                    }
                                 }
                             }
                         }

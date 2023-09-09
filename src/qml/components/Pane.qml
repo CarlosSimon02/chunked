@@ -12,7 +12,6 @@ Ctrl.Pane {
     clip: true
 
     background: Rectangle {
-        clip: false
         color: pane.backgroundColor
         radius: Consts.commonRadius
 

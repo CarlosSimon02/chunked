@@ -6,7 +6,6 @@ import components as Comp
 import commonViews as View
 
 Comp.Page {
-    signal goalAdded
     topPadding: -pageHeader.bottomPadding
 
     header: Comp.PageHeader {

@@ -18,14 +18,34 @@ Comp.ItemDelegate {
 
     property alias taskDone: checkBox.checked
     property alias name: name.text
+    property bool isOutcomeVisible
 
     contentItem: Item {
         RowLayout {
             anchors.verticalCenter: parent.verticalCenter
+            spacing: 20
 
-            Comp.CheckBox {
-                id: checkBox
-                onClicked: itemDelegate.setDone()
+            RowLayout {
+                spacing: 0
+
+                Label {
+                    id: category
+                    leftPadding: 10
+                    rightPadding: 10
+                    topPadding: 3
+                    bottomPadding: 3
+                    text: "15"
+                    color: Comp.ColorScheme.secondaryColor.dark
+                    background: Rectangle {
+                        radius: Comp.Consts.commonRadius
+                        color: Comp.Utils.setColorAlpha(Comp.ColorScheme.secondaryColor.dark, 0.1)
+                    }
+                }
+
+                Comp.CheckBox {
+                    id: checkBox
+                    onClicked: itemDelegate.setDone()
+                }
             }
 
             Comp.Text {

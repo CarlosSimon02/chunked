@@ -19,14 +19,12 @@ void TasksTableModel::insertTask(Task *task)
     rec.setGenerated("itemId",false);
     rec.setValue("name", task->name());
     rec.setValue("done", 0);
-//    rec.setValue("startDateTime", task->startDateTime());
-//    rec.setValue("endDateTime", task->endDateTime());
-//    rec.setValue("actualDuration", task->actualDuration());
-//    rec.setValue("outcome", task->outcome());
-//    rec.setValue("notes", task->notes());
-//    rec.setValue("parentGoalId", task->parentGoalId());
-
-//    qWarning() << rec.value("name");
+    rec.setValue("startDateTime", task->startDateTime());
+    rec.setValue("endDateTime", task->endDateTime());
+    rec.setValue("actualDuration", task->actualDuration());
+    rec.setValue("outcome", task->outcome());
+    rec.setValue("notes", task->notes());
+    rec.setValue("parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()) );
 
     if (!insertRecord(0,rec))
         qWarning() << "TasksTableModel::insertTask: Cannot insert task";

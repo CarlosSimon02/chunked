@@ -36,7 +36,6 @@ Comp.Pane {
 
                         onSave: {
                             listView.model.insertTask(task)
-                            console.log(listView.model.data("name", 1))
                         }
                     }
 

@@ -18,23 +18,25 @@ Comp.ItemDelegate {
 
     property alias taskDone: checkBox.checked
     property alias name: name.text
+    property alias outcome: outcome.text
     property bool isOutcomeVisible
 
     contentItem: Item {
         RowLayout {
             anchors.verticalCenter: parent.verticalCenter
-            spacing: 20
+            spacing: 10
 
             RowLayout {
                 spacing: 0
 
                 Label {
-                    id: category
+                    id: outcome
                     leftPadding: 10
                     rightPadding: 10
                     topPadding: 3
                     bottomPadding: 3
                     text: "15"
+                    visible: itemDelegate.isOutcomeVisible
                     color: Comp.ColorScheme.secondaryColor.dark
                     background: Rectangle {
                         radius: Comp.Consts.commonRadius

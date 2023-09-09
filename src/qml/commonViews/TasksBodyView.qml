@@ -58,6 +58,7 @@ Comp.Pane {
                         width: ListView.view.width
                         taskDone: model.done
                         name: model.name
+                        outcome: model.outcome
                         isOutcomeVisible: ListView.view.isOutcomeVisible
 
                         property bool added

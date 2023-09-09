@@ -11,6 +11,7 @@ Comp.Pane {
     implicitWidth: 400
     implicitHeight: 1000
     padding: 0
+    elevated: true
 
     property alias goal: scrollView.goal
 

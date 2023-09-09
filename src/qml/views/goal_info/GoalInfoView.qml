@@ -75,82 +75,69 @@ Comp.Page {
             Layout.fillWidth: true
             Layout.fillHeight: true
             background: null
-            topPadding: -pageHeader.bottomPadding
 
-            header: Comp.PageHeader {
-                id: pageHeader
-                height: 80
+            header: Comp.ListView {
+                id: listView
+                height: contentItem.childrenRect.height
+                orientation: ListView.Horizontal
+                currentIndex: 0
+                spacing: 10
+                clip: true
+                highlightFollowsCurrentItem: false
+                highlight: Rectangle {
+                    height: 2
+                    width: listView.currentItem.width
+                    color: Comp.ColorScheme.accentColor.regular
+                    x: listView.currentItem.x
+                    y: listView.currentItem.y + listView.currentItem.height - height
 
-                RowLayout {
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 0
-                    width: parent.width
+                    Behavior on width { SmoothedAnimation { velocity: 100 } }
+                    Behavior on x { SmoothedAnimation { velocity: 400 } }
+                }
 
-                    Comp.ListView {
-                        id: listView
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: contentItem.childrenRect.height
-                        orientation: ListView.Horizontal
-                        currentIndex: 0
-                        spacing: 10
-                        clip: true
-                        highlightFollowsCurrentItem: false
-                        highlight: Rectangle {
-                            height: 2
-                            width: listView.currentItem.width
-                            color: Comp.ColorScheme.accentColor.regular
-                            x: listView.currentItem.x
-                            y: listView.currentItem.y + listView.currentItem.height - height
+                delegate: Comp.ItemDelegate {
+                    padding: 10
+                    bottomPadding: 20
 
-                            Behavior on width { SmoothedAnimation { velocity: 100 } }
-                            Behavior on x { SmoothedAnimation { velocity: 400 } }
-                        }
+                    text: model.data
+                    font.weight: Font.Normal
+                    bottomInset: 10
+                    highlighted: ListView.isCurrentItem
+                    backgroundColor: "transparent"
 
-                        delegate: Comp.ItemDelegate {
-                            padding: 10
-                            bottomPadding: 20
+                    onClicked: {
+                        ListView.view.currentIndex = model.index
 
-                            text: model.data
-                            font.weight: Font.Normal
-                            bottomInset: 10
-                            highlighted: ListView.isCurrentItem
-                            backgroundColor: "transparent"
+                        if(listView.currentItem.text === "Subgoals") loader.sourceComponent = subgoalsViewComp;
+                        else if(listView.currentItem.text === "Habits") loader.sourceComponent = habitsViewComp;
+                        else if(listView.currentItem.text === "Tasks") loader.sourceComponent = tasksViewComp;
+                        else if(listView.currentItem.text === "Description") loader.sourceComponent = descriptionViewComp
+                        else if(listView.currentItem.text === "Journal") loader.sourceComponent = journalViewComp
+                    }
+                }
 
-                            onClicked: {
-                                ListView.view.currentIndex = model.index
-
-                                if(listView.currentItem.text === "Subgoals") loader.sourceComponent = subgoalsViewComp;
-                                else if(listView.currentItem.text === "Habits") loader.sourceComponent = habitsViewComp;
-                                else if(listView.currentItem.text === "Tasks") loader.sourceComponent = tasksViewComp;
-                                else if(listView.currentItem.text === "Description") loader.sourceComponent = descriptionViewComp
-                                else if(listView.currentItem.text === "Journal") loader.sourceComponent = journalViewComp
-                            }
-                        }
-
-                        model: ListModel {
-                            Component.onCompleted: {
-                                switch(page.goal.progressTracker) {
-                                case 0: case 1:
-                                            append({"data":"Subgoals"});
-                                            loader.sourceComponent = subgoalsViewComp
-                                            break;
-                                case 2: case 3:
-                                            append({"data":"Tasks"});
-                                            loader.sourceComponent = tasksViewComp
-                                            break;
-                                case 4: case 5:
-                                            append({"data":"Habits"});
-                                            loader.sourceComponent = habitsViewComp
-                                            break;
-                                case 6:
-                                    loader.sourceComponent = descriptionViewComp
+                model: ListModel {
+                    Component.onCompleted: {
+                        switch(page.goal.progressTracker) {
+                        case 0: case 1:
+                                    append({"data":"Subgoals"});
+                                    loader.sourceComponent = subgoalsViewComp
                                     break;
-                                }
-
-                                append({"data":"Description"})
-                                append({"data":"Journal"})
-                            }
+                        case 2: case 3:
+                                    append({"data":"Tasks"});
+                                    loader.sourceComponent = tasksViewComp
+                                    break;
+                        case 4: case 5:
+                                    append({"data":"Habits"});
+                                    loader.sourceComponent = habitsViewComp
+                                    break;
+                        case 6:
+                            loader.sourceComponent = descriptionViewComp
+                            break;
                         }
+
+                        append({"data":"Description"})
+                        append({"data":"Journal"})
                     }
                 }
             }

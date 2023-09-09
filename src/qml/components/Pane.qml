@@ -9,7 +9,6 @@ Ctrl.Pane {
     property color backgroundColor: ColorScheme.primaryColor.light
     property bool elevated: false
     focusPolicy: Qt.ClickFocus
-    clip: true
 
     background: Rectangle {
         color: pane.backgroundColor

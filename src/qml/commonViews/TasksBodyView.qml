@@ -82,8 +82,8 @@ Comp.Pane {
                             drawerPane.open()
                             doneCheckBox.checked = model.done
                             timeFrameText.text = model.startDateTime + " -\n" + model.endDateTime
-                            dateTimeFramePicker.startDateTime = Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
-                            dateTimeFramePicker.endDateTime = Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
+                            dateTimeFramePicker.initStartDateTime = Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
+                            dateTimeFramePicker.initEndDateTime = Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
                             nameTextArea.text = model.name
                             outcomeSpinBox.value = model.outcome
                             actualDurationSpinBox.value = model.actualDuration
@@ -176,6 +176,9 @@ Comp.Pane {
 
                                 Comp.DateTimeFramePicker {
                                     id: dateTimeFramePicker
+
+                                    onStartDateTimeTextChanged: listView.model.setData("startDateTime", drawerPane.index, startDateTimeText)
+                                    onEndDateTimeTextChanged: listView.model.setData("endDateTime", drawerPane.index, endDateTimeText)
                                 }
                             }
                         }

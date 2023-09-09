@@ -10,9 +10,21 @@ Item {
 
     property alias startDateTimeText: startButton.text
     property alias endDateTimeText: endButton.text
-    property alias startDateTime: startButton.chosenDateTime
-    property alias endDateTime: endButton.chosenDateTime
-    signal setInitDateTimes
+    property date initStartDateTime
+    property date initEndDateTime
+
+    onInitStartDateTimeChanged: {
+        startButton.chosenDateTime = initStartDateTime
+        startDatePicker.chosenDateTime = startButton.chosenDateTime
+        startTimePicker.chosenDateTime = startButton.chosenDateTime
+
+    }
+
+    onInitEndDateTimeChanged: {
+        endButton.chosenDateTime = initEndDateTime
+        endDatePicker.chosenDateTime = endButton.chosenDateTime
+        endTimePicker.chosenDateTime = endButton.chosenDateTime
+    }
 
     function reset() {
         var date = new Date()
@@ -20,7 +32,6 @@ Item {
         startButton.chosenDateTime = date
         date.setDate(date.getDate() + 1)
         endButton.chosenDateTime = date
-        setInitDateTimes()
 
         startDatePicker.chosenDateTime = startButton.chosenDateTime
         startTimePicker.chosenDateTime = startButton.chosenDateTime

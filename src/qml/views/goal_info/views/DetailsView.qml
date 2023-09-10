@@ -183,31 +183,42 @@ Comp.Pane {
                             }
                         }
 
-                        ColumnLayout {
+                        Frame {
                             Layout.fillWidth: true
-                            spacing: 10
-
-                            RowLayout {
-                                spacing: 15
-                                Comp.Text {
-                                    Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
-                                    color: Comp.ColorScheme.accentColor.regular
-                                    font.pixelSize: 24
-                                    font.bold: true
-                                    text: scrollView.goal.targetValue ? Math.floor(scrollView.goal.progressValue/scrollView.goal.targetValue*100).toString()+"%" : "--"
-                                }
-
-                                Comp.Text {
-                                    Layout.fillWidth: true
-                                    Layout.alignment: Qt.AlignBaseline
-                                    color: Comp.ColorScheme.secondaryColor.dark
-                                    text: scrollView.goal.progressValue.toString() + " / " + scrollView.goal.targetValue.toString() + " " + scrollView.goal.progressUnit + " completed"
-                                }
+                            padding: 15
+                            background: Rectangle {
+                                color: "transparent"
+                                border.width: 1
+                                border.color: Comp.ColorScheme.secondaryColor.veryDark
+                                radius: Comp.Consts.commonRadius
                             }
 
-                            Comp.ProgressBar {
-                                Layout.fillWidth: true
-                                value: scrollView.goal.progressValue/scrollView.goal.targetValue
+                            ColumnLayout {
+                                width: parent.width
+                                spacing: 10
+
+                                RowLayout {
+                                    spacing: 15
+                                    Comp.Text {
+                                        Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
+                                        color: Comp.ColorScheme.accentColor.regular
+                                        font.pixelSize: 24
+                                        font.bold: true
+                                        text: scrollView.goal.targetValue ? Math.floor(scrollView.goal.progressValue/scrollView.goal.targetValue*100).toString()+"%" : "--"
+                                    }
+
+                                    Comp.Text {
+                                        Layout.fillWidth: true
+                                        Layout.alignment: Qt.AlignBaseline
+                                        color: Comp.ColorScheme.secondaryColor.dark
+                                        text: scrollView.goal.progressValue.toString() + " / " + scrollView.goal.targetValue.toString() + " " + scrollView.goal.progressUnit + " completed"
+                                    }
+                                }
+
+                                Comp.ProgressBar {
+                                    Layout.fillWidth: true
+                                    value: scrollView.goal.progressValue/scrollView.goal.targetValue
+                                }
                             }
                         }
                     }
@@ -222,66 +233,47 @@ Comp.Pane {
                             font.pixelSize: 18
                         }
 
-                        ColumnLayout {
-                            spacing: 10
-
-                            RowLayout {
-                                id: parentGoalRowLayout
-                                width: parent
-                                visible: scrollView.goal.parentGoalId
-
-                                Comp.Text {
-                                    Layout.preferredWidth: 100
-                                    Layout.alignment: Qt.AlignTop
-                                    color: Comp.ColorScheme.secondaryColor.dark
-                                    text: "Parent Goal"
-                                }
-
-                                Comp.Text {
-                                    id: parentGoalText
-                                    Layout.fillWidth: true
-                                    text: scrollView.goal.parentGoalId ? dbAccess.getValue("goals", "name", scrollView.goal.parentGoalId) : ""
-                                    font.underline: true
-                                    wrapMode: Text.Wrap
-
-                                    HoverHandler {
-                                        cursorShape: Qt.PointingHandCursor
-                                    }
-
-                                    TapHandler {
-                                        onTapped: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(scrollView.goal.parentGoalId)})
-                                    }
-                                }
+                        Frame {
+                            Layout.fillWidth: true
+                            padding: 15
+                            background: Rectangle {
+                                color: "transparent"
+                                border.width: 1
+                                border.color: Comp.ColorScheme.secondaryColor.veryDark
+                                radius: Comp.Consts.commonRadius
                             }
 
-                            RowLayout {
-                                width: parent
+                            ColumnLayout {
+                                spacing: 10
 
-                                Comp.Text {
-                                    Layout.preferredWidth: 100
-                                    Layout.alignment: Qt.AlignTop
-                                    color: Comp.ColorScheme.secondaryColor.dark
-                                    text: "Status"
+                                RowLayout {
+                                    id: parentGoalRowLayout
+                                    width: parent
+                                    visible: scrollView.goal.parentGoalId
+
+                                    Comp.Text {
+                                        Layout.preferredWidth: 100
+                                        Layout.alignment: Qt.AlignTop
+                                        color: Comp.ColorScheme.secondaryColor.dark
+                                        text: "Parent Goal"
+                                    }
+
+                                    Comp.Text {
+                                        id: parentGoalText
+                                        Layout.fillWidth: true
+                                        text: scrollView.goal.parentGoalId ? dbAccess.getValue("goals", "name", scrollView.goal.parentGoalId) : ""
+                                        font.underline: true
+                                        wrapMode: Text.Wrap
+
+                                        HoverHandler {
+                                            cursorShape: Qt.PointingHandCursor
+                                        }
+
+                                        TapHandler {
+                                            onTapped: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(scrollView.goal.parentGoalId)})
+                                        }
+                                    }
                                 }
-
-                                Comp.Text {
-                                    Layout.fillWidth: true
-                                    property int status: Comp.Utils.getGoalStatus(Date.fromLocaleString(Qt.locale(), scrollView.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
-                                                                                  Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"),
-                                                                                  scrollView.goal.targetValue,
-                                                                                  scrollView.goal.progressValue)
-                                    text: Comp.Consts.statusTypes[status]
-                                    color: switch(status) {
-                                           case 0: return "darkgoldenrod"
-                                           case 1: return "darkolivegreen"
-                                           case 2: return "darkblue"
-                                           case 3: return "darkred"
-                                           }
-                                }
-                            }
-
-                            Repeater {
-                                Layout.fillWidth: true
 
                                 RowLayout {
                                     width: parent
@@ -290,24 +282,54 @@ Comp.Pane {
                                         Layout.preferredWidth: 100
                                         Layout.alignment: Qt.AlignTop
                                         color: Comp.ColorScheme.secondaryColor.dark
-                                        text: model.label + ":"
+                                        text: "Status"
                                     }
 
                                     Comp.Text {
                                         Layout.fillWidth: true
-                                        text: model.data
-                                        wrapMode: Text.Wrap
+                                        property int status: Comp.Utils.getGoalStatus(Date.fromLocaleString(Qt.locale(), scrollView.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                                      Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                                      scrollView.goal.targetValue,
+                                                                                      scrollView.goal.progressValue)
+                                        text: Comp.Consts.statusTypes[status]
+                                        color: switch(status) {
+                                               case 0: return "darkgoldenrod"
+                                               case 1: return "darkolivegreen"
+                                               case 2: return "darkblue"
+                                               case 3: return "darkred"
+                                               }
                                     }
                                 }
 
-                                model: ListModel {
-                                    Component.onCompleted: {
-                                        append({"label":"Category", "data":scrollView.goal.category})
-                                        append({"label":"Start Time", "data":scrollView.goal.startDateTime})
-                                        append({"label":"End Time", "data":scrollView.goal.endDateTime})
-                                        append({"label":"Time Frame", "data":Comp.Utils.getTimeFrame(Date.fromLocaleString(Qt.locale(), scrollView.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
-                                                                                                     Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"))})
-                                        append({"label":"Tracker", "data":Comp.Consts.goalProgressTrackers[scrollView.goal.progressTracker]})
+                                Repeater {
+                                    Layout.fillWidth: true
+
+                                    RowLayout {
+                                        width: parent
+
+                                        Comp.Text {
+                                            Layout.preferredWidth: 100
+                                            Layout.alignment: Qt.AlignTop
+                                            color: Comp.ColorScheme.secondaryColor.dark
+                                            text: model.label + ":"
+                                        }
+
+                                        Comp.Text {
+                                            Layout.fillWidth: true
+                                            text: model.data
+                                            wrapMode: Text.Wrap
+                                        }
+                                    }
+
+                                    model: ListModel {
+                                        Component.onCompleted: {
+                                            append({"label":"Category", "data":scrollView.goal.category})
+                                            append({"label":"Start Time", "data":scrollView.goal.startDateTime})
+                                            append({"label":"End Time", "data":scrollView.goal.endDateTime})
+                                            append({"label":"Time Frame", "data":Comp.Utils.getTimeFrame(Date.fromLocaleString(Qt.locale(), scrollView.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                                                         Date.fromLocaleString(Qt.locale(), scrollView.goal.endDateTime, "dd MMM yyyy hh:mm AP"))})
+                                            append({"label":"Tracker", "data":Comp.Consts.goalProgressTrackers[scrollView.goal.progressTracker]})
+                                        }
                                     }
                                 }
                             }

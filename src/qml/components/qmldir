@@ -21,7 +21,6 @@ Popup 1.0 Popup.qml
 ProgressBar 1.0 ProgressBar.qml
 ScrollBar 1.0 ScrollBar.qml
 ScrollView 1.0 ScrollView.qml
-ScrollViewPane 1.0 ScrollViewPane.qml
 SpinBox 1.0 SpinBox.qml
 Text 1.0 Text.qml
 TextArea 1.0 TextArea.qml

@@ -174,8 +174,8 @@ Comp.Page {
                         parentGoalId: page.goal.itemId
                     }
                 }
-                Component {id: habitsViewComp; HabitsView {goal: page.goal}}
-                Component {id: journalViewComp; JournalView {goal: page.goal}}
+                Component {id: habitsViewComp; HabitsView {}}
+                Component {id: journalViewComp; JournalView {}}
             }
         }
     }

@@ -18,13 +18,12 @@ Comp.Pane {
         id: scrollView
         anchors.fill: parent
 
-        Comp.ScrollViewPane {
-            implicitWidth: scrollView.width
-            padding: 20
+        ColumnLayout {
+            width: scrollView.width
 
             ColumnLayout {
-                width: Math.min(parent.width, 1200)
-                anchors.horizontalCenter: parent.horizontalCenter
+                Layout.maximumWidth: 1200
+                Layout.alignment: Qt.AlignHCenter
                 spacing: 15
 
                 CommonViews.CreateTaskTextField {

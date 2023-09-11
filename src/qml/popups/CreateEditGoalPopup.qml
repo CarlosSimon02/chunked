@@ -16,9 +16,15 @@ Comp.ModalPopup {
     property int itemId: 0
     signal save
 
-    Loader {
+    Comp.Pane {
         anchors.fill: parent
-        sourceComponent: modalPopup.opened ? content : null
+        background: null
+        padding: 20
+
+        Loader {
+            anchors.fill: parent
+            sourceComponent: modalPopup.opened ? content : null
+        }
     }
 
     Component {
@@ -126,101 +132,97 @@ Comp.ModalPopup {
                     currentIndex: listView.currentIndex
 
                     Comp.ScrollView {
-                        Comp.ScrollViewPane {
-                            Pop.ColumnLayout {
-                                Comp.FieldColumnLayout {
-                                    spacing: 12
+                        Pop.ColumnLayout {
+                            Comp.FieldColumnLayout {
+                                spacing: 12
 
-                                    Comp.FieldLabel {
-                                        text: "Goal Name"
-                                    }
-
-                                    Comp.TextArea {
-                                        id: goalNameTextArea
-                                        Layout.preferredWidth: 400
-                                    }
-
-                                    Text {
-                                        id: goalNameTextAreaError
-                                        text: "This field is required and cannot be empty"
-                                        color: "red"
-                                        visible: false
-                                        font.pixelSize: 12
-
-                                        Connections {
-                                            target: goalNameTextArea
-                                            function onTextChanged() {goalNameTextAreaError.visible = false}
-                                        }
-                                    }
+                                Comp.FieldLabel {
+                                    text: "Goal Name"
                                 }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Category"
-                                    }
-
-                                    Comp.ComboBox {
-                                        id: categoryComboBox
-                                        Layout.preferredWidth: 400
-                                        model: ["Home","Personal","Work"]
-                                        enabled: !modalPopup.parentGoalId
-                                        displayText: if(modalPopup.parentGoalId)
-                                                         return dbAccess.getValue("goals",
-                                                                                  "category",
-                                                                                  modalPopup.parentGoalId)
-                                    }
+                                Comp.TextArea {
+                                    id: goalNameTextArea
+                                    Layout.preferredWidth: 400
                                 }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Image"
-                                    }
+                                Text {
+                                    id: goalNameTextAreaError
+                                    text: "This field is required and cannot be empty"
+                                    color: "red"
+                                    visible: false
+                                    font.pixelSize: 12
 
-                                    Pop.ImagePicker {
-                                        id: imagePicker
-                                        Layout.preferredWidth: 400
-                                        Layout.preferredHeight: Layout.preferredWidth * 9 / 16
+                                    Connections {
+                                        target: goalNameTextArea
+                                        function onTextChanged() {goalNameTextAreaError.visible = false}
                                     }
+                                }
+                            }
+
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Category"
+                                }
+
+                                Comp.ComboBox {
+                                    id: categoryComboBox
+                                    Layout.preferredWidth: 400
+                                    model: ["Home","Personal","Work"]
+                                    enabled: !modalPopup.parentGoalId
+                                    displayText: if(modalPopup.parentGoalId)
+                                                     return dbAccess.getValue("goals",
+                                                                              "category",
+                                                                              modalPopup.parentGoalId)
+                                }
+                            }
+
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Image"
+                                }
+
+                                Pop.ImagePicker {
+                                    id: imagePicker
+                                    Layout.preferredWidth: 400
+                                    Layout.preferredHeight: Layout.preferredWidth * 9 / 16
                                 }
                             }
                         }
                     }
 
                     Comp.ScrollView {
-                        Comp.ScrollViewPane {
-                            Pop.ColumnLayout {
-                                Label {
-                                    Layout.bottomMargin: 10
-                                    padding: 10
-                                    text: "*Note: You can only choose parent goal which progress tracker depends on goals."
-                                    wrapMode: Label.Wrap
-                                    font.pixelSize: 11
-                                    color: "darkgoldenrod"
-                                    background: Rectangle {
-                                        radius: Comp.Consts.commonRadius
-                                        color: Comp.Utils.setColorAlpha(note.color, 0.05)
-                                    }
+                        Pop.ColumnLayout {
+                            Label {
+                                Layout.bottomMargin: 10
+                                padding: 10
+                                text: "*Note: You can only choose parent goal which progress tracker depends on goals."
+                                wrapMode: Label.Wrap
+                                font.pixelSize: 11
+                                color: "darkgoldenrod"
+                                background: Rectangle {
+                                    radius: Comp.Consts.commonRadius
+                                    color: Comp.Utils.setColorAlpha(note.color, 0.05)
+                                }
+                            }
+
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Parent Goal"
                                 }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Parent Goal"
+                                Comp.GoalNamesTreeViewComboBox {
+                                    id: parentGoalIdComBoBox
+                                    Layout.preferredWidth: 400
+                                    onItemIdChanged: {
+                                        modalPopup.parentGoalId = itemId
+                                        displayText = modalPopup.parentGoal ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :
+                                                                                   "None(Top Level)"
                                     }
 
-                                    Comp.GoalNamesTreeViewComboBox {
-                                        id: parentGoalIdComBoBox
-                                        Layout.preferredWidth: 400
-                                        onItemIdChanged: {
-                                            modalPopup.parentGoalId = itemId
-                                            displayText = modalPopup.parentGoal ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :
-                                                                                       "None(Top Level)"
-                                        }
-
-                                        Component.onCompleted: {
-                                            itemId =  modalPopup.parentGoalId
-                                            displayText = modalPopup.parentGoalId ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :
-                                                                                         "None(Top Level)"
-                                        }
+                                    Component.onCompleted: {
+                                        itemId =  modalPopup.parentGoalId
+                                        displayText = modalPopup.parentGoalId ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :
+                                                                                     "None(Top Level)"
                                     }
                                 }
                             }
@@ -232,158 +234,154 @@ Comp.ModalPopup {
                     }
 
                     Comp.ScrollView {
-                        Comp.ScrollViewPane {
-                            Pop.ColumnLayout {
-                                Comp.FieldColumnLayout {
-                                    Label {
-                                        id: note
-                                        Layout.bottomMargin: 10
-                                        padding: 10
-                                        text: "*Note: Changing the progress tracker will result to deletion of child items"
-                                        font.pixelSize: 12
-                                        color: "darkgoldenrod"
-                                        visible: modalPopup.itemId
-                                        background: Rectangle {
-                                            radius: Comp.Consts.commonRadius
-                                            color: Comp.Utils.setColorAlpha(note.color, 0.05)
-                                        }
-                                    }
-
-                                    Comp.FieldLabel {
-                                        text: "Progress Tracker"
-                                    }
-
-                                    Comp.ComboBox {
-                                        id: progressTrackerComboBox
-                                        Layout.preferredWidth: 400
-                                        model: Comp.Consts.goalProgressTrackers
-
-                                        onActivated: index => {
-                                            progressValueTextArea.enabled = false
-                                            targetValueTextArea.enabled = false
-                                            progressValueTextArea.text = 0
-                                            targetValueTextArea.text = 0
-
-                                            switch(index) {
-                                                case 0: progressUnitTextArea.text = "goals' progress"; break;
-                                                case 1: progressUnitTextArea.text = "goals"; break;
-                                                case 2: progressUnitTextArea.text = "outcomes"; break;
-                                                case 3: progressUnitTextArea.text = "tasks"; break;
-                                                case 4: progressUnitTextArea.text = "habits' progress"; break;
-                                                case 5: progressUnitTextArea.text = "habits"; break;
-                                                case 6:
-                                                progressUnitTextArea.text = "";
-                                                progressValueTextArea.enabled = true
-                                                targetValueTextArea.enabled = true
-                                                break;
-                                            }
-                                        }
+                        Pop.ColumnLayout {
+                            Comp.FieldColumnLayout {
+                                Label {
+                                    id: note
+                                    Layout.bottomMargin: 10
+                                    padding: 10
+                                    text: "*Note: Changing the progress tracker will result to deletion of child items"
+                                    font.pixelSize: 12
+                                    color: "darkgoldenrod"
+                                    visible: modalPopup.itemId
+                                    background: Rectangle {
+                                        radius: Comp.Consts.commonRadius
+                                        color: Comp.Utils.setColorAlpha(note.color, 0.05)
                                     }
                                 }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Unit"
-                                    }
-
-                                    Comp.TextArea {
-                                        id: progressUnitTextArea
-                                        Layout.preferredWidth: 400
-                                        placeholderText: "plural form (e.g., books, projects, items)"
-                                        text: "goals' progress"
-                                        wrapMode: TextArea.NoWrap
-                                    }
+                                Comp.FieldLabel {
+                                    text: "Progress Tracker"
                                 }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Target"
-                                    }
+                                Comp.ComboBox {
+                                    id: progressTrackerComboBox
+                                    Layout.preferredWidth: 400
+                                    model: Comp.Consts.goalProgressTrackers
 
-                                    Comp.TextField {
-                                        id: targetValueTextArea
-                                        Layout.preferredWidth: 200
-                                        text: "0"
-                                        enabled: false
-                                        horizontalAlignment: TextEdit.AlignRight
-                                        validator: RegularExpressionValidator { regularExpression: /[0-9]+\.[0-9]+/ }
-                                        onEditingFinished: if(text === "") text = "0"
+                                    onActivated: index => {
+                                        progressValueTextArea.enabled = false
+                                        targetValueTextArea.enabled = false
+                                        progressValueTextArea.text = 0
+                                        targetValueTextArea.text = 0
+
+                                        switch(index) {
+                                            case 0: progressUnitTextArea.text = "goals' progress"; break;
+                                            case 1: progressUnitTextArea.text = "goals"; break;
+                                            case 2: progressUnitTextArea.text = "outcomes"; break;
+                                            case 3: progressUnitTextArea.text = "tasks"; break;
+                                            case 4: progressUnitTextArea.text = "habits' progress"; break;
+                                            case 5: progressUnitTextArea.text = "habits"; break;
+                                            case 6:
+                                            progressUnitTextArea.text = "";
+                                            progressValueTextArea.enabled = true
+                                            targetValueTextArea.enabled = true
+                                            break;
+                                        }
                                     }
                                 }
+                            }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Current Progress"
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Unit"
+                                }
+
+                                Comp.TextArea {
+                                    id: progressUnitTextArea
+                                    Layout.preferredWidth: 400
+                                    placeholderText: "plural form (e.g., books, projects, items)"
+                                    text: "goals' progress"
+                                    wrapMode: TextArea.NoWrap
+                                }
+                            }
+
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Target"
+                                }
+
+                                Comp.TextField {
+                                    id: targetValueTextArea
+                                    Layout.preferredWidth: 200
+                                    text: "0"
+                                    enabled: false
+                                    horizontalAlignment: TextEdit.AlignRight
+                                    validator: RegularExpressionValidator { regularExpression: /[0-9]+\.[0-9]+/ }
+                                    onEditingFinished: if(text === "") text = "0"
+                                }
+                            }
+
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Current Progress"
+                                }
+
+                                Comp.TextField {
+                                    id: progressValueTextArea
+                                    Layout.preferredWidth: 200
+                                    text: "0"
+                                    enabled: false
+                                    horizontalAlignment: TextEdit.AlignRight
+
+                                    validator: DoubleValidator {
+                                        bottom: 0
+                                        top: parseInt(targetValueTextArea.text)
                                     }
 
-                                    Comp.TextField {
-                                        id: progressValueTextArea
-                                        Layout.preferredWidth: 200
-                                        text: "0"
-                                        enabled: false
-                                        horizontalAlignment: TextEdit.AlignRight
-
-                                        validator: DoubleValidator {
-                                            bottom: 0
-                                            top: parseInt(targetValueTextArea.text)
-                                        }
-
-                                        onTextChanged: {
-                                            if(!acceptableInput)
-                                                progressValueTextArea.text = progressValueTextArea.text.substring(1)
-                                        }
-                                        onEditingFinished: if(text === "") text = "0"
+                                    onTextChanged: {
+                                        if(!acceptableInput)
+                                            progressValueTextArea.text = progressValueTextArea.text.substring(1)
                                     }
+                                    onEditingFinished: if(text === "") text = "0"
                                 }
                             }
                         }
                     }
 
                     Comp.ScrollView {
-                        Comp.ScrollViewPane {
-                            Pop.ColumnLayout {
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Mission"
-                                    }
-
-                                    Comp.TextArea {
-                                        id: missionTextArea
-                                        Layout.preferredWidth: 400
-                                    }
+                        Pop.ColumnLayout {
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Mission"
                                 }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        id: visionTextArea
-                                        text: "Vision"
-                                    }
+                                Comp.TextArea {
+                                    id: missionTextArea
+                                    Layout.preferredWidth: 400
+                                }
+                            }
 
-                                    Comp.TextArea {
-                                        Layout.preferredWidth: 400
-                                    }
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    id: visionTextArea
+                                    text: "Vision"
                                 }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Obstacles"
-                                    }
+                                Comp.TextArea {
+                                    Layout.preferredWidth: 400
+                                }
+                            }
 
-                                    Comp.TextArea {
-                                        id: obstaclesTextArea
-                                        Layout.preferredWidth: 400
-                                    }
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Obstacles"
                                 }
 
-                                Comp.FieldColumnLayout {
-                                    Comp.FieldLabel {
-                                        text: "Resources"
-                                    }
+                                Comp.TextArea {
+                                    id: obstaclesTextArea
+                                    Layout.preferredWidth: 400
+                                }
+                            }
 
-                                    Comp.TextArea {
-                                        id: resourcesTextArea
-                                        Layout.preferredWidth: 400
-                                    }
+                            Comp.FieldColumnLayout {
+                                Comp.FieldLabel {
+                                    text: "Resources"
+                                }
+
+                                Comp.TextArea {
+                                    id: resourcesTextArea
+                                    Layout.preferredWidth: 400
                                 }
                             }
                         }

@@ -6,7 +6,12 @@ import components as Comp
 import components.impl as Impl
 
 Ctrl.Popup {
+    id: popup
     padding: 10
+
+    TapHandler {
+        onTapped: popup.forceActiveFocus()
+    }
 
     background: Rectangle {
         color: Comp.ColorScheme.primaryColor.light

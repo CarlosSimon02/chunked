@@ -5,9 +5,9 @@ import Qt5Compat.GraphicalEffects
 import app
 
 import components as Comp
-import "../components" as GoalInfo
 
 Comp.Pane {
+    id: pane
     implicitWidth: 400
     implicitHeight: 1000
     padding: 0
@@ -15,7 +15,7 @@ Comp.Pane {
 
     property Goal goal
 
-    GoalInfo.ScrollView {
+    Comp.ScrollView {
         id: scrollView
         anchors.fill: parent
         contentWidth: availableWidth
@@ -28,9 +28,9 @@ Comp.Pane {
                 id: image
                 Layout.fillWidth: true
                 Layout.preferredHeight: width * 9 / 16
-                source: pain.goal.imageSource
+                source: pane.goal.imageSource
                 fillMode: Image.PreserveAspectCrop
-                visible: pain.goal.imageSource.toString()
+                visible: pane.goal.imageSource.toString()
                 layer.enabled: true
                 layer.effect: OpacityMask {
                     maskSource: Item {
@@ -66,7 +66,7 @@ Comp.Pane {
 
                     Comp.Text {
                         width: parent.width
-                        text: pain.goal.name
+                        text: pane.goal.name
                         font.weight: Font.Bold
                         font.pixelSize: 24
                         wrapMode: Text.Wrap
@@ -74,7 +74,7 @@ Comp.Pane {
 
                     Comp.Text {
                         text: Comp.Utils.getTimeFrame(new Date(),
-                                                      Date.fromLocaleString(Qt.locale(), pain.goal.endDateTime, "dd MMM yyyy hh:mm AP")) + " remaining"
+                                                      Date.fromLocaleString(Qt.locale(), pane.goal.endDateTime, "dd MMM yyyy hh:mm AP")) + " remaining"
                         color: Comp.ColorScheme.secondaryColor.dark
                     }
                 }
@@ -93,7 +93,7 @@ Comp.Pane {
 
                         RowLayout {
                             Layout.alignment: Qt.AlignRight
-                            visible: pain.goal.progressTracker === 6
+                            visible: pane.goal.progressTracker === 6
 
                             Comp.Button {
                                 Layout.preferredHeight: 30
@@ -102,9 +102,9 @@ Comp.Pane {
                                 font.pixelSize: 20
                                 font.weight: Font.DemiBold
                                 onClicked: {
-                                    if(pain.goal.progressValue > 0) {
-                                        pain.goal.progressValue--
-                                        dbAccess.updateValue("goals", "progressValue", pain.goal.itemId, pain.goal.progressValue)
+                                    if(pane.goal.progressValue > 0) {
+                                        pane.goal.progressValue--
+                                        dbAccess.updateValue("goals", "progressValue", pane.goal.itemId, pane.goal.progressValue)
                                     }
                                 }
                             }
@@ -116,9 +116,9 @@ Comp.Pane {
                                 font.pixelSize: 20
                                 font.weight: Font.DemiBold
                                 onClicked: {
-                                    if(pain.goal.progressValue < pain.goal.targetValue) {
-                                        pain.goal.progressValue++
-                                        dbAccess.updateValue("goals", "progressValue", pain.goal.itemId, pain.goal.progressValue)
+                                    if(pane.goal.progressValue < pane.goal.targetValue) {
+                                        pane.goal.progressValue++
+                                        dbAccess.updateValue("goals", "progressValue", pane.goal.itemId, pane.goal.progressValue)
                                     }
                                 }
                             }
@@ -128,8 +128,8 @@ Comp.Pane {
                                 text: "Edit"
                                 onClicked: {
                                     progressEditPopup.open()
-                                    progressEditPopup.targetValue = pain.goal.targetValue
-                                    progressEditPopup.currentProgress = pain.goal.progressValue
+                                    progressEditPopup.targetValue = pane.goal.targetValue
+                                    progressEditPopup.currentProgress = pane.goal.progressValue
                                 }
 
                                 Comp.Popup {
@@ -152,9 +152,9 @@ Comp.Pane {
                                                 id: targetValueTextArea
                                                 Layout.preferredWidth: 200
                                                 onEditingFinished: {
-                                                    if(targetValueTextArea.text !== pain.goal.targetValue.toString()) {
-                                                        pain.goal.targetValue = text
-                                                        dbAccess.updateValue("goals", "targetValue", pain.goal.itemId, pain.goal.targetValue)
+                                                    if(targetValueTextArea.text !== pane.goal.targetValue.toString()) {
+                                                        pane.goal.targetValue = text
+                                                        dbAccess.updateValue("goals", "targetValue", pane.goal.itemId, pane.goal.targetValue)
                                                     }
                                                 }
                                             }
@@ -169,9 +169,9 @@ Comp.Pane {
                                                 id: currentProgressTextArea
                                                 Layout.preferredWidth: 200
                                                 onEditingFinished: {
-                                                    if(currentProgressTextArea.text !== pain.goal.progressValue.toString()) {
-                                                        pain.goal.progressValue = text
-                                                        dbAccess.updateValue("goals", "progressValue", pain.goal.itemId, pain.goal.progressValue)
+                                                    if(currentProgressTextArea.text !== pane.goal.progressValue.toString()) {
+                                                        pane.goal.progressValue = text
+                                                        dbAccess.updateValue("goals", "progressValue", pane.goal.itemId, pane.goal.progressValue)
                                                     }
                                                 }
                                             }
@@ -203,20 +203,20 @@ Comp.Pane {
                                     color: Comp.ColorScheme.accentColor.regular
                                     font.pixelSize: 24
                                     font.bold: true
-                                    text: pain.goal.targetValue ? Math.floor(pain.goal.progressValue/pain.goal.targetValue*100).toString()+"%" : "--"
+                                    text: pane.goal.targetValue ? Math.floor(pane.goal.progressValue/pane.goal.targetValue*100).toString()+"%" : "--"
                                 }
 
                                 Comp.Text {
                                     Layout.fillWidth: true
                                     Layout.alignment: Qt.AlignBaseline
                                     color: Comp.ColorScheme.secondaryColor.dark
-                                    text: pain.goal.progressValue.toString() + " / " + pain.goal.targetValue.toString() + " " + pain.goal.progressUnit + " completed"
+                                    text: pane.goal.progressValue.toString() + " / " + pane.goal.targetValue.toString() + " " + pane.goal.progressUnit + " completed"
                                 }
                             }
 
                             Comp.ProgressBar {
                                 Layout.fillWidth: true
-                                value: pain.goal.progressValue/pain.goal.targetValue
+                                value: pane.goal.progressValue/pane.goal.targetValue
                             }
                         }
                     }
@@ -248,7 +248,7 @@ Comp.Pane {
                             RowLayout {
                                 id: parentGoalRowLayout
                                 width: parent
-                                visible: pain.goal.parentGoalId
+                                visible: pane.goal.parentGoalId
 
                                 Comp.Text {
                                     Layout.preferredWidth: 100
@@ -260,7 +260,7 @@ Comp.Pane {
                                 Comp.Text {
                                     id: parentGoalText
                                     Layout.fillWidth: true
-                                    text: pain.goal.parentGoalId ? dbAccess.getValue("goals", "name", pain.goal.parentGoalId) : ""
+                                    text: pane.goal.parentGoalId ? dbAccess.getValue("goals", "name", pane.goal.parentGoalId) : ""
                                     font.underline: true
                                     wrapMode: Text.Wrap
 
@@ -269,7 +269,7 @@ Comp.Pane {
                                     }
 
                                     TapHandler {
-                                        onTapped: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(pain.goal.parentGoalId)})
+                                        onTapped: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(pane.goal.parentGoalId)})
                                     }
                                 }
                             }
@@ -286,10 +286,10 @@ Comp.Pane {
 
                                 Comp.Text {
                                     Layout.fillWidth: true
-                                    property int status: Comp.Utils.getGoalStatus(Date.fromLocaleString(Qt.locale(), pain.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
-                                                                                  Date.fromLocaleString(Qt.locale(), pain.goal.endDateTime, "dd MMM yyyy hh:mm AP"),
-                                                                                  pain.goal.targetValue,
-                                                                                  pain.goal.progressValue)
+                                    property int status: Comp.Utils.getGoalStatus(Date.fromLocaleString(Qt.locale(), pane.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                                  Date.fromLocaleString(Qt.locale(), pane.goal.endDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                                  pane.goal.targetValue,
+                                                                                  pane.goal.progressValue)
                                     text: Comp.Consts.statusTypes[status]
                                     color: switch(status) {
                                            case 0: return "darkgoldenrod"
@@ -322,12 +322,12 @@ Comp.Pane {
 
                                 model: ListModel {
                                     Component.onCompleted: {
-                                        append({"label":"Category", "data":pain.goal.category})
-                                        append({"label":"Start Time", "data":pain.goal.startDateTime})
-                                        append({"label":"End Time", "data":pain.goal.endDateTime})
-                                        append({"label":"Time Frame", "data":Comp.Utils.getTimeFrame(Date.fromLocaleString(Qt.locale(), pain.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
-                                                                                                     Date.fromLocaleString(Qt.locale(), pain.goal.endDateTime, "dd MMM yyyy hh:mm AP"))})
-                                        append({"label":"Tracker", "data":Comp.Consts.goalProgressTrackers[pain.goal.progressTracker]})
+                                        append({"label":"Category", "data":pane.goal.category})
+                                        append({"label":"Start Time", "data":pane.goal.startDateTime})
+                                        append({"label":"End Time", "data":pane.goal.endDateTime})
+                                        append({"label":"Time Frame", "data":Comp.Utils.getTimeFrame(Date.fromLocaleString(Qt.locale(), pane.goal.startDateTime, "dd MMM yyyy hh:mm AP"),
+                                                                                                     Date.fromLocaleString(Qt.locale(), pane.goal.endDateTime, "dd MMM yyyy hh:mm AP"))})
+                                        append({"label":"Tracker", "data":Comp.Consts.goalProgressTrackers[pane.goal.progressTracker]})
                                     }
                                 }
                             }

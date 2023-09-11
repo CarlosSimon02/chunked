@@ -60,7 +60,6 @@
         <file>components/DatePicker.qml</file>
         <file>components/TimePicker.qml</file>
         <file>components/ListView.qml</file>
-        <file>components/ScrollViewPane.qml</file>
         <file>components/GoalNamesTreeViewComboBox.qml</file>
         <file>components/Dialog.qml</file>
         <file>components/SpinBox.qml</file>

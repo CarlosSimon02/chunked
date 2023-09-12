@@ -26,7 +26,7 @@ Comp.Page {
         function onSave() {page.goal = dbAccess.getGoalItem(page.goal.itemId)}
     }
 
-    header: Comp.PageHeader {
+    header: Comp.Pane {
         background: null
         height: 80
 

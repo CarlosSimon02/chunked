@@ -21,8 +21,6 @@
         <file>views/goal_info/views/HabitsView.qml</file>
         <file>views/goal_info/views/JournalView.qml</file>
         <file>views/goal_info/GoalInfoView.qml</file>
-        <file>components/PageTitleText.qml</file>
-        <file>components/PageHeader.qml</file>
         <file>popups/components/ImagePicker.qml</file>
         <file>popups/CreateEditGoalPopup.qml</file>
         <file>popups/qmldir</file>

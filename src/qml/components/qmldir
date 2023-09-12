@@ -14,8 +14,6 @@ ItemDelegate 1.0 ItemDelegate.qml
 ListView 1.0 ListView.qml
 ModalPopup 1.0 ModalPopup.qml
 Page 1.0 Page.qml
-PageHeader 1.0 PageHeader.qml
-PageTitleText 1.0 PageTitleText.qml
 Pane 1.0 Pane.qml
 Popup 1.0 Popup.qml
 ProgressBar 1.0 ProgressBar.qml

@@ -2,9 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import "./views/goals"
-import "./views/settings"
 import "./views/side_menu"
+import "./views/header"
 
 RowLayout {
     spacing: 10
@@ -14,11 +13,19 @@ RowLayout {
         Layout.fillHeight: true
     }
 
-    Loader {
-        id: bodyView
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        source: sideMenu.currentViewSource
-//        source: "qrc:/views/main/views/goals/GoalsView.qml"
+    ColumnLayout {
+        spacing: 0
+
+        Header {
+
+        }
+
+        Loader {
+            id: bodyView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            source: sideMenu.currentViewSource
+    //        source: "qrc:/views/main/views/goals/GoalsView.qml"
+        }
     }
 }

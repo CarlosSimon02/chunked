@@ -9,6 +9,9 @@ Comp.Pane {
     background: null
     padding: 0
 
+    property alias iconSource: iconLabel.icon.source
+    property alias currentPageText: iconLabel.text
+
     RowLayout {
         anchors.fill: parent
         spacing: - Comp.Consts.commonRadius
@@ -38,6 +41,7 @@ Comp.Pane {
                 }
 
                 IconLabel {
+                    id: iconLabel
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 10
                     text: "Home"

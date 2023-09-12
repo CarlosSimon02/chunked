@@ -22,5 +22,9 @@
         <file>calendar_icon.svg</file>
         <file>delete_icon.svg</file>
         <file>edit_icon.svg</file>
+        <file>category_icon.svg</file>
+        <file>progress_icon.svg</file>
+        <file>status_icon.svg</file>
+        <file>time_icon.svg</file>
     </qresource>
 </RCC>

@@ -8,7 +8,7 @@ import "./components" as SideMenu
 Comp.Pane {
     id: subWindowPane
     padding: 8
-    property url currentViewSource: listView.currentItem.viewSource
+    property alias currentItem: listView.currentItem
 
     Column {
         spacing: 50

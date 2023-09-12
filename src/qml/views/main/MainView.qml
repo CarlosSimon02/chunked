@@ -20,13 +20,15 @@ RowLayout {
 
         Header {
             Layout.fillWidth: true
+            iconSource: sideMenu.currentItem.icon.source
+            currentPageText: sideMenu.currentItem.text
         }
 
         Loader {
             id: bodyView
             Layout.fillWidth: true
             Layout.fillHeight: true
-            source: sideMenu.currentViewSource
+            source: sideMenu.currentItem.viewSource
     //        source: "qrc:/views/main/views/goals/GoalsView.qml"
         }
     }

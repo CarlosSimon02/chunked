@@ -8,7 +8,7 @@ import components as Comp
 Comp.ItemDelegate {
     id: itemDelegate
     implicitWidth: subGoal ? 320 : 380
-    implicitHeight: (subGoal ? 220 : 220) + (image.source.toString() ? image.Layout.preferredHeight : 0)
+    implicitHeight: (subGoal ? 230 : 230) + (image.source.toString() ? image.Layout.preferredHeight : 0)
     backgroundColor: Comp.ColorScheme.primaryColor.light
     fadeEffectColor: Comp.ColorScheme.secondaryColor.dark
     elevated: true
@@ -73,7 +73,7 @@ Comp.ItemDelegate {
                 ColumnLayout {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignTop
-                    spacing: 8
+                    spacing: 12
 
                     Comp.Text {
                         id: goalName
@@ -85,21 +85,42 @@ Comp.ItemDelegate {
                         elide: Text.ElideRight
                     }
 
-                    Comp.Text {
-                        id: timeRemaining
-                        text: new Date() > itemDelegate.startDateTime ? Comp.Utils.getTimeFrame(new Date(), itemDelegate.endDateTime) + " remaining" :
-                                                                        "Start on " + itemDelegate.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
-                        color: Comp.ColorScheme.secondaryColor.dark
-                    }
+                    ColumnLayout {
+                        spacing: 6
 
-                    RowLayout {
-                        Label {
-                            leftPadding: 10
-                            rightPadding: 10
-                            topPadding: 3
-                            bottomPadding: 3
+                        IconLabel {
+                            spacing: 8
+                            icon.source: "qrc:/time_icon.svg"
+                            icon.width: 15
+                            icon.height: 15
+                            icon.color: Comp.ColorScheme.secondaryColor.dark
+                            text: new Date() > itemDelegate.startDateTime ? Comp.Utils.getTimeFrame(new Date(), itemDelegate.endDateTime) + " remaining" :
+                                                                            "Start on " + itemDelegate.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                            color: icon.color
+                        }
 
-                            property int status: Comp.Utils.getGoalStatus(itemDelegate.startDateTime, itemDelegate.endDateTime, itemDelegate.targetValue, itemDelegate.progressValue)
+                        IconLabel {
+                            id: category
+                            spacing: 8
+                            icon.source: "qrc:/category_icon.svg"
+                            icon.width: 15
+                            icon.height: 15
+                            visible: !itemDelegate.subGoal
+                            icon.color: Comp.ColorScheme.secondaryColor.dark
+                            text: Comp.Consts.statusTypes[status]
+                            color: icon.color
+                        }
+
+                        IconLabel {
+                            spacing: 8
+                            icon.source: "qrc:/status_icon.svg"
+                            icon.width: 15
+                            icon.height: 15
+                            icon.color: Comp.ColorScheme.secondaryColor.dark
+                            property int status: Comp.Utils.getGoalStatus(itemDelegate.startDateTime,
+                                                                          itemDelegate.endDateTime,
+                                                                          itemDelegate.targetValue,
+                                                                          itemDelegate.progressValue)
                             text: Comp.Consts.statusTypes[status]
                             color: switch(status) {
                                    case 0: return "darkgoldenrod"
@@ -107,57 +128,66 @@ Comp.ItemDelegate {
                                    case 2: return "darkblue"
                                    case 3: return "darkred"
                                    }
-
-                            background: Rectangle {
-                                radius: Comp.Consts.commonRadius
-                                color: Comp.Utils.setColorAlpha(parent.color, 0.1)
-                            }
                         }
 
-                        Label {
-                            id: category
-                            leftPadding: 10
-                            rightPadding: 10
-                            topPadding: 3
-                            bottomPadding: 3
-                            visible: !itemDelegate.subGoal
-                            color: Comp.ColorScheme.secondaryColor.dark
-                            background: Rectangle {
-                                radius: Comp.Consts.commonRadius
-                                color: Comp.Utils.setColorAlpha(Comp.ColorScheme.secondaryColor.dark, 0.1)
-                            }
+                        IconLabel {
+                            spacing: 8
+                            icon.source: "qrc:/progress_icon.svg"
+                            icon.width: 15
+                            icon.height: 15
+                            icon.color: Comp.ColorScheme.secondaryColor.dark
+                            text: itemDelegate.progressValue.toString() + " / " +
+                                  itemDelegate.targetValue.toString() + " " +
+                                  itemDelegate.unit + " completed"
+                            color: icon.color
                         }
                     }
                 }
 
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    spacing: 10
-
-                    RowLayout {
-                        spacing: 15
-                        Comp.Text {
-                            Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
-                            color: Comp.ColorScheme.accentColor.regular
-                            font.pixelSize: itemDelegate.subGoal ? 20 : 24
-                            font.bold: true
-                            text: itemDelegate.targetValue ? Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%" : "--"
-                        }
-
-                        Comp.Text {
-                            Layout.fillWidth: true
-                            Layout.alignment: Qt.AlignBaseline
-                            color: Comp.ColorScheme.secondaryColor.dark
-                            text: itemDelegate.progressValue.toString() + " / " + itemDelegate.targetValue.toString() + " " + itemDelegate.unit + " completed"
-                        }
+                RowLayout {
+                    Comp.Text {
+                        id: percentText
+                        text: "30%"
+//                        text: itemDelegate.targetValue ?
+//                                  Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%" :
+//                                  "--"
+                        font.pixelSize: 18
+                        font.weight: Font.DemiBold
+                        color: Comp.ColorScheme.accentColor.regular
                     }
 
                     Comp.ProgressBar {
                         Layout.fillWidth: true
+                        Layout.preferredHeight: percentText.implicitHeight - 6
                         value: itemDelegate.progressValue/itemDelegate.targetValue
                     }
                 }
+
+
+
+//                ColumnLayout {
+//                    Layout.fillWidth: true
+//                    Layout.fillHeight: true
+//                    spacing: 10
+
+//                    RowLayout {
+//                        spacing: 15
+//                        Comp.Text {
+//                            Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
+//                            color: Comp.ColorScheme.accentColor.regular
+//                            font.pixelSize: itemDelegate.subGoal ? 20 : 24
+//                            font.bold: true
+//                            text: itemDelegate.targetValue ? Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%" : "--"
+//                        }
+
+//                        Comp.Text {
+//                            Layout.fillWidth: true
+//                            Layout.alignment: Qt.AlignBaseline
+//                            color: Comp.ColorScheme.secondaryColor.dark
+//                            text: itemDelegate.progressValue.toString() + " / " + itemDelegate.targetValue.toString() + " " + itemDelegate.unit + " completed"
+//                        }
+//                    }
+//                }
             }
         }
     }

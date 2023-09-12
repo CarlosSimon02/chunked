@@ -147,10 +147,9 @@ Comp.ItemDelegate {
                 RowLayout {
                     Comp.Text {
                         id: percentText
-                        text: "30%"
-//                        text: itemDelegate.targetValue ?
-//                                  Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%" :
-//                                  "--"
+                        text: itemDelegate.targetValue ?
+                                  Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%" :
+                                  "--"
                         font.pixelSize: 18
                         font.weight: Font.DemiBold
                         color: Comp.ColorScheme.accentColor.regular
@@ -162,32 +161,6 @@ Comp.ItemDelegate {
                         value: itemDelegate.progressValue/itemDelegate.targetValue
                     }
                 }
-
-
-
-//                ColumnLayout {
-//                    Layout.fillWidth: true
-//                    Layout.fillHeight: true
-//                    spacing: 10
-
-//                    RowLayout {
-//                        spacing: 15
-//                        Comp.Text {
-//                            Layout.alignment: Qt.AlignRight | Qt.AlignBaseline
-//                            color: Comp.ColorScheme.accentColor.regular
-//                            font.pixelSize: itemDelegate.subGoal ? 20 : 24
-//                            font.bold: true
-//                            text: itemDelegate.targetValue ? Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%" : "--"
-//                        }
-
-//                        Comp.Text {
-//                            Layout.fillWidth: true
-//                            Layout.alignment: Qt.AlignBaseline
-//                            color: Comp.ColorScheme.secondaryColor.dark
-//                            text: itemDelegate.progressValue.toString() + " / " + itemDelegate.targetValue.toString() + " " + itemDelegate.unit + " completed"
-//                        }
-//                    }
-//                }
             }
         }
     }

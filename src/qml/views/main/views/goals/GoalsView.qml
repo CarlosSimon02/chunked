@@ -7,18 +7,6 @@ import commonViews as View
 
 Comp.Page {
     signal goalAdded
-    topPadding: -pageHeader.bottomPadding
-
-    header: Comp.PageHeader {
-        id: pageHeader
-        height: 90
-
-        Comp.Text {
-            text: "Goals"
-            font.weight: Font.Bold
-            font.pixelSize: 28
-        }
-    }
 
     View.GoalsBodyView {
         id: goalsBodyView

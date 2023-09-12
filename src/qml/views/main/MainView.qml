@@ -5,6 +5,8 @@ import QtQuick.Layouts
 import "./views/side_menu"
 import "./views/header"
 
+import components as Comp
+
 RowLayout {
     spacing: 10
 
@@ -14,10 +16,10 @@ RowLayout {
     }
 
     ColumnLayout {
-        spacing: 0
+        spacing: -Comp.Consts.commonRadius
 
         Header {
-
+            Layout.fillWidth: true
         }
 
         Loader {

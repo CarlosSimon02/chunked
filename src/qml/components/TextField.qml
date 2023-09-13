@@ -15,9 +15,11 @@ T.TextField {
                              implicitBackgroundHeight + topInset + bottomInset,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    leftPadding: 15
+    leftPadding: iconSource ? iconLabel.width + 6 : 15
     rightPadding: 15
     verticalAlignment: TextField.AlignVCenter
+
+    property alias iconSource: iconLabel.icon.source
 
     color: enabled ? Comp.ColorScheme.secondaryColor.regular : Comp.ColorScheme.secondaryColor.dark
     placeholderTextColor: textField.palette.placeholderText
@@ -36,6 +38,16 @@ T.TextField {
         border.color: textField.activeFocus ? Comp.ColorScheme.accentColor.regular :
                                              Comp.ColorScheme.secondaryColor.dark
         radius: Comp.Consts.commonRadius
+    }
+
+    IconLabel {
+        id: iconLabel
+        height: parent.height
+        leftPadding: 15
+        icon.width: 20
+        icon.height: 20
+        icon.color: Comp.ColorScheme.secondaryColor.veryDark
+        display: IconLabel.IconOnly
     }
 
     PlaceholderText {

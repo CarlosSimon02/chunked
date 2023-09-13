@@ -42,7 +42,7 @@ Comp.Pane {
                     }
                 }
 
-                Comp.CollapsibleTextField {
+                Comp.TextField {
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 300
                     iconSource: "qrc:/search_icon.svg"
@@ -55,14 +55,14 @@ Comp.Pane {
                 spacing: 15
                 Layout.alignment: Qt.AlignRight
 
-                Comp.CollapsibleTextField {
+                Comp.TextField {
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 200
                     iconSource: "qrc:/category_icon.svg"
                     placeholderText: "Search goal"
                 }
 
-                Comp.CollapsibleTextField {
+                Comp.TextField {
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 200
                     iconSource: "qrc:/status_icon.svg"
@@ -72,7 +72,17 @@ Comp.Pane {
                 Comp.Button {
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 40
-                    icon.source:
+                    icon.source: "qrc:/filter_icon.svg"
+                    border.width: 1
+                    foregroundColor: Comp.ColorScheme.secondaryColor.dark
+                }
+
+                Comp.Button {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 40
+                    icon.source: "qrc:/option_icon.svg"
+                    border.width: 1
+                    foregroundColor: Comp.ColorScheme.secondaryColor.dark
                 }
             }
         }

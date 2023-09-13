@@ -62,5 +62,6 @@
         <file>components/SpinBox.qml</file>
         <file>components/impl/ScrollView.qml</file>
         <file>views/main/views/header/Header.qml</file>
+        <file>components/CollapsibleTextField.qml</file>
     </qresource>
 </RCC>

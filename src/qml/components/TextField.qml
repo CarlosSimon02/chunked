@@ -6,7 +6,7 @@ import QtQuick.Templates as T
 import components as Comp
 
 T.TextField {
-    id: textArea
+    id: textField
 
     implicitWidth: Math.max(contentWidth + leftPadding + rightPadding,
                             implicitBackgroundWidth + leftInset + rightInset,
@@ -17,13 +17,12 @@ T.TextField {
 
     leftPadding: 15
     rightPadding: 15
-    topPadding: 15
-    bottomPadding: 15
+    verticalAlignment: TextField.AlignVCenter
 
     color: enabled ? Comp.ColorScheme.secondaryColor.regular : Comp.ColorScheme.secondaryColor.dark
-    placeholderTextColor: textArea.palette.placeholderText
-    selectionColor: textArea.palette.highlight
-    selectedTextColor: textArea.palette.highlightedText
+    placeholderTextColor: textField.palette.placeholderText
+    selectionColor: textField.palette.highlight
+    selectedTextColor: textField.palette.highlightedText
 
     cursorDelegate: CursorDelegate {
         width: 1.5
@@ -34,24 +33,24 @@ T.TextField {
         implicitHeight: 52
         color: "transparent"
         border.width: 1
-        border.color: textArea.activeFocus ? Comp.ColorScheme.accentColor.regular :
+        border.color: textField.activeFocus ? Comp.ColorScheme.accentColor.regular :
                                              Comp.ColorScheme.secondaryColor.dark
         radius: Comp.Consts.commonRadius
     }
 
     PlaceholderText {
         id: placeholder
-        x: textArea.leftPadding
-        y: textArea.topPadding
-        width: textArea.width - (textArea.leftPadding + textArea.rightPadding)
-        height: textArea.height - (textArea.topPadding + textArea.bottomPadding)
+        x: textField.leftPadding
+        y: textField.topPadding
+        width: textField.width - (textField.leftPadding + textField.rightPadding)
+        height: textField.height - (textField.topPadding + textField.bottomPadding)
 
-        text: textArea.placeholderText
-        font: textArea.font
+        text: textField.placeholderText
+        font: textField.font
         color: Comp.ColorScheme.secondaryColor.veryDark
-        verticalAlignment: textArea.verticalAlignment
-        visible: !textArea.length && !textArea.preeditText && (!textArea.activeFocus || textArea.horizontalAlignment !== Qt.AlignHCenter)
+        verticalAlignment: textField.verticalAlignment
+        visible: !textField.length && !textField.preeditText && (!textField.activeFocus || textField.horizontalAlignment !== Qt.AlignHCenter)
         elide: Text.ElideRight
-        renderType: textArea.renderType
+        renderType: textField.renderType
     }
 }

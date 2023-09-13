@@ -96,7 +96,7 @@ Comp.ItemDelegate {
                             icon.color: Comp.ColorScheme.secondaryColor.dark
                             text: new Date() > itemDelegate.startDateTime ? Comp.Utils.getTimeFrame(new Date(), itemDelegate.endDateTime) + " remaining" :
                                                                             "Start on " + itemDelegate.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
-                            color: icon.color
+                            color: Comp.ColorScheme.secondaryColor.dark
                         }
 
                         IconLabel {
@@ -108,7 +108,7 @@ Comp.ItemDelegate {
                             visible: !itemDelegate.subGoal
                             icon.color: Comp.ColorScheme.secondaryColor.dark
                             text: Comp.Consts.statusTypes[status]
-                            color: icon.color
+                            color: Comp.ColorScheme.secondaryColor.dark
                         }
 
                         IconLabel {
@@ -139,7 +139,7 @@ Comp.ItemDelegate {
                             text: itemDelegate.progressValue.toString() + " / " +
                                   itemDelegate.targetValue.toString() + " " +
                                   itemDelegate.unit + " completed"
-                            color: icon.color
+                            color: Comp.ColorScheme.secondaryColor.dark
                         }
                     }
                 }

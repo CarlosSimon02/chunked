@@ -26,5 +26,6 @@
         <file>progress_icon.svg</file>
         <file>status_icon.svg</file>
         <file>time_icon.svg</file>
+        <file>search_icon.svg</file>
     </qresource>
 </RCC>

@@ -3,6 +3,7 @@ AccentButton 1.0 AccentButton.qml
 Button 1.0 Button.qml
 ComboBox 1.0 ComboBox.qml
 CheckBox 1.0 CheckBox.qml
+CollapsibleTextField 1.0 CollapsibleTextField.qml
 DatePicker 1.0 DatePicker.qml
 DateTimeFramePicker 1.0 DateTimeFramePicker.qml
 Dialog 1.0 Dialog.qml

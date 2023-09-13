@@ -6,20 +6,72 @@ import app
 import components as Comp
 import popups as Pop
 
-Comp.ScrollView {
-    id: scrollView
+Comp.Pane {
+    id: pane
+    background: null
+    padding: 0
     property int parentGoalId: 0
     signal refresh
     onRefresh: gridView.model.refresh()
 
     ColumnLayout {
-        width: scrollView.availableWidth
+        anchors.fill: parent
+
+        RowLayout {
+            Layout.margins: 20
+            spacing: 15
+            Comp.AccentButton {
+                Layout.preferredHeight: 40
+                horizontalPadding: 15
+                spacing: 5
+                icon.source: "qrc:/create_icon.svg"
+                icon.width: 15
+                icon.height: 15
+                text: "New Goal"
+                onClicked: {
+                    createEditGoalPopup.parentGoalId = pane.parentGoalId
+                    createEditGoalPopup.open()
+                }
+
+                Pop.CreateEditGoalPopup {
+                    id: createEditGoalPopup
+                }
+            }
+
+            Comp.CollapsibleTextField {
+                Layout.preferredHeight: 40
+                Layout.preferredWidth: 300
+                iconSource: "qrc:/search_icon.svg"
+            }
+        }
 
         GridView {
             id: gridView
-            Layout.preferredWidth: (Math.floor(parent.width / cellWidth) * cellWidth)
-            Layout.preferredHeight: contentHeight
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             Layout.alignment: Qt.AlignHCenter
+            leftMargin: (parent.width - contentWidth) / 2
+            contentWidth:(Math.floor(parent.width / cellWidth) * cellWidth)
+            clip: true
+            cellWidth: pane.parentGoalId ? 340 : 400
+
+            TapHandler {
+                onTapped: gridView.forceActiveFocus()
+            }
+
+            ScrollBar.vertical: Comp.ScrollBar {
+                parent: gridView
+                x: gridView.mirrored ? 0 : gridView.width - width
+                height: gridView.availableHeight
+                active: gridView.ScrollBar.horizontal.active
+            }
+
+            ScrollBar.horizontal: Comp.ScrollBar {
+                parent: gridView
+                y: gridView.height - height
+                width: gridView.availableWidth
+                active: gridView.ScrollBar.vertical.active
+            }
 
             delegate: Item {
                 id: item
@@ -37,11 +89,9 @@ Comp.ScrollView {
                     progressValue: model.progressValue
                     targetValue: model.targetValue
                     unit: model.progressUnit
-                    subGoal: scrollView.parentGoalId
+                    subGoal: pane.parentGoalId
 
                     Component.onCompleted: {
-                        if(item.GridView.view.cellWidth < implicitWidth)
-                            item.GridView.view.cellWidth = implicitWidth + 20
                         if(item.GridView.view.cellHeight < implicitHeight)
                             item.GridView.view.cellHeight = implicitHeight + 20
                     }
@@ -49,30 +99,13 @@ Comp.ScrollView {
             }
 
             model: GoalsTableModel {
-                parentGoalId: scrollView.parentGoalId
+                parentGoalId: pane.parentGoalId
             }
 
             Connections {
                 target: createEditGoalPopup
-                function onSave() {scrollView.refresh()}
+                function onSave() {pane.refresh()}
             }
-        }
-    }
-
-    Comp.AccentButton {
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.bottomMargin: 30
-        anchors.rightMargin: 30
-        padding: 10
-        icon.source: "qrc:/create_icon.svg"
-        onClicked: {
-            createEditGoalPopup.parentGoalId = scrollView.parentGoalId
-            createEditGoalPopup.open()
-        }
-
-        Pop.CreateEditGoalPopup {
-            id: createEditGoalPopup
         }
     }
 }

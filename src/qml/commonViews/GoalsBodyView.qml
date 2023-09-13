@@ -68,6 +68,12 @@ Comp.Pane {
                     iconSource: "qrc:/status_icon.svg"
                     placeholderText: "Search goal"
                 }
+
+                Comp.Button {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 40
+                    icon.source:
+                }
             }
         }
 

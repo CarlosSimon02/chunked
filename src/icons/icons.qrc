@@ -27,5 +27,7 @@
         <file>status_icon.svg</file>
         <file>time_icon.svg</file>
         <file>search_icon.svg</file>
+        <file>filter_icon.svg</file>
+        <file>option_icon.svg</file>
     </qresource>
 </RCC>

@@ -1,4 +1,6 @@
 import QtQuick as Q
+import QtQuick.Controls
+
 
 import components as Comp
 
@@ -6,6 +8,10 @@ Q.ListView {
     id: listView
     interactive: true
     clip: true
+
+    Q.TapHandler {
+        onTapped: listView.forceActiveFocus()
+    }
 
     ScrollBar.vertical: Comp.ScrollBar {
         parent: listView

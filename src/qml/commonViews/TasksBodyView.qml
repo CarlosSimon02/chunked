@@ -14,16 +14,16 @@ Comp.Pane {
     property int parentGoalId: 0
     onParentGoalIdChanged: listView.isOutcomeVisible = dbAccess.getValue("goals","progressTracker", parentGoalId) === 2
 
-    Comp.ScrollView {
-        id: scrollView
+    ColumnLayout {
         anchors.fill: parent
 
         ColumnLayout {
-            width: scrollView.width
+            Layout.alignment: Qt.AlignHCenter
+            spacing: 15
+            Layout.margins: pane.parentGoalId ? 0 : 20
 
-            ColumnLayout {
-                Layout.maximumWidth: 1200
-                Layout.alignment: Qt.AlignHCenter
+            RowLayout {
+                Layout.fillWidth: true
                 spacing: 15
 
                 CommonViews.CreateTaskTextField {
@@ -36,66 +36,95 @@ Comp.Pane {
                     }
                 }
 
-                Comp.ListView {
-                    id: listView
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: contentHeight
-                    spacing: 8
-                    currentIndex: -1
-                    property bool isOutcomeVisible: false
-
-                    displaced: Transition {
-                        NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
-
-                        // ensure opacity and scale values return to 1.0
-                        NumberAnimation { property: "opacity"; to: 1.0 }
-                        NumberAnimation { property: "scale"; to: 1.0 }
-                    }
-
-                    delegate: CommonViews.TaskItemDelegate {
-                        id: taskItemDelegate
-                        width: ListView.view.width
-                        taskDone: model.done
-                        name: model.name
-                        outcome: model.outcome
-                        isOutcomeVisible: ListView.view.isOutcomeVisible
-                        startDateTime: Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
-                        endDateTime: Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
-
-                        property bool added
-
-                        states: State {
-                            name: "added"; when: taskItemDelegate.added
-                            PropertyChanges { target: taskItemDelegate; scale: 1; opacity: 1 }
-                        }
-
-                        transitions: Transition {
-                            to: "added"
-                            reversible: true
-
-                            NumberAnimation { property: "opacity"; from: 0; duration: 400 }
-                            NumberAnimation { property: "scale"; from: 0.7; duration: 400 }
-                        }
-
-                        ListView.onAdd: added = true
-                        onSetDone: model.done = taskDone
-                        onClicked: {
-                            drawerPane.open()
-                            doneCheckBox.checked = model.done
-                            timeFrameText.text = model.startDateTime + " -\n" + model.endDateTime
-                            dateTimeFramePicker.initStartDateTime = Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
-                            dateTimeFramePicker.initEndDateTime = Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
-                            nameTextArea.text = model.name
-                            outcomeSpinBox.value = model.outcome
-                            actualDurationSpinBox.value = model.actualDuration
-                            notesTextArea.text = model.notes
-                        }
-                    }
-
-                    model: TasksTableModel {
-                        parentGoalId: pane.parentGoalId
-                    }
+                Comp.TextField {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 300
+                    iconSource: "qrc:/search_icon.svg"
+                    placeholderText: "Search task"
                 }
+
+                Comp.ComboBox {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 200
+                    iconSource: "qrc:/status_icon.svg"
+                    model: ["All", "Pending", "Active", "Done", "Unfinished"]
+                }
+
+                Comp.Button {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 40
+                    icon.source: "qrc:/filter_icon.svg"
+                    border.width: 1
+                    foregroundColor: Comp.ColorScheme.secondaryColor.dark
+                }
+
+                Comp.Button {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 40
+                    icon.source: "qrc:/option_icon.svg"
+                    border.width: 1
+                    foregroundColor: Comp.ColorScheme.secondaryColor.dark
+                }
+            }
+        }
+
+        Comp.ListView {
+            id: listView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            spacing: 8
+            property bool isOutcomeVisible: false
+
+            displaced: Transition {
+                NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
+
+                // ensure opacity and scale values return to 1.0
+                NumberAnimation { property: "opacity"; to: 1.0 }
+                NumberAnimation { property: "scale"; to: 1.0 }
+            }
+
+            delegate: CommonViews.TaskItemDelegate {
+                id: taskItemDelegate
+                width: ListView.view.width
+                taskDone: model.done
+                name: model.name
+                outcome: model.outcome
+                isOutcomeVisible: ListView.view.isOutcomeVisible
+                startDateTime: Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
+                endDateTime: Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
+
+                property bool added
+
+                states: State {
+                    name: "added"; when: taskItemDelegate.added
+                    PropertyChanges { target: taskItemDelegate; scale: 1; opacity: 1 }
+                }
+
+                transitions: Transition {
+                    to: "added"
+                    reversible: true
+
+                    NumberAnimation { property: "opacity"; from: 0; duration: 400 }
+                    NumberAnimation { property: "scale"; from: 0.7; duration: 400 }
+                }
+
+                ListView.onAdd: added = true
+                onSetDone: model.done = taskDone
+                onClicked: {
+                    drawerPane.open()
+                    doneCheckBox.checked = model.done
+                    timeFrameText.text = model.startDateTime + " -\n" + model.endDateTime
+                    dateTimeFramePicker.initStartDateTime = Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
+                    dateTimeFramePicker.initEndDateTime = Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
+                    nameTextArea.text = model.name
+                    outcomeSpinBox.value = model.outcome
+                    actualDurationSpinBox.value = model.actualDuration
+                    notesTextArea.text = model.notes
+                }
+            }
+
+            model: TasksTableModel {
+                parentGoalId: pane.parentGoalId
             }
         }
     }

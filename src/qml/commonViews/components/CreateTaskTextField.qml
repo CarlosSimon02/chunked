@@ -6,7 +6,7 @@ import app
 import components as Comp
 
 RowLayout {
-    id: columnLayout
+    id: rowLayout
     spacing: -(buttonLayout.width + 15)
     property Task task: Task{}
     signal save
@@ -14,30 +14,27 @@ RowLayout {
     Comp.TextField {
         id: textArea
         Layout.fillWidth: true
+        Layout.preferredHeight: 40
         rightPadding: 100
         placeholderText: "Type your task here and press 'Enter' to save"
         wrapMode: TextArea.NoWrap
 
         background: Rectangle {
             implicitHeight: 52
-            color: "transparent"
-            border.width: 1
-            border.color: textArea.activeFocus ? Comp.ColorScheme.accentColor.regular :
-                                                 Comp.ColorScheme.secondaryColor.dark
+            color: Comp.ColorScheme.primaryColor.dark
             radius: Comp.Consts.commonRadius
-
         }
 
         Keys.onReturnPressed: {
             if (textArea.length > 0)
             {
-                columnLayout.task.name = textArea.text
-                columnLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
-                columnLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
-                columnLayout.task.actualDuration = actualDurationSpinBox.value
-                columnLayout.task.outcome = outcomeSpinBox.value
-                columnLayout.task.notes = notesTextArea.text
-                columnLayout.save()
+                rowLayout.task.name = textArea.text
+                rowLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
+                rowLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
+                rowLayout.task.actualDuration = actualDurationSpinBox.value
+                rowLayout.task.outcome = outcomeSpinBox.value
+                rowLayout.task.notes = notesTextArea.text
+                rowLayout.save()
 
                 textArea.text = ""
                 dateTimeFramePicker.reset()

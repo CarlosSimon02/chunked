@@ -20,7 +20,7 @@ Comp.Pane {
         RowLayout {
             Layout.fillWidth: true
             Layout.maximumWidth: Number.POSITIVE_INFINITY
-            Layout.margins: 20
+            Layout.margins: pane.parentGoalId ? 0 : 20
 
             RowLayout {
                 spacing: 15
@@ -58,6 +58,7 @@ Comp.Pane {
                 Comp.ComboBox {
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 200
+                    visible: !pane.parentGoalId
                     iconSource: "qrc:/category_icon.svg"
                     model: ["All", "Personal", "Home", "Work"]
                 }

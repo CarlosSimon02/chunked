@@ -18,31 +18,56 @@ Comp.Pane {
         anchors.fill: parent
 
         RowLayout {
+            Layout.fillWidth: true
+            Layout.maximumWidth: Number.POSITIVE_INFINITY
             Layout.margins: 20
-            spacing: 15
-            Comp.AccentButton {
-                Layout.preferredHeight: 40
-                horizontalPadding: 15
-                spacing: 5
-                icon.source: "qrc:/create_icon.svg"
-                icon.width: 15
-                icon.height: 15
-                text: "New Goal"
-                onClicked: {
-                    createEditGoalPopup.parentGoalId = pane.parentGoalId
-                    createEditGoalPopup.open()
+
+            RowLayout {
+                spacing: 15
+                Comp.AccentButton {
+                    Layout.preferredHeight: 40
+                    horizontalPadding: 15
+                    spacing: 5
+                    icon.source: "qrc:/create_icon.svg"
+                    icon.width: 15
+                    icon.height: 15
+                    text: "New Goal"
+                    onClicked: {
+                        createEditGoalPopup.parentGoalId = pane.parentGoalId
+                        createEditGoalPopup.open()
+                    }
+
+                    Pop.CreateEditGoalPopup {
+                        id: createEditGoalPopup
+                    }
                 }
 
-                Pop.CreateEditGoalPopup {
-                    id: createEditGoalPopup
+                Comp.CollapsibleTextField {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 300
+                    iconSource: "qrc:/search_icon.svg"
+                    placeholderText: "Search goal"
                 }
+
             }
 
-            Comp.CollapsibleTextField {
-                Layout.preferredHeight: 40
-                Layout.preferredWidth: 300
-                iconSource: "qrc:/search_icon.svg"
-                placeholderText: "Search goal"
+            RowLayout {
+                spacing: 15
+                Layout.alignment: Qt.AlignRight
+
+                Comp.CollapsibleTextField {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 200
+                    iconSource: "qrc:/category_icon.svg"
+                    placeholderText: "Search goal"
+                }
+
+                Comp.CollapsibleTextField {
+                    Layout.preferredHeight: 40
+                    Layout.preferredWidth: 200
+                    iconSource: "qrc:/status_icon.svg"
+                    placeholderText: "Search goal"
+                }
             }
         }
 

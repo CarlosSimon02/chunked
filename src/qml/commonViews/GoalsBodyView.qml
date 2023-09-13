@@ -19,7 +19,7 @@ Comp.Pane {
 
         RowLayout {
             Layout.margins: 20
-            spacing: 15
+            spacing: 50
             Comp.AccentButton {
                 Layout.preferredHeight: 40
                 horizontalPadding: 15
@@ -42,6 +42,7 @@ Comp.Pane {
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 300
                 iconSource: "qrc:/search_icon.svg"
+
             }
         }
 

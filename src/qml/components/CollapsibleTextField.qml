@@ -1,26 +1,21 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
 
 import components as Comp
 
-RowLayout {
-    spacing: -button.Layout.preferredWidth
+Comp.TextField {
+    leftPadding: iconLabel.width
+    property alias iconSource: iconLabel.icon.source
 
-    Comp.Button {
-        id: button
+    IconLabel {
+        id: iconLabel
+        x: 0
+        y: 0
         height: parent.height
         width: parent.height
-        display: Button.IconOnly
+        icon.width: 20
+        icon.height: 20
         icon.color: Comp.ColorScheme.secondaryColor.veryDark
-    }
-    Comp.TextField {
-        id: textField
-        leftPadding: button.width + 15
-        property alias iconSource: button.icon.source
-
-
+        display: IconLabel.IconOnly
     }
 }
-
-

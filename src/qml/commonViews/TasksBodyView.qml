@@ -20,7 +20,9 @@ Comp.Pane {
         ColumnLayout {
             Layout.alignment: Qt.AlignHCenter
             spacing: 15
-            Layout.margins: pane.parentGoalId ? 0 : 20
+            Layout.margins: 20
+            Layout.leftMargin: pane.parentGoalId ? 0 : 20
+            Layout.rightMargin: pane.parentGoalId ? 0 : 20
 
             RowLayout {
                 Layout.fillWidth: true
@@ -72,6 +74,8 @@ Comp.Pane {
             id: listView
             Layout.fillWidth: true
             Layout.fillHeight: true
+            leftMargin: pane.parentGoalId ? 0 : 20
+            contentWidth: listView.width - listView.leftMargin * 2
             spacing: 8
             property bool isOutcomeVisible: false
 
@@ -85,7 +89,7 @@ Comp.Pane {
 
             delegate: CommonViews.TaskItemDelegate {
                 id: taskItemDelegate
-                width: ListView.view.width
+                width: listView.width - listView.leftMargin * 2
                 taskDone: model.done
                 name: model.name
                 outcome: model.outcome

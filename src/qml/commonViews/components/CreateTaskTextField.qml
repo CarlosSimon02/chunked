@@ -12,7 +12,7 @@ RowLayout {
     signal save
 
     Comp.TextField {
-        id: textArea
+        id: textField
         Layout.fillWidth: true
         Layout.preferredHeight: 40
         rightPadding: 100
@@ -26,9 +26,9 @@ RowLayout {
         }
 
         Keys.onReturnPressed: {
-            if (textArea.length > 0)
+            if (textField.length > 0)
             {
-                rowLayout.task.name = textArea.text
+                rowLayout.task.name = textField.text
                 rowLayout.task.startDateTime = dateTimeFramePicker.startDateTimeText
                 rowLayout.task.endDateTime = dateTimeFramePicker.endDateTimeText
                 rowLayout.task.actualDuration = actualDurationSpinBox.value
@@ -36,7 +36,7 @@ RowLayout {
                 rowLayout.task.notes = notesTextArea.text
                 rowLayout.save()
 
-                textArea.text = ""
+                textField.text = ""
                 dateTimeFramePicker.reset()
                 taskDetailsPopup.reset()
             }

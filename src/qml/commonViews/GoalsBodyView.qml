@@ -20,7 +20,9 @@ Comp.Pane {
         RowLayout {
             Layout.fillWidth: true
             Layout.maximumWidth: Number.POSITIVE_INFINITY
-            Layout.margins: pane.parentGoalId ? 0 : 20
+            Layout.margins: 20
+            Layout.leftMargin: pane.parentGoalId ? 0 : 20
+            Layout.rightMargin: pane.parentGoalId ? 0 : 20
 
             RowLayout {
                 spacing: 15

@@ -15,7 +15,7 @@ T.TextField {
                              implicitBackgroundHeight + topInset + bottomInset,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    leftPadding: iconSource ? iconLabel.width + 6 : 15
+    leftPadding: iconSource ? iconLabel.width + 8 : 15
     rightPadding: 15
     verticalAlignment: TextField.AlignVCenter
 

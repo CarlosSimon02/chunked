@@ -55,18 +55,18 @@ Comp.Pane {
                 spacing: 15
                 Layout.alignment: Qt.AlignRight
 
-                Comp.TextField {
+                Comp.ComboBox {
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 200
                     iconSource: "qrc:/category_icon.svg"
-                    placeholderText: "Search goal"
+                    model: ["All", "Personal", "Home", "Work"]
                 }
 
-                Comp.TextField {
+                Comp.ComboBox {
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 200
                     iconSource: "qrc:/status_icon.svg"
-                    placeholderText: "Search goal"
+                    model: ["All", "Pending", "Active", "Done", "Unfinished"]
                 }
 
                 Comp.Button {

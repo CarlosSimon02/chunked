@@ -16,10 +16,20 @@ T.ComboBox {
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
 
-    leftPadding: 15
+    leftPadding: iconSource ? iconLabel.width + 8 : 15
     rightPadding: 15
-    topPadding: 14
-    bottomPadding: 14
+
+    property alias iconSource: iconLabel.icon.source
+
+    IconLabel {
+        id: iconLabel
+        height: parent.height
+        leftPadding: 15
+        icon.width: 20
+        icon.height: 20
+        icon.color: Comp.ColorScheme.secondaryColor.veryDark
+        display: IconLabel.IconOnly
+    }
 
     delegate: Comp.ItemDelegate {
         width: ListView.view.width

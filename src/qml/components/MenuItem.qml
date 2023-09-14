@@ -15,7 +15,7 @@ T.MenuItem {
                              implicitIndicatorHeight + topPadding + bottomPadding)
 
     verticalPadding: 0
-    horizontalPadding: 8
+    horizontalPadding: 15
     spacing: 10
 
     icon.width: 24

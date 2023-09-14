@@ -13,7 +13,7 @@ T.Menu {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              contentHeight + topPadding + bottomPadding)
 
-    margins: 0
+    padding: 10
     overlap: 1
 
     delegate: MenuItem { }
@@ -37,13 +37,5 @@ T.Menu {
         radius: Comp.Consts.commonRadius
         layer.enabled: true
         layer.effect: Impl.DropShadow {}
-    }
-
-    T.Overlay.modal: Rectangle {
-        color: Color.transparent(control.palette.shadow, 0.5)
-    }
-
-    T.Overlay.modeless: Rectangle {
-        color: Color.transparent(control.palette.shadow, 0.12)
     }
 }

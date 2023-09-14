@@ -13,9 +13,9 @@ T.ComboBox {
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             implicitContentHeight + topPadding + bottomPadding,
-                             implicitIndicatorHeight + topPadding + bottomPadding)
+                             implicitContentHeight + topPadding + bottomPadding)
 
+    padding: 15
     leftPadding: iconSource ? iconLabel.width + 8 : 15
     rightPadding: 15
 
@@ -48,8 +48,9 @@ T.ComboBox {
         x: comboBox.mirrored ?
                comboBox.padding :
                comboBox.width - width - comboBox.padding
-        y: comboBox.height / 2 - 10
-
+        anchors.verticalCenter: parent.verticalCenter
+        width: 10
+        height: 10
         color: Comp.ColorScheme.secondaryColor.dark
         source: "qrc:/arrow_down_icon.svg"
     }

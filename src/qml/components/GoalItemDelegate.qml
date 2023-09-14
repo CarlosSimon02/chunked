@@ -8,7 +8,7 @@ import components as Comp
 Comp.ItemDelegate {
     id: itemDelegate
     implicitWidth: subGoal ? 320 : 380
-    implicitHeight: (subGoal ? 230 : 230) + (image.source.toString() ? image.Layout.preferredHeight : 0)
+    implicitHeight: (subGoal ? 220 : 240) + (image.source.toString() ? image.Layout.preferredHeight : 0)
     backgroundColor: Comp.ColorScheme.primaryColor.light
     fadeEffectColor: Comp.ColorScheme.secondaryColor.dark
     elevated: true
@@ -65,7 +65,7 @@ Comp.ItemDelegate {
         Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.margins: 16
+            Layout.margins: 20
 
             ColumnLayout {
                 anchors.fill: parent
@@ -77,7 +77,7 @@ Comp.ItemDelegate {
 
                     Comp.Text {
                         id: goalName
-                        Layout.fillWidth: true
+                        Layout.preferredWidth: itemDelegate.availableWidth - 90
                         font.weight: subGoal ? Font.DemiBold : Font.Bold
                         font.pixelSize: 20
                         wrapMode: Text.Wrap
@@ -163,5 +163,19 @@ Comp.ItemDelegate {
                 }
             }
         }
+    }
+
+    Comp.Button {
+        padding: 0
+        anchors.right: parent.right
+        anchors.rightMargin: 20
+        anchors.top: parent.top
+        anchors.topMargin: 20
+        width: 40
+        height: 40
+        visible: itemDelegate.hovered
+        backgroundColor: Comp.Utils.setColorAlpha(Comp.ColorScheme.primaryColor.light, 0.6)
+
+        icon.source: "qrc:/option_icon.svg"
     }
 }

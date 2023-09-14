@@ -85,8 +85,6 @@ T.ComboBox {
         width: comboBox.width
         height: Math.min(contentItem.implicitHeight + verticalPadding * 2, comboBox.Window.height - topMargin - bottomMargin)
         transformOrigin: Item.Top
-        topMargin: 12
-        bottomMargin: 12
 
         enter: Transition {
             NumberAnimation { property: "scale"; from: 0.9; easing.type: Easing.OutQuint; duration: 220 }

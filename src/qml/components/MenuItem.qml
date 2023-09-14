@@ -71,7 +71,8 @@ T.MenuItem {
     arrow: ColorImage {
         x: menuItem.mirrored ? menuItem.leftPadding : menuItem.width - width - menuItem.rightPadding
         y: menuItem.topPadding + (menuItem.availableHeight - height) / 2
-
+        width: 18
+        height: 18
         visible: menuItem.subMenu
         mirror: menuItem.mirrored
         source: menuItem.subMenu ? "qrc:/arrow_right_icon.svg" : ""

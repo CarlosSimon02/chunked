@@ -55,8 +55,7 @@ T.MenuItem {
 
         visible: menuItem.checked
         source: menuItem.checkable ? "qrc:/qt-project.org/imports/QtQuick/Controls/Basic/images/check.png" : ""
-        color: menuItem.palette.windowText
-        defaultColor: "#353637"
+        color: Comp.ColorScheme.secondaryColor.dark
     }
 
     arrow: ColorImage {
@@ -65,9 +64,8 @@ T.MenuItem {
 
         visible: menuItem.subMenu
         mirror: menuItem.mirrored
-        source: menuItem.subMenu ? "qrc:/qt-project.org/imports/QtQuick/Controls/Basic/images/arrow-indicator.png" : ""
-        color: menuItem.palette.windowText
-        defaultColor: "#353637"
+        source: menuItem.subMenu ? "qrc:/arrow_right_icon.svg" : ""
+        color: Comp.ColorScheme.secondaryColor.dark
     }
 
     background: Rectangle {

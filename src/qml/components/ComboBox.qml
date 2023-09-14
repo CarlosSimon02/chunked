@@ -51,7 +51,7 @@ T.ComboBox {
         y: comboBox.height / 2 - 10
 
         color: Comp.ColorScheme.secondaryColor.dark
-        source: "qrc:/qt-project.org/imports/QtQuick/Controls/Material/images/drop-indicator.png"
+        source: "qrc:/arrow_down_icon.svg"
     }
 
     contentItem: T.TextField {

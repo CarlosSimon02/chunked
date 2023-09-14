@@ -64,5 +64,6 @@
         <file>views/main/views/header/Header.qml</file>
         <file>components/CollapsibleTextField.qml</file>
         <file>components/Menu.qml</file>
+        <file>components/MenuItem.qml</file>
     </qresource>
 </RCC>

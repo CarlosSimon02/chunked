@@ -13,6 +13,7 @@ GoalItemDelegate 1.0 GoalItemDelegate.qml
 GoalNamesTreeViewComboBox 1.0 GoalNamesTreeViewComboBox.qml
 ItemDelegate 1.0 ItemDelegate.qml
 ListView 1.0 ListView.qml
+Menu 1.0 Menu.qml
 ModalPopup 1.0 ModalPopup.qml
 Page 1.0 Page.qml
 Pane 1.0 Pane.qml

@@ -11,8 +11,7 @@ T.MenuItem {
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             implicitContentHeight + topPadding + bottomPadding,
-                             implicitIndicatorHeight + topPadding + bottomPadding)
+                             implicitContentHeight + topPadding + bottomPadding)
 
     verticalPadding: 0
     horizontalPadding: 15
@@ -50,9 +49,10 @@ T.MenuItem {
     indicator: ColorImage {
         x: menuItem.mirrored ? menuItem.width - width - menuItem.rightPadding : menuItem.leftPadding
         y: menuItem.topPadding + (menuItem.availableHeight - height) / 2
-
+        width: 15
+        height: 15
         visible: menuItem.checked
-        source: menuItem.checkable ? "qrc:/qt-project.org/imports/QtQuick/Controls/Basic/images/check.png" : ""
+        source: menuItem.checkable ? "qrc:/check_icon.svg" : ""
         color: Comp.ColorScheme.secondaryColor.dark
     }
 

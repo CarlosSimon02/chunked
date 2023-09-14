@@ -13,15 +13,13 @@ Comp.Page {
 
             Comp.MenuItem {
                 text: "New..."
-                onTriggered: document.reset()
+                checkable: true
             }
             Comp.MenuItem {
                 text: "Open..."
-                onTriggered: openDialog.open()
             }
             Comp.MenuItem {
                 text: "Save"
-                onTriggered: saveDialog.open()
             }
         }
     }

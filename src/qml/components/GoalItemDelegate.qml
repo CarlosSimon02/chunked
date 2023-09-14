@@ -175,7 +175,15 @@ Comp.ItemDelegate {
         height: 40
         visible: itemDelegate.hovered
         backgroundColor: Comp.Utils.setColorAlpha(Comp.ColorScheme.primaryColor.light, 0.6)
-
         icon.source: "qrc:/option_icon.svg"
+        onClicked: menu.open()
+
+        Comp.Menu {
+            id: menu
+
+            Comp.MenuItem {
+                text: "Delete"
+            }
+        }
     }
 }

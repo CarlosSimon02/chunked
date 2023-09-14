@@ -100,15 +100,27 @@ Comp.Pane {
             clip: true
             cellWidth: pane.parentGoalId ? 340 : 400
 
-            TapHandler {
-                onTapped: gridView.forceActiveFocus()
+            remove: Transition {
+                SequentialAnimation {
+                    ParallelAnimation {
+                        NumberAnimation { property: "opacity"; to: 0; duration: 400 }
+                        NumberAnimation { property: "scale"; to: 0.7; duration: 400 }
+                    }
+
+                    ScriptAction {
+                        script: {
+                            gridView.model.select()
+                        }
+                    }
+                }
             }
 
-            remove: Transition {
-                ParallelAnimation {
-                    NumberAnimation { property: "opacity"; to: 0; duration: 1000 }
-                    NumberAnimation { properties: "x,y"; to: 100; duration: 1000 }
-                }
+            displaced: Transition {
+                NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutQuad }
+
+                // ensure opacity and scale values return to 1.0
+                NumberAnimation { property: "opacity"; to: 1.0 }
+                NumberAnimation { property: "scale"; to: 1.0 }
             }
 
             ScrollBar.vertical: Comp.ScrollBar {
@@ -130,25 +142,21 @@ Comp.Pane {
                 width: GridView.view.cellWidth
                 height: GridView.view.cellHeight
 
-//                SequentialAnimation {
-//                       id: removeAnimation
-//                       PropertyAction { target: item; property: "GridView.delayRemove"; value: true }
-//                       NumberAnimation { target: item; property: "scale"; to: 0; duration: 250; easing.type: Easing.InOutQuad }
-//                       PropertyAction { target: item; property: "GridView.delayRemove"; value: false }
-//                }
-//                GridView.onRemove: removeAnimation.start()
-
                 Comp.GoalItemDelegate {
                     anchors.centerIn: parent
-                    itemId: model.itemId ? model.itemId : 0
-                    imageSource: model.imageSource ? model.imageSource : ""
-                    category: model.category ? model.category : ""
-                    goalName: model.name ? model.name : ""
-                    startDateTime: Date.fromLocaleString(Qt.locale(), model.startDateTime, "dd MMM yyyy hh:mm AP")
-                    endDateTime: Date.fromLocaleString(Qt.locale(), model.endDateTime, "dd MMM yyyy hh:mm AP")
-                    progressValue: model.progressValue ? model.progressValue : 0
-                    targetValue: model.targetValue ? model.targetValue : 0
-                    unit: model.progressUnit ? model.progressUnit : ""
+                    itemId: model.itemId
+                    imageSource: model.imageSource
+                    category: model.category
+                    goalName: model.name
+                    startDateTime: { startDateTime = Date.fromLocaleString(Qt.locale(),
+                                                         model.startDateTime,
+                                                         "dd MMM yyyy hh:mm AP") }
+                    endDateTime: { endDateTime = Date.fromLocaleString(Qt.locale(),
+                                                       model.endDateTime,
+                                                       "dd MMM yyyy hh:mm AP") }
+                    progressValue: model.progressValue
+                    targetValue: model.targetValue
+                    unit: model.progressUnit
                     subGoal: pane.parentGoalId
 
                     Component.onCompleted: {
@@ -160,6 +168,10 @@ Comp.Pane {
 
             model: GoalsTableModel {
                 parentGoalId: pane.parentGoalId
+            }
+
+            TapHandler {
+                onTapped: gridView.forceActiveFocus()
             }
 
             Connections {

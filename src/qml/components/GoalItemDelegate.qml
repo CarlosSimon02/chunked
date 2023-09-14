@@ -183,6 +183,7 @@ Comp.ItemDelegate {
 
             Comp.MenuItem {
                 text: "Delete"
+                onTriggered: console.log(model.index)
             }
         }
     }

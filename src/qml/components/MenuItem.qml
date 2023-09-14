@@ -44,16 +44,28 @@ T.MenuItem {
         text: menuItem.text
         font: menuItem.font
         color: menuItem.foregroundColor
+
     }
 
-    indicator: ColorImage {
+    indicator: Rectangle {
         x: menuItem.mirrored ? menuItem.width - width - menuItem.rightPadding : menuItem.leftPadding
         y: menuItem.topPadding + (menuItem.availableHeight - height) / 2
-        width: 15
-        height: 15
-        visible: menuItem.checked
-        source: menuItem.checkable ? "qrc:/check_icon.svg" : ""
-        color: Comp.ColorScheme.secondaryColor.dark
+        width: 16
+        height: 16
+        visible: menuItem.checkable
+        color: "transparent"
+        border.width: 1
+        border.color: Comp.ColorScheme.secondaryColor.dark
+        radius: 4
+
+        ColorImage {
+            anchors.centerIn: parent
+            width: 14
+            height: 14
+            visible: menuItem.checked
+            source: menuItem.checkable ? "qrc:/check_icon.svg" : ""
+            color: Comp.ColorScheme.secondaryColor.dark
+        }
     }
 
     arrow: ColorImage {

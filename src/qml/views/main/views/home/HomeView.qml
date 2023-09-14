@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Windows
 
 import components as Comp
 
@@ -10,6 +10,21 @@ Comp.Page {
 
         Comp.Menu {
             id: menu
+
+            Comp.Menu {
+                id: subMenu
+                title: "what the fuck"
+                MenuItem {
+                    text: "New..."
+                    checkable: true
+                }
+                MenuItem {
+                    text: "Open..."
+                }
+                MenuItem {
+                    text: "Save"
+                }
+            }
 
             Comp.MenuItem {
                 text: "New..."

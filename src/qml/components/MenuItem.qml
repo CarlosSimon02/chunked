@@ -23,9 +23,7 @@ T.MenuItem {
     icon.color: foregroundColor
     font.pixelSize: 14
 
-    property color foregroundColor: enabled ?
-                                        highlighted ? Comp.ColorScheme.accentColor.regular :
-                                                      Comp.ColorScheme.secondaryColor.regular :
+    property color foregroundColor: enabled ? Comp.ColorScheme.secondaryColor.regular :
                                         Comp.ColorScheme.secondaryColor.veryDark
 
     property color backgroundColor: "transparent"
@@ -41,7 +39,7 @@ T.MenuItem {
         spacing: menuItem.spacing
         mirrored: menuItem.mirrored
         display: menuItem.display
-        alignment: Qt.AlignCenter
+        alignment: Qt.AlignLeft || Qt.AlignVCenter
 
         icon: menuItem.icon
         text: menuItem.text
@@ -83,9 +81,8 @@ T.MenuItem {
         Impl.FadeEffect {
             anchors.fill: parent
             colorEffect: menuItem.fadeEffectColor
-            controlIsHovered: menuItem.hovered
+            controlIsHovered: menuItem.highlighted
             controlIsDown: menuItem.down
-            controlIsHighlighted: menuItem.highlighted
             controlIsEnabled: menuItem.enabled
         }
     }

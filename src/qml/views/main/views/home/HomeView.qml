@@ -8,18 +8,18 @@ Comp.Page {
         text: "Sample Menu"
         onClicked: menu.open()
 
-        Menu {
+        Comp.Menu {
             id: menu
 
-            MenuItem {
+            Comp.MenuItem {
                 text: "New..."
                 onTriggered: document.reset()
             }
-            MenuItem {
+            Comp.MenuItem {
                 text: "Open..."
                 onTriggered: openDialog.open()
             }
-            MenuItem {
+            Comp.MenuItem {
                 text: "Save"
                 onTriggered: saveDialog.open()
             }

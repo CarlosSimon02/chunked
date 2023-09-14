@@ -104,6 +104,13 @@ Comp.Pane {
                 onTapped: gridView.forceActiveFocus()
             }
 
+            remove: Transition {
+                ParallelAnimation {
+                    NumberAnimation { property: "opacity"; to: 0; duration: 1000 }
+                    NumberAnimation { properties: "x,y"; to: 100; duration: 1000 }
+                }
+            }
+
             ScrollBar.vertical: Comp.ScrollBar {
                 parent: gridView
                 x: gridView.mirrored ? 0 : gridView.width - width
@@ -123,17 +130,25 @@ Comp.Pane {
                 width: GridView.view.cellWidth
                 height: GridView.view.cellHeight
 
+//                SequentialAnimation {
+//                       id: removeAnimation
+//                       PropertyAction { target: item; property: "GridView.delayRemove"; value: true }
+//                       NumberAnimation { target: item; property: "scale"; to: 0; duration: 250; easing.type: Easing.InOutQuad }
+//                       PropertyAction { target: item; property: "GridView.delayRemove"; value: false }
+//                }
+//                GridView.onRemove: removeAnimation.start()
+
                 Comp.GoalItemDelegate {
                     anchors.centerIn: parent
-                    itemId: model.itemId
-                    imageSource: model.imageSource
-                    category: model.category
-                    goalName: model.name
+                    itemId: model.itemId ? model.itemId : 0
+                    imageSource: model.imageSource ? model.imageSource : ""
+                    category: model.category ? model.category : ""
+                    goalName: model.name ? model.name : ""
                     startDateTime: Date.fromLocaleString(Qt.locale(), model.startDateTime, "dd MMM yyyy hh:mm AP")
                     endDateTime: Date.fromLocaleString(Qt.locale(), model.endDateTime, "dd MMM yyyy hh:mm AP")
-                    progressValue: model.progressValue
-                    targetValue: model.targetValue
-                    unit: model.progressUnit
+                    progressValue: model.progressValue ? model.progressValue : 0
+                    targetValue: model.targetValue ? model.targetValue : 0
+                    unit: model.progressUnit ? model.progressUnit : ""
                     subGoal: pane.parentGoalId
 
                     Component.onCompleted: {

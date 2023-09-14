@@ -107,3 +107,12 @@ void BaseTableModel::refresh()
 {
     select();
 }
+
+void BaseTableModel::removeRow(int row, const QModelIndex &parent)
+{
+    beginRemoveRows(parent,row,row);
+    endRemoveRows();
+    QAbstractItemModel::removeRow(row);
+
+//    select();
+}

@@ -4,6 +4,8 @@
 #include <QtQml/qqml.h>
 #include <models/basetablemodel.h>
 
+class Goal;
+
 class GoalsTableModel : public BaseTableModel
 {
     Q_OBJECT
@@ -12,6 +14,7 @@ class GoalsTableModel : public BaseTableModel
 
 public:
     explicit GoalsTableModel(QObject *parent = nullptr);
+    Q_INVOKABLE void insertRecord(Goal* goal);
 };
 
 #endif // GOALSTABLEMODEL_H

@@ -13,7 +13,7 @@ TasksTableModel::TasksTableModel(QObject *parent)
     select();
 }
 
-void TasksTableModel::insertTask(Task *task)
+void TasksTableModel::insertRecord(Task *task)
 {
     QSqlRecord rec = record();
     rec.setGenerated("itemId",false);
@@ -27,6 +27,6 @@ void TasksTableModel::insertTask(Task *task)
     rec.setValue("parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()) );
 
     if (!insertRecord(0,rec))
-        qWarning() << "TasksTableModel::insertTask: Cannot insert task";
+        qWarning() << "TasksTableModel::insertRecord: Cannot insert task";
 
 }

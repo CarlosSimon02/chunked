@@ -21,17 +21,9 @@ Comp.ModalPopup {
         background: null
         padding: 20
 
-        Loader {
-            anchors.fill: parent
-            sourceComponent: modalPopup.opened ? content : null
-        }
-    }
-
-    Component {
-        id: content
-
         ColumnLayout {
             id: columnLayout
+            anchors.fill: parent
             spacing: 20
 
             Component.onCompleted: {

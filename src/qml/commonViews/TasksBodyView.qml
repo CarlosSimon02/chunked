@@ -34,7 +34,7 @@ Comp.Pane {
                     task.parentGoalId: pane.parentGoalId
 
                     onSave: {
-                        listView.model.insertTask(task)
+                        listView.model.insertRecord(task)
                     }
                 }
 

@@ -14,7 +14,7 @@ class TasksTableModel : public BaseTableModel
 
 public:
     explicit TasksTableModel(QObject *parent = nullptr);
-    Q_INVOKABLE void insertTask(Task* task);
+    Q_INVOKABLE void insertRecord(Task* task);
 };
 
 #endif // TASKSTABLEMODEL_H

@@ -215,7 +215,7 @@ Comp.ModalPopup {
                                     Layout.preferredWidth: 400
                                     onItemIdChanged: {
                                         modalPopup.parentGoalId = itemId
-                                        displayText = modalPopup.parentGoal ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :
+                                        displayText = modalPopup.parentGoalId ? dbAccess.getValue("goals","name", modalPopup.parentGoalId) :
                                                                                    "None(Top Level)"
                                     }
 

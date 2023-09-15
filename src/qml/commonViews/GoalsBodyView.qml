@@ -12,7 +12,6 @@ Comp.Pane {
     padding: 0
     property int parentGoalId: 0
     signal refresh
-    onRefresh: gridView.model.refresh()
 
     ColumnLayout {
         anchors.fill: parent
@@ -141,6 +140,23 @@ Comp.Pane {
                 id: item
                 width: GridView.view.cellWidth
                 height: GridView.view.cellHeight
+
+                property bool added
+
+                states: State {
+                    name: "added"; when: item.added
+                    PropertyChanges { target: item; scale: 1; opacity: 1 }
+                }
+
+                transitions: Transition {
+                    to: "added"
+                    reversible: true
+
+                    NumberAnimation { property: "opacity"; from: 0; duration: 400 }
+                    NumberAnimation { property: "scale"; from: 0.7; duration: 400 }
+                }
+
+                GridView.onAdd: added = true
 
                 Comp.GoalItemDelegate {
                     anchors.centerIn: parent

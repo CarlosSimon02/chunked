@@ -136,50 +136,22 @@ Comp.Pane {
                 active: gridView.ScrollBar.vertical.active
             }
 
-            delegate: Item {
+            delegate: Comp.GoalItemDelegate {
                 id: item
-                width: GridView.view.cellWidth
-                height: GridView.view.cellHeight
-
-                property bool added
-
-                states: State {
-                    name: "added"; when: item.added
-                    PropertyChanges { target: item; scale: 1; opacity: 1 }
-                }
-
-                transitions: Transition {
-                    to: "added"
-                    reversible: true
-
-                    NumberAnimation { property: "opacity"; from: 0; duration: 400 }
-                    NumberAnimation { property: "scale"; from: 0.7; duration: 400 }
-                }
-
-                GridView.onAdd: added = true
-
-                Comp.GoalItemDelegate {
-                    anchors.centerIn: parent
-                    itemId: model.itemId
-                    imageSource: model.imageSource
-                    category: model.category
-                    goalName: model.name
-                    startDateTime: { startDateTime = Date.fromLocaleString(Qt.locale(),
-                                                         model.startDateTime,
-                                                         "dd MMM yyyy hh:mm AP") }
-                    endDateTime: { endDateTime = Date.fromLocaleString(Qt.locale(),
-                                                       model.endDateTime,
-                                                       "dd MMM yyyy hh:mm AP") }
-                    progressValue: model.progressValue
-                    targetValue: model.targetValue
-                    unit: model.progressUnit
-                    subGoal: pane.parentGoalId
-
-                    Component.onCompleted: {
-                        if(item.GridView.view.cellHeight < implicitHeight)
-                            item.GridView.view.cellHeight = implicitHeight + 20
-                    }
-                }
+                itemId: model.itemId
+                imageSource: model.imageSource
+                category: model.category
+                goalName: model.name
+                startDateTime: { startDateTime = Date.fromLocaleString(Qt.locale(),
+                                                     model.startDateTime,
+                                                     "dd MMM yyyy hh:mm AP") }
+                endDateTime: { endDateTime = Date.fromLocaleString(Qt.locale(),
+                                                   model.endDateTime,
+                                                   "dd MMM yyyy hh:mm AP") }
+                progressValue: model.progressValue
+                targetValue: model.targetValue
+                unit: model.progressUnit
+                subGoal: pane.parentGoalId
             }
 
             model: GoalsTableModel {

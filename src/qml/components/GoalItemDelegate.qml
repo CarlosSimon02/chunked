@@ -11,6 +11,16 @@ Item {
     height: GridView.view.cellHeight
 
     property bool added
+    property bool subGoal: false
+    property alias imageSource: image.source
+    property alias category: category.text
+    property alias goalName: goalName.text
+    required property int itemId
+    required property date startDateTime
+    required property date endDateTime
+    required property double progressValue
+    required property double targetValue
+    required property string unit
 
     GridView.onAdd: added = true
     Component.onCompleted: {
@@ -27,17 +37,6 @@ Item {
         fadeEffectColor: Comp.ColorScheme.secondaryColor.dark
         elevated: true
         padding: 0
-
-        property bool subGoal: false
-        property alias imageSource: image.source
-        property alias category: category.text
-        property alias goalName: goalName.text
-        required property int itemId
-        required property date startDateTime
-        required property date endDateTime
-        required property double progressValue
-        required property double targetValue
-        required property string unit
 
         onClicked: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(itemDelegate.itemId)})
 
@@ -108,8 +107,8 @@ Item {
                                 icon.width: 15
                                 icon.height: 15
                                 icon.color: Comp.ColorScheme.secondaryColor.dark
-                                text: new Date() > itemDelegate.startDateTime ? Comp.Utils.getTimeFrame(new Date(), itemDelegate.endDateTime) + " remaining" :
-                                                                                "Start on " + itemDelegate.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                                text: new Date() > item.startDateTime ? Comp.Utils.getTimeFrame(new Date(), item.endDateTime) + " remaining" :
+                                                                                "Start on " + item.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                                 color: Comp.ColorScheme.secondaryColor.dark
                             }
 
@@ -119,7 +118,7 @@ Item {
                                 icon.source: "qrc:/category_icon.svg"
                                 icon.width: 15
                                 icon.height: 15
-                                visible: !itemDelegate.subGoal
+                                visible: !item.subGoal
                                 icon.color: Comp.ColorScheme.secondaryColor.dark
                                 text: Comp.Consts.statusTypes[status]
                                 color: Comp.ColorScheme.secondaryColor.dark
@@ -131,10 +130,10 @@ Item {
                                 icon.width: 15
                                 icon.height: 15
                                 icon.color: Comp.ColorScheme.secondaryColor.dark
-                                property int status: Comp.Utils.getGoalStatus(itemDelegate.startDateTime,
-                                                                              itemDelegate.endDateTime,
-                                                                              itemDelegate.targetValue,
-                                                                              itemDelegate.progressValue)
+                                property int status: Comp.Utils.getGoalStatus(item.startDateTime,
+                                                                              item.endDateTime,
+                                                                              item.targetValue,
+                                                                              item.progressValue)
                                 text: Comp.Consts.statusTypes[status]
                                 color: switch(status) {
                                        case 0: return "darkgoldenrod"
@@ -150,9 +149,9 @@ Item {
                                 icon.width: 15
                                 icon.height: 15
                                 icon.color: Comp.ColorScheme.secondaryColor.dark
-                                text: itemDelegate.progressValue.toString() + " / " +
-                                      itemDelegate.targetValue.toString() + " " +
-                                      itemDelegate.unit + " completed"
+                                text: item.progressValue.toString() + " / " +
+                                      item.targetValue.toString() + " " +
+                                      item.unit + " completed"
                                 color: Comp.ColorScheme.secondaryColor.dark
                             }
                         }
@@ -161,8 +160,8 @@ Item {
                     RowLayout {
                         Comp.Text {
                             id: percentText
-                            text: itemDelegate.targetValue ?
-                                      Math.floor(itemDelegate.progressValue/itemDelegate.targetValue*100).toString()+"%" :
+                            text: item.targetValue ?
+                                      Math.floor(item.progressValue/item.targetValue*100).toString()+"%" :
                                       "--"
                             font.pixelSize: 18
                             font.weight: Font.DemiBold
@@ -172,7 +171,7 @@ Item {
                         Comp.ProgressBar {
                             Layout.fillWidth: true
                             Layout.preferredHeight: percentText.implicitHeight - 6
-                            value: itemDelegate.progressValue/itemDelegate.targetValue
+                            value: item.progressValue/item.targetValue
                         }
                     }
                 }
@@ -198,7 +197,7 @@ Item {
                 Comp.MenuItem {
                     text: "Delete"
                     onTriggered: {
-                        gridView.model.removeRow(model.index)
+                        item.GridView.view.model.removeRow(model.index)
                     }
                 }
             }

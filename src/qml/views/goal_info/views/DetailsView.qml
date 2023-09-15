@@ -203,7 +203,7 @@ Comp.Pane {
                                     color: Comp.ColorScheme.accentColor.regular
                                     font.pixelSize: 24
                                     font.bold: true
-                                    text: pane.goal.targetValue ? Math.floor(pane.goal.progressValue/pane.goal.targetValue*100).toString()+"%" : "--"
+                                    text: pane.goal.targetValue ? Math.floor(pane.goal.progressValue/pane.goal.targetValue*100).toString()+"%" : "??"
                                 }
 
                                 Comp.Text {

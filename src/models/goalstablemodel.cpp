@@ -14,6 +14,7 @@ GoalsTableModel::GoalsTableModel(QObject *parent)
              "endDateTime, progressTracker, progressValue, targetValue, progressUnit, parentGoalId "
              "FROM goals;");
     setFilter("parentGoalId IS NULL");
+    setSort(0,Qt::DescendingOrder);
 
     if(lastError().isValid())
         qWarning() << "GoalsTableModel::GoalsTableModel" << lastError().text();
@@ -40,5 +41,4 @@ void GoalsTableModel::insertRecord(Goal* goal)
 
     if (!QSqlTableModel::insertRecord(0,rec))
         qWarning() << "GoalsTableModel::insertGoal: Cannot insert goal";
-
 }

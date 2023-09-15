@@ -29,7 +29,7 @@ QVariant BaseTableModel::data(const QModelIndex &index, int role) const
         {
             int columnIdx = role - Qt::UserRole - 1;
             QModelIndex modelIndex = this->index(index.row(), columnIdx);
-            value = QSqlTableModel::data(modelIndex, Qt::EditRole);
+            value = QSqlTableModel::data(modelIndex, Qt::DisplayRole);
         }
     }
     return value;
@@ -111,8 +111,6 @@ void BaseTableModel::refresh()
 void BaseTableModel::removeRow(int row, const QModelIndex &parent)
 {
     beginRemoveRows(parent,row,row);
+    QSqlTableModel::removeRows(row,1,parent);
     endRemoveRows();
-    QAbstractItemModel::removeRow(row);
-
-//    select();
 }

@@ -26,7 +26,7 @@ void TasksTableModel::insertRecord(Task *task)
     rec.setValue("notes", task->notes());
     rec.setValue("parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()) );
 
-    if (!insertRecord(0,rec))
+    if (!QSqlTableModel::insertRecord(0,rec))
         qWarning() << "TasksTableModel::insertRecord: Cannot insert task";
 
 }

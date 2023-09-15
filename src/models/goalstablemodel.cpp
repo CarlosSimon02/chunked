@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QSqlError>
+#include <QSqlRecord>
 
 #include "goal.h"
 
@@ -37,7 +38,7 @@ void GoalsTableModel::insertRecord(Goal* goal)
     rec.setValue("resources", goal->resources());
     rec.setValue("parentGoalId", goal->parentGoalId() ? goal->parentGoalId() : QVariant(QMetaType::fromType<int>()));
 
-    if (!insertRecord(0,rec))
+    if (!QSqlTableModel::insertRecord(0,rec))
         qWarning() << "GoalsTableModel::insertGoal: Cannot insert goal";
 
 }

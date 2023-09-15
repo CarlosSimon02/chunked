@@ -21,9 +21,17 @@ Comp.ModalPopup {
         background: null
         padding: 20
 
+        Loader {
+            anchors.fill: parent
+            sourceComponent: modalPopup.opened ? content : null
+        }
+    }
+
+    Component {
+        id: content
+
         ColumnLayout {
             id: columnLayout
-            anchors.fill: parent
             spacing: 20
 
             Component.onCompleted: {
@@ -412,7 +420,7 @@ Comp.ModalPopup {
                             if(columnLayout.goal.itemId)
                                 dbAccess.updateGoalItem(columnLayout.goal)
                             else
-                                dbAccess.saveGoalItem(columnLayout.goal)
+                                gridView.model.insertRecord(columnLayout.goal)
                             modalPopup.save()
                             modalPopup.close()
                         }

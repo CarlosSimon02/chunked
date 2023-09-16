@@ -79,12 +79,23 @@ Comp.Pane {
             spacing: 8
             property bool isOutcomeVisible: false
 
-            displaced: Transition {
-                NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
+            add: Transition {
+                SequentialAnimation {
+                    ParallelAnimation {
+                        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 400 }
+                        NumberAnimation { property: "scale"; from: 0.7; to: 1; duration: 400 }
+                    }
+                }
+            }
 
-                // ensure opacity and scale values return to 1.0
-                NumberAnimation { property: "opacity"; to: 1.0 }
-                NumberAnimation { property: "scale"; to: 1.0 }
+            displaced: Transition {
+                SequentialAnimation {
+                    ParallelAnimation {
+                        NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
+                        NumberAnimation { property: "opacity"; to: 1.0 }
+                        NumberAnimation { property: "scale"; to: 1.0 }
+                    }
+                }
             }
 
             delegate: CommonViews.TaskItemDelegate {
@@ -96,23 +107,6 @@ Comp.Pane {
                 isOutcomeVisible: ListView.view.isOutcomeVisible
                 startDateTime: Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
                 endDateTime: Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
-
-                property bool added
-
-                states: State {
-                    name: "added"; when: taskItemDelegate.added
-                    PropertyChanges { target: taskItemDelegate; scale: 1; opacity: 1 }
-                }
-
-                transitions: Transition {
-                    to: "added"
-                    reversible: true
-
-                    NumberAnimation { property: "opacity"; from: 0; duration: 400 }
-                    NumberAnimation { property: "scale"; from: 0.7; duration: 400 }
-                }
-
-                ListView.onAdd: added = true
                 onSetDone: model.done = taskDone
                 onClicked: {
                     drawerPane.open()

@@ -108,39 +108,12 @@ Comp.Pane {
                 }
             }
 
-//            remove: Transition {
-//                id: sampleTrans
-//                SequentialAnimation {
-//                    PropertyAction { target: sampleTrans; property: "ViewTransition.item.GridView.delayRemove"; value: true }
-//                    ParallelAnimation {
-//                        NumberAnimation { property: "opacity"; to: 0; duration: 400 }
-//                        NumberAnimation { property: "scale"; to: 0.7; duration: 400 }
-//                    }
-//                    PropertyAction { target: sampleTrans; property: "ViewTransition.item.GridView.delayRemove"; value: false }
-//                    ScriptAction {
-//                        script: {
-////                            gridView.model.testRemove(sampleTrans.ViewTransition.index);
-//                            gridView.model.refresh()
-//                        }
-//                    }
-//                }
-//            }
-
             displaced: Transition {
-
                 SequentialAnimation {
                     ParallelAnimation {
                         NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
-
-                        // ensure opacity and scale values return to 1.0
                         NumberAnimation { property: "opacity"; to: 1.0 }
                         NumberAnimation { property: "scale"; to: 1.0 }
-                    }
-
-                    ScriptAction {
-                        script: {
-                            gridView.model.submitRemoveRow()
-                        }
                     }
                 }
             }
@@ -164,7 +137,11 @@ Comp.Pane {
                 width: GridView.view.cellWidth
                 height: GridView.view.cellHeight
 
-                GridView.onRemove: remAnim.running = true
+                GridView.onRemove: {
+                    var tempName = itemDelegate.goalName
+                    itemDelegate.goalName = tempName
+                    remAnim.running = true
+                }
 
                 SequentialAnimation {
                     id: remAnim
@@ -177,8 +154,7 @@ Comp.Pane {
                 }
 
                 Comp.GoalItemDelegate {
-                    id: goalItemDelegate
-                    property int someIndex
+                    id: itemDelegate
                     anchors.centerIn: parent
                     itemId: model.itemId
                     imageSource: model.imageSource
@@ -201,8 +177,6 @@ Comp.Pane {
                         else if(item.GridView.view.cellHeight > implicitHeight || gridView.count === 1) {
                             item.GridView.view.cellHeight = implicitHeight + 20
                         }
-
-                        someIndex = model.index
                     }
                 }
             }

@@ -90,7 +90,7 @@ Comp.ItemDelegate {
                         Comp.MenuItem {
                             text: "Delete"
                             onTriggered: {
-                                listView.model.cacheRemoveRow(model.index)
+                                listView.model.removeRows(model.index, 1)
                             }
                         }
                     }

@@ -29,8 +29,7 @@ public:
     void setParentGoalId(int parentGoalId);
 
     Q_INVOKABLE void refresh();
-    Q_INVOKABLE void cacheRemoveRow(int row, const QModelIndex &parent = QModelIndex());
-    Q_INVOKABLE void submitRemoveRow();
+    Q_INVOKABLE bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
 signals:
     parentGoalIdChanged();

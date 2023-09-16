@@ -184,7 +184,7 @@ Comp.ItemDelegate {
             Comp.MenuItem {
                 text: "Delete"
                 onTriggered: {
-                    gridView.model.cacheRemoveRow(model.index)
+                    gridView.model.removeRows(model.index,1)
                 }
             }
         }

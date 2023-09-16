@@ -130,7 +130,7 @@ Comp.Pane {
 
                 SequentialAnimation {
                     ParallelAnimation {
-                        NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutQuad }
+                        NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
 
                         // ensure opacity and scale values return to 1.0
                         NumberAnimation { property: "opacity"; to: 1.0 }

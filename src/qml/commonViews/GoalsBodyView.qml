@@ -198,9 +198,9 @@ Comp.Pane {
                     Component.onCompleted: {
                         if(item.GridView.view.cellHeight < implicitHeight)
                             item.GridView.view.cellHeight = implicitHeight + 20
-//                        else if(item.GridView.view.cellHeight > implicitHeight || gridView.count === 1) {
-//                            item.GridView.view.cellHeight = implicitHeight + 20
-//                        }
+                        else if(item.GridView.view.cellHeight > implicitHeight || gridView.count === 1) {
+                            item.GridView.view.cellHeight = implicitHeight + 20
+                        }
 
                         someIndex = model.index
                     }

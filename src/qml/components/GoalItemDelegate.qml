@@ -18,12 +18,12 @@ Comp.ItemDelegate {
     property alias imageSource: image.source
     property alias category: category.text
     property alias goalName: goalName.text
-    required property int itemId
-    required property date startDateTime
-    required property date endDateTime
-    required property double progressValue
-    required property double targetValue
-    required property string unit
+    property int itemId
+    property date startDateTime
+    property date endDateTime
+    property double progressValue
+    property double targetValue
+    property string unit
 
     onClicked: stackView.push(goalInfoView, {"goal": dbAccess.getGoalItem(itemDelegate.itemId)})
 
@@ -184,7 +184,7 @@ Comp.ItemDelegate {
             Comp.MenuItem {
                 text: "Delete"
                 onTriggered: {
-                    gridView.model.removeRow(model.index)
+                    gridView.model.cacheRemoveRow(model.index)
                 }
             }
         }

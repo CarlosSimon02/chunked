@@ -127,11 +127,22 @@ Comp.Pane {
 //            }
 
             displaced: Transition {
-                NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutQuad }
 
-                // ensure opacity and scale values return to 1.0
-                NumberAnimation { property: "opacity"; to: 1.0 }
-                NumberAnimation { property: "scale"; to: 1.0 }
+                SequentialAnimation {
+                    ParallelAnimation {
+                        NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutQuad }
+
+                        // ensure opacity and scale values return to 1.0
+                        NumberAnimation { property: "opacity"; to: 1.0 }
+                        NumberAnimation { property: "scale"; to: 1.0 }
+                    }
+
+                    ScriptAction {
+                        script: {
+                            gridView.model.submitRemoveRow()
+                        }
+                    }
+                }
             }
 
             ScrollBar.vertical: Comp.ScrollBar {
@@ -159,40 +170,39 @@ Comp.Pane {
                     id: remAnim
                     PropertyAction { target: item; property: "GridView.delayRemove"; value: true }
                     ParallelAnimation {
-                        NumberAnimation {target: item; property: "opacity"; to: 0; duration: 200 }
+                        NumberAnimation {target: item; property: "opacity"; to: 1; duration: 200 }
                         NumberAnimation {target: item; property: "scale"; to: 0.7; duration: 200 }
                     }
                     PropertyAction { target: item; property: "GridView.delayRemove"; value: false }
-                    ScriptAction {
-                        script: {
-                            gridView.model.refresh()
-                        }
-                    }
                 }
 
                 Comp.GoalItemDelegate {
+                    id: goalItemDelegate
+                    property int someIndex
                     anchors.centerIn: parent
-                    itemId: model.itemId ? model.itemId : 0
-                    imageSource: model.imageSource ? model.imageSource : ""
-                    category: model.category ? model.category : ""
-                    goalName: model.name ? model.name : ""
+                    itemId: model.itemId
+                    imageSource: model.imageSource
+                    category: model.category
+                    goalName: model.name
                     startDateTime: Date.fromLocaleString(Qt.locale(),
                                                          model.startDateTime,
                                                          "dd MMM yyyy hh:mm AP")
                     endDateTime: Date.fromLocaleString(Qt.locale(),
                                                      model.endDateTime,
                                                      "dd MMM yyyy hh:mm AP")
-                    progressValue: model.progressValue ? model.progerssValue : 0
-                    targetValue: model.targetValue ? model.targetValue : 0
-                    unit: model.progressUnit ? model.progressUnit : ""
+                    progressValue: model.progressValue
+                    targetValue: model.targetValue
+                    unit: model.progressUnit
                     subGoal: pane.parentGoalId
 
                     Component.onCompleted: {
                         if(item.GridView.view.cellHeight < implicitHeight)
                             item.GridView.view.cellHeight = implicitHeight + 20
-                        else if(item.GridView.view.cellHeight > implicitHeight || gridView.count === 1) {
-                            item.GridView.view.cellHeight = implicitHeight + 20
-                        }
+//                        else if(item.GridView.view.cellHeight > implicitHeight || gridView.count === 1) {
+//                            item.GridView.view.cellHeight = implicitHeight + 20
+//                        }
+
+                        someIndex = model.index
                     }
                 }
             }

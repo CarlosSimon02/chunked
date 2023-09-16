@@ -108,9 +108,19 @@ void BaseTableModel::refresh()
     select();
 }
 
-void BaseTableModel::removeRow(int row, const QModelIndex &parent)
+void BaseTableModel::cacheRemoveRow(int row, const QModelIndex &parent)
 {
+    setEditStrategy(EditStrategy::OnManualSubmit);
     beginRemoveRows(parent,row,row);
     QSqlTableModel::removeRows(row,1,parent);
     endRemoveRows();
+}
+
+void BaseTableModel::submitRemoveRow()
+{
+    if(editStrategy() == EditStrategy::OnManualSubmit)
+    {
+        submitAll();
+        setEditStrategy(EditStrategy::OnFieldChange);
+    }
 }

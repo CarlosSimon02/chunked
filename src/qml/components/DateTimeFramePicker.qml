@@ -10,6 +10,8 @@ Item {
 
     property alias startDateTimeText: startButton.text
     property alias endDateTimeText: endButton.text
+    property alias startDateTime: startButton.chosenDateTime
+    property alias endDateTime: endButton.chosenDateTime
     property date initStartDateTime
     property date initEndDateTime
 

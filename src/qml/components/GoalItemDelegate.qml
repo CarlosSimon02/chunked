@@ -171,11 +171,13 @@ Comp.ItemDelegate {
         anchors.rightMargin: 20
         anchors.top: parent.top
         anchors.topMargin: 20
-        width: 40
-        height: 40
+        width: 35
+        height: 35
         visible: itemDelegate.hovered
         backgroundColor: Comp.Utils.setColorAlpha(Comp.ColorScheme.primaryColor.light, 0.6)
         icon.source: "qrc:/option_icon.svg"
+        icon.width: 15
+        icon.height: 15
         onClicked: menu.open()
 
         Comp.Menu {

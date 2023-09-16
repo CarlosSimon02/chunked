@@ -102,8 +102,6 @@ Comp.Pane {
                 id: taskItemDelegate
                 width: listView.width - listView.leftMargin * 2
                 isOutcomeVisible: ListView.view.isOutcomeVisible
-                startDateTime: Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
-                endDateTime: Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
 
                 onSetDone: model.done = taskDone
 
@@ -111,6 +109,12 @@ Comp.Pane {
                     taskDone = model.done
                     name = model.name
                     outcome = model.outcome
+                    startDateTime = Date.fromLocaleString(locale,
+                                                         model.startDateTime,
+                                                         "dd MMM yyyy hh:mm AP")
+                    endDateTime = Date.fromLocaleString(locale,
+                                                       model.endDateTime,
+                                                       "dd MMM yyyy hh:mm AP")
                 }
 
                 onClicked: {
@@ -185,7 +189,10 @@ Comp.Pane {
                         Layout.bottomMargin: 10
                         Comp.CheckBox {
                             id: doneCheckBox
-                            onCheckedChanged: listView.model.setData("done", drawerPane.index, checked)
+                            onCheckedChanged: {
+                                listView.itemAtIndex(drawerPane.index).taskDone = checked
+                                listView.model.setData("done", drawerPane.index, checked)
+                            }
                         }
 
                         Comp.Text {
@@ -211,11 +218,13 @@ Comp.Pane {
                                     id: dateTimeFramePicker
 
                                     onStartDateTimeTextChanged: {
+                                        listView.itemAtIndex(drawerPane.index).startDateTime = startDateTime
                                         listView.model.setData("startDateTime", drawerPane.index, startDateTimeText)
                                         timeFrameText.text = startDateTimeText + " -\n" + endDateTimeText
                                     }
 
                                     onEndDateTimeTextChanged: {
+                                        listView.itemAtIndex(drawerPane.index).endDateTime = endDateTime
                                         listView.model.setData("endDateTime", drawerPane.index, endDateTimeText)
                                         timeFrameText.text = startDateTimeText + " -\n" + endDateTimeText
                                     }
@@ -243,7 +252,10 @@ Comp.Pane {
                         Comp.TextArea {
                             id: nameTextArea
                             Layout.fillWidth: true
-                            onTextChanged: listView.model.setData("name", drawerPane.index, text)
+                            onTextChanged: {
+                                listView.itemAtIndex(drawerPane.index).name = text
+                                listView.model.setData("name", drawerPane.index, text)
+                            }
                         }
                     }
 
@@ -256,7 +268,10 @@ Comp.Pane {
                             id: outcomeSpinBox
                             Layout.fillWidth: true
                             value: 1
-                            onValueChanged: listView.model.setData("outcome", drawerPane.index, value)
+                            onValueChanged: {
+                                listView.itemAtIndex(drawerPane.index).outcome = value
+                                listView.model.setData("outcome", drawerPane.index, value)
+                            }
                         }
                     }
 

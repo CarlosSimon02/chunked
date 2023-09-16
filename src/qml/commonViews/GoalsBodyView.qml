@@ -156,20 +156,6 @@ Comp.Pane {
                 Comp.GoalItemDelegate {
                     id: itemDelegate
                     anchors.centerIn: parent
-                    itemId: model.itemId
-                    imageSource: model.imageSource
-                    category: model.category
-                    goalName: model.name
-                    startDateTime: Date.fromLocaleString(Qt.locale(),
-                                                         model.startDateTime,
-                                                         "dd MMM yyyy hh:mm AP")
-                    endDateTime: Date.fromLocaleString(Qt.locale(),
-                                                     model.endDateTime,
-                                                     "dd MMM yyyy hh:mm AP")
-                    progressValue: model.progressValue
-                    targetValue: model.targetValue
-                    unit: model.progressUnit
-                    subGoal: pane.parentGoalId
 
                     Component.onCompleted: {
                         if(item.GridView.view.cellHeight < implicitHeight)
@@ -177,6 +163,21 @@ Comp.Pane {
                         else if(item.GridView.view.cellHeight > implicitHeight || gridView.count === 1) {
                             item.GridView.view.cellHeight = implicitHeight + 20
                         }
+
+                        itemId = model.itemId
+                        imageSource = model.imageSource
+                        category = model.category
+                        goalName = model.name
+                        startDateTime = Date.fromLocaleString(Qt.locale(),
+                                                             model.startDateTime,
+                                                             "dd MMM yyyy hh:mm AP")
+                        endDateTime = Date.fromLocaleString(Qt.locale(),
+                                                         model.endDateTime,
+                                                         "dd MMM yyyy hh:mm AP")
+                        progressValue = model.progressValue
+                        targetValue = model.targetValue
+                        unit = model.progressUnit
+                        subGoal = pane.parentGoalId
                     }
                 }
             }

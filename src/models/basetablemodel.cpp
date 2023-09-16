@@ -111,7 +111,7 @@ void BaseTableModel::refresh()
 bool BaseTableModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     emit beginRemoveRows(parent,row,row+count-1);
-    bool result = QSqlTableModel::removeRows(row,row+count-1,parent);
+    bool result = QSqlTableModel::removeRows(row,count,parent);
     emit endRemoveRows();
     return result;
 }

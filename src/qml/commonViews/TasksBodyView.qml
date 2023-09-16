@@ -101,13 +101,18 @@ Comp.Pane {
             delegate: CommonViews.TaskItemDelegate {
                 id: taskItemDelegate
                 width: listView.width - listView.leftMargin * 2
-                taskDone: model.done
-                name: model.name
-                outcome: model.outcome
                 isOutcomeVisible: ListView.view.isOutcomeVisible
                 startDateTime: Date.fromLocaleString(locale, model.startDateTime, "dd MMM yyyy hh:mm AP")
                 endDateTime: Date.fromLocaleString(locale, model.endDateTime, "dd MMM yyyy hh:mm AP")
+
                 onSetDone: model.done = taskDone
+
+                Component.onCompleted: {
+                    taskDone = model.done
+                    name = model.name
+                    outcome = model.outcome
+                }
+
                 onClicked: {
                     drawerPane.open()
                     doneCheckBox.checked = model.done

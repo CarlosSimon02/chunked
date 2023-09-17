@@ -109,13 +109,9 @@ Comp.Pane {
             }
 
             displaced: Transition {
-                SequentialAnimation {
-                    ParallelAnimation {
-                        NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
-                        NumberAnimation { property: "opacity"; to: 1.0 }
-                        NumberAnimation { property: "scale"; to: 1.0 }
-                    }
-                }
+                NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
+                NumberAnimation { property: "opacity"; to: 1.0 }
+                NumberAnimation { property: "scale"; to: 1.0 }
             }
 
             ScrollBar.vertical: Comp.ScrollBar {
@@ -138,8 +134,6 @@ Comp.Pane {
                 height: GridView.view.cellHeight
 
                 GridView.onRemove: {
-                    var tempName = itemDelegate.goalName
-                    itemDelegate.goalName = tempName
                     remAnim.running = true
                 }
 

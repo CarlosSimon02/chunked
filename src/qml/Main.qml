@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Imagine
 import QtQuick.Layouts
 import app
 
@@ -12,8 +12,8 @@ ApplicationWindow {
     width: 1280
     height: 720
     visible: true
-    title: qsTr("Chunked")
     font.family: "Poppins"
+    flags: Qt.Window | Qt.CustomizeWindowHint
 
     background: Rectangle {
         color: Comp.ColorScheme.primaryColor.dark

@@ -80,28 +80,36 @@ Comp.Pane {
             property bool isOutcomeVisible: false
 
             add: Transition {
-                SequentialAnimation {
-                    ParallelAnimation {
-                        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 400 }
-                        NumberAnimation { property: "scale"; from: 0.7; to: 1; duration: 400 }
-                    }
+                ParallelAnimation {
+                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 400 }
+                    NumberAnimation { property: "scale"; from: 0.7; to: 1; duration: 400 }
                 }
             }
 
             displaced: Transition {
-                SequentialAnimation {
-                    ParallelAnimation {
-                        NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
-                        NumberAnimation { property: "opacity"; to: 1.0 }
-                        NumberAnimation { property: "scale"; to: 1.0 }
-                    }
-                }
+                NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
+                NumberAnimation { property: "opacity"; to: 1.0 }
+                NumberAnimation { property: "scale"; to: 1.0 }
             }
 
             delegate: CommonViews.TaskItemDelegate {
                 id: taskItemDelegate
                 width: listView.width - listView.leftMargin * 2
                 isOutcomeVisible: ListView.view.isOutcomeVisible
+
+                ListView.onRemove: {
+                    remAnim.running = true
+                }
+
+                SequentialAnimation {
+                    id: remAnim
+                    PropertyAction { target: taskItemDelegate; property: "ListView.delayRemove"; value: true }
+                    ParallelAnimation {
+                        NumberAnimation {target: taskItemDelegate; property: "opacity"; to: 0; duration: 200 }
+                        NumberAnimation {target: taskItemDelegate; property: "scale"; to: 0.7; duration: 200 }
+                    }
+                    PropertyAction { target: taskItemDelegate; property: "ListView.delayRemove"; value: false }
+                }
 
                 onSetDone: model.done = taskDone
 

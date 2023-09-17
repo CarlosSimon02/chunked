@@ -27,9 +27,9 @@ Application::Application(int &argc, char *argv[], int flags)
     m_engine->load(url);
 }
 
-std::unique_ptr<QQmlApplicationEngine> Application::engine() const
+QQmlApplicationEngine* Application::engine() const
 {
-    return m_engine;
+    return m_engine.get();
 }
 
 void Application::loadFonts()

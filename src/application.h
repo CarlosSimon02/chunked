@@ -9,7 +9,7 @@ class Application: public QGuiApplication
     Q_OBJECT
 public:
     Application(int &argc, char **argv, int flags = ApplicationFlags);
-    std::unique_ptr<QQmlApplicationEngine> engine() const;
+    QQmlApplicationEngine* engine() const;
 
 private:
     void loadFonts();

@@ -11,6 +11,6 @@ int main(int argc, char *argv[])
     FramelessHelper::Quick::initialize();
     Application app(argc, argv);
     FramelessHelper::Core::setApplicationOSThemeAware();
-    FramelessHelper::Quick::registerTypes(app.engine().get());
+    FramelessHelper::Quick::registerTypes(app.engine());
     return app.exec();
 }

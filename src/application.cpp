@@ -13,7 +13,7 @@
 
 Application::Application(int &argc, char *argv[], int flags)
     : QGuiApplication{ argc, argv, flags },
-    m_engine{std::make_unique<QQmlApplicationEngine>}
+    m_engine{new QQmlApplicationEngine}
 {
     loadFonts();
     DBAccess* dbAccess = new DBAccess;
@@ -21,13 +21,13 @@ Application::Application(int &argc, char *argv[], int flags)
     m_engine->addImportPath("qrc:/");
     const QUrl url(u"qrc:/Main.qml"_qs);
 
-    QObject::connect(&m_engine, &QQmlApplicationEngine::objectCreationFailed,
+    QObject::connect(m_engine.get(), &QQmlApplicationEngine::objectCreationFailed,
         Application::instance(), []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
     m_engine->load(url);
 }
 
-QQmlApplicationEngine Application::engine() const
+std::unique_ptr<QQmlApplicationEngine> Application::engine() const
 {
     return m_engine;
 }

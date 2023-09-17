@@ -59,9 +59,11 @@ set_target_properties(chunked PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(chunked
-    PRIVATE Qt6::Quick
-    PRIVATE Qt6::Sql
+target_link_libraries(chunked PRIVATE
+    Qt6::Quick
+    Qt6::Sql
+    FramelessHelper::Core
+    FramelessHelper::Widgets
 )
 
 install(TARGETS chunked

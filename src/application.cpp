@@ -12,18 +12,24 @@
 #include "models/goalstablemodel.h"
 
 Application::Application(int &argc, char *argv[], int flags)
-    : QGuiApplication{ argc, argv, flags }
+    : QGuiApplication{ argc, argv, flags },
+    m_engine{std::make_unique<QQmlApplicationEngine>}
 {
     loadFonts();
     DBAccess* dbAccess = new DBAccess;
-    m_engine.rootContext()->setContextProperty("dbAccess",dbAccess);
-    m_engine.addImportPath("qrc:/");
+    m_engine->rootContext()->setContextProperty("dbAccess",dbAccess);
+    m_engine->addImportPath("qrc:/");
     const QUrl url(u"qrc:/Main.qml"_qs);
 
     QObject::connect(&m_engine, &QQmlApplicationEngine::objectCreationFailed,
         Application::instance(), []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    m_engine.load(url);
+    m_engine->load(url);
+}
+
+QQmlApplicationEngine Application::engine() const
+{
+    return m_engine;
 }
 
 void Application::loadFonts()

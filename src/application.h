@@ -9,12 +9,13 @@ class Application: public QGuiApplication
     Q_OBJECT
 public:
     Application(int &argc, char **argv, int flags = ApplicationFlags);
+    QQmlApplicationEngine engine() const;
 
 private:
     void loadFonts();
 
 private:
-    QQmlApplicationEngine m_engine;
+    std::unique_ptr<QQmlApplicationEngine> m_engine;
 };
 
 #endif // APPLICATION_H

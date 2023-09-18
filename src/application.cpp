@@ -20,10 +20,6 @@ Application::Application(int &argc, char *argv[], int flags)
     m_engine->rootContext()->setContextProperty("dbAccess",dbAccess);
     m_engine->addImportPath("qrc:/");
     const QUrl url(u"qrc:/Main.qml"_qs);
-
-    QObject::connect(m_engine.get(), &QQmlApplicationEngine::objectCreationFailed,
-        Application::instance(), []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
     m_engine->load(url);
 }
 

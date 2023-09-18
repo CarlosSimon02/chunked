@@ -4,9 +4,9 @@ project(chunked VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTORCC ON)
-list(APPEND CMAKE_PREFIX_PATH "D:/framelesshelper/build/lib/cmake/FramelessHelper")
+set(FramelessHelper_DIR "D:/framelesshelper/build/lib/cmake/FramelessHelper")
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Sql)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Sql Qml)
 find_package(FramelessHelper REQUIRED COMPONENTS Core Quick)
 
 qt_standard_project_setup()
@@ -63,6 +63,7 @@ set_target_properties(chunked PROPERTIES
 target_link_libraries(chunked PRIVATE
     Qt6::Quick
     Qt6::Sql
+    Qt6::QmlMeta
     FramelessHelper::Core
     FramelessHelper::Quick
 )

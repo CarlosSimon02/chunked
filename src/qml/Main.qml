@@ -17,6 +17,7 @@ ApplicationWindow {
     visible: true
     font.family: "Poppins"
     color: Comp.ColorScheme.primaryColor.dark
+    property bool isMaximized: false
 
     FramelessHelper.onReady: {
         FramelessHelper.titleBarItem = topBar
@@ -24,6 +25,7 @@ ApplicationWindow {
         FramelessHelper.setHitTestVisible(headerTab)
         FramelessHelper.setSystemButton(topBar.minimizeButton, FramelessHelperConstants.Minimize)
         FramelessHelper.setSystemButton(topBar.maximizeButton, FramelessHelperConstants.Maximize)
+        FramelessHelper.setSystemButton(topBar.maximizeButton, FramelessHelperConstants.Normal)
         FramelessHelper.setSystemButton(topBar.closeButton, FramelessHelperConstants.Close)
         window.visible = true;
     }
@@ -64,5 +66,23 @@ ApplicationWindow {
         id: topBar
         width: parent.width
         height: 65
+
+        minimizeButton.onClicked:window.showMinimized()
+        maximizeButton.onClicked: {
+            if(!window.isMaximized)
+            {
+                window.isMaximized = true
+                window.showMaximized()
+            }
+            else {
+                window.isMaximized = false
+                window.showNormal()
+            }
+        }
+        maximizeButton.icon.source: window.isMaximized ?
+                                        "qrc:/restore_down_icon.svg" :
+                                        "qrc:/maximize_icon.svg"
+        closeButton.onClicked: window.close()
+
     }
 }

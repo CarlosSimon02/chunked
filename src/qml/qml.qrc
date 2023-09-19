@@ -67,5 +67,6 @@
         <file>imports/popups/CreateEditGoalPopup.qml</file>
         <file>imports/popups/qmldir</file>
         <file>imports/components/TopBar.qml</file>
+        <file>imports/components/HeaderTab.qml</file>
     </qresource>
 </RCC>

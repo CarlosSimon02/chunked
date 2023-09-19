@@ -29,7 +29,6 @@ ApplicationWindow {
         color: window.color
         height: 100
         titleLabel.visible: false
-        windowIcon: "qrc:/arrow_left_icon.svg"
         windowIconVisible: true
     }
 
@@ -37,10 +36,6 @@ ApplicationWindow {
         FramelessHelper.titleBarItem = titleBar
         FramelessHelper.setHitTestVisible(columnLayout)
         window.visible = true;
-    }
-
-    background: Rectangle {
-        color: Comp.ColorScheme.primaryColor.dark
     }
 
     MouseArea {

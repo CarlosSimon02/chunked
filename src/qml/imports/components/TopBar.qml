@@ -1,18 +1,34 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 
 import components as Comp
 
 Item {
-    Comp.Button {
-        display: Button.IconOnly
-    }
+    property alias minimizeButton: minimize
+    property alias maximizeButton: maximize
+    property alias closeButton: close
 
-    Comp.Button {
-        display: Button.IconOnly
-    }
+    RowLayout {
+        anchors.right: parent.right
+        anchors.rightMargin: 0
 
-    Comp.Button {
-        display: Button.IconOnly
+        Comp.Button {
+            id: minimize
+            icon.source: "qrc:/check_icon.svg"
+            display: Button.IconOnly
+        }
+
+        Comp.Button {
+            id: maximize
+            icon.source: "qrc:/check_icon.svg"
+            display: Button.IconOnly
+        }
+
+        Comp.Button {
+            id: close
+            icon.source: "qrc:/check_icon.svg"
+            display: Button.IconOnly
+        }
     }
 }

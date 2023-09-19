@@ -29,6 +29,12 @@ ApplicationWindow {
         onClicked: forceActiveFocus()
     }
 
+    Comp.TopBar {
+        id: topBar
+        width: parent.width
+        height: 65
+    }
+
     ColumnLayout {
         id: columnLayout
         anchors.fill: parent

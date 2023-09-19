@@ -37,9 +37,9 @@ Comp.Pane {
             vendorExtensionsEnabled: false
 
             ShapePath {
-                fillColor: "blue"
+                fillColor: Comp.ColorScheme.primaryColor.regular
                 strokeWidth: 0
-                strokeColor: "blue"
+                strokeColor: Comp.ColorScheme.primaryColor.regular
 
                 startX: shape.radius; startY: 0
                 PathLine { x: shape.width - (shape.radius * 2); y: 0 }

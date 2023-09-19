@@ -16,12 +16,10 @@ RowLayout {
     }
 
     ColumnLayout {
-        spacing: -Comp.Consts.commonRadius
+        spacing: 0
 
-        Header {
-            Layout.fillWidth: true
-            iconSource: sideMenu.currentItem.icon.source
-            currentPageText: sideMenu.currentItem.text
+        Comp.HeaderTab {
+
         }
 
         Loader {

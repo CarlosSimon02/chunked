@@ -26,15 +26,11 @@ Comp.Pane {
     }
 
     background: Item {
-        id: root
-        layer.enabled: true
-        layer.samples: 8
-
         Shape {
             id: shape
             property int radius: Comp.Consts.commonRadius
             anchors.fill: parent
-            vendorExtensionsEnabled: false
+            antialiasing: true
 
             ShapePath {
                 fillColor: Comp.ColorScheme.primaryColor.regular

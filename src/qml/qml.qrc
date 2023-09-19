@@ -2,28 +2,10 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>qml.qrc</file>
-        <file>components/Pane.qml</file>
-        <file>components/qmldir</file>
-        <file>components/ColorScheme.qml</file>
-        <file>components/Consts.qml</file>
-        <file>components/Utils.js</file>
-        <file>components/impl/FadeEffect.qml</file>
-        <file>components/Button.qml</file>
-        <file>components/Page.qml</file>
-        <file>components/AccentButton.qml</file>
-        <file>components/ItemDelegate.qml</file>
-        <file>components/Text.qml</file>
-        <file>components/ProgressBar.qml</file>
-        <file>components/ScrollView.qml</file>
-        <file>components/ScrollBar.qml</file>
-        <file>components/ModalPopup.qml</file>
         <file>views/goal_info/views/DescriptionView.qml</file>
         <file>views/goal_info/views/HabitsView.qml</file>
         <file>views/goal_info/views/JournalView.qml</file>
         <file>views/goal_info/GoalInfoView.qml</file>
-        <file>popups/components/ImagePicker.qml</file>
-        <file>popups/CreateEditGoalPopup.qml</file>
-        <file>popups/qmldir</file>
         <file>views/main/views/goals/GoalsView.qml</file>
         <file>views/main/views/settings/SettingsView.qml</file>
         <file>views/main/views/side_menu/components/ItemDelegate.qml</file>
@@ -36,35 +18,54 @@
         <file>views/main/views/reports/ReportsView.qml</file>
         <file>views/main/views/tasks/TasksView.qml</file>
         <file>views/main/views/vision_board/VisionBoardView.qml</file>
-        <file>components/Popup.qml</file>
         <file>views/goal_info/views/DetailsView.qml</file>
-        <file>components/ComboBox.qml</file>
-        <file>components/FieldColumnLayout.qml</file>
-        <file>components/FieldLabel.qml</file>
-        <file>components/TextArea.qml</file>
-        <file>popups/components/ColumnLayout.qml</file>
-        <file>components/GoalItemDelegate.qml</file>
-        <file>components/impl/DropShadow.qml</file>
-        <file>components/impl/qmldir</file>
-        <file>components/CheckBox.qml</file>
-        <file>commonViews/GoalsBodyView.qml</file>
-        <file>commonViews/TasksBodyView.qml</file>
-        <file>commonViews/components/TaskItemDelegate.qml</file>
-        <file>commonViews/qmldir</file>
-        <file>components/TextField.qml</file>
-        <file>commonViews/components/CreateTaskTextField.qml</file>
-        <file>components/DateTimeFramePicker.qml</file>
-        <file>components/DatePicker.qml</file>
-        <file>components/TimePicker.qml</file>
-        <file>components/ListView.qml</file>
-        <file>components/GoalNamesTreeViewComboBox.qml</file>
-        <file>components/Dialog.qml</file>
-        <file>components/SpinBox.qml</file>
-        <file>components/impl/ScrollView.qml</file>
         <file>views/main/views/header/Header.qml</file>
-        <file>components/CollapsibleTextField.qml</file>
-        <file>components/Menu.qml</file>
-        <file>components/MenuItem.qml</file>
-        <file>components/GridView.qml</file>
+        <file>imports/commonViews/components/CreateTaskTextField.qml</file>
+        <file>imports/commonViews/components/TaskItemDelegate.qml</file>
+        <file>imports/commonViews/GoalsBodyView.qml</file>
+        <file>imports/commonViews/qmldir</file>
+        <file>imports/commonViews/TasksBodyView.qml</file>
+        <file>imports/components/impl/DropShadow.qml</file>
+        <file>imports/components/impl/FadeEffect.qml</file>
+        <file>imports/components/impl/qmldir</file>
+        <file>imports/components/impl/ScrollView.qml</file>
+        <file>imports/components/AccentButton.qml</file>
+        <file>imports/components/Button.qml</file>
+        <file>imports/components/CheckBox.qml</file>
+        <file>imports/components/CollapsibleTextField.qml</file>
+        <file>imports/components/ColorScheme.qml</file>
+        <file>imports/components/ComboBox.qml</file>
+        <file>imports/components/Consts.qml</file>
+        <file>imports/components/DatePicker.qml</file>
+        <file>imports/components/DateTimeFramePicker.qml</file>
+        <file>imports/components/Dialog.qml</file>
+        <file>imports/components/FieldColumnLayout.qml</file>
+        <file>imports/components/FieldLabel.qml</file>
+        <file>imports/components/GoalItemDelegate.qml</file>
+        <file>imports/components/GoalNamesTreeViewComboBox.qml</file>
+        <file>imports/components/GridView.qml</file>
+        <file>imports/components/ItemDelegate.qml</file>
+        <file>imports/components/ListView.qml</file>
+        <file>imports/components/Menu.qml</file>
+        <file>imports/components/MenuItem.qml</file>
+        <file>imports/components/ModalPopup.qml</file>
+        <file>imports/components/Page.qml</file>
+        <file>imports/components/Pane.qml</file>
+        <file>imports/components/Popup.qml</file>
+        <file>imports/components/ProgressBar.qml</file>
+        <file>imports/components/qmldir</file>
+        <file>imports/components/ScrollBar.qml</file>
+        <file>imports/components/ScrollView.qml</file>
+        <file>imports/components/SpinBox.qml</file>
+        <file>imports/components/Text.qml</file>
+        <file>imports/components/TextArea.qml</file>
+        <file>imports/components/TextField.qml</file>
+        <file>imports/components/TimePicker.qml</file>
+        <file>imports/components/Utils.js</file>
+        <file>imports/popups/components/ColumnLayout.qml</file>
+        <file>imports/popups/components/ImagePicker.qml</file>
+        <file>imports/popups/CreateEditGoalPopup.qml</file>
+        <file>imports/popups/qmldir</file>
+        <file>imports/components/TopBar.qml</file>
     </qresource>
 </RCC>

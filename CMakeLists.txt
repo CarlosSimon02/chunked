@@ -12,8 +12,6 @@ find_package(FramelessHelper REQUIRED COMPONENTS Core Quick)
 qt_standard_project_setup()
 
 qt_add_executable(chunked
-    src/application.h
-    src/application.cpp
     src/goal.h
     src/goal.cpp
     src/task.h
@@ -45,7 +43,7 @@ qt6_add_qml_module(chunked
   SOURCES
 )
 
-list(APPEND QML_DIRS ${CMAKE_SOURCE_DIR}/src/qml)
+list(APPEND QML_DIRS ${CMAKE_SOURCE_DIR}/src/qml/imports)
 list(REMOVE_DUPLICATES QML_DIRS)
 set(QML_IMPORT_PATH "${QML_DIRS}"
     CACHE STRING "Qt Creator 4.1 extra qml import paths"

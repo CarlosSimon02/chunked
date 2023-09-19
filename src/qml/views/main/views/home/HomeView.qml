@@ -3,7 +3,7 @@ import QtQuick.Controls.Windows
 
 import components as Comp
 
-Comp.Page {
+Comp.PageView {
     Comp.Button {
         text: "Sample Menu"
         onClicked: menu.open()

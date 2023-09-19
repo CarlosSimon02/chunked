@@ -5,7 +5,7 @@ import QtQuick.Layouts
 import components as Comp
 import commonViews as View
 
-Comp.Page {
+Comp.PageView {
 
     View.TasksBodyView {
         anchors.fill: parent

@@ -30,6 +30,7 @@ Comp.Pane {
             id: shape
             property int radius: Comp.Consts.commonRadius
             anchors.fill: parent
+            smooth: true
             antialiasing: true
 
             ShapePath {

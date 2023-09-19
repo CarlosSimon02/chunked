@@ -12,23 +12,31 @@ Item {
     RowLayout {
         anchors.right: parent.right
         anchors.rightMargin: 0
+        spacing: 0
 
         Comp.Button {
             id: minimize
-            icon.source: "qrc:/check_icon.svg"
+            Layout.preferredWidth: 50
+            icon.source: "qrc:/minimize_icon.svg"
             display: Button.IconOnly
+            radius: 0
         }
 
         Comp.Button {
             id: maximize
-            icon.source: "qrc:/check_icon.svg"
+            Layout.preferredWidth: 50
+            icon.source: "qrc:/maximize_icon.svg"
             display: Button.IconOnly
+            radius: 0
         }
 
         Comp.Button {
             id: close
-            icon.source: "qrc:/check_icon.svg"
+            Layout.preferredWidth: 50
+            icon.source: "qrc:/close_icon.svg"
             display: Button.IconOnly
+            radius: 0
+            fadeEffectColor: "red"
         }
     }
 }

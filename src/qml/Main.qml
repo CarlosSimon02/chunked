@@ -16,25 +16,11 @@ ApplicationWindow {
     height: 720
     visible: true
     font.family: "Poppins"
-    color: "blue"
-
-    StandardTitleBar {
-        id: titleBar
-        anchors {
-            top: parent.top
-            topMargin: window.visibility === Window.Windowed ? 1 : 0
-            left: parent.left
-            right: parent.right
-        }
-        color: window.color
-        height: 100
-        titleLabel.visible: false
-        windowIconVisible: true
-    }
+    color: Comp.ColorScheme.primaryColor.dark
 
     FramelessHelper.onReady: {
-        FramelessHelper.titleBarItem = titleBar
-        FramelessHelper.setHitTestVisible(columnLayout)
+//        FramelessHelper.titleBarItem = titleBar
+//        FramelessHelper.setHitTestVisible(columnLayout)
         window.visible = true;
     }
 

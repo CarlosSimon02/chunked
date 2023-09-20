@@ -11,6 +11,9 @@ Comp.Pane {
     padding: 0
     horizontalPadding: 15
 
+    property alias iconSource: iconLabel.icon.source
+    property alias titleText: iconLabel.text
+
     IconLabel {
         id: iconLabel
         anchors.verticalCenter: parent.verticalCenter

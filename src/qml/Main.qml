@@ -49,6 +49,8 @@ FramelessApplicationWindow {
 
             Comp.HeaderTab {
                 id: headerTab
+                iconSource: sideMenu.currentItem.icon.source
+                titleText: sideMenu.currentItem.text
             }
 
             Loader {

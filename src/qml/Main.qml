@@ -10,14 +10,13 @@ import "views/goal_info"
 
 import components as Comp
 
-ApplicationWindow {
+FramelessApplicationWindow {
     id: window
     width: 1280
     height: 720
     visible: true
     font.family: "Poppins"
     color: Comp.ColorScheme.primaryColor.dark
-    property bool isMaximized: false
 
     FramelessHelper.onReady: {
         FramelessHelper.titleBarItem = topBar
@@ -69,17 +68,15 @@ ApplicationWindow {
 
         minimizeButton.onClicked:window.showMinimized()
         maximizeButton.onClicked: {
-            if(!window.isMaximized)
+            if(!window.maximized)
             {
-                window.isMaximized = true
                 window.showMaximized()
             }
             else {
-                window.isMaximized = false
                 window.showNormal()
             }
         }
-        maximizeButton.icon.source: window.isMaximized ?
+        maximizeButton.icon.source: window.maximized ?
                                         "qrc:/restore_down_icon.svg" :
                                         "qrc:/maximize_icon.svg"
         closeButton.onClicked: window.close()

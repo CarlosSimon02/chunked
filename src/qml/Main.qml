@@ -14,11 +14,13 @@ FramelessApplicationWindow {
     id: window
     width: 1280
     height: 720
-    visible: true
+    visible: false
     font.family: "Poppins"
     color: Comp.ColorScheme.primaryColor.dark
 
+
     FramelessHelper.onReady: {
+        FramelessHelper.moveWindowToDesktopCenter()
         FramelessHelper.titleBarItem = topBar
         FramelessHelper.setHitTestVisible(sideMenu)
         FramelessHelper.setHitTestVisible(headerTab)

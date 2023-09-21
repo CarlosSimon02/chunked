@@ -49,10 +49,6 @@
         <file>imports/components/TextField.qml</file>
         <file>imports/components/TimePicker.qml</file>
         <file>imports/components/Utils.js</file>
-        <file>imports/popups/components/ColumnLayout.qml</file>
-        <file>imports/popups/components/ImagePicker.qml</file>
-        <file>imports/popups/CreateEditGoalPopup.qml</file>
-        <file>imports/popups/qmldir</file>
         <file>imports/components/TopBar.qml</file>
         <file>imports/components/HeaderTab.qml</file>
         <file>imports/components/PageView.qml</file>
@@ -68,5 +64,8 @@
         <file>views/side_menu/SideMenuView.qml</file>
         <file>views/tasks/TasksView.qml</file>
         <file>views/vision_board/VisionBoardView.qml</file>
+        <file>views/create_edit_goal/components/ColumnLayout.qml</file>
+        <file>views/create_edit_goal/components/ImagePicker.qml</file>
+        <file>views/create_edit_goal/CreateEditGoalView.qml</file>
     </qresource>
 </RCC>

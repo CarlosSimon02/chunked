@@ -9,6 +9,21 @@ Item {
     property alias maximizeButton: maximize
     property alias closeButton: close
 
+    minimizeButton.
+    maximizeButton.onClicked: {
+        if(!window.maximized)
+        {
+            window.showMaximized()
+        }
+        else {
+            window.showNormal()
+        }
+    }
+    maximizeButton.icon.source: window.maximized ?
+                                    "qrc:/restore_down_icon.svg" :
+                                    "qrc:/maximize_icon.svg"
+    closeButton.onClicked: window.close()
+
     RowLayout {
         anchors.right: parent.right
         anchors.rightMargin: 0
@@ -24,6 +39,7 @@ Item {
             display: Button.IconOnly
             radius: 0
             smooth: false
+            onClicked: window.showMinimized()
         }
 
         Comp.Button {

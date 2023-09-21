@@ -36,6 +36,12 @@ FramelessApplicationWindow {
         onClicked: forceActiveFocus()
     }
 
+    Comp.TopBar {
+        id: topBar
+        width: parent.width
+        height: 65
+    }
+
     RowLayout {
         anchors.fill: parent
         anchors.margins: 15
@@ -56,34 +62,11 @@ FramelessApplicationWindow {
             }
 
             Loader {
-                id: bodyView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 source: sideMenu.currentItem.viewSource
         //        source: "qrc:/views/main/views/goals/GoalsView.qml"
             }
         }
-    }
-
-    Comp.TopBar {
-        id: topBar
-        width: parent.width
-        height: 65
-
-        minimizeButton.onClicked:window.showMinimized()
-        maximizeButton.onClicked: {
-            if(!window.maximized)
-            {
-                window.showMaximized()
-            }
-            else {
-                window.showNormal()
-            }
-        }
-        maximizeButton.icon.source: window.maximized ?
-                                        "qrc:/restore_down_icon.svg" :
-                                        "qrc:/maximize_icon.svg"
-        closeButton.onClicked: window.close()
-
     }
 }

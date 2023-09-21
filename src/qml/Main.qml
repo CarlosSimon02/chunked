@@ -61,10 +61,12 @@ FramelessApplicationWindow {
             }
 
             StackView {
+                id: mainStackView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
                 initialItem: Loader {
+                    id: mainLoader
                     source: sideMenu.currentItem.viewSource
             //        source: "qrc:/views/main/views/goals/GoalsView.qml"
                 }

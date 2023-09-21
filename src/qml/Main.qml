@@ -18,7 +18,6 @@ FramelessApplicationWindow {
     font.family: "Poppins"
     color: Comp.ColorScheme.primaryColor.dark
 
-
     FramelessHelper.onReady: {
         FramelessHelper.moveWindowToDesktopCenter()
         FramelessHelper.titleBarItem = topBar
@@ -61,11 +60,14 @@ FramelessApplicationWindow {
                 titleText: sideMenu.currentItem.text
             }
 
-            Loader {
+            StackView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                source: sideMenu.currentItem.viewSource
-        //        source: "qrc:/views/main/views/goals/GoalsView.qml"
+
+                initialItem: Loader {
+                    source: sideMenu.currentItem.viewSource
+            //        source: "qrc:/views/main/views/goals/GoalsView.qml"
+                }
             }
         }
     }

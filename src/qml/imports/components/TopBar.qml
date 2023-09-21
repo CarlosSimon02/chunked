@@ -9,21 +9,6 @@ Item {
     property alias maximizeButton: maximize
     property alias closeButton: close
 
-    minimizeButton.
-    maximizeButton.onClicked: {
-        if(!window.maximized)
-        {
-            window.showMaximized()
-        }
-        else {
-            window.showNormal()
-        }
-    }
-    maximizeButton.icon.source: window.maximized ?
-                                    "qrc:/restore_down_icon.svg" :
-                                    "qrc:/maximize_icon.svg"
-    closeButton.onClicked: window.close()
-
     RowLayout {
         anchors.right: parent.right
         anchors.rightMargin: 0
@@ -47,11 +32,22 @@ Item {
             Layout.preferredWidth: 50
             icon.width: 12
             icon.height: 12
-            icon.source: "qrc:/maximize_icon.svg"
+            icon.source: window.maximized ?
+                             "qrc:/restore_down_icon.svg" :
+                             "qrc:/maximize_icon.svg"
             foregroundColor: Comp.ColorScheme.secondaryColor.regular
             display: Button.IconOnly
             radius: 0
             smooth: false
+            onClicked: {
+                if(!window.maximized)
+                {
+                    window.showMaximized()
+                }
+                else {
+                    window.showNormal()
+                }
+            }
         }
 
         Comp.Button {
@@ -67,6 +63,7 @@ Item {
             display: Button.IconOnly
             radius: 0
             smooth: false
+            onClicked: window.close()
         }
     }
 }

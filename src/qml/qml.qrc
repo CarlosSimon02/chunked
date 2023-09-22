@@ -7,8 +7,6 @@
         <file>views/goal_info/views/JournalView.qml</file>
         <file>views/goal_info/GoalInfoView.qml</file>
         <file>views/goal_info/views/DetailsView.qml</file>
-        <file>imports/commonViews/components/CreateTaskTextField.qml</file>
-        <file>imports/commonViews/components/TaskItemDelegate.qml</file>
         <file>imports/commonViews/GoalsBodyView.qml</file>
         <file>imports/commonViews/qmldir</file>
         <file>imports/commonViews/TasksBodyView.qml</file>
@@ -64,8 +62,10 @@
         <file>views/side_menu/SideMenuView.qml</file>
         <file>views/tasks/TasksView.qml</file>
         <file>views/vision_board/VisionBoardView.qml</file>
-        <file>views/create_edit_goal/components/ColumnLayout.qml</file>
-        <file>views/create_edit_goal/components/ImagePicker.qml</file>
-        <file>views/create_edit_goal/CreateEditGoalView.qml</file>
+        <file>imports/commonViews/components/create_edit_goal/ColumnLayout.qml</file>
+        <file>imports/commonViews/components/create_edit_goal/ImagePicker.qml</file>
+        <file>imports/commonViews/components/tasks_body/CreateTaskTextField.qml</file>
+        <file>imports/commonViews/components/tasks_body/TaskItemDelegate.qml</file>
+        <file>imports/commonViews/CreateEditGoalView.qml</file>
     </qresource>
 </RCC>

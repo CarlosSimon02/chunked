@@ -13,7 +13,7 @@ Comp.PageView {
         anchors.fill: parent
 
         Connections {
-            target: mainView.StackView
+            target: mainLoader.StackView
             function onActivating() {goalsBodyView.refresh()}
         }
     }

@@ -12,20 +12,6 @@ find_package(FramelessHelper REQUIRED COMPONENTS Core Quick)
 qt_standard_project_setup()
 
 qt_add_executable(chunked
-    src/goal.h
-    src/goal.cpp
-    src/task.h
-    src/task.cpp
-    src/dbaccess.h
-    src/dbaccess.cpp
-    src/models/basetablemodel.h
-    src/models/basetablemodel.cpp
-    src/models/goalstablemodel.h
-    src/models/goalstablemodel.cpp
-    src/models/goalnamestreeviewmodel.h
-    src/models/goalnamestreeviewmodel.cpp
-    src/models/taskstablemodel.h
-    src/models/taskstablemodel.cpp
     src/main.cpp
     src/qml/qml.qrc
     src/icons/icons.qrc
@@ -34,7 +20,6 @@ qt_add_executable(chunked
 
 target_include_directories(chunked
     PRIVATE src
-    PRIVATE src/models
 )
 
 qt6_add_qml_module(chunked
@@ -43,7 +28,6 @@ qt6_add_qml_module(chunked
   SOURCES
 )
 
-list(APPEND QML_DIRS ${CMAKE_SOURCE_DIR}/src/qml/imports)
 list(APPEND QML_DIRS D:/framelesshelper/build/qml)
 list(REMOVE_DUPLICATES QML_DIRS)
 set(QML_IMPORT_PATH "${QML_DIRS}"
@@ -62,7 +46,6 @@ set_target_properties(chunked PROPERTIES
 target_link_libraries(chunked PRIVATE
     Qt6::Quick
     Qt6::Sql
-    Qt6::QmlMeta
     FramelessHelper::Core
     FramelessHelper::Quick
 )

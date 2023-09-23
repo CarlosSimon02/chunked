@@ -10,10 +10,6 @@
 #include <FramelessHelper/Quick/framelessquickmodule.h>
 #include <FramelessHelper/Core/private/framelessconfig_p.h>
 
-#include "goal.h"
-#include "dbaccess.h"
-#include "models/goalstablemodel.h"
-
 FRAMELESSHELPER_REQUIRE_CONFIG(window)
 FRAMELESSHELPER_USE_NAMESPACE
 
@@ -46,8 +42,6 @@ int main(int argc, char *argv[])
     loadFonts();
 
     std::unique_ptr<QQmlApplicationEngine> engine = std::make_unique<QQmlApplicationEngine>();
-    DBAccess* dbAccess = new DBAccess;
-    engine->rootContext()->setContextProperty("dbAccess",dbAccess);
     engine->addImportPath(":/imports");
     const QUrl url(u"qrc:/Main.qml"_qs);
     engine->load(url);

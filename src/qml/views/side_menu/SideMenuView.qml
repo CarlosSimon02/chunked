@@ -41,49 +41,49 @@ Comp.Pane {
                 ListElement {
                     label: "Home"
                     iconSource: "qrc:/home_icon.svg"
-                    viewSource: "qrc:/views/main/views/home/HomeView.qml"
+                    viewSource: "qrc:/views/home/HomeView.qml"
                 }
 
                 ListElement {
                     label: "Goals"
                     iconSource: "qrc:/goals_icon.svg"
-                    viewSource: "qrc:/views/main/views/goals/GoalsView.qml"
+                    viewSource: "qrc:/views/goals/GoalsView.qml"
                 }
 
                 ListElement {
                     label: "Tasks"
                     iconSource: "qrc:/tasks_icon.svg"
-                    viewSource: "qrc:/views/main/views/tasks/TasksView.qml"
+                    viewSource: "qrc:/views/tasks/TasksView.qml"
                 }
 
                 ListElement {
                     label: "Habits"
                     iconSource: "qrc:/habits_icon.svg"
-                    viewSource: "qrc:/views/main/views/habits/HabitsView.qml"
+                    viewSource: "qrc:/views/habits/HabitsView.qml"
                 }
 
                 ListElement {
                     label: "Vision Board"
                     iconSource: "qrc:/vision_board_icon.svg"
-                    viewSource: "qrc:/views/main/views/vision_board/VisionBoardView.qml"
+                    viewSource: "qrc:/views/vision_board/VisionBoardView.qml"
                 }
 
                 ListElement {
                     label: "Journal"
                     iconSource: "qrc:/journal_icon.svg"
-                    viewSource: "qrc:/views/main/views/journal/JournalView.qml"
+                    viewSource: "qrc:/views/journal/JournalView.qml"
                 }
 
                 ListElement {
                     label: "Reports"
                     iconSource: "qrc:/reports_icon.svg"
-                    viewSource: "qrc:/views/main/views/reports/ReportsView.qml"
+                    viewSource: "qrc:/views/reports/ReportsView.qml"
                 }
 
                 ListElement {
                     label: "Settings"
                     iconSource: "qrc:/settings_icon.svg"
-                    viewSource: "qrc:/views/main/views/settings/SettingsView.qml"
+                    viewSource: "qrc:/views/settings/SettingsView.qml"
                 }
             }
         }

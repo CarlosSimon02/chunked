@@ -1,7 +1,14 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> </g>
-</svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="409px" height="409px" viewBox="0 0 409 409" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M409 0L409 0L409 409L0 409L0 0L409 0Z" id="path_1" />
+    <clipPath id="clip_1">
+      <use xlink:href="#path_1" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
+  </defs>
+  <g id="Maximize" clip-path="url(#clip_1)">
+    <path d="M409 0L409 0L409 409L0 409L0 0L409 0Z" id="Maximize" fill="none" stroke="none" />
+    <path d="M42 39L372 369" id="Line" fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="40" stroke-linecap="round" />
+    <path d="M42 369L367 39" id="Line-2" fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="40" stroke-linecap="round" />
+  </g>
+</svg>

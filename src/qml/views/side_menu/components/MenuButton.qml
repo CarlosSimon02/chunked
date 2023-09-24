@@ -1,12 +1,11 @@
 import QtQuick 
+import QtQuick.Controls.Material
 
-import components as Comp
-
-Comp.Button {
+Button {
     id: button
-    onClicked: opened = !opened
-    foregroundColor: Comp.ColorScheme.secondaryColor.regular
     property bool opened: false
+    flat: true
+    onClicked: opened = !opened
 
     contentItem: Item {
         id: item

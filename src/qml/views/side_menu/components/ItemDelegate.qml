@@ -1,9 +1,7 @@
 import QtQuick 
-import QtQuick.Controls 
+import QtQuick.Controls.Material as Ctrl
 
-import components as Comp
-
-Comp.ItemDelegate {
+Ctrl.ItemDelegate {
     id: iconLabelItemDelegate 
     property bool opened
 

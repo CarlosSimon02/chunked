@@ -19,5 +19,7 @@
         <file>views/side_menu/SideMenuView.qml</file>
         <file>views/tasks/TasksView.qml</file>
         <file>views/vision_board/VisionBoardView.qml</file>
+        <file>views/top_bar/TopBarView.qml</file>
+        <file>views/top_bar/components/Button.qml</file>
     </qresource>
 </RCC>

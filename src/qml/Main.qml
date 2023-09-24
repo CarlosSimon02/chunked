@@ -1,11 +1,12 @@
 import QtQuick
-import QtQuick.Controls.Basic
+import QtQuick.Controls.Material
 import QtQuick.Layouts
 import org.wangwenx190.FramelessHelper
 import app
 
 import "views/side_menu"
 import "views/goal_info"
+import "views/top_bar"
 
 FramelessApplicationWindow {
     id: window
@@ -13,50 +14,46 @@ FramelessApplicationWindow {
     height: 720
     visible: false
     font.family: "Poppins"
-    color: "blue"
 
-    StandardTitleBar {
-        id: titleBar
-        color: "white"
-        anchors {
-            top: parent.top
-            topMargin: window.visibility === Window.Windowed ? 1 : 0
-            left: parent.left
-            right: parent.right
-        }
-        titleLabel.visible: false
-        windowIcon: "qrc:///images/microsoft.svg"
-        windowIconVisible: true
-    }
+    Material.theme: Material.Dark
 
     FramelessHelper.onReady: {
         FramelessHelper.moveWindowToDesktopCenter()
-        titleBar.color = window.color
-        FramelessHelper.titleBarItem = titleBar
+        FramelessHelper.titleBarItem = topBarView
 //        FramelessHelper.setHitTestVisible(sideMenu)
 //        FramelessHelper.setHitTestVisible(headerTab)
-        FramelessHelper.setSystemButton(titleBar.minimizeButton, FramelessHelperConstants.Minimize)
-        FramelessHelper.setSystemButton(titleBar.maximizeButton, FramelessHelperConstants.Maximize)
-        FramelessHelper.setSystemButton(titleBar.maximizeButton, FramelessHelperConstants.Normal)
-        FramelessHelper.setSystemButton(titleBar.closeButton, FramelessHelperConstants.Close)
+        FramelessHelper.setSystemButton(topBarView.minimizeButton, FramelessHelperConstants.Minimize)
+        FramelessHelper.setSystemButton(topBarView.maximizeButton, FramelessHelperConstants.Maximize)
+        FramelessHelper.setSystemButton(topBarView.maximizeButton, FramelessHelperConstants.Normal)
+        FramelessHelper.setSystemButton(topBarView.closeButton, FramelessHelperConstants.Close)
         window.visible = true;
     }
 
-//    MouseArea {
-//        anchors.fill: parent
-//        onClicked: forceActiveFocus()
-//    }
+    MouseArea {
+        anchors.fill: parent
+        onClicked: forceActiveFocus()
+    }
 
-//    RowLayout {
-//        id: mainLayout
-//        anchors.fill: parent
-//        anchors.margins: 15
-//        spacing: 10
+    Pane {
+        anchors.fill: parent
+        padding: 0
+        Material.background: Material.color(Material.Grey, Material.Shade900)
+    }
 
-//        SideMenuView {
-//            id: sideMenu
-//            Layout.fillHeight: true
-//        }
+    ColumnLayout {
+        id: mainLayout
+        anchors.fill: parent
+        spacing: 0
+
+        TopBarView {
+            id: topBarView
+            Layout.fillWidth: true
+        }
+
+        SideMenuView {
+            id: sideMenu
+            Layout.fillHeight: true
+        }
 
 //        ColumnLayout {
 //            spacing: 0
@@ -86,11 +83,5 @@ FramelessApplicationWindow {
 //                }
 //            }
 //        }
-//    }
-
-//    Comp.TopBar {
-//        id: topBar
-//        width: parent.width
-//        height: 65
-//    }
+    }
 }

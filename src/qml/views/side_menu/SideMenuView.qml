@@ -1,31 +1,32 @@
-import QtQuick 
-import QtQuick.Controls 
+import QtQuick
+import QtQuick.Controls.Material
 import QtQuick.Layouts 
 
-import components as Comp
-import "./components" as SideMenu
+import "./components" as MComp
 
-Comp.Pane {
+Pane {
     id: subWindowPane
     padding: 8
     property alias currentItem: listView.currentItem
 
+    Material.background: Material.color(Material.Grey, Material.ShadeA100)
+
     Column {
         spacing: 50
 
-        SideMenu.MenuButton {
+        MComp.MenuButton {
             id: menuButton
             anchors.horizontalCenter: listView.horizontalCenter
         }
 
-        Comp.ListView {
+        ListView {
             id: listView
             width: 40
             height: contentItem.childrenRect.height
             spacing: 10
             clip: true
 
-            delegate: SideMenu.ItemDelegate {
+            delegate: MComp.ItemDelegate {
                 width: listView.width
 
                 property url viewSource: model.viewSource

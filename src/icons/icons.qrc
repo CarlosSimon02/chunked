@@ -32,9 +32,6 @@
         <file>maximize_icon.svg</file>
         <file>minimize_icon.svg</file>
         <file>restore_down_icon.svg</file>
-        <file>close_icon.png</file>
-        <file>maximize_icon.png</file>
-        <file>minimize_icon.png</file>
-        <file>restore_down_icon.png</file>
+        <file>double_arrow_left_icon.svg</file>
     </qresource>
 </RCC>

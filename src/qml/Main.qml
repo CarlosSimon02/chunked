@@ -27,6 +27,7 @@ FramelessApplicationWindow {
         window.visible = true;
     }
 
+    //For textinput controls to lose focus when click outside
     MouseArea {
         anchors.fill: parent
         onClicked: forceActiveFocus()
@@ -65,30 +66,29 @@ FramelessApplicationWindow {
         height: parent.height - topBarView.height
         padding: 0
         visible: false
+
         background: Rectangle {
             color: "#7F000000"
         }
-    }
 
-    Drawer {
-        id: drawer
-        width: 170
-        height: window.height
-        interactive: false
-        Overlay.modal: null
-        modal: false
-        Material.background: "black"
-        Material.roundedScale: Material.NotRounded
+        signal tapped
+        signal close
+        signal open
 
-        Connections {
-            target: window
-            function onWidthChanged() {
-                if(drawer.opened && sideMenu.visible)
-                    drawer.close()
+        onOpen: visible = true
+        onClose: visible = false
+
+        TapHandler {
+            onTapped: {
+                backdrop.tapped()
+                backdrop.close()
             }
         }
+    }
 
-        onAboutToShow: backdrop.visible = true
-        onAboutToHide: backdrop.visible = false
+    //For responsive design, can only use when SideMenuView is not visible
+    SideMenuDrawerView {
+        id: sideMenuDrawerView
+        height: parent.height
     }
 }

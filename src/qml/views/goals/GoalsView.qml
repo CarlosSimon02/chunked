@@ -27,10 +27,10 @@ Page {
                     Layout.preferredHeight: 40
                     visible: !sideMenu.visible
 
-                    onClicked: drawer.open()
+                    onClicked: sideMenuDrawerView.open()
 
                     Connections {
-                        target: drawer
+                        target: sideMenuDrawerView
                         function onAboutToHide() {menuButton.opened = false}
                     }
                 }

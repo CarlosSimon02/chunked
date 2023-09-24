@@ -5,8 +5,8 @@ import QtQuick.Layouts
 import "./components" as MComp
 
 Pane {
-    id: subWindowPane
-    padding: 8
+    padding: 0
+    horizontalPadding: 10
     property alias currentItem: listView.currentItem
 
     Material.background: Material.color(Material.Grey, Material.ShadeA100)
@@ -21,14 +21,13 @@ Pane {
 
         ListView {
             id: listView
-            width: 40
+            width: 50
             height: contentItem.childrenRect.height
-            spacing: 10
             clip: true
+            spacing: 10
 
             delegate: MComp.ItemDelegate {
                 width: listView.width
-
                 property url viewSource: model.viewSource
 
                 highlighted: ListView.isCurrentItem

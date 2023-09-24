@@ -28,6 +28,7 @@ qt6_add_qml_module(chunked
   SOURCES
 )
 
+list(APPEND QML_DIRS ${CMAKE_SOURCE_DIR}/src/qml/common)
 list(APPEND QML_DIRS D:/framelesshelper/build/qml)
 list(REMOVE_DUPLICATES QML_DIRS)
 set(QML_IMPORT_PATH "${QML_DIRS}"

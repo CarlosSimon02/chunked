@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     loadFonts();
 
     std::unique_ptr<QQmlApplicationEngine> engine = std::make_unique<QQmlApplicationEngine>();
-    engine->addImportPath(":/imports");
+    engine->addImportPath(":/common");
     const QUrl url(u"qrc:/Main.qml"_qs);
     engine->load(url);
     FramelessHelper::Quick::registerTypes(engine.get());

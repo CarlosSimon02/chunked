@@ -5,8 +5,8 @@ import org.wangwenx190.FramelessHelper
 import app
 
 import "views/side_menu"
-import "views/goal_info"
 import "views/top_bar"
+import "views/goals"
 
 FramelessApplicationWindow {
     id: window
@@ -34,11 +34,11 @@ FramelessApplicationWindow {
         onClicked: forceActiveFocus()
     }
 
-    Pane {
-        anchors.fill: parent
-        padding: 0
-        Material.background: Material.color(Material.Grey, Material.Shade900)
-    }
+//    Pane {
+//        anchors.fill: parent
+//        padding: 0
+//        Material.background: Material.color(Material.Grey, Material.Shade900)
+//    }
 
     ColumnLayout {
         id: mainLayout
@@ -50,9 +50,17 @@ FramelessApplicationWindow {
             Layout.fillWidth: true
         }
 
-        SideMenuView {
-            id: sideMenu
-            Layout.fillHeight: true
+        RowLayout {
+            spacing: 0
+            SideMenuView {
+                id: sideMenu
+                Layout.fillHeight: true
+            }
+
+            GoalsView {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
         }
 
 //        ColumnLayout {

@@ -1,20 +1,26 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Layouts
 
-import components as Comp
-import commonViews as View
+Page {
+    Material.background: "#121212"
 
-Comp.PageView {
-    signal goalAdded
+    header: Pane {
+        height: 60
+        horizontalPadding: 20
 
-    View.GoalsBodyView {
-        id: goalsBodyView
-        anchors.fill: parent
+        Material.background: Material.color(Material.Grey, Material.Shade900)
+        Material.elevation: 6
 
-        Connections {
-            target: mainLoader.StackView
-            function onActivating() {goalsBodyView.refresh()}
+        RowLayout {
+            anchors.fill: parent
+
+            Text {
+                text: "Goals"
+                color: "white"
+                font.pixelSize: 22
+                font.weight: Font.DemiBold
+            }
         }
     }
 }

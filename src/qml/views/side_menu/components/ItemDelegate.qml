@@ -12,6 +12,7 @@ Ctrl.ItemDelegate {
     property bool opened
 
     Ctrl.Material.foreground: Ctrl.Material.color(Ctrl.Material.Grey, Ctrl.Material.Shade400)
+    Ctrl.Material.roundedScale: Ctrl.Material.SmallScale
 
     Item {
         states: State {

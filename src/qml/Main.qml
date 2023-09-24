@@ -57,6 +57,7 @@ FramelessApplicationWindow {
         }
     }
 
+    //This is for modal popups, I want TopBarView to be responsive even popup is open
     Pane {
         id: backdrop
         anchors.bottom: parent.bottom
@@ -73,7 +74,7 @@ FramelessApplicationWindow {
         id: drawer
         width: 170
         height: window.height
-//        interactive: false
+        interactive: false
         Overlay.modal: null
         modal: false
         Material.background: "black"
@@ -89,10 +90,5 @@ FramelessApplicationWindow {
 
         onAboutToShow: backdrop.visible = true
         onAboutToHide: backdrop.visible = false
-
-        Label {
-            text: "Content goes here!"
-            anchors.centerIn: parent
-        }
     }
 }

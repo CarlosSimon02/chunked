@@ -20,8 +20,6 @@ FramelessApplicationWindow {
     FramelessHelper.onReady: {
         FramelessHelper.moveWindowToDesktopCenter()
         FramelessHelper.titleBarItem = topBarView
-//        FramelessHelper.setHitTestVisible(sideMenu)
-//        FramelessHelper.setHitTestVisible(headerTab)
         FramelessHelper.setSystemButton(topBarView.minimizeButton, FramelessHelperConstants.Minimize)
         FramelessHelper.setSystemButton(topBarView.maximizeButton, FramelessHelperConstants.Maximize)
         FramelessHelper.setSystemButton(topBarView.maximizeButton, FramelessHelperConstants.Normal)
@@ -33,12 +31,6 @@ FramelessApplicationWindow {
         anchors.fill: parent
         onClicked: forceActiveFocus()
     }
-
-//    Pane {
-//        anchors.fill: parent
-//        padding: 0
-//        Material.background: Material.color(Material.Grey, Material.Shade900)
-//    }
 
     ColumnLayout {
         id: mainLayout
@@ -52,6 +44,7 @@ FramelessApplicationWindow {
 
         RowLayout {
             spacing: 0
+
             SideMenuView {
                 id: sideMenu
                 Layout.fillHeight: true
@@ -62,34 +55,44 @@ FramelessApplicationWindow {
                 Layout.fillHeight: true
             }
         }
+    }
 
-//        ColumnLayout {
-//            spacing: 0
+    Pane {
+        id: backdrop
+        anchors.bottom: parent.bottom
+        width: parent.width
+        height: parent.height - topBarView.height
+        padding: 0
+        visible: false
+        background: Rectangle {
+            color: "#7F000000"
+        }
+    }
 
-//            Comp.HeaderTab {
-//                id: headerTab
-//                iconSource: sideMenu.currentItem.icon.source
-//                titleText: sideMenu.currentItem.text
-//            }
+    Drawer {
+        id: drawer
+        width: 170
+        height: window.height
+//        interactive: false
+        Overlay.modal: null
+        modal: false
+        Material.background: "black"
+        Material.roundedScale: Material.NotRounded
 
-//            StackView {
-//                id: mainStackView
-//                Layout.fillWidth: true
-//                Layout.fillHeight: true
-//                popEnter: null
-//                popExit: null
-//                pushEnter: null
-//                pushExit: null
-//                replaceEnter: null
-//                replaceExit: null
-//                clip: true
+        Connections {
+            target: window
+            function onWidthChanged() {
+                if(drawer.opened && sideMenu.visible)
+                    drawer.close()
+            }
+        }
 
-//                initialItem: Loader {
-//                    id: mainLoader
-//                    source: sideMenu.currentItem.viewSource
-//            //        source: "qrc:/views/main/views/goals/GoalsView.qml"
-//                }
-//            }
-//        }
+        onAboutToShow: backdrop.visible = true
+        onAboutToHide: backdrop.visible = false
+
+        Label {
+            text: "Content goes here!"
+            anchors.centerIn: parent
+        }
     }
 }

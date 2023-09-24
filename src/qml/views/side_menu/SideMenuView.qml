@@ -3,18 +3,20 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts 
 
 import "./components" as MComp
+import components as Comp
 
 Pane {
     padding: 0
     horizontalPadding: 10
     property alias currentItem: listView.currentItem
+    visible: window.width >= 700
 
     Material.background: Material.color(Material.Grey, Material.ShadeA100)
 
     Column {
         spacing: 50
 
-        MComp.MenuButton {
+        Comp.MenuButton {
             id: menuButton
             anchors.horizontalCenter: listView.horizontalCenter
         }
@@ -111,12 +113,12 @@ Pane {
             NumberAnimation {
                 target: listView
                 property: "width"
-                duration: 500
+                duration: 200
                 easing.type: Easing.OutQuad
             }
 
             AnchorAnimation {
-                duration: 500
+                duration: 200
                 easing.type: Easing.OutQuad
             }
         }

@@ -31,7 +31,7 @@ Ctrl.ItemDelegate {
             NumberAnimation {
                 targets: [iconLabelItemDelegate]
                 property:"horizontalPadding"
-                duration: 500
+                duration: 200
                 easing.type: Easing.OutQuad
             }
         }

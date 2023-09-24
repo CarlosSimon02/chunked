@@ -9,32 +9,7 @@ Ctrl.ItemDelegate {
     horizontalPadding: 15
     icon.width: 18
     icon.height: 18
-    property bool opened
 
     Ctrl.Material.foreground: Ctrl.Material.color(Ctrl.Material.Grey, Ctrl.Material.Shade400)
     Ctrl.Material.roundedScale: Ctrl.Material.SmallScale
-
-    Item {
-        states: State {
-            name: "opened"
-            when: iconLabelItemDelegate.opened
-
-            PropertyChanges {
-                target: iconLabelItemDelegate
-                horizontalPadding: 18
-            }
-        }
-
-        transitions: Transition {
-            to: "opened"
-            reversible: true
-
-            NumberAnimation {
-                targets: [iconLabelItemDelegate]
-                property:"horizontalPadding"
-                duration: 200
-                easing.type: Easing.OutQuad
-            }
-        }
-    }
 }

@@ -89,6 +89,7 @@ FramelessApplicationWindow {
     //For responsive design, can only use when SideMenuView is not visible
     SideMenuDrawerView {
         id: sideMenuDrawerView
+        y: topBarView.height
         height: parent.height
     }
 }

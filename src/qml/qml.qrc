@@ -23,5 +23,6 @@
         <file>common/components/MenuButton.qml</file>
         <file>common/components/qmldir</file>
         <file>views/side_menu/SideMenuDrawerView.qml</file>
+        <file>views/side_menu/components/MenuListView.qml</file>
     </qresource>
 </RCC>

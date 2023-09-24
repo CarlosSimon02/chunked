@@ -8,7 +8,7 @@ import components as Comp
 Pane {
     padding: 0
     horizontalPadding: 10
-    property alias currentItem: listView.currentItem
+    property alias currentItem: menuListView.currentItem
     visible: window.width >= 700
 
     Material.background: Material.color(Material.Grey, Material.ShadeA100)
@@ -18,76 +18,11 @@ Pane {
 
         Comp.MenuButton {
             id: menuButton
-            anchors.horizontalCenter: listView.horizontalCenter
+            anchors.horizontalCenter: menuListView.horizontalCenter
         }
 
-        ListView {
-            id: listView
-            width: 50
-            height: contentItem.childrenRect.height
-            clip: true
-            spacing: 10
-
-            delegate: MComp.ItemDelegate {
-                width: listView.width
-                property url viewSource: model.viewSource
-
-                highlighted: ListView.isCurrentItem
-                text: label
-                icon.source: iconSource
-                opened: menuButton.opened
-                onClicked: listView.currentIndex = model.index
-            }
-
-            model: ListModel {
-                ListElement {
-                    label: "Home"
-                    iconSource: "qrc:/home_icon.svg"
-                    viewSource: "qrc:/views/home/HomeView.qml"
-                }
-
-                ListElement {
-                    label: "Goals"
-                    iconSource: "qrc:/goals_icon.svg"
-                    viewSource: "qrc:/views/goals/GoalsView.qml"
-                }
-
-                ListElement {
-                    label: "Tasks"
-                    iconSource: "qrc:/tasks_icon.svg"
-                    viewSource: "qrc:/views/tasks/TasksView.qml"
-                }
-
-                ListElement {
-                    label: "Habits"
-                    iconSource: "qrc:/habits_icon.svg"
-                    viewSource: "qrc:/views/habits/HabitsView.qml"
-                }
-
-                ListElement {
-                    label: "Vision Board"
-                    iconSource: "qrc:/vision_board_icon.svg"
-                    viewSource: "qrc:/views/vision_board/VisionBoardView.qml"
-                }
-
-                ListElement {
-                    label: "Journal"
-                    iconSource: "qrc:/journal_icon.svg"
-                    viewSource: "qrc:/views/journal/JournalView.qml"
-                }
-
-                ListElement {
-                    label: "Reports"
-                    iconSource: "qrc:/reports_icon.svg"
-                    viewSource: "qrc:/views/reports/ReportsView.qml"
-                }
-
-                ListElement {
-                    label: "Settings"
-                    iconSource: "qrc:/settings_icon.svg"
-                    viewSource: "qrc:/views/settings/SettingsView.qml"
-                }
-            }
+        MComp.MenuListView {
+            id: menuListView
         }
 
         states: State {
@@ -95,14 +30,14 @@ Pane {
             when: menuButton.opened
 
             PropertyChanges {
-                target: listView
+                target: menuListView
                 width: 170
             }
 
             AnchorChanges {
                 target: menuButton
                 anchors.horizontalCenter: undefined
-                anchors.right: listView.right
+                anchors.right: menuListView.right
             }
         }
 
@@ -111,7 +46,7 @@ Pane {
             reversible: true
 
             NumberAnimation {
-                target: listView
+                target: menuListView
                 property: "width"
                 duration: 200
                 easing.type: Easing.OutQuad

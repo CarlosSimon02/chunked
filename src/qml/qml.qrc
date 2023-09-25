@@ -26,5 +26,6 @@
         <file>views/side_menu/components/MenuListView.qml</file>
         <file>common/components/IconButton.qml</file>
         <file>common/components/PageView.qml</file>
+        <file>common/components/StackPageView.qml</file>
     </qresource>
 </RCC>

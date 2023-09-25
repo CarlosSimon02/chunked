@@ -4,45 +4,43 @@ import QtQuick.Layouts
 
 import components as Comp
 
-Page {
-    Material.background: "#121212"
+StackView {
+    id: stackView
+//    clip: true
 
-    header: Pane {
-        height: 60
-        padding: 0
-        horizontalPadding: 15
+    pushEnter: Transition {
+        PropertyAnimation {
+            property: "x"
+            from: window.width
+            duration: 200
+        }
+    }
 
-        Material.background: Material.color(Material.Grey, Material.Shade900)
-        Material.elevation: 6
+    pushExit: Transition {
+        PropertyAnimation {
+            property: "opacity"
+            to: 0.2
+            duration: 200
+        }
+    }
 
-        RowLayout {
-            anchors.fill: parent
+    initialItem: Comp.PageView {
 
-            RowLayout {
-                spacing: 5
+        Button {
+            text: "push item "
+            onClicked: stackView.push(sampleItem)
+        }
 
-                Comp.MenuButton {
-                    id: menuButton
-                    Layout.preferredWidth: 40
-                    Layout.preferredHeight: 40
-                    visible: !sideMenuView.visible
+        Component {
+            id: sampleItem
 
-                    onClicked: sideMenuDrawerView.open()
+            Comp.PageView {
+                isInitItem: false
 
-                    Connections {
-                        target: sideMenuDrawerView
-                        function onAboutToHide() {menuButton.opened = false}
-                    }
-                }
-
-                Text {
-                    text: "Goals"
-                    color: "white"
-                    font.pixelSize: 22
-                    font.weight: Font.DemiBold
-                }
             }
         }
     }
 }
+
+
 

@@ -14,6 +14,7 @@ FramelessApplicationWindow {
     height: 720
     visible: false
     font.family: "Poppins"
+    color: "#121212"
 
     Material.theme: Material.Dark
 

@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
+import "./components" as MComp
 import components as Comp
 
 Comp.StackPageView {
@@ -16,12 +17,12 @@ Comp.StackPageView {
             width: contentWidth
             height: parent.height
             anchors.horizontalCenter: parent.horizontalCenter
-            topMargin: 10
-            bottomMargin: 10
-            contentWidth: Math.floor((stackPageView.width - 20) / cellWidth) * cellWidth
+            topMargin: 15
+            bottomMargin: 15
+            contentWidth: Math.floor((stackPageView.width - 30) / cellWidth) * cellWidth
             clip: true
             cellWidth: 350
-            cellHeight: 400
+            cellHeight: 450
 
             ScrollBar.vertical: ScrollBar {
                 parent: goalsPageView
@@ -34,31 +35,13 @@ Comp.StackPageView {
                 width: GridView.view.cellWidth
                 height: GridView.view.cellHeight
 
-                Page {
+                MComp.GoalItemDelegate {
                     anchors.fill: parent
                     anchors.margins: parent.GridView.view.topMargin
-                    padding: 0
-                    horizontalPadding: 0
-                    verticalPadding: 0
-                    topInset: 0
-                    bottomInset: 0
-                    rightInset: 0
-                    leftInset: 0
 
                     Material.background: Material.color(Material.Grey, Material.Shade900)
                     Material.elevation: 0
                     Material.roundedScale: Material.SmallScale
-
-                    ColumnLayout {
-                        anchors.fill: parent
-
-                        Image {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: width * 9 / 16
-                            source: "file:/Users/Carlos Simon/Downloads/dg0xaud-b2b199e4-e4fa-4f4c-a017-71e709e95926.png"
-                        }
-                    }
-
                 }
             }
 

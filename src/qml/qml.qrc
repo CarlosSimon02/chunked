@@ -22,5 +22,6 @@
         <file>common/components/PageView.qml</file>
         <file>common/components/StackPageView.qml</file>
         <file>views/goals/components/GoalItemDelegate.qml</file>
+        <file>views/goals/components/ContentIconLabel.qml</file>
     </qresource>
 </RCC>

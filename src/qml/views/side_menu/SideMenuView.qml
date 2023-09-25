@@ -8,13 +8,18 @@ import components as Comp
 Pane {
     padding: 0
     horizontalPadding: 10
-    property alias currentItem: menuListView.currentItem
     visible: window.width >= 700
+    property alias currentItem: menuListView.currentItem
+    property alias currentIndex: menuListView.currentIndex
 
     Material.background: Material.color(Material.Grey, Material.ShadeA100)
 
     Column {
         spacing: 50
+        anchors.fill: parent
+        //To vertically align center menuButton to page header
+        anchors.top: parent.top
+        anchors.topMargin: (60/2) - (menuButton.height/2)
 
         Comp.MenuButton {
             id: menuButton
@@ -23,6 +28,8 @@ Pane {
 
         MComp.MenuListView {
             id: menuListView
+            //To make it scrollable when column height is smaller that contentHeight
+            height: parent.height - parent.spacing - menuButton.height
         }
 
         states: State {

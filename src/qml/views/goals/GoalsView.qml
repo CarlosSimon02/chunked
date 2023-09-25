@@ -25,7 +25,7 @@ Page {
                     id: menuButton
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
-                    visible: !sideMenu.visible
+                    visible: !sideMenuView.visible
 
                     onClicked: sideMenuDrawerView.open()
 

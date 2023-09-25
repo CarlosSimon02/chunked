@@ -47,7 +47,7 @@ FramelessApplicationWindow {
             spacing: 0
 
             SideMenuView {
-                id: sideMenu
+                id: sideMenuView
                 Layout.fillHeight: true
             }
 
@@ -90,6 +90,6 @@ FramelessApplicationWindow {
     SideMenuDrawerView {
         id: sideMenuDrawerView
         y: topBarView.height
-        height: parent.height
+        height: parent.height - topBarView.height
     }
 }

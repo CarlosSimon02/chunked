@@ -17,7 +17,7 @@ Drawer {
     Connections {
         target: window
         function onWidthChanged() {
-            if(drawer.opened && sideMenu.visible) {
+            if(drawer.opened && sideMenuView.visible) {
                 drawer.close()
                 backdrop.close()
             }
@@ -32,14 +32,16 @@ Drawer {
     }
 
     Loader {
+        id: loader
         anchors.fill: parent
-        sourceComponent: drawer.opened ? content : null
 
         Component {
             id: content
 
             Column {
                 spacing: 50
+
+                Component.onCompleted: menuListView.currentIndex = sideMenuView.currentIndex
 
                 Button {
                     anchors.right: parent.right
@@ -55,10 +57,30 @@ Drawer {
                 MComp.MenuListView {
                     id: menuListView
                     width: 170
+
+                    delegate: MComp.ItemDelegate {
+                        width: menuListView.width
+                        property url viewSource: model.viewSource
+
+                        highlighted: ListView.isCurrentItem
+                        text: label
+                        icon.source: iconSource
+                        onClicked: {
+                            menuListView.currentIndex = model.index
+                            sideMenuView.currentIndex = model.index
+                            drawer.close()
+                            backdrop.close()
+                        }
+                    }
                 }
             }
         }
     }
 
-    onAboutToShow: backdrop.open()
+    onAboutToShow: {
+        backdrop.open()
+        loader.sourceComponent = content
+    }
+
+    onClosed: loader.sourceComponent = null
 }

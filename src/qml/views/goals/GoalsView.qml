@@ -6,7 +6,7 @@ import components as Comp
 
 StackView {
     id: stackView
-//    clip: true
+    clip: true
 
     pushEnter: Transition {
         PropertyAnimation {
@@ -18,14 +18,29 @@ StackView {
 
     pushExit: Transition {
         PropertyAnimation {
-            property: "opacity"
-            to: 0.2
+            property: "x"
+            to: -100
+            duration: 200
+        }
+    }
+
+    popEnter: Transition {
+        PropertyAnimation {
+            property: "x"
+            from: -100
+            duration: 200
+        }
+    }
+
+    popExit: Transition {
+        PropertyAnimation {
+            property: "x"
+            to: window.width
             duration: 200
         }
     }
 
     initialItem: Comp.PageView {
-
         Button {
             text: "push item "
             onClicked: stackView.push(sampleItem)
@@ -36,7 +51,6 @@ StackView {
 
             Comp.PageView {
                 isInitItem: false
-
             }
         }
     }

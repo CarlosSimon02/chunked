@@ -44,7 +44,8 @@ Page {
                 }
 
                 Text {
-                    text: "Goals"
+                    id: title
+                    text: page.title
                     color: "white"
                     font.pixelSize: 22
                     font.weight: Font.DemiBold

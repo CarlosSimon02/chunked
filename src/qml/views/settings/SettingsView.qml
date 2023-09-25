@@ -1,5 +1,8 @@
-import QtQuick 2.15
+import QtQuick
+import QtQuick.Controls.Material
 
-Item {
+import components as Comp
 
+Comp.PageView {
+    title: "Settings"
 }

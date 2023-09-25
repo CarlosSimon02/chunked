@@ -1,13 +1,8 @@
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
+import QtQuick.Controls.Material
 
 import components as Comp
-import commonViews as View
 
 Comp.PageView {
-
-    View.TasksBodyView {
-        anchors.fill: parent
-    }
+    title: "Tasks"
 }

@@ -1,5 +1,8 @@
 import QtQuick
+import QtQuick.Controls.Material
 
-Item {
+import components as Comp
 
+Comp.PageView {
+    title: "Habits"
 }

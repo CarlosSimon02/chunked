@@ -52,9 +52,10 @@ FramelessApplicationWindow {
                 Layout.fillHeight: true
             }
 
-            GoalsView {
+            Loader {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                source: sideMenuView.currentItem.viewSource
             }
         }
     }

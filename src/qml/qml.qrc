@@ -2,14 +2,8 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>qml.qrc</file>
-        <file>views/goal_info/views/DescriptionView.qml</file>
-        <file>views/goal_info/views/HabitsView.qml</file>
-        <file>views/goal_info/views/JournalView.qml</file>
-        <file>views/goal_info/GoalInfoView.qml</file>
-        <file>views/goal_info/views/DetailsView.qml</file>
         <file>views/goals/GoalsView.qml</file>
         <file>views/habits/HabitsView.qml</file>
-        <file>views/header/Header.qml</file>
         <file>views/home/HomeView.qml</file>
         <file>views/journal/JournalView.qml</file>
         <file>views/reports/ReportsView.qml</file>
@@ -27,5 +21,6 @@
         <file>common/components/IconButton.qml</file>
         <file>common/components/PageView.qml</file>
         <file>common/components/StackPageView.qml</file>
+        <file>views/goals/components/GoalItemDelegate.qml</file>
     </qresource>
 </RCC>

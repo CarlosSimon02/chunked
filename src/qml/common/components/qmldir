@@ -1,2 +1,3 @@
 module components
 MenuButton 1.0 MenuButton.qml
+IconButton 1.0 IconButton.qml

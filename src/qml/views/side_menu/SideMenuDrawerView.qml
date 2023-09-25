@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls.Material
 
 import "./components" as MComp
+import components as Comp
 
 Drawer {
     id: drawer
@@ -43,10 +44,9 @@ Drawer {
 
                 Component.onCompleted: menuListView.currentIndex = sideMenuView.currentIndex
 
-                Button {
+                Comp.IconButton {
                     anchors.right: parent.right
                     anchors.rightMargin: 0
-                    flat: true
                     icon.source: "qrc:/double_arrow_left_icon.svg"
                     onClicked: {
                         drawer.close()

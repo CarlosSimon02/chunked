@@ -95,7 +95,7 @@ Comp.Pane {
                             Layout.alignment: Qt.AlignRight
                             visible: pane.goal.progressTracker === 6
 
-                            Comp.Button {
+                            Comp.IconButton {
                                 Layout.preferredHeight: 30
                                 Layout.preferredWidth: 30
                                 text: "-"
@@ -109,7 +109,7 @@ Comp.Pane {
                                 }
                             }
 
-                            Comp.Button {
+                            Comp.IconButton {
                                 Layout.preferredHeight: 30
                                 Layout.preferredWidth: 30
                                 text: "+"
@@ -123,7 +123,7 @@ Comp.Pane {
                                 }
                             }
 
-                            Comp.Button {
+                            Comp.IconButton {
                                 Layout.preferredHeight: 30
                                 text: "Edit"
                                 onClicked: {

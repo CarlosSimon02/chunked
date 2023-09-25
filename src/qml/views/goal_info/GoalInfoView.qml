@@ -34,7 +34,7 @@ Comp.Page {
             width: parent.width
 
             RowLayout {
-                Comp.Button {
+                Comp.IconButton {
                     icon.source: "qrc:/back_icon.svg"
                     onClicked: stackView.pop()
                 }
@@ -46,7 +46,7 @@ Comp.Page {
                 }
             }
 
-            Comp.Button {
+            Comp.IconButton {
                 Layout.alignment: Qt.AlignRight
                 icon.source: "qrc:/edit_icon.svg"
                 onClicked: {

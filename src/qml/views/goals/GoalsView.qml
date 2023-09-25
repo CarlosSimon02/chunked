@@ -10,7 +10,7 @@ Page {
     header: Pane {
         height: 60
         padding: 0
-        horizontalPadding: 10
+        horizontalPadding: 15
 
         Material.background: Material.color(Material.Grey, Material.Shade900)
         Material.elevation: 6

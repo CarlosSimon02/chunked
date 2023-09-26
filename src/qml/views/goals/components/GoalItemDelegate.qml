@@ -125,14 +125,41 @@ T.ItemDelegate {
             color: Material.color(Material.Lime, Material.Shade900)
             radius: Material.SmallScale
         }
+        visible: control.hovered || hovered
 
         ColumnLayout {
+            spacing: 0
+
             Comp.IconButton {
-                Layout.preferredWidth: 30
-                Layout.preferredHeight: 30
+                Layout.preferredWidth: 25
+                Layout.preferredHeight: 25
+                icon.source: "qrc:/three_dots_icon.svg"
+                icon.width: 16
+                icon.height: 16
+            }
+
+            Comp.IconButton {
+                Layout.preferredWidth: 25
+                Layout.preferredHeight: 25
                 icon.source: "qrc:/delete_icon.svg"
-                icon.width: 20
-                icon.height: 20
+                icon.width: 16
+                icon.height: 16
+            }
+
+            Comp.IconButton {
+                Layout.preferredWidth: 25
+                Layout.preferredHeight: 25
+                icon.source: "qrc:/create_icon.svg"
+                icon.width: 16
+                icon.height: 16
+            }
+
+            Comp.IconButton {
+                Layout.preferredWidth: 25
+                Layout.preferredHeight: 25
+                icon.source: "qrc:/minus_icon.svg"
+                icon.width: 16
+                icon.height: 16
             }
         }
     }

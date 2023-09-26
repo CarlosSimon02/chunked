@@ -28,10 +28,11 @@
         <file>time_icon.svg</file>
         <file>search_icon.svg</file>
         <file>filter_icon.svg</file>
-        <file>option_icon.svg</file>
         <file>maximize_icon.svg</file>
         <file>minimize_icon.svg</file>
         <file>restore_down_icon.svg</file>
         <file>double_arrow_left_icon.svg</file>
+        <file>three_dots_icon.svg</file>
+        <file>minus_icon.svg</file>
     </qresource>
 </RCC>

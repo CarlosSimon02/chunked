@@ -13,7 +13,6 @@ FramelessApplicationWindow {
     width: 1280
     height: 720
     visible: false
-    font.family: "Poppins"
     color: "#121212"
 
     Material.theme: Material.Dark
@@ -25,6 +24,7 @@ FramelessApplicationWindow {
         FramelessHelper.setSystemButton(topBarView.maximizeButton, FramelessHelperConstants.Maximize)
         FramelessHelper.setSystemButton(topBarView.maximizeButton, FramelessHelperConstants.Normal)
         FramelessHelper.setSystemButton(topBarView.closeButton, FramelessHelperConstants.Close)
+        window.visibility = Window.FullScreen
         window.visible = true;
     }
 

@@ -23,6 +23,7 @@ T.ItemDelegate {
             Layout.preferredHeight: width * 9 / 16
             fillMode: Image.PreserveAspectCrop
             opacity: 0.5
+            visible: control.height >= 300
             source: "file:/Users/Carlos Simon/Downloads/dg0xaud-b2b199e4-e4fa-4f4c-a017-71e709e95926.png"
             sourceSize.width: {sourceSize.width = width}
             sourceSize.height: {sourceSize.height = height}

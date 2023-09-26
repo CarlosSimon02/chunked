@@ -23,5 +23,9 @@
         <file>common/components/StackPageView.qml</file>
         <file>views/goals/components/GoalItemDelegate.qml</file>
         <file>views/goals/components/ContentIconLabel.qml</file>
+        <file>views/goals/views/CreateGoalView.qml</file>
+        <file>views/goals/views/components/ImagePicker.qml</file>
+        <file>views/goals/views/components/FieldColumnLayout.qml</file>
+        <file>common/components/ColorScheme.qml</file>
     </qresource>
 </RCC>

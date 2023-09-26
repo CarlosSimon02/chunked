@@ -12,6 +12,35 @@ Comp.StackPageView {
         id: goalsPageView
         title: "Goals"
 
+        headerOptions: Component {
+            RowLayout {
+                Comp.IconButton {
+                    icon.source: "qrc:/three_dots_icon.svg"
+                    rotation: 90
+                    onClicked: menu.open()
+
+                    Menu {
+                        id: menu
+                        Material.background: Material.color(Material.Grey, Material.Shade900)
+                        Material.elevation: 15
+
+                        //This option is usually use for subgoals where image is not required
+                        MenuItem {
+                            id: showImage
+                            text: qsTr("Show Image")
+                            checkable: true
+                            checked: true
+                            onTriggered: {
+                                    gridView.cellHeight = checked ? 450 : 255
+                            }
+
+                            Material.accent: Material.color(Material.Lime, Material.Shade900)
+                        }
+                    }
+                }
+            }
+        }
+
         GridView {
             id: gridView
             width: contentWidth
@@ -59,6 +88,8 @@ Comp.StackPageView {
             Material.background: Material.color(Material.Lime, Material.Shade900)
             Material.elevation: 10
             Material.roundedScale: Material.SmallScale
+
+            onClicked: stackPageView.push("qrc:/views/goals/views/CreateGoalView.qml")
         }
     }
 }

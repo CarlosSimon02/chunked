@@ -9,6 +9,10 @@ Page {
     Material.background: "#121212"
     property bool isInitItem: true
 
+    //For adding options in page view header
+    //Always use RowLayout and Comp.IconButton
+    property Component headerOptions
+
     header: Pane {
         height: 60
         padding: 0
@@ -49,6 +53,16 @@ Page {
                     color: "white"
                     font.pixelSize: 22
                     font.weight: Font.DemiBold
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.maximumWidth: Number.POSITIVE_INFINITY
+
+                Loader {
+                    Layout.alignment: Qt.AlignRight
+                    sourceComponent: page.headerOptions
                 }
             }
         }

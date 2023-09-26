@@ -26,6 +26,6 @@
         <file>views/goals/views/CreateGoalView.qml</file>
         <file>views/goals/views/components/ImagePicker.qml</file>
         <file>views/goals/views/components/FieldColumnLayout.qml</file>
-        <file>common/components/ColorScheme.qml</file>
+        <file>common/components/Colors.qml</file>
     </qresource>
 </RCC>

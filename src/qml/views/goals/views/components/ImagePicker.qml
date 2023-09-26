@@ -29,7 +29,7 @@ Pane {
                 Layout.preferredHeight: 40
                 Layout.bottomMargin: 10
                 Layout.alignment: Qt.AlignHCenter
-//                color: Comp.ColorScheme.secondaryColor.veryDark
+                color: "white"
                 source: "qrc:/vision_board_icon.svg"
             }
 
@@ -37,7 +37,7 @@ Pane {
                 Layout.alignment: Qt.AlignHCenter
                 text: "Drag image here or "
                 font.pixelSize: 12
-//                color: Comp.ColorScheme.secondaryColor.dark
+                color: "white"
             }
 
             Text {
@@ -45,7 +45,7 @@ Pane {
                 text: "Browse image"
                 font.underline: true
                 font.pixelSize: 12
-//                color: Comp.ColorScheme.secondaryColor.dark
+                color: "white"
 
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
@@ -91,7 +91,6 @@ Pane {
             anchors.topMargin: 10
             icon.source: "qrc:/delete_icon.svg"
             visible: pane.hovered && image.status === Image.Ready
-//            backgroundColor: Comp.ColorScheme.primaryColor.light
             onClicked: image.source = ""
 
             Material.elevation: 0
@@ -104,7 +103,6 @@ Pane {
             anchors.topMargin: 10
             text: "Change"
             visible: pane.hovered && image.status === Image.Ready
-//            backgroundColor: Comp.ColorScheme.primaryColor.light
             onClicked: fileDialog.open()
 
             Material.elevation: 0
@@ -124,14 +122,14 @@ Pane {
         anchors.fill: parent
         color: "transparent"
         border.width: 1
-//        border.color: Comp.ColorScheme.secondaryColor.dark
+        border.color: "white"
         radius: 3
     }
 
     DropArea {
         anchors.fill: parent
         onEntered: drag => {
-//                       dragIndicator.color = Comp.ColorScheme.secondaryColor.veryDark
+                       dragIndicator.color = "white"
 
                    }
 

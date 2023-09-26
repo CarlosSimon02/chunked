@@ -45,6 +45,7 @@ Drawer {
                 Component.onCompleted: menuListView.currentIndex = sideMenuView.currentIndex
 
                 Comp.IconButton {
+                    id: closeButton
                     anchors.right: parent.right
                     anchors.rightMargin: 0
                     icon.source: "qrc:/double_arrow_left_icon.svg"
@@ -57,6 +58,7 @@ Drawer {
                 MComp.MenuListView {
                     id: menuListView
                     width: 170
+                    height: parent.height - parent.spacing - closeButton.height
 
                     delegate: MComp.ItemDelegate {
                         width: menuListView.width

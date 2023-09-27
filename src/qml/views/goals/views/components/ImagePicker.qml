@@ -130,8 +130,8 @@ Pane {
     Rectangle {
         anchors.fill: parent
         color: "transparent"
-        border.width: pane.focus ? 1.5 : 1
-        border.color: pane.focus ? Comp.Globals.color.accent.shade1 :
+        border.width: pane.activeFocus ? 1.5 : 1
+        border.color: pane.activeFocus ? Comp.Globals.color.accent.shade1 :
                                    hoverHandler.hovered ? Comp.Globals.color.secondary.shade3 :
                                                           Comp.Globals.color.secondary.shade1
         radius: 4

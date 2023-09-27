@@ -30,6 +30,5 @@
         <file>common/components/Stepper.qml</file>
         <file>views/goals/views/components/FieldLabel.qml</file>
         <file>views/goals/views/components/ComboBox.qml</file>
-        <file>views/goals/views/components/FormPane.qml</file>
     </qresource>
 </RCC>

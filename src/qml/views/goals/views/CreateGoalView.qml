@@ -15,7 +15,7 @@ Comp.PageView {
 
     RowLayout {
         anchors.fill: parent
-        spacing: 15
+        spacing: 30
 
         Comp.Stepper {
             id: stepper
@@ -54,12 +54,17 @@ Comp.PageView {
                 currentIndex: stepper.currentIndex
 
                 ScrollView {
-                    MComp.FormPane {
-                        implicitWidth: stackLayout.width
+                    TapHandler {
+                        onTapped: stepper.forceActiveFocus()
+                    }
+
+                    ColumnLayout {
+                        width: stackLayout.width
 
                         ColumnLayout {
-                            width: parent.width
-                            spacing: 30
+                            Layout.margins: 30
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 20
 
                             MComp.FieldColumnLayout {
                                 MComp.FieldLabel {
@@ -100,12 +105,13 @@ Comp.PageView {
                 }
 
                 ScrollView {
-                    MComp.FormPane {
-                        implicitWidth: stackLayout.width
+                    ColumnLayout {
+                        width: stackLayout.width
 
                         ColumnLayout {
-                            width: parent.width
-                            spacing: 30
+                            Layout.margins: 30
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 20
 
                             MComp.FieldColumnLayout {
                                 MComp.FieldLabel {
@@ -122,12 +128,13 @@ Comp.PageView {
                 }
 
                 ScrollView {
-                    MComp.FormPane {
-                        implicitWidth: stackLayout.width
+                    ColumnLayout {
+                        width: stackLayout.width
 
                         ColumnLayout {
-                            width: parent.width
-                            spacing: 30
+                            Layout.margins: 30
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 20
 
                             MComp.FieldColumnLayout {
                                 MComp.FieldLabel {
@@ -155,21 +162,115 @@ Comp.PageView {
                 }
 
                 ScrollView {
-                    MComp.FormPane {
-                        implicitWidth: stackLayout.width
+                    ColumnLayout {
+                        width: stackLayout.width
 
                         ColumnLayout {
-                            width: parent.width
-                            spacing: 30
+                            Layout.margins: 30
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 20
 
                             MComp.FieldColumnLayout {
                                 MComp.FieldLabel {
-                                    text: "Parent Goal"
+                                    text: "Progress Tracker"
                                 }
 
                                 TextField {
                                     Layout.maximumWidth: 500
                                     Layout.fillWidth: true
+                                }
+                            }
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Unit"
+                                }
+
+                                TextField {
+                                    Layout.maximumWidth: 200
+                                    Layout.fillWidth: true
+                                }
+                            }
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Progress Value"
+                                }
+
+                                TextField {
+                                    Layout.maximumWidth: 200
+                                    Layout.fillWidth: true
+                                }
+                            }
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Target Progress Value"
+                                }
+
+                                TextField {
+                                    Layout.maximumWidth: 200
+                                    Layout.fillWidth: true
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ScrollView {
+                    ColumnLayout {
+                        width: stackLayout.width
+
+                        ColumnLayout {
+                            Layout.margins: 30
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 20
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Mission"
+                                }
+
+                                TextField {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                    wrapMode: TextArea.Wrap
+                                }
+                            }
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Vision"
+                                }
+
+                                TextArea {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                    wrapMode: TextArea.Wrap
+                                }
+                            }
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Obstacles"
+                                }
+
+                                TextArea {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                    wrapMode: TextArea.Wrap
+                                }
+                            }
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Purposes"
+                                }
+
+                                TextArea {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                    wrapMode: TextArea.Wrap
                                 }
                             }
                         }

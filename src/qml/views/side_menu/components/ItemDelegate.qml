@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Controls.Material as Ctrl
 import QtQuick.Controls.Material.impl
 
+import components as Comp
+
 Ctrl.ItemDelegate {
     id: control
     implicitWidth: 50
@@ -11,7 +13,7 @@ Ctrl.ItemDelegate {
     icon.width: 18
     icon.height: 18
 
-    Ctrl.Material.foreground: Ctrl.Material.color(Ctrl.Material.Grey, Ctrl.Material.Shade500)
+    Ctrl.Material.foreground: Comp.Globals.color.secondary.shade2
     Ctrl.Material.roundedScale: Ctrl.Material.SmallScale
 
     background: Rectangle {

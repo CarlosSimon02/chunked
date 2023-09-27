@@ -1,5 +1,7 @@
 module components
-MenuButton 1.0 MenuButton.qml
 IconButton 1.0 IconButton.qml
+MenuButton 1.0 MenuButton.qml
 PageView 1.0 PageView.qml
 StackPageView 1.0 StackPageView.qml
+
+singleton Globals Globals.qml

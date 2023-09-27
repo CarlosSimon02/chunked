@@ -6,7 +6,7 @@ import components as Comp
 
 Page {
     id: page
-    Material.background: "#121212"
+    Material.background: Comp.Globals.color.primary.shade2
     property bool isInitItem: true
 
     //For adding options in page view header
@@ -18,7 +18,7 @@ Page {
         padding: 0
         horizontalPadding: 15
 
-        Material.background: Material.color(Material.Grey, Material.Shade900)
+        Material.background: Comp.Globals.color.primary.shade3
         Material.elevation: 6
 
         RowLayout {
@@ -50,8 +50,8 @@ Page {
                 Text {
                     id: title
                     text: page.title
-                    color: "white"
-                    font.pixelSize: 22
+                    color: Comp.Globals.color.secondary.shade3
+                    font.pixelSize: Comp.Globals.fontSize.extraLarge
                     font.weight: Font.DemiBold
                 }
             }

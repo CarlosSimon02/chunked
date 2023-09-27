@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 
+import components as Comp
+
 Button {
     id: control
     implicitWidth: 40

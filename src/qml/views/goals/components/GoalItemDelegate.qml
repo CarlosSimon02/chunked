@@ -62,7 +62,7 @@ T.ItemDelegate {
                 text: "To Become a Freaking Software Engineer"
                 Layout.fillWidth: true
                 font.weight: Font.Medium
-                font.pixelSize: 20
+                font.pixelSize: Comp.Globals.fontSize.large
                 wrapMode: Text.Wrap
                 maximumLineCount: 2
                 elide: Text.ElideRight
@@ -111,7 +111,7 @@ T.ItemDelegate {
 
                     Text {
                         text: "50%"
-                        font.pixelSize: 18
+                        font.pixelSize: Comp.Globals.fontSize.large
                         color: Material.color(Material.Lime, Material.Shade900)
                     }
                 }
@@ -121,7 +121,7 @@ T.ItemDelegate {
 
     Pane {
         padding: 0
-        x: -(width / 2)
+        x: -((width / 2)+5)
         background: Rectangle {
             color: Material.color(Material.Lime, Material.Shade900)
             radius: Material.SmallScale
@@ -132,32 +132,32 @@ T.ItemDelegate {
             spacing: 0
 
             Comp.IconButton {
-                Layout.preferredWidth: 25
-                Layout.preferredHeight: 25
+                Layout.preferredWidth: 30
+                Layout.preferredHeight: 30
                 icon.source: "qrc:/three_dots_icon.svg"
                 icon.width: 16
                 icon.height: 16
             }
 
             Comp.IconButton {
-                Layout.preferredWidth: 25
-                Layout.preferredHeight: 25
+                Layout.preferredWidth: 30
+                Layout.preferredHeight: 30
                 icon.source: "qrc:/delete_icon.svg"
                 icon.width: 16
                 icon.height: 16
             }
 
             Comp.IconButton {
-                Layout.preferredWidth: 25
-                Layout.preferredHeight: 25
+                Layout.preferredWidth: 30
+                Layout.preferredHeight: 30
                 icon.source: "qrc:/create_icon.svg"
                 icon.width: 16
                 icon.height: 16
             }
 
             Comp.IconButton {
-                Layout.preferredWidth: 25
-                Layout.preferredHeight: 25
+                Layout.preferredWidth: 30
+                Layout.preferredHeight: 30
                 icon.source: "qrc:/minus_icon.svg"
                 icon.width: 16
                 icon.height: 16

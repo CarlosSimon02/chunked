@@ -4,12 +4,19 @@ import QtQuick.Layouts
 import QtQuick.Dialogs
 import Qt5Compat.GraphicalEffects
 
+import components as Comp
+
 Pane {
     id: pane
     implicitWidth: 300
     implicitHeight: width * 9 / 16
     padding: 0
     background: null
+    focusPolicy: Qt.ClickFocus
+
+    HoverHandler {
+        id: hoverHandler
+    }
 
     property alias source: image.source
 
@@ -17,35 +24,35 @@ Pane {
         id: dragIndicator
         anchors.fill: parent
         color: "transparent"
-        radius: 3
+        radius: 4
 
         ColumnLayout {
             anchors.centerIn: parent
             spacing: 5
-            visible: image.status === Image1.Null
+            visible: image.status === Image.Null
 
             IconImage {
                 Layout.preferredWidth: 40
                 Layout.preferredHeight: 40
                 Layout.bottomMargin: 10
                 Layout.alignment: Qt.AlignHCenter
-                color: "white"
+                color: Comp.Globals.color.secondary.shade1
                 source: "qrc:/vision_board_icon.svg"
             }
 
             Text {
                 Layout.alignment: Qt.AlignHCenter
                 text: "Drag image here or "
-                font.pixelSize: 12
-                color: "white"
+                font.pixelSize: Comp.Globals.fontSize.small
+                color: Comp.Globals.color.secondary.shade1
             }
 
             Text {
                 Layout.alignment: Qt.AlignHCenter
                 text: "Browse image"
                 font.underline: true
-                font.pixelSize: 12
-                color: "white"
+                font.pixelSize: Comp.Globals.fontSize.small
+                color: Comp.Globals.color.secondary.shade1
 
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
@@ -72,7 +79,7 @@ Pane {
 
                 Rectangle {
                     anchors.fill: parent
-                    radius: 3
+                    radius: 6
                 }
             }
         }
@@ -94,6 +101,7 @@ Pane {
             onClicked: image.source = ""
 
             Material.elevation: 0
+            Material.roundedScale: Material.SmallScale
         }
 
         Button {
@@ -106,6 +114,7 @@ Pane {
             onClicked: fileDialog.open()
 
             Material.elevation: 0
+            Material.roundedScale: Material.SmallScale
         }
 
         Dialog {
@@ -121,16 +130,17 @@ Pane {
     Rectangle {
         anchors.fill: parent
         color: "transparent"
-        border.width: 1
-        border.color: "white"
-        radius: 3
+        border.width: pane.focus ? 1.5 : 1
+        border.color: pane.focus ? Comp.Globals.color.accent.shade1 :
+                                   hoverHandler.hovered ? Comp.Globals.color.secondary.shade3 :
+                                                          Comp.Globals.color.secondary.shade1
+        radius: 4
     }
 
     DropArea {
         anchors.fill: parent
         onEntered: drag => {
-                       dragIndicator.color = "white"
-
+                       dragIndicator.color = Comp.Globals.color.primary.shade3
                    }
 
         onExited: dragIndicator.color = "transparent"

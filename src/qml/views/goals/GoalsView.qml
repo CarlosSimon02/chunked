@@ -31,7 +31,7 @@ Comp.StackPageView {
                             checkable: true
                             checked: true
                             onTriggered: {
-                                    gridView.cellHeight = checked ? 450 : 255
+                                    gridView.cellHeight = checked ? 450 : 260
                             }
 
                             Material.accent: Material.color(Material.Lime, Material.Shade900)
@@ -49,7 +49,6 @@ Comp.StackPageView {
             topMargin: 15
             bottomMargin: 15
             contentWidth: Math.floor((stackPageView.width - 30) / cellWidth) * cellWidth
-            clip: true
             cellWidth: 350
             cellHeight: 450
 

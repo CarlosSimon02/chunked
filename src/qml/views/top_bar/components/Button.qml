@@ -1,15 +1,17 @@
 import QtQuick
 import QtQuick.Controls.Basic as Ctrl
 
+import components as Comp
+
 Ctrl.Button {
     id: control
     implicitWidth: 60
     implicitHeight: 40
     icon.width: 14
     icon.height: 14
-    icon.color: "white"
+    icon.color: Comp.Globals.color.secondary.shade3
     display: Ctrl.Button.IconOnly
-    property color fadeColor: "white"
+    property color fadeColor: Comp.Globals.color.secondary.shade3
     property double hoveredOpacity: 0.2
     property double pressedOpacity: 0.3
 

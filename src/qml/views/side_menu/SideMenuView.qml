@@ -8,7 +8,7 @@ import components as Comp
 Pane {
     padding: 0
     horizontalPadding: 10
-    visible: window.width >= 700
+    visible: window.width >= Comp.Globals.screen.smallW
     property alias currentItem: menuListView.currentItem
     property alias currentIndex: menuListView.currentIndex
 

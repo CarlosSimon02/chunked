@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import org.wangwenx190.FramelessHelper
 import app
 
+import components as Comp
 import "views/side_menu"
 import "views/top_bar"
 import "views/goals"
@@ -13,7 +14,7 @@ FramelessApplicationWindow {
     width: 1280
     height: 720
     visible: false
-    color: "#121212"
+    color: Comp.Globals.color.primary.shade1
 
     Material.theme: Material.Dark
 

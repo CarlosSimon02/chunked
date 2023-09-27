@@ -12,7 +12,7 @@ Drawer {
     rightPadding: 10
     Overlay.modal: null
     modal: false
-    Material.background: "black"
+    Material.background: Comp.Globals.color.primary.shade1
     Material.roundedScale: Material.NotRounded
 
     Connections {
@@ -58,6 +58,7 @@ Drawer {
                 MComp.MenuListView {
                     id: menuListView
                     width: 170
+                    //To make it scrollable when column height is smaller that contentHeight
                     height: parent.height - parent.spacing - closeButton.height
 
                     delegate: MComp.ItemDelegate {

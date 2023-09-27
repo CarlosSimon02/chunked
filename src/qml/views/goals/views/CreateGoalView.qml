@@ -9,122 +9,127 @@ import "./components" as MComp
 Comp.PageView {
     isInitItem: false
     title: "Create Goal"
+    focusPolicy: Qt.ClickFocus
 
-    ColumnLayout {
+    Material.accent: Comp.Globals.color.accent.shade1
+
+    RowLayout {
         anchors.fill: parent
-        spacing: 0
+        spacing: 15
 
-        PageIndicator {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 20
-            count: 5
-            currentIndex: 0
-            visible: window.width < Comp.Globals.screen.smallW
+        Comp.Stepper {
+            id: stepper
+            Layout.fillHeight: true
+            Layout.preferredWidth: 100
+            Layout.topMargin: 30
+            Layout.leftMargin: 30
+            visible: !pageIndicator.visible
+            model: ["Common", "Parent Goal", "Time Frame", "Progress", "Description"]
 
-            Material.foreground: Comp.Globals.color.accent.shade1
+            TapHandler {
+                onTapped: stepper.forceActiveFocus()
+            }
         }
 
-        ScrollView {
-            id: scrollView
+        ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            spacing: 0
 
-            Material.accent: Comp.Globals.color.accent.shade1
+            PageIndicator {
+                id: pageIndicator
+                Layout.alignment: Qt.AlignHCenter
+                Layout.topMargin: 20
+                count: 5
+                currentIndex: 0
+                visible: window.width < Comp.Globals.screen.smallW
 
-            Pane {
-                implicitWidth: scrollView.width
-                padding: 20
-                focusPolicy: Qt.ClickFocus
+                Material.foreground: Comp.Globals.color.accent.shade1
+            }
 
-                ColumnLayout {
-                    width: parent.width
-                    spacing: 30
+            StackLayout {
+                id: stackLayout
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                    ColumnLayout {
-                        Layout.alignment: Qt.AlignHCenter
-                        spacing: 12
+                ScrollView {
+                    id: commonScrollView
 
-                        Text {
-                            text: "Goal Name"
-                            font.pixelSize: Comp.Globals.fontSize.medium
-                            font.weight: Font.DemiBold
-                            color: Material.color(Material.Grey, Material.Shade600)
-                        }
+                    Pane {
+                        implicitWidth: commonScrollView.width
+                        padding: 30
+                        focusPolicy: Qt.ClickFocus
 
-                        TextField {
-                            Layout.maximumWidth: 500
-                            Layout.fillWidth: true
-                        }
-                    }
+                        ColumnLayout {
+                            width: parent.width
+                            spacing: 30
 
-                    ColumnLayout {
-                        Layout.alignment: Qt.AlignHCenter
-                        spacing: 12
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Goal Name"
+                                }
 
-                        Text {
-                            text: "Category"
-                            font.pixelSize: Comp.Globals.fontSize.medium
-                            font.weight: Font.DemiBold
-                            color: Material.color(Material.Grey, Material.Shade600)
-                        }
+                                TextField {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                }
+                            }
 
-                        ComboBox {
-                            id: category
-                            Layout.maximumWidth: 500
-                            Layout.fillWidth: true
-                            model: ["Work", "Personal", "Home"]
-                            popup.background: Rectangle {
-                                radius: 4
-                                color: Comp.Globals.color.primary.shade3
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Category"
+                                }
 
-                                layer.enabled: category.enabled
-                                layer.effect: RoundedElevationEffect {
-                                    elevation: 4
-                                    roundedScale: Material.ExtraSmallScale
+                                MComp.ComboBox {
+                                    id: category
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                    model: ["Work", "Personal", "Home"]
+                                }
+                            }
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Image"
+                                }
+
+                                MComp.ImagePicker {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
                                 }
                             }
                         }
                     }
-
-                    ColumnLayout {
-                        Layout.alignment: Qt.AlignHCenter
-                        spacing: 12
-
-                        Text {
-                            text: "Image"
-                            font.pixelSize: Comp.Globals.fontSize.medium
-                            font.weight: Font.DemiBold
-                            color: Material.color(Material.Grey, Material.Shade600)
-                        }
-
-                        MComp.ImagePicker {
-                            Layout.maximumWidth: 500
-                            Layout.fillWidth: true
-                        }
-                    }
                 }
             }
-        }
 
-        RowLayout {
-            Layout.alignment: Qt.AlignRight
-            Layout.margins: 15
-            spacing: 10
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Layout.margins: 15
+                Layout.rightMargin: 20
+                Layout.bottomMargin: 20
+                spacing: 10
 
-            Button {
-                id: backButton
-                icon.source: "qrc:/arrow_left_icon.svg"
-                text: "Back"
+                Button {
+                    id: backButton
+                    icon.source: "qrc:/arrow_left_icon.svg"
+                    text: "Back"
 
-                Material.roundedScale: Material.SmallScale
-            }
+                    Material.roundedScale: Material.SmallScale
+                }
 
-            Button {
-                Layout.preferredWidth: backButton.width
-                text: "Save"
+                Button {
+                    Layout.preferredWidth: backButton.width
+                    text: "Save"
 
-                Material.background: Comp.Globals.color.accent.shade1
-                Material.roundedScale: Material.SmallScale
+                    Material.background: Comp.Globals.color.accent.shade1
+                    Material.roundedScale: Material.SmallScale
+
+                    onClicked: {
+                        stepper.currentIndex++
+                        stepper.currentItem.done = true
+                    }
+                }
             }
         }
     }

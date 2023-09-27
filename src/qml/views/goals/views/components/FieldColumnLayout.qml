@@ -1,5 +1,7 @@
 import QtQuick
+import QtQuick.Layouts
 
-Item {
-
+ColumnLayout {
+    Layout.alignment: Qt.AlignHCenter
+    spacing: 12
 }

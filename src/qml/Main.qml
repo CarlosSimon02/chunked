@@ -25,7 +25,6 @@ FramelessApplicationWindow {
         FramelessHelper.setSystemButton(topBarView.maximizeButton, FramelessHelperConstants.Maximize)
         FramelessHelper.setSystemButton(topBarView.maximizeButton, FramelessHelperConstants.Normal)
         FramelessHelper.setSystemButton(topBarView.closeButton, FramelessHelperConstants.Close)
-        window.visibility = Window.FullScreen
         window.visible = true;
     }
 

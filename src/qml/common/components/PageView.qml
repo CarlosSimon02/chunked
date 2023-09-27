@@ -17,6 +17,7 @@ Page {
         height: 60
         padding: 0
         horizontalPadding: 15
+        focusPolicy: Qt.ClickFocus
 
         Material.background: Comp.Globals.color.primary.shade3
         Material.elevation: 6

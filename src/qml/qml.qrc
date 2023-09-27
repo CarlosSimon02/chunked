@@ -28,5 +28,7 @@
         <file>views/goals/views/components/FieldColumnLayout.qml</file>
         <file>common/components/Globals.qml</file>
         <file>common/components/Stepper.qml</file>
+        <file>views/goals/views/components/FieldLabel.qml</file>
+        <file>views/goals/views/components/ComboBox.qml</file>
     </qresource>
 </RCC>

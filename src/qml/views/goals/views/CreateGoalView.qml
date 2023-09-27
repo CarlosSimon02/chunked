@@ -40,8 +40,8 @@ Comp.PageView {
                 id: pageIndicator
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 20
-                count: 5
-                currentIndex: 0
+                count: stepper.count
+                currentIndex: stepper.currentIndex
                 visible: window.width < Comp.Globals.screen.smallW
 
                 Material.foreground: Comp.Globals.color.accent.shade1
@@ -51,14 +51,11 @@ Comp.PageView {
                 id: stackLayout
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                currentIndex: stepper.currentIndex
 
                 ScrollView {
-                    id: commonScrollView
-
-                    Pane {
-                        implicitWidth: commonScrollView.width
-                        padding: 30
-                        focusPolicy: Qt.ClickFocus
+                    MComp.FormPane {
+                        implicitWidth: stackLayout.width
 
                         ColumnLayout {
                             width: parent.width
@@ -94,6 +91,83 @@ Comp.PageView {
                                 }
 
                                 MComp.ImagePicker {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ScrollView {
+                    MComp.FormPane {
+                        implicitWidth: stackLayout.width
+
+                        ColumnLayout {
+                            width: parent.width
+                            spacing: 30
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Parent Goal"
+                                }
+
+                                TextField {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ScrollView {
+                    MComp.FormPane {
+                        implicitWidth: stackLayout.width
+
+                        ColumnLayout {
+                            width: parent.width
+                            spacing: 30
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Start Time"
+                                }
+
+                                TextField {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                }
+                            }
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "End Time"
+                                }
+
+                                TextField {
+                                    Layout.maximumWidth: 500
+                                    Layout.fillWidth: true
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ScrollView {
+                    MComp.FormPane {
+                        implicitWidth: stackLayout.width
+
+                        ColumnLayout {
+                            width: parent.width
+                            spacing: 30
+
+                            MComp.FieldColumnLayout {
+                                MComp.FieldLabel {
+                                    text: "Parent Goal"
+                                }
+
+                                TextField {
                                     Layout.maximumWidth: 500
                                     Layout.fillWidth: true
                                 }

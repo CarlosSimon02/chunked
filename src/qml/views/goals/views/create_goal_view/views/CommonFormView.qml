@@ -44,6 +44,7 @@ ScrollView {
                                 scrollView.hasError = true
                                 goalName.hasError = true
                                 goalNameError.text = "This field is required and cannot be empty"
+                                scrollView.ScrollBar.vertical.position = 0.0
                             }
                             else {
                                 scrollView.hasError = false

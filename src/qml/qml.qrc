@@ -23,12 +23,18 @@
         <file>common/components/StackPageView.qml</file>
         <file>views/goals/components/GoalItemDelegate.qml</file>
         <file>views/goals/components/ContentIconLabel.qml</file>
-        <file>views/goals/views/CreateGoalView.qml</file>
-        <file>views/goals/views/components/ImagePicker.qml</file>
-        <file>views/goals/views/components/FieldColumnLayout.qml</file>
         <file>common/components/Globals.qml</file>
         <file>common/components/Stepper.qml</file>
-        <file>views/goals/views/components/FieldLabel.qml</file>
-        <file>views/goals/views/components/ComboBox.qml</file>
+        <file>views/goals/views/create_goal_view/components/ComboBox.qml</file>
+        <file>views/goals/views/create_goal_view/components/FieldColumnLayout.qml</file>
+        <file>views/goals/views/create_goal_view/components/FieldLabel.qml</file>
+        <file>views/goals/views/create_goal_view/components/ImagePicker.qml</file>
+        <file>views/goals/views/create_goal_view/CreateGoalView.qml</file>
+        <file>views/goals/views/create_goal_view/views/CommonFormView.qml</file>
+        <file>views/goals/views/create_goal_view/views/ParentGoalFormView.qml</file>
+        <file>views/goals/views/create_goal_view/views/TimeFrameFormView.qml</file>
+        <file>views/goals/views/create_goal_view/views/ProgressFormView.qml</file>
+        <file>views/goals/views/create_goal_view/views/DescriptionFormView.qml</file>
+        <file>common/components/TextField.qml</file>
     </qresource>
 </RCC>

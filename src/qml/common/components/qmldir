@@ -1,4 +1,5 @@
 module components
+DatePicker 1.0 DatePicker.qml
 DateTimePickerDialog 1.0 DateTimePickerDialog.qml
 Dialog 1.0 Dialog.qml
 IconButton 1.0 IconButton.qml

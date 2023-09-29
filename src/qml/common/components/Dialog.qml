@@ -9,22 +9,18 @@ Ctrl.Dialog {
     Ctrl.Material.roundedScale: Ctrl.Material.SmallScale
     Ctrl.Material.background: Comp.Globals.color.primary.shade3
     Ctrl.Overlay.modal: null
+    topMargin: topBarView.height
     modal: false
+    padding: 20
 
     header: Ctrl.Label {
         text: control.title
         visible: control.title
         elide: Ctrl.Label.ElideRight
-        padding: 15
+        padding: 20
         bottomPadding: 0
 
         font.pixelSize: Comp.Globals.fontSize.large
-        background: Ctrl.PaddedRectangle {
-            radius: control.background.radius
-            color: control.Ctrl.Material.dialogColor
-            bottomPadding: -radius
-            clip: true
-        }
     }
 
     footer: Ctrl.DialogButtonBox {

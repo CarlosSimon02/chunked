@@ -9,6 +9,13 @@ ScrollView {
     id: scrollView
     contentHeight: columnLayout.height
 
+    Component.onCompleted: {
+        startDateTimePicker.dateTime = new Date()
+        startDateTimePicker.dateTime.setHours(0,0)
+        endDateTimePicker.dateTime = startDateTimePicker.dateTime
+        endDateTimePicker.dateTime.setDate(endDateTimePicker.dateTime.getDate() + 1)
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: { scrollView.focus = false}
@@ -35,6 +42,8 @@ ScrollView {
                         id: startTime
                         Layout.maximumWidth: 500
                         Layout.fillWidth: true
+                        text: startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                        readOnly: true
                     }
 
                     Comp.IconButton {
@@ -45,6 +54,12 @@ ScrollView {
                         icon.color: Comp.Globals.color.secondary.shade1
 
                         Material.roundedScale: Material.SmallScale
+
+                        onClicked: startDateTimePicker.open()
+
+                        Comp.DateTimePickerDialog {
+                            id: startDateTimePicker
+                        }
                     }
                 }
             }
@@ -61,6 +76,8 @@ ScrollView {
                         id: endTime
                         Layout.maximumWidth: 500
                         Layout.fillWidth: true
+                        text: endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                        readOnly: true
                     }
 
                     Comp.IconButton {
@@ -76,7 +93,8 @@ ScrollView {
 
                         Comp.DateTimePickerDialog {
                             id: endDateTimePicker
-
+                            hasStartDateTime: true
+                            startDateTime: startDateTimePicker.dateTime
                         }
                     }
                 }

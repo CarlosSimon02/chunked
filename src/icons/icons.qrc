@@ -35,5 +35,6 @@
         <file>three_dots_icon.svg</file>
         <file>minus_icon.svg</file>
         <file>date_time_icon.svg</file>
+        <file>date_icon.svg</file>
     </qresource>
 </RCC>

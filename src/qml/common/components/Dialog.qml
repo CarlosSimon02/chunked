@@ -4,6 +4,7 @@ import QtQuick.Controls.Material as Ctrl
 import components as Comp
 
 //This dialog requires you to open and close backdrop if you want background to be non interactive
+//Use lazy loading as much as possible when using dialog
 Ctrl.Dialog {
     id: control
     Ctrl.Material.roundedScale: Ctrl.Material.SmallScale

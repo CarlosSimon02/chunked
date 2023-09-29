@@ -6,12 +6,19 @@ import components as Comp
 
 Comp.Dialog {
     id: dialog
-    width: 527
-    height: 40 + header.height + footer.height + 350
+
+    //Will fix this spagetti code
+    width: window.width > Comp.Globals.screen.smallW ? 527 : (390 + 20) < window.width ? 390 : window.width - 20
+    height: window.width > Comp.Globals.screen.smallW ? 40 + header.height + footer.height + 350 :
+                                                        (40 + header.height + footer.height + 407 + topMargin + bottomMargin) < window.height ?
+                                                            40 + header.height + footer.height + 407 :
+                                                            window.height - topMargin - bottomMargin
     title: "Select Date and Time"
     parent: Overlay.overlay
     anchors.centerIn: parent
     standardButtons: Dialog.Ok | Dialog.Cancel
+
+    Material.accent: Comp.Globals.color.accent.shade1
 
     property date dateTime
     //startDateTime is use for date and time range.
@@ -57,41 +64,47 @@ Comp.Dialog {
             id: columnLayout
             spacing: 8
 
-            Component.onCompleted: console.log(columnLayout.height)
+            Component.onCompleted: console.log(columnLayout.width)
 
             RowLayout {
+                visible: !timePicker.visible
+
                 RoundButton {
-                    id: date
+                    id: dateButton
                     Layout.fillWidth: true
                     topInset: 0
                     leftInset: 0
                     rightInset: 0
                     bottomInset: 0
+                    padding: 6
                     flat: true
                     radius: Material.SmallScale
                     highlighted: true
+                    icon.source: "qrc:/date_icon.svg"
 
                     onClicked: {
                         stackLayout.currentIndex = 0
                         highlighted = true
-                        time.highlighted = false
+                        timeButton.highlighted = false
                     }
                 }
 
                 RoundButton {
-                    id: time
+                    id: timeButton
                     Layout.fillWidth: true
                     topInset: 0
                     leftInset: 0
                     rightInset: 0
                     bottomInset: 0
+                    padding: 6
                     flat: true
                     radius: Material.SmallScale
+                    icon.source: "qrc:/time_icon.svg"
 
                     onClicked: {
                         stackLayout.currentIndex = 1
                         highlighted = true
-                        date.highlighted = false
+                        dateButton.highlighted = false
                     }
                 }
             }
@@ -106,7 +119,7 @@ Comp.Dialog {
                 id: stackLayout
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                currentIndex: 1
+                currentIndex: 0
 
                 RowLayout {
                     id: rowLayout
@@ -114,6 +127,8 @@ Comp.Dialog {
 
                     DatePicker {
                         id: datePicker
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
                         chosenDateTime: dialog.dateTime
                         hasStartDateTime: dialog.hasStartDateTime
                         startDateTime: dialog.startDateTime
@@ -122,10 +137,12 @@ Comp.Dialog {
                     }
 
                     TimePicker {
+                        id: timePicker
                         Layout.preferredHeight: datePicker.height
                         chosenDateTime: dialog.dateTime
                         hasStartDateTime: dialog.hasStartDateTime
                         startDateTime: dialog.startDateTime
+                        visible: window.width > Comp.Globals.screen.smallW
 
                         onChooseTime: dialog.dateTime = chosenDateTime
                     }

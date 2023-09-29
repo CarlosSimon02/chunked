@@ -10,6 +10,7 @@ Ctrl.Dialog {
     Ctrl.Material.roundedScale: Ctrl.Material.SmallScale
     Ctrl.Material.background: Comp.Globals.color.primary.shade3
     Ctrl.Overlay.modal: null
+    margins: 10
     topMargin: topBarView.height
     modal: false
     padding: 20

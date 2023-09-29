@@ -6,13 +6,14 @@ import components as Comp
 
 Comp.Dialog {
     id: dialog
-
     //Will fix this spagetti code
-    width: window.width > Comp.Globals.screen.smallW ? 527 : (390 + 20) < window.width ? 390 : window.width - 20
-    height: window.width > Comp.Globals.screen.smallW ? 40 + header.height + footer.height + 350 :
-                                                        (40 + header.height + footer.height + 407 + topMargin + bottomMargin) < window.height ?
-                                                            40 + header.height + footer.height + 407 :
-                                                            window.height - topMargin - bottomMargin
+    width: maximumWidth > (window.width - (leftMargin + rightMargin)) ? (window.width - (leftMargin + rightMargin))  : maximumWidth
+    height: maximumHeight > (window.height - (topMargin + bottomMargin)) ? (window.height - (topMargin + bottomMargin)) : maximumHeight
+
+    property int maximumWidth: window.width > Comp.Globals.screen.smallW ? 527 : 390
+    property int maximumHeight: window.width > Comp.Globals.screen.smallW ? 40 + header.height + footer.height + 350  :
+                                                                            40 + header.height + footer.height + 407
+
     title: "Select Date and Time"
     parent: Overlay.overlay
     anchors.centerIn: parent
@@ -64,8 +65,6 @@ Comp.Dialog {
             id: columnLayout
             spacing: 8
 
-            Component.onCompleted: console.log(columnLayout.width)
-
             RowLayout {
                 visible: !timePicker.visible
 
@@ -113,6 +112,7 @@ Comp.Dialog {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
                 color: Comp.Globals.color.accent.shade1
+                visible: !timePicker.visible
             }
 
             StackLayout {

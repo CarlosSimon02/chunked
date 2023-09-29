@@ -67,7 +67,7 @@ Comp.PageView {
                 }
 
                 ProgressFormView {
-
+                    id: progressFormView
                 }
 
                 DescriptionFormView {
@@ -111,6 +111,10 @@ Comp.PageView {
                             if(stepper.currentIndex === 0) {
                                 commonFormView.checkError()
                                 hasError = commonFormView.hasError
+                            }
+                            else if(stepper.currentIndex === 3) {
+                                progressFormView.checkError()
+                                hasError = progressFormView.hasError
                             }
 
                             if(!hasError) {

@@ -122,11 +122,17 @@ StackView {
                     onClicked: {
                         stackView.chosenDateTime.setFullYear(model.year, model.month, model.day)
                         stackView.chooseDate()
+
+                        console.log(model.date.getDate())
+                        console.log(model.date.getHours())
+                        console.log(stackView.chosenDateTime.getHours())
+                        console.log(model.date.getMinutes())
                     }
 
                     function setEnabled() {
-                        model.date.setHours(stackView.chosenDateTime.getHours(),stackView.chosenDateTime.getMinutes())
-                        enabled = stackView.hasStartDateTime ? stackView.startDateTime < model.date :
+                        var tempDateTime = model.date
+                        tempDateTime.setHours(stackView.chosenDateTime.getHours(),stackView.chosenDateTime.getMinutes())
+                        enabled = stackView.hasStartDateTime ? stackView.startDateTime < tempDateTime :
                                                                monthGrid.month === model.month
                     }
 

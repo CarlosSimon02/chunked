@@ -7,11 +7,12 @@ import components as Comp
 //Use lazy loading as much as possible when using dialog
 Ctrl.Dialog {
     id: control
+
     Ctrl.Material.roundedScale: Ctrl.Material.SmallScale
     Ctrl.Material.background: Comp.Globals.color.primary.shade3
     Ctrl.Overlay.modal: null
     margins: 10
-    topMargin: topBarView.height
+    topMargin: topBarView.height + 10
     modal: false
     padding: 20
 
@@ -33,6 +34,7 @@ Ctrl.Dialog {
             flat: true
 
             Ctrl.Material.roundedScale: Ctrl.Material.SmallScale
+            font.pixelSize: Comp.Globals.fontSize.medium
         }
     }
 }

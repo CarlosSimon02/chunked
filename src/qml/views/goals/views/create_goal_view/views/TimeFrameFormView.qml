@@ -14,6 +14,9 @@ ScrollView {
         startDateTimePicker.dateTime.setHours(0,0)
         endDateTimePicker.dateTime = startDateTimePicker.dateTime
         endDateTimePicker.dateTime.setDate(endDateTimePicker.dateTime.getDate() + 1)
+
+        startTime.text = startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+        endTime.text = endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
     }
 
     MouseArea {
@@ -42,7 +45,7 @@ ScrollView {
                         id: startTime
                         Layout.maximumWidth: 500
                         Layout.fillWidth: true
-                        text: startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+
                         readOnly: true
                     }
 
@@ -59,6 +62,19 @@ ScrollView {
 
                         Comp.DateTimePickerDialog {
                             id: startDateTimePicker
+
+                            onAccepted: {
+                                startTime.text = dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                                if(startDateTimePicker.dateTime > endDateTimePicker.dateTime) {
+                                    endDateTimePicker.dateTime = startDateTimePicker.dateTime
+                                    endDateTimePicker.dateTime.setDate(endDateTimePicker.dateTime.getDate() + 1)
+                                    endTime.text = endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                                }
+                            }
+
+                            onRejected: {
+                                startDateTimePicker.dateTime = Date.fromLocaleString(Qt.locale(), startTime.text, "dd MMM yyyy hh:mm AP")
+                            }
                         }
                     }
                 }
@@ -76,7 +92,6 @@ ScrollView {
                         id: endTime
                         Layout.maximumWidth: 500
                         Layout.fillWidth: true
-                        text: endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                         readOnly: true
                     }
 
@@ -95,6 +110,14 @@ ScrollView {
                             id: endDateTimePicker
                             hasStartDateTime: true
                             startDateTime: startDateTimePicker.dateTime
+
+                            onAccepted: {
+                                endTime.text = dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                            }
+
+                            onRejected: {
+                                endDateTimePicker.dateTime = Date.fromLocaleString(Qt.locale(), endTime.text, "dd MMM yyyy hh:mm AP")
+                            }
                         }
                     }
                 }

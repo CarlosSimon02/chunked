@@ -20,7 +20,8 @@ ScrollView {
     }
 
     MouseArea {
-        anchors.fill: parent
+        width: scrollView.width
+        height: scrollView.height
         onClicked: { scrollView.focus = false}
     }
 

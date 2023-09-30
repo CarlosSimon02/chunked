@@ -12,6 +12,7 @@ Ctrl.ItemDelegate {
     horizontalPadding: 15
     icon.width: 18
     icon.height: 18
+    font.pixelSize: Comp.Globals.fontSize.medium
 
     Ctrl.Material.foreground: Comp.Globals.color.secondary.shade2
     Ctrl.Material.roundedScale: Ctrl.Material.SmallScale

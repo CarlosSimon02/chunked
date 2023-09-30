@@ -70,6 +70,8 @@ Comp.StackPageView {
                     Material.background: Material.color(Material.Grey, Material.Shade900)
                     Material.elevation: 0
                     Material.roundedScale: Material.SmallScale
+
+                    onClicked: stackPageView.push("qrc:/views/goals/views/goal_info_view/GoalInfoView.qml")
                 }
             }
 

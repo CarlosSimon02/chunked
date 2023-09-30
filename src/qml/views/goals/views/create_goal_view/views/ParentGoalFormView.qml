@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
+import components as Comp
 import "../components" as MComp
 
 ScrollView {
@@ -9,7 +10,8 @@ ScrollView {
     contentHeight: columnLayout.height
 
     MouseArea {
-        anchors.fill: parent
+        width: scrollView.width
+        height: scrollView.height
         onClicked: { scrollView.focus = false}
     }
 
@@ -27,7 +29,7 @@ ScrollView {
                     text: "Parent Goal"
                 }
 
-                TextField {
+                Comp.GoalNamesTreeViewComboBox {
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
                 }

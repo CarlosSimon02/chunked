@@ -41,5 +41,9 @@
         <file>common/components/DateTimePickerDialog.qml</file>
         <file>common/components/Dialog.qml</file>
         <file>common/components/DialogButtonBox.qml</file>
+        <file>common/components/GoalNamesTreeViewComboBox.qml</file>
+        <file>views/goals/views/goal_info_view/GoalInfoView.qml</file>
+        <file>common/components/RoundedPane.qml</file>
+        <file>views/goals/views/goal_info_view/views/DetailsView.qml</file>
     </qresource>
 </RCC>

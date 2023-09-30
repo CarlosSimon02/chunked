@@ -12,8 +12,9 @@ ScrollView {
     property bool hasError
 
     MouseArea {
-        anchors.fill: parent
-        onClicked: { scrollView.focus = false }
+        width: scrollView.width
+        height: scrollView.height
+        onClicked: { scrollView.focus = false}
     }
 
     ColumnLayout {

@@ -13,20 +13,8 @@ Pane {
     Material.background: Comp.Globals.color.primary.shade3
     clip: true
 
-    layer.samples: 8
-    layer.enabled: true
-    layer.effect: OpacityMask {
-        maskSource: Rectangle {
-            width: control.width
-            height: control.height
-
-            radius: control.Material.roundedScale
-        }
-    }
-
     background: Rectangle {
-        color: control.Material.backgroundColor
-
-
+        color: Comp.Globals.color.primary.shade2
+        radius: Material.SmallScale
     }
 }

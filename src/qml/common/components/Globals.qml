@@ -21,7 +21,7 @@ QtObject {
 
         property QtObject accent: QtObject {
             property color shade1: Material.color(Material.Lime, Material.Shade900)
-            property color shade2: Material.color(Material.Lime, Material.Shade400)
+            property color shade2: Material.color(Material.Lime, Material.Shade100)
         }
     }
 
@@ -33,7 +33,7 @@ QtObject {
         property int superSmall: 10
         property int extraSmall: 12
         property int small: 14
-        property int medium: 16
+        property int medium: 10
         property int large: 20
         property int extraLarge: 22
     }

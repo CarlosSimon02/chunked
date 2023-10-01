@@ -14,7 +14,7 @@ FramelessApplicationWindow {
     width: 1280
     height: 720
     minimumWidth: 380
-    minimumHeight: 500
+    minimumHeight: 400
     visible: false
     color: Comp.Globals.color.primary.shade1
 

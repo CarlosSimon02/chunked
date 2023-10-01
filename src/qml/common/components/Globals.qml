@@ -33,7 +33,7 @@ QtObject {
         property int superSmall: 10
         property int extraSmall: 12
         property int small: 14
-        property int medium: 10
+        property int medium: 16
         property int large: 20
         property int extraLarge: 22
     }

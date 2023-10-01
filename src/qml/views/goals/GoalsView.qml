@@ -44,6 +44,13 @@ Comp.StackPageView {
         GoalsBodyView {
             id: goalsBodyView
             anchors.fill: parent
+
+            verticalScrollBar: ScrollBar {
+                parent: goalsPageView
+                x: goalsPageView.width - width
+                y: goalsPageView.header.height
+                height: goalsPageView.availableHeight - goalsPageView.header.height
+            }
         }
     }
 }

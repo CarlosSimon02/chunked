@@ -6,26 +6,24 @@ import "./components" as MComp
 
 Item {
     id: item
-    anchors.fill: parent
+    clip: true
     property bool itemsHasImage: true
+    property bool isSubGoal: false
+    property ScrollBar verticalScrollBar
 
     GridView {
         id: gridView
         width: contentWidth
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
-        topMargin: 15
-        bottomMargin: 15
-        contentWidth: Math.floor((stackPageView.width - 30) / cellWidth) * cellWidth
-        cellWidth: 350
-        cellHeight: item.itemsHasImage ? 450 : 260
+        topMargin: item.isSubGoal ? 8 : 15
+        bottomMargin: topmargin
+        contentWidth: Math.floor((item.parent.width - 30) / cellWidth) * cellWidth
+        cellWidth: item.isSubGoal ? 310 : 350
+        cellHeight: item.isSubGoal ? item.itemsHasImage ? 390 : 240 :
+                                     item.itemsHasImage ? 450 : 260
 
-        ScrollBar.vertical: ScrollBar {
-            parent: goalsPageView
-            x: gridView.mirrored ? 0 : goalsPageView.width - width
-            y: goalsPageView.header.height
-            height: goalsPageView.availableHeight - goalsPageView.header.height
-        }
+        ScrollBar.vertical: item.verticalScrollBar
 
         delegate: Item {
             width: GridView.view.cellWidth
@@ -34,6 +32,8 @@ Item {
             MComp.GoalItemDelegate {
                 anchors.fill: parent
                 anchors.margins: parent.GridView.view.topMargin
+                isSubGoal: item.isSubGoal
+                hasImage: item.itemsHasImage
 
                 Material.background: Material.color(Material.Grey, Material.Shade900)
                 Material.elevation: 0

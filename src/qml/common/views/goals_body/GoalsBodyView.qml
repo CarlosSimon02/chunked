@@ -17,11 +17,11 @@ Item {
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
         topMargin: item.isSubGoal ? 8 : 15
-        bottomMargin: topmargin
+        bottomMargin: topMargin
         contentWidth: Math.floor((item.parent.width - 30) / cellWidth) * cellWidth
         cellWidth: item.isSubGoal ? 310 : 350
-        cellHeight: item.isSubGoal ? item.itemsHasImage ? 390 : 240 :
-                                     item.itemsHasImage ? 450 : 260
+        cellHeight: item.isSubGoal ? item.itemsHasImage ? 360 : 200 :
+                                     item.itemsHasImage ? 425 : 240
 
         ScrollBar.vertical: item.verticalScrollBar
 

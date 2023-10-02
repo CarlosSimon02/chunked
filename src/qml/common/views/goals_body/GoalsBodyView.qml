@@ -58,6 +58,6 @@ Item {
         Material.elevation: 10
         Material.roundedScale: Material.SmallScale
 
-        onClicked: stackPageView.push("qrc:/views/goals/views/create_goal_view/CreateGoalView.qml")
+        onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_goal_view/CreateGoalView.qml")
     }
 }

@@ -7,7 +7,7 @@ import components as Comp
 ColumnLayout {
     spacing: 30
 
-    ComboBox {
+    Comp.ComboBox {
         Layout.preferredWidth: datePicker.width
         Layout.preferredHeight: 45
         topInset: 0
@@ -17,5 +17,11 @@ ColumnLayout {
 
     Comp.DatePicker {
         id: datePicker
+    }
+
+    RoundButton {
+        text: "Reset Filters"
+        radius: Material.SmallScale
+        flat: true
     }
 }

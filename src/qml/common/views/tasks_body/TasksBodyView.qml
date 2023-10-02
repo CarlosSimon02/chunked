@@ -7,6 +7,8 @@ import "./components" as MComp
 import "./views"
 
 RowLayout {
+    id: rowLayout
+    property bool isSubGoal: false
     Material.accent: Comp.Globals.color.accent.shade1
 
     ListView {
@@ -26,6 +28,25 @@ RowLayout {
                 Layout.preferredHeight: 45
                 Layout.bottomMargin: 10
             }
+
+            Comp.IconButton {
+                Layout.alignment: Qt.AlignVCenter
+                Layout.bottomMargin: 10
+                icon.source: "qrc:/filter_icon.svg"
+                visible: !filterView.visible
+
+                onClicked: filterDrawerView.open()
+            }
+        }
+
+        section.property: "date"
+        section.delegate: Label {
+            topPadding: 10
+            bottomPadding: 10
+            required property string section
+            text: section
+            color: Comp.Globals.color.secondary.shade2
+            font.pixelSize: Comp.Globals.fontSize.small
         }
 
         ScrollBar.vertical: ScrollBar {
@@ -38,15 +59,40 @@ RowLayout {
             width: ListView.view.width -
                    ListView.view.leftMargin -
                    ListView.view.rightMargin
-            height: 45
+            date: "Today"
         }
 
-        model: 10
+        model: ListModel {
+            ListElement {
+                date: "Today"
+            }
+
+            ListElement {
+                date: "Today"
+            }
+
+            ListElement {
+                date: "Today"
+            }
+
+            ListElement {
+                date: "Today"
+            }
+        }
     }
 
     FilterView {
+        id: filterView
         Layout.topMargin: 30
         Layout.rightMargin: 30
         Layout.alignment: Qt.AlignTop
+        visible: !rowLayout.isSubGoal && window.width > 1200
+        Component.onCompleted: console.log(width)
+    }
+
+    FilterDrawerView {
+        id: filterDrawerView
+        y: topBarView.height
+        height: parent.height - topBarView.height
     }
 }

@@ -9,6 +9,7 @@ Comp.PageView {
     title: "Tasks"
 
     TasksBodyView {
+        id: tasksBodyView
         anchors.fill: parent
     }
 }

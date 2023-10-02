@@ -16,11 +16,14 @@ T.ItemDelegate {
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
     horizontalPadding: 10
+    verticalPadding: text.lineCount > 1 ? 5 : 0
 
     property bool isSubGoal: false
     property bool hasImage: true
+    required property string date
 
     contentItem: RowLayout {
+        spacing: 20
 
         RowLayout {
             CheckBox {
@@ -28,17 +31,31 @@ T.ItemDelegate {
             }
 
             Text {
+                id: text
                 Layout.fillWidth: true
-                text: "This is my sample task"
+                text: "This is my sample task dojsof jdjf f f jfja jfja jfjf jkjfj kj"
+                maximumLineCount: 2
                 color: Comp.Globals.color.secondary.shade3
+                elide: Text.ElideRight
                 font.pixelSize: Comp.Globals.fontSize.medium
+                wrapMode: Text.Wrap
             }
         }
 
-        Text {
-            text: "1h 40m remaining"
-            font.pixelSize: Comp.Globals.fontSize.small
-            color: "green"
+        RowLayout {
+            Text {
+                text: "1h 40m remaining"
+                font.pixelSize: Comp.Globals.fontSize.small
+                color: "green"
+                visible: window.width > 600
+            }
+
+            IconLabel {
+                icon.source: "qrc:/three_dots_icon.svg"
+                icon.width: 18
+                icon.height: 18
+                icon.color: Comp.Globals.color.secondary.shade2
+            }
         }
     }
 

@@ -34,7 +34,6 @@
         <file>common/views/goals_body/GoalsBodyView.qml</file>
         <file>common/views/goals_body/components/ContentIconLabel.qml</file>
         <file>common/views/goals_body/components/GoalItemDelegate.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/components/ComboBox.qml</file>
         <file>common/views/goals_body/views/create_goal_view/components/FieldColumnLayout.qml</file>
         <file>common/views/goals_body/views/create_goal_view/components/FieldLabel.qml</file>
         <file>common/views/goals_body/views/create_goal_view/components/ImagePicker.qml</file>
@@ -55,5 +54,6 @@
         <file>common/views/tasks_body/components/CreateTaskTextField.qml</file>
         <file>common/views/tasks_body/views/FilterView.qml</file>
         <file>common/components/ComboBox.qml</file>
+        <file>common/views/tasks_body/views/FilterDrawerView.qml</file>
     </qresource>
 </RCC>

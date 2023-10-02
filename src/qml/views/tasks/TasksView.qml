@@ -3,23 +3,12 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import views.tasks_body
 
 Comp.PageView {
     title: "Tasks"
 
-    RowLayout {
+    TasksBodyView {
         anchors.fill: parent
-
-        ListView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            delegate: CheckDelegate {
-                width: ListView.view.width
-                text: "Sample task"
-            }
-
-            model: 10
-        }
     }
 }

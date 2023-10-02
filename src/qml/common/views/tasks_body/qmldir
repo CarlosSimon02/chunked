@@ -1,0 +1,2 @@
+module views.tasks_body
+TasksBodyView 1.0 TasksBodyView.qml

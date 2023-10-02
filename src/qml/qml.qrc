@@ -47,5 +47,7 @@
         <file>common/views/goals_body/views/goal_info_view/views/DetailsView.qml</file>
         <file>common/views/goals_body/views/goal_info_view/GoalInfoView.qml</file>
         <file>common/views/goals_body/qmldir</file>
+        <file>common/views/tasks_body/TasksBodyView.qml</file>
+        <file>common/views/habits_body/HabitsBodyView.qml</file>
     </qresource>
 </RCC>

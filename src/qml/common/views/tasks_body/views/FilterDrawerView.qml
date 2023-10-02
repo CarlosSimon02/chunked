@@ -5,6 +5,7 @@ import components as Comp
 
 Drawer {
     id: drawer
+    z: 0
     implicitWidth: 370
     interactive: false
     leftPadding: 10
@@ -14,7 +15,13 @@ Drawer {
     edge: Qt.RightEdge
     Material.background: Comp.Globals.color.primary.shade1
     Material.roundedScale: Material.NotRounded
-    Material.accent: Comp.Globals.accent.shade1
+    Material.accent: Comp.Globals.color.accent.shade1
+
+    //To prevent drawer from closing when clicked
+    MouseArea {
+        anchors.fill: parent
+        onClicked: drawer.focus = true
+    }
 
     Connections {
         target: window

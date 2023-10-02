@@ -26,8 +26,6 @@ qt6_add_qml_module(chunked
   URI app
   VERSION 1.0
   SOURCES
-  RESOURCES src/qml/common/views/tasks_body/qmldir
-  RESOURCES src/qml/common/views/habits_body/qmldir
 )
 
 list(APPEND QML_DIRS ${CMAKE_SOURCE_DIR}/src/qml/common)

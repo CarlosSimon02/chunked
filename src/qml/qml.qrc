@@ -49,5 +49,11 @@
         <file>common/views/goals_body/qmldir</file>
         <file>common/views/tasks_body/TasksBodyView.qml</file>
         <file>common/views/habits_body/HabitsBodyView.qml</file>
+        <file>common/views/habits_body/qmldir</file>
+        <file>common/views/tasks_body/qmldir</file>
+        <file>common/views/tasks_body/components/TaskItemDelegate.qml</file>
+        <file>common/views/tasks_body/components/CreateTaskTextField.qml</file>
+        <file>common/views/tasks_body/views/FilterView.qml</file>
+        <file>common/components/ComboBox.qml</file>
     </qresource>
 </RCC>

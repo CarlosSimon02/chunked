@@ -30,10 +30,14 @@ RowLayout {
             }
 
             Comp.IconButton {
+                Layout.preferredWidth: 30
+                Layout.preferredHeight: 30
                 Layout.alignment: Qt.AlignVCenter
                 Layout.bottomMargin: 10
                 icon.source: "qrc:/filter_icon.svg"
                 visible: !filterView.visible
+                icon.width: 25
+                icon.height: 25
 
                 onClicked: filterDrawerView.open()
             }

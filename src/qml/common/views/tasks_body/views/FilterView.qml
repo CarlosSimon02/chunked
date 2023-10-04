@@ -17,7 +17,6 @@ ColumnLayout {
 
     Comp.DatePicker {
         id: datePicker
-        scale: 0.9
     }
 
     RoundButton {

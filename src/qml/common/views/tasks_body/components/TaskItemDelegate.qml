@@ -47,7 +47,7 @@ T.ItemDelegate {
                 text: "1h 40m remaining"
                 font.pixelSize: Comp.Globals.fontSize.small
                 color: "green"
-                visible: window.width > 600
+                visible: control.width > 600
             }
 
             IconLabel {

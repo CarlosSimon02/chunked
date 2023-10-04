@@ -43,18 +43,6 @@ ListView {
         }
 
         ListElement {
-            label: "Vision Board"
-            iconSource: "qrc:/vision_board_icon.svg"
-            viewSource: "qrc:/views/vision_board/VisionBoardView.qml"
-        }
-
-        ListElement {
-            label: "Journal"
-            iconSource: "qrc:/journal_icon.svg"
-            viewSource: "qrc:/views/journal/JournalView.qml"
-        }
-
-        ListElement {
             label: "Reports"
             iconSource: "qrc:/reports_icon.svg"
             viewSource: "qrc:/views/reports/ReportsView.qml"

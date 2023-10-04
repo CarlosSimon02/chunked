@@ -5,13 +5,11 @@
         <file>views/goals/GoalsView.qml</file>
         <file>views/habits/HabitsView.qml</file>
         <file>views/home/HomeView.qml</file>
-        <file>views/journal/JournalView.qml</file>
         <file>views/reports/ReportsView.qml</file>
         <file>views/settings/SettingsView.qml</file>
         <file>views/side_menu/components/ItemDelegate.qml</file>
         <file>views/side_menu/SideMenuView.qml</file>
         <file>views/tasks/TasksView.qml</file>
-        <file>views/vision_board/VisionBoardView.qml</file>
         <file>views/top_bar/TopBarView.qml</file>
         <file>views/top_bar/components/Button.qml</file>
         <file>common/components/MenuButton.qml</file>

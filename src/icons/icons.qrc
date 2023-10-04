@@ -36,5 +36,7 @@
         <file>minus_icon.svg</file>
         <file>date_time_icon.svg</file>
         <file>date_icon.svg</file>
+        <file>hierarchy_icon.svg</file>
+        <file>tracker_icon.svg</file>
     </qresource>
 </RCC>

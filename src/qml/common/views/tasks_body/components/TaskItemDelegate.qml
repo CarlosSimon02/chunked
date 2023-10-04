@@ -27,7 +27,20 @@ T.ItemDelegate {
 
         RowLayout {
             CheckBox {
+                id: checkBox
+            }
 
+            //visible only if tracker is outcome base
+            Label {
+                Layout.preferredHeight: 30
+                Layout.preferredWidth: 30
+                text: "1"
+                horizontalAlignment: Label.AlignHCenter
+                verticalAlignment: Label.AlignVCenter
+                background: Rectangle {
+                    color: Comp.Globals.color.primary.shade2
+                    radius: Material.SmallScale
+                }
             }
 
             Text {

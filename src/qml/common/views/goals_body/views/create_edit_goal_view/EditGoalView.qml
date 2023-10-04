@@ -130,7 +130,6 @@ Comp.PageView {
 
                             if(!hasError) {
                                 listView.currentIndex++
-                                listView.currentItem.done = true
                             }
                         }
                     }

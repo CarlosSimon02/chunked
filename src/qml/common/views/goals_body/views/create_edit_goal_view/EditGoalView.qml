@@ -18,17 +18,28 @@ Comp.PageView {
         anchors.fill: parent
         spacing: 30
 
-        Comp.Stepper {
-            id: stepper
+        ListView {
+            id: listView
             Layout.fillHeight: true
-            Layout.preferredWidth: 100
+            Layout.preferredWidth: 150
             Layout.topMargin: 30
             Layout.leftMargin: 30
             visible: !pageIndicator.visible
+            spacing: 0
+            currentIndex: 0
+            delegate: ItemDelegate {
+                width: listView.width
+                required property string modelData
+                required property int index
+                text: modelData
+                highlighted: ListView.isCurrentItem
+                onClicked: listView.currentIndex = index
+            }
+
             model: ["Common", "Parent Goal", "Time Frame", "Progress", "Description"]
 
             TapHandler {
-                onTapped: stepper.forceActiveFocus()
+                onTapped: listView.forceActiveFocus()
             }
         }
 
@@ -41,8 +52,8 @@ Comp.PageView {
                 id: pageIndicator
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 20
-                count: stepper.count
-                currentIndex: stepper.currentIndex
+                count: listView.count
+                currentIndex: listView.currentIndex
                 visible: window.width < Comp.Globals.screen.smallW
 
                 Material.foreground: Comp.Globals.color.accent.shade1
@@ -52,7 +63,7 @@ Comp.PageView {
                 id: stackLayout
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                currentIndex: stepper.currentIndex
+                currentIndex: listView.currentIndex
 
                 CommonFormView {
                     id: commonFormView
@@ -90,36 +101,36 @@ Comp.PageView {
                     Material.roundedScale: Material.SmallScale
 
                     onClicked: {
-                        if(stepper.currentIndex > 0) {
-                            stepper.currentIndex--
+                        if(listView.currentIndex > 0) {
+                            listView.currentIndex--
                         }
                     }
                 }
 
                 Button {
                     Layout.preferredWidth: backButton.width
-                    text: stepper.currentIndex === (stepper.count - 1) ? "Save" : "Next"
+                    text: listView.currentIndex === (listView.count - 1) ? "Save" : "Next"
 
                     Material.background: Comp.Globals.color.accent.shade1
                     Material.roundedScale: Material.SmallScale
 
                     onClicked: {
-                        if(stepper.currentIndex < stepper.count - 1) {
+                        if(listView.currentIndex < listView.count - 1) {
                             //check for errors first
                             let hasError
 
-                            if(stepper.currentIndex === 0) {
+                            if(listView.currentIndex === 0) {
                                 commonFormView.checkError()
                                 hasError = commonFormView.hasError
                             }
-                            else if(stepper.currentIndex === 3) {
+                            else if(listView.currentIndex === 3) {
                                 progressFormView.checkError()
                                 hasError = progressFormView.hasError
                             }
 
                             if(!hasError) {
-                                stepper.currentIndex++
-                                stepper.currentItem.done = true
+                                listView.currentIndex++
+                                listView.currentItem.done = true
                             }
                         }
                     }

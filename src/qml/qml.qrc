@@ -32,15 +32,6 @@
         <file>common/views/goals_body/GoalsBodyView.qml</file>
         <file>common/views/goals_body/components/ContentIconLabel.qml</file>
         <file>common/views/goals_body/components/GoalItemDelegate.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/components/FieldColumnLayout.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/components/FieldLabel.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/components/ImagePicker.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/views/CommonFormView.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/views/DescriptionFormView.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/views/ParentGoalFormView.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/views/ProgressFormView.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/views/TimeFrameFormView.qml</file>
-        <file>common/views/goals_body/views/create_goal_view/CreateGoalView.qml</file>
         <file>common/views/goals_body/views/goal_info_view/views/DetailsView.qml</file>
         <file>common/views/goals_body/views/goal_info_view/GoalInfoView.qml</file>
         <file>common/views/goals_body/qmldir</file>
@@ -53,5 +44,15 @@
         <file>common/views/tasks_body/views/FilterView.qml</file>
         <file>common/components/ComboBox.qml</file>
         <file>common/views/tasks_body/views/FilterDrawerView.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/EditGoalView.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/components/FieldColumnLayout.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/components/FieldLabel.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/components/ImagePicker.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/views/CommonFormView.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/views/DescriptionFormView.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/views/ParentGoalFormView.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/views/ProgressFormView.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/views/TimeFrameFormView.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal_view/CreateGoalView.qml</file>
     </qresource>
 </RCC>

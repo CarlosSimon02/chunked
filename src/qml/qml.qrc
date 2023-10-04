@@ -55,5 +55,9 @@
         <file>common/views/tasks_body/views/filter/FilterDrawerView.qml</file>
         <file>common/views/tasks_body/views/filter/FilterView.qml</file>
         <file>common/views/tasks_body/views/task_info_drawer/TaskInfoDrawerView.qml</file>
+        <file>common/views/tasks_body/views/task_info_drawer/components/TextArea.qml</file>
+        <file>common/views/tasks_body/views/task_info_drawer/components/FieldRowLayout.qml</file>
+        <file>common/views/tasks_body/views/task_info_drawer/components/Icon.qml</file>
+        <file>common/views/habits_body/components/HabitItemDelegate.qml</file>
     </qresource>
 </RCC>

@@ -3,14 +3,13 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import "./components" as MComp
 
 Drawer {
     id: drawer
-    z: 0
-    implicitWidth: 370
+    width: 370
     interactive: false
-    leftPadding: 10
-    rightPadding: 10
+    padding: 0
     Overlay.modal: null
     modal: false
     edge: Qt.RightEdge
@@ -48,34 +47,118 @@ Drawer {
         Component {
             id: content
 
-            Column {
-                spacing: 20
+            Page {
+                padding: 15
+                background: null
+                header: Pane {
+                    padding: 15
+                    background: Item {
+                        Rectangle {
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: 0
+                            height: 1
+                            width: parent.width
+                            color: Comp.Globals.color.secondary.shade1
+                        }
+                    }
 
-                Comp.IconButton {
-                    id: closeButton
-                    rotation: 180
-                    icon.source: "qrc:/double_arrow_left_icon.svg"
-                    onClicked: {
-                        drawer.close()
-                        backdrop.close()
+                    RowLayout {
+                        width: parent.width
+                        IconLabel {
+                            icon.source: "qrc:/close_icon.svg"
+                            icon.width: 15
+                            icon.height: 15
+                            icon.color: Comp.Globals.color.secondary.shade2
+                        }
+
+                        IconLabel {
+                            Layout.alignment: Qt.AlignRight
+                            icon.source: "qrc:/three_dots_icon.svg"
+                            icon.width: 18
+                            icon.height: 18
+                            icon.color: Comp.Globals.color.secondary.shade2
+                        }
                     }
                 }
 
                 ColumnLayout {
                     width: parent.width
+                    spacing: 20
 
-                    RowLayout {
-                        CheckBox {
-                            Layout.alignment: Qt.AlignTop
+                    ColumnLayout {
+                        spacing: 40
+
+                        RowLayout {
+                            CheckBox {
+                                Layout.leftMargin: -8
+                                Layout.alignment: Qt.AlignTop
+                            }
+
+                            MComp.TextArea {
+                                Layout.fillWidth: true
+                                Layout.topMargin: 10
+                                text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+                                font.pixelSize: Comp.Globals.fontSize.large
+                            }
                         }
 
-                        TextInput {
-                            Layout.fillWidth: true
-                            Layout.topMargin: 10
-                            color: "white"
-                            text: "This is just a sample task, it is suppossed to be very very long"
-                            font.pixelSize: Comp.Globals.fontSize.large
-                            wrapMode: TextInput.Wrap
+                        ColumnLayout {
+                            spacing: 10
+
+                            MComp.FieldRowLayout {
+                                MComp.Icon {
+                                    Layout.alignment: Qt.AlignTop
+                                    icon.source: "qrc:/status_icon.svg"
+                                    ToolTip.text: "Status"
+                                }
+
+                                MComp.TextArea {
+                                    Layout.fillWidth: true
+                                    color: "green"
+                                    text: "Active"
+                                    readOnly: true
+                                }
+                            }
+
+                            MComp.FieldRowLayout {
+                                MComp.Icon {
+                                    Layout.alignment: Qt.AlignTop
+                                    icon.source: "qrc:/check_icon.svg"
+                                    ToolTip.text: "Outcome"
+                                }
+
+                                MComp.TextArea {
+                                    Layout.fillWidth: true
+                                    text: "1"
+                                }
+                            }
+
+                            MComp.FieldRowLayout {
+                                MComp.Icon {
+                                    Layout.alignment: Qt.AlignTop
+                                    icon.source: "qrc:/time_icon.svg"
+                                    ToolTip.text: "Time Remaining"
+                                }
+
+                                MComp.TextArea {
+                                    Layout.fillWidth: true
+                                    text: "4h 3m remaining"
+                                    readOnly: true
+                                }
+                            }
+
+                            MComp.FieldRowLayout {
+                                MComp.Icon {
+                                    Layout.alignment: Qt.AlignTop
+                                    icon.source: "qrc:/date_time_icon.svg"
+                                    ToolTip.text: "Time Frame"
+                                }
+
+                                MComp.TextArea {
+                                    Layout.fillWidth: true
+                                    text: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
+                                }
+                            }
                         }
                     }
                 }

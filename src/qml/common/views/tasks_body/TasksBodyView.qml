@@ -4,7 +4,8 @@ import QtQuick.Layouts
 
 import components as Comp
 import "./components" as MComp
-import "./views"
+import "./views/filter"
+import "./views/task_info_drawer"
 
 RowLayout {
     id: rowLayout
@@ -64,6 +65,7 @@ RowLayout {
                    ListView.view.leftMargin -
                    ListView.view.rightMargin
             date: "Today"
+            onClicked: taskInfoDrawerView.open()
         }
 
         model: ListModel {
@@ -96,6 +98,12 @@ RowLayout {
 
     FilterDrawerView {
         id: filterDrawerView
+        y: topBarView.height
+        height: parent.height - topBarView.height
+    }
+
+    TaskInfoDrawerView {
+        id: taskInfoDrawerView
         y: topBarView.height
         height: parent.height - topBarView.height
     }

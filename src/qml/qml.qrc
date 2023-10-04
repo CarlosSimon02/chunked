@@ -41,9 +41,7 @@
         <file>common/views/tasks_body/qmldir</file>
         <file>common/views/tasks_body/components/TaskItemDelegate.qml</file>
         <file>common/views/tasks_body/components/CreateTaskTextField.qml</file>
-        <file>common/views/tasks_body/views/FilterView.qml</file>
         <file>common/components/ComboBox.qml</file>
-        <file>common/views/tasks_body/views/FilterDrawerView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal_view/EditGoalView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal_view/components/FieldColumnLayout.qml</file>
         <file>common/views/goals_body/views/create_edit_goal_view/components/FieldLabel.qml</file>
@@ -54,5 +52,8 @@
         <file>common/views/goals_body/views/create_edit_goal_view/views/ProgressFormView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal_view/views/TimeFrameFormView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal_view/CreateGoalView.qml</file>
+        <file>common/views/tasks_body/views/filter/FilterDrawerView.qml</file>
+        <file>common/views/tasks_body/views/filter/FilterView.qml</file>
+        <file>common/views/tasks_body/views/task_info_drawer/TaskInfoDrawerView.qml</file>
     </qresource>
 </RCC>

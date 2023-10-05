@@ -8,7 +8,7 @@ Item {
     id: item
     clip: true
     property bool itemsHasImage: true
-    property bool isSubGoal: false
+    property bool isSubHabit: false
     property ScrollBar verticalScrollBar
 
     GridView {
@@ -19,8 +19,8 @@ Item {
         topMargin: item.isSubGoal ? 8 : 10
         bottomMargin: topMargin
         contentWidth: Math.floor((item.parent.width - 30) / cellWidth) * cellWidth
-        cellWidth: item.isSubGoal ? 310 : 350
-        cellHeight: item.isSubGoal ? 230 : 270
+        cellWidth: item.isSubHabit ? 310 : 350
+        cellHeight: item.isSubHabit ? 230 : 260
 
         ScrollBar.vertical: item.verticalScrollBar
 
@@ -31,7 +31,7 @@ Item {
             MComp.HabitItemDelegate {
                 anchors.fill: parent
                 anchors.margins: parent.GridView.view.topMargin
-                isSubGoal: item.isSubGoal
+                isSubHabit: item.isSubHabit
                 hasImage: item.itemsHasImage
 
                 Material.background: Material.color(Material.Grey, Material.Shade900)

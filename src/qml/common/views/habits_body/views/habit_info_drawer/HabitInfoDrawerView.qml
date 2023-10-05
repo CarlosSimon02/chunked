@@ -95,7 +95,7 @@ Drawer {
                             Text {
                                 Layout.fillWidth: true
                                 Layout.preferredWidth: width
-                                text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+                                text: "Solve LeetCode Questions"
                                 font.pixelSize: Comp.Globals.fontSize.large
                                 color: "white"
                                 wrapMode: Text.Wrap

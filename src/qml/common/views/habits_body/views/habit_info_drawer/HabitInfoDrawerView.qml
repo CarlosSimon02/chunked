@@ -88,22 +88,78 @@ Drawer {
                     ColumnLayout {
                         spacing: 40
 
-                        RowLayout {
-                            CheckBox {
-                                Layout.leftMargin: -8
-                                Layout.alignment: Qt.AlignTop
-                            }
-
-                            MComp.TextArea {
-                                Layout.fillWidth: true
-                                Layout.topMargin: 10
-                                text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-                                font.pixelSize: Comp.Globals.fontSize.large
-                            }
+                        Text {
+                            Layout.fillWidth: true
+                            text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+                            font.pixelSize: Comp.Globals.fontSize.large
+                            color: "white"
+                            wrapMode: Text.Wrap
                         }
 
                         ColumnLayout {
                             spacing: 10
+
+                            Repeater {
+                                delegate: RowLayout {
+                                    spacing: 16
+
+                                    IconLabel {
+                                        icon.width: 18
+                                        icon.height: 18
+                                        icon.color: Comp.Globals.color.secondary.shade2
+                                        display: IconLabel.IconOnly
+
+                                        HoverHandler {
+                                            id: hover
+                                        }
+
+                                        ToolTip.visible: hover.hovered
+                                    }
+
+                                    Text {
+                                        font.pixelSize: Comp.Globals.fontSize.medium
+
+                                    }
+                                }
+
+                                model: ListModel {
+                                    ListElement {
+                                        iconSource: "qrc:/status_icon.svg"
+                                        label: "Status"
+                                        value: "Active"
+                                        color: "green"
+                                    }
+
+                                    ListElement {
+                                        iconSource: "qrc:/time_icon.svg"
+                                        label: "Time Remaining"
+                                        value: "1h 40m remaining"
+                                        color: "white"
+                                    }
+
+                                    ListElement {
+                                        iconSource: "qrc:/fire_icon.svg"
+                                        label: "Frequeny"
+                                        value: "Daily"
+                                        color: "white"
+                                    }
+
+                                    ListElement {
+                                        iconSource: "qrc:/fire_icon.svg"
+                                        label: "Streak"
+                                        value: "8 days"
+                                        color: "white"
+                                    }
+
+                                    ListElement {
+                                        label: "Time Fame"
+                                        value: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
+                                        color: "white"
+                                    }
+
+
+                                }
+                            }
 
                             MComp.FieldRowLayout {
                                 MComp.Icon {
@@ -117,19 +173,6 @@ Drawer {
                                     color: "green"
                                     text: "Active"
                                     readOnly: true
-                                }
-                            }
-
-                            MComp.FieldRowLayout {
-                                MComp.Icon {
-                                    Layout.alignment: Qt.AlignTop
-                                    icon.source: "qrc:/check_icon.svg"
-                                    ToolTip.text: "Outcome"
-                                }
-
-                                MComp.TextArea {
-                                    Layout.fillWidth: true
-                                    text: "1"
                                 }
                             }
 

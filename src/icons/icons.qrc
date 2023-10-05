@@ -39,5 +39,6 @@
         <file>hierarchy_icon.svg</file>
         <file>tracker_icon.svg</file>
         <file>fire_icon.svg</file>
+        <file>repeat_icon.svg</file>
     </qresource>
 </RCC>

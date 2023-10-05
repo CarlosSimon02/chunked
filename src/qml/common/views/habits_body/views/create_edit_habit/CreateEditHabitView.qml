@@ -14,13 +14,15 @@ Comp.PageView {
     ScrollView {
         id: scrollView
         anchors.fill: parent
-        padding: 20
 
         ColumnLayout {
             width: scrollView.width
 
             ColumnLayout {
+                Layout.fillWidth: true
+                Layout.maximumWidth: 400
                 Layout.alignment: Qt.AlignHCenter
+                Layout.margins: 20
                 spacing: 30
 
                 MComp.FieldColumnLayout {
@@ -30,7 +32,6 @@ Comp.PageView {
 
                     Comp.TextField {
                         Layout.fillWidth: true
-                        Layout.maximumWidth: 400
                     }
                 }
 
@@ -41,7 +42,6 @@ Comp.PageView {
 
                     Comp.ComboBox {
                         Layout.fillWidth: true
-                        Layout.maximumWidth: 400
                     }
                 }
 
@@ -52,7 +52,6 @@ Comp.PageView {
 
                     TextField {
                         Layout.fillWidth: true
-                        Layout.maximumWidth: 400
                     }
                 }
 
@@ -63,12 +62,11 @@ Comp.PageView {
 
                     Comp.TextField {
                         Layout.fillWidth: true
-                        Layout.maximumWidth: 400
                     }
                 }
 
                 Button {
-                    Layout.leftMargin: 400 - width
+                    Layout.alignment: Qt.AlignRight
                     Layout.preferredWidth: 100
                     text: "Save"
 

@@ -61,11 +61,9 @@
         <file>common/views/goals_body/views/create_edit_goal/EditGoalView.qml</file>
         <file>common/views/goals_body/views/goal_info/views/DetailsView.qml</file>
         <file>common/views/goals_body/views/goal_info/GoalInfoView.qml</file>
-        <file>common/views/habits_body/views/habit_info_drawer/components/FieldRowLayout.qml</file>
-        <file>common/views/habits_body/views/habit_info_drawer/components/Icon.qml</file>
-        <file>common/views/habits_body/views/habit_info_drawer/components/TextArea.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/components/FieldColumnLayout.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/components/FieldLabel.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/CreateEditHabitView.qml</file>
+        <file>common/views/habits_body/views/habit_info_drawer/components/DateHiglighter.qml</file>
     </qresource>
 </RCC>

@@ -48,7 +48,7 @@ Drawer {
             id: content
 
             Page {
-                padding: 15
+                padding: 0
                 background: null
                 header: Pane {
                     padding: 15
@@ -81,126 +81,116 @@ Drawer {
                     }
                 }
 
-                ColumnLayout {
-                    width: parent.width
-                    spacing: 20
+                ScrollView {
+                    id: scrollView
+                    anchors.fill: parent
 
                     ColumnLayout {
-                        spacing: 40
-
-                        Text {
-                            Layout.fillWidth: true
-                            text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-                            font.pixelSize: Comp.Globals.fontSize.large
-                            color: "white"
-                            wrapMode: Text.Wrap
-                        }
+                        width: scrollView.width
 
                         ColumnLayout {
-                            spacing: 10
+                            Layout.margins: 20
+                            spacing: 40
 
-                            Repeater {
-                                delegate: RowLayout {
-                                    spacing: 16
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.preferredWidth: width
+                                text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+                                font.pixelSize: Comp.Globals.fontSize.large
+                                color: "white"
+                                wrapMode: Text.Wrap
+                            }
 
-                                    IconLabel {
-                                        icon.width: 18
-                                        icon.height: 18
-                                        icon.color: Comp.Globals.color.secondary.shade2
-                                        display: IconLabel.IconOnly
+                            ColumnLayout {
+                                spacing: 10
 
-                                        HoverHandler {
-                                            id: hover
+                                Repeater {
+                                    delegate: RowLayout {
+                                        spacing: 16
+
+                                        IconLabel {
+                                            Layout.preferredHeight: 22
+                                            Layout.alignment: Qt.AlignTop
+                                            icon.source: iconSource
+                                            icon.width: 18
+                                            icon.height: 18
+                                            icon.color: Comp.Globals.color.secondary.shade2
+                                            display: IconLabel.IconOnly
+
+                                            HoverHandler {
+                                                id: hover
+                                            }
+
+                                            ToolTip.visible: hover.hovered
+                                            ToolTip.text: label
                                         }
 
-                                        ToolTip.visible: hover.hovered
+                                        Text {
+                                            font.pixelSize: Comp.Globals.fontSize.medium
+                                            text: value
+                                            color: model.color ? model.color : Comp.Globals.color.secondary.shade3
+                                        }
                                     }
 
-                                    Text {
-                                        font.pixelSize: Comp.Globals.fontSize.medium
+                                    model: ListModel {
+                                        ListElement {
+                                            iconSource: "qrc:/status_icon.svg"
+                                            label: "Status"
+                                            value: "Active"
+                                            color: "green"
+                                        }
 
+                                        ListElement {
+                                            iconSource: "qrc:/category_icon.svg"
+                                            label: "Category"
+                                            value: "Home"
+                                        }
+
+                                        ListElement {
+                                            iconSource: "qrc:/time_icon.svg"
+                                            label: "Time Remaining"
+                                            value: "1h 40m remaining"
+                                        }
+
+                                        ListElement {
+                                            iconSource: "qrc:/repeat_icon.svg"
+                                            label: "Frequeny"
+                                            value: "Daily"
+                                        }
+
+                                        ListElement {
+                                            iconSource: "qrc:/fire_icon.svg"
+                                            label: "Streak"
+                                            value: "8 days"
+                                        }
+
+                                        ListElement {
+                                            iconSource: "qrc:/date_time_icon.svg"
+                                            label: "Time Fame"
+                                            value: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
+                                        }
                                     }
-                                }
-
-                                model: ListModel {
-                                    ListElement {
-                                        iconSource: "qrc:/status_icon.svg"
-                                        label: "Status"
-                                        value: "Active"
-                                        color: "green"
-                                    }
-
-                                    ListElement {
-                                        iconSource: "qrc:/time_icon.svg"
-                                        label: "Time Remaining"
-                                        value: "1h 40m remaining"
-                                        color: "white"
-                                    }
-
-                                    ListElement {
-                                        iconSource: "qrc:/fire_icon.svg"
-                                        label: "Frequeny"
-                                        value: "Daily"
-                                        color: "white"
-                                    }
-
-                                    ListElement {
-                                        iconSource: "qrc:/fire_icon.svg"
-                                        label: "Streak"
-                                        value: "8 days"
-                                        color: "white"
-                                    }
-
-                                    ListElement {
-                                        label: "Time Fame"
-                                        value: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
-                                        color: "white"
-                                    }
-
-
                                 }
                             }
 
-                            MComp.FieldRowLayout {
-                                MComp.Icon {
-                                    Layout.alignment: Qt.AlignTop
-                                    icon.source: "qrc:/status_icon.svg"
-                                    ToolTip.text: "Status"
+                            RowLayout {
+                                ProgressBar {
+                                    Layout.fillWidth: true
+                                    Material.accent: Material.color(Material.Lime, Material.Shade900)
+                                    value: 0.5
                                 }
 
-                                MComp.TextArea {
-                                    Layout.fillWidth: true
-                                    color: "green"
-                                    text: "Active"
-                                    readOnly: true
+                                Text {
+                                    text: "50%"
+                                    font.pixelSize: Comp.Globals.fontSize.large
+
+                                    color: Material.color(Material.Lime, Material.Shade900)
                                 }
                             }
 
-                            MComp.FieldRowLayout {
-                                MComp.Icon {
-                                    Layout.alignment: Qt.AlignTop
-                                    icon.source: "qrc:/time_icon.svg"
-                                    ToolTip.text: "Time Remaining"
-                                }
-
-                                MComp.TextArea {
-                                    Layout.fillWidth: true
-                                    text: "4h 3m remaining"
-                                    readOnly: true
-                                }
-                            }
-
-                            MComp.FieldRowLayout {
-                                MComp.Icon {
-                                    Layout.alignment: Qt.AlignTop
-                                    icon.source: "qrc:/date_time_icon.svg"
-                                    ToolTip.text: "Time Frame"
-                                }
-
-                                MComp.TextArea {
-                                    Layout.fillWidth: true
-                                    text: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
-                                }
+                            MComp.DateHiglighter {
+                                Layout.fillWidth: true
+                                Layout.preferredWidth: width
                             }
                         }
                     }

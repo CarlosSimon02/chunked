@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 
 import components as Comp
 import "./components" as MComp
+import "./views/habit_info_drawer"
 
 Item {
     id: item
@@ -38,7 +39,7 @@ Item {
                 Material.elevation: 0
                 Material.roundedScale: Material.SmallScale
 
-                onClicked: stackPageView.push("qrc:/common/views/goals_body/views/goal_info_view/GoalInfoView.qml")
+                onClicked: habitInfoDrawerView.open()
             }
         }
 
@@ -57,6 +58,12 @@ Item {
         Material.elevation: 10
         Material.roundedScale: Material.SmallScale
 
-        onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal_view/CreateGoalView.qml")
+        onClicked: stackPageView.push("qrc:/common/views/habits_body/views/create_edit_habit/CreateEditHabitView.qml")
+    }
+
+    HabitInfoDrawerView {
+        id: habitInfoDrawerView
+        y: topBarView.height
+        height: parent.height - topBarView.height
     }
 }

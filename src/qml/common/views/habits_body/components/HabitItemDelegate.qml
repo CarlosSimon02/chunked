@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.Material
-import QtQuick.Controls.Material.impl
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
@@ -15,46 +14,100 @@ T.ItemDelegate {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
-    horizontalPadding: 10
-    verticalPadding: text.lineCount > 1 ? 5 : 0
 
     property bool isSubGoal: false
     property bool hasImage: true
 
-    contentItem: RowLayout {
-        spacing: 20
+    contentItem: ColumnLayout {
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.margins: 15
+            spacing: 15
 
-        RowLayout {
-            Text {
-                id: text
-                Layout.fillWidth: true
-                text: "This is my sample task dojsof jdjf f f jfja jfja jfjf jkjfj kj"
-                maximumLineCount: 2
-                color: Comp.Globals.color.secondary.shade3
-                elide: Text.ElideRight
-                font.pixelSize: Comp.Globals.fontSize.medium
-                wrapMode: Text.Wrap
-            }
-        }
-
-        RowLayout {
             RowLayout {
-                spacing: -8
+                spacing: 8
 
-                Repeater {
-                    delegate: CheckBox {
+                Text {
+                    id: goalName
+                    text: "To Become a Freaking Software Engineer"
+                    Layout.fillWidth: true
+                    font.weight: Font.Medium
+                    font.pixelSize: control.isSubGoal ? Comp.Globals.fontSize.medium :
+                                                        Comp.Globals.fontSize.large
+                    wrapMode: Text.Wrap
+                    maximumLineCount: 2
+                    elide: Text.ElideRight
+                    color: "white"
+                }
 
-                    }
-
-                    model: 7
+                IconLabel {
+                    Layout.preferredHeight: 27
+                    Layout.alignment: Qt.AlignTop
+                    icon.source: "qrc:/three_dots_icon.svg"
+                    icon.width: 18
+                    icon.height: 18
+                    icon.color: Comp.Globals.color.secondary.shade2
                 }
             }
 
-            IconLabel {
-                icon.source: "qrc:/three_dots_icon.svg"
-                icon.width: 18
-                icon.height: 18
-                icon.color: Comp.Globals.color.secondary.shade2
+            ColumnLayout {
+                spacing: 6
+
+                ContentIconLabel {
+                    id: timeRemaining
+                    icon.source: "qrc:/time_icon.svg"
+                    text: "1h 2m remaining"
+                    //color depends on status
+                    color: "green"
+                }
+
+                ContentIconLabel {
+                    id: category
+                    spacing: 8
+                    icon.source: "qrc:/category_icon.svg"
+                    text: "Home"
+                    visible: !control.isSubGoal
+                }
+
+                ContentIconLabel {
+                    icon.source: "qrc:/progress_icon.svg"
+                    text: "1 / 20 goals completed"
+                }
+            }
+
+            ColumnLayout {
+                spacing: 0
+                RowLayout {
+                    RowLayout {
+                        ProgressBar {
+                            Layout.fillWidth: true
+                            Material.accent: Material.color(Material.Lime, Material.Shade900)
+                            value: 0.5
+                        }
+
+                        Text {
+                            text: "50%"
+                            font.pixelSize: control.isSubGoal ? Comp.Globals.fontSize.medium :
+                                                                Comp.Globals.fontSize.large
+                            color: Material.color(Material.Lime, Material.Shade900)
+                        }
+                    }
+                }
+
+                RowLayout {
+                    Layout.fillHeight: true
+
+                    Repeater {
+                        delegate: CheckBox {
+                            Layout.fillWidth: true
+                            Material.accent: Comp.Globals.color.accent.shade1
+                            ToolTip.text: "Tuesday, 11 Sep 2023"
+                            ToolTip.visible: hovered
+                        }
+
+                        model: 7
+                    }
+                }
             }
         }
     }

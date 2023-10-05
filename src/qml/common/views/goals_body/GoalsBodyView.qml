@@ -16,7 +16,7 @@ Item {
         width: contentWidth
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
-        topMargin: item.isSubGoal ? 8 : 15
+        topMargin: item.isSubGoal ? 8 : 10
         bottomMargin: topMargin
         contentWidth: Math.floor((item.parent.width - 30) / cellWidth) * cellWidth
         cellWidth: item.isSubGoal ? 310 : 350

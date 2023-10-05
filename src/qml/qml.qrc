@@ -59,5 +59,6 @@
         <file>common/views/tasks_body/views/task_info_drawer/components/FieldRowLayout.qml</file>
         <file>common/views/tasks_body/views/task_info_drawer/components/Icon.qml</file>
         <file>common/views/habits_body/components/HabitItemDelegate.qml</file>
+        <file>common/views/habits_body/components/ContentIconLabel.qml</file>
     </qresource>
 </RCC>

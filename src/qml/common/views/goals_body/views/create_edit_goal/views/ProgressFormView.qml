@@ -31,7 +31,7 @@ ScrollView {
                     text: "Progress Tracker"
                 }
 
-                MComp.ComboBox {
+                Comp.ComboBox {
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
 

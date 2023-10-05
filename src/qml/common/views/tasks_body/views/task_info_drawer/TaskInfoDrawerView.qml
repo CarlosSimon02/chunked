@@ -13,7 +13,7 @@ Drawer {
     Overlay.modal: null
     modal: false
     edge: Qt.RightEdge
-    Material.background: Comp.Globals.color.primary.shade1
+    Material.background: Comp.Globals.color.primary.shade2
     Material.roundedScale: Material.NotRounded
     Material.accent: Comp.Globals.color.accent.shade1
 

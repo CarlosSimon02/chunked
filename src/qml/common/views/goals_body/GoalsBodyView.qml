@@ -39,7 +39,7 @@ Item {
                 Material.elevation: 0
                 Material.roundedScale: Material.SmallScale
 
-                onClicked: stackPageView.push("qrc:/common/views/goals_body/views/goal_info_view/GoalInfoView.qml")
+                onClicked: stackPageView.push("qrc:/common/views/goals_body/views/goal_info/GoalInfoView.qml")
             }
         }
 
@@ -58,6 +58,6 @@ Item {
         Material.elevation: 10
         Material.roundedScale: Material.SmallScale
 
-        onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal_view/CreateGoalView.qml")
+        onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateGoalView.qml")
     }
 }

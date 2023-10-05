@@ -57,7 +57,7 @@ ScrollView {
 
                 Text {
                     text: "6h 40m remaining"
-                    font.pixelSize: Comp.Globals.fontSize.small
+                    font.pixelSize: Comp.Globals.fontSize.medium
                     color: Comp.Globals.color.secondary.shade2
                 }
             }
@@ -78,24 +78,33 @@ ScrollView {
 
             ColumnLayout {
                 Layout.fillWidth: true
-                spacing: 8
+                spacing: 12
 
                 Repeater {
                     delegate: RowLayout {
-                        Text {
-                            Layout.preferredWidth: 100
+                        spacing: 20
+
+                        IconLabel {
                             Layout.alignment: Qt.AlignTop
-                            text: model.label + ":"
-                            font.pixelSize: Comp.Globals.fontSize.small
-                            font.weight: Font.DemiBold
-                            color: Comp.Globals.color.secondary.shade3
+                            display: IconLabel.IconOnly
+                            icon.source: iconSource
+                            icon.width: 18
+                            icon.height: 18
+                            icon.color: Comp.Globals.color.secondary.shade2
+
+                            HoverHandler {
+                                id: hover
+                            }
+
+                            ToolTip.visible: hover.hovered
+                            ToolTip.text: label
                         }
 
                         Text {
                             Layout.fillWidth: true
                             Layout.preferredWidth: implicitWidth
                             text: model.value
-                            font.pixelSize: Comp.Globals.fontSize.small
+                            font.pixelSize: Comp.Globals.fontSize.medium
                             color: model.color
                             wrapMode: Text.Wrap
                         }
@@ -103,36 +112,35 @@ ScrollView {
 
                     model: ListModel {
                         ListElement {
+                            iconSource: "qrc:/hierarchy_icon.svg"
                             label: "Parent Goal"
                             value: "Sample"
                             color: "white"
                         }
 
                         ListElement {
+                            iconSource: "qrc:/status_icon.svg"
                             label: "Status"
                             value: "Active"
                             color: "green"
                         }
 
                         ListElement {
+                            iconSource: "qrc:/category_icon.svg"
                             label: "Category"
                             value: "Home"
                             color: "white"
                         }
 
                         ListElement {
+                            iconSource: "qrc:/date_time_icon.svg"
                             label: "Time Frame"
-                            value: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM"
+                            value: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
                             color: "white"
                         }
 
                         ListElement {
-                            label: "Range"
-                            value: "5h 2m"
-                            color: "white"
-                        }
-
-                        ListElement {
+                            iconSource: "qrc:/tracker_icon.svg"
                             label: "Tracker"
                             value: "Subgoals(Total Progress)"
                             color: "white"

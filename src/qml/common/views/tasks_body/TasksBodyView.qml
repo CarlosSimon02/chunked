@@ -93,7 +93,6 @@ RowLayout {
         Layout.rightMargin: 30
         Layout.alignment: Qt.AlignTop
         visible: !rowLayout.isSubGoal && window.width > 1200
-        Component.onCompleted: console.log(width)
     }
 
     FilterDrawerView {

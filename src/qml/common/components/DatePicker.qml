@@ -122,11 +122,6 @@ StackView {
                     onClicked: {
                         stackView.chosenDateTime.setFullYear(model.year, model.month, model.day)
                         stackView.chooseDate()
-
-                        console.log(model.date.getDate())
-                        console.log(model.date.getHours())
-                        console.log(stackView.chosenDateTime.getHours())
-                        console.log(model.date.getMinutes())
                     }
 
                     function setEnabled() {

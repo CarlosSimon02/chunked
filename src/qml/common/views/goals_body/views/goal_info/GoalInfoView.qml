@@ -33,7 +33,7 @@ Comp.PageView {
                     MenuItem {
                         text: qsTr("Edit")
                         onTriggered: {
-                            stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal_view/EditGoalView.qml")
+                            stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/EditGoalView.qml")
                         }
                     }
 

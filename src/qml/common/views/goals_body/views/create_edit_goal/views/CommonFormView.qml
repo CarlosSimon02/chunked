@@ -68,7 +68,7 @@ ScrollView {
                     text: "Category"
                 }
 
-                MComp.ComboBox {
+                Comp.ComboBox {
                     id: category
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true

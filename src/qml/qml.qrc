@@ -60,5 +60,7 @@
         <file>common/views/tasks_body/views/task_info_drawer/components/Icon.qml</file>
         <file>common/views/habits_body/components/HabitItemDelegate.qml</file>
         <file>common/views/habits_body/components/ContentIconLabel.qml</file>
+        <file>common/views/habits_body/views/habit_info_drawer/HabitInfoDrawerView.qml</file>
+        <file>common/views/habits_body/views/create_edit_habit/CreateEditHabitView.qml</file>
     </qresource>
 </RCC>

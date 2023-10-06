@@ -1,17 +1,26 @@
 import QtQuick
 import QtQuick.Controls.Material
+import QtQuick.Layouts
 
 import components as Comp
 
 Comp.PageView {
     title: "Home"
 
-    Button {
-        text: "Date Time"
-        onClicked: dialog.open()
+    RowLayout {
+        anchors.fill: parent
 
-        Comp.DateTimePickerDialog {
-            id: dialog
+        ListView {
+            Layout.fillHeight: true
+        }
+
+        ListView {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+        }
+
+        ListView {
+            Layout.fillHeight: true
         }
     }
 }

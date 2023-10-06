@@ -26,7 +26,7 @@ T.ItemDelegate {
             fillMode: Image.PreserveAspectCrop
             opacity: 0.7
             visible: control.hasImage
-            source: "file:/Users/Carlos Simon/Downloads/dg0xaud-b2b199e4-e4fa-4f4c-a017-71e709e95926.png"
+            source: "file:C:/Users/Carlos Simon/Downloads/anime_guys_working_out_by_nwawalrus_dg0xaud-pre.jpg"
             sourceSize.width: {sourceSize.width = width}
             sourceSize.height: {sourceSize.height = height}
             layer.enabled: true
@@ -37,17 +37,17 @@ T.ItemDelegate {
 
                     ColumnLayout {
                         anchors.fill: parent
-                        spacing: -control.Material.roundedScale
+                        spacing: -Material.SmallScale
 
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            radius: control.Material.roundedScale
+                            radius: Material.SmallScale
                         }
 
                         Rectangle {
                             Layout.fillWidth: true
-                            Layout.preferredHeight: control.Material.roundedScale
+                            Layout.preferredHeight: Material.SmallScale
                         }
                     }
                 }

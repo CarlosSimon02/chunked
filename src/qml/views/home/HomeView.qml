@@ -6,34 +6,64 @@ import components as Comp
 
 Comp.PageView {
     title: "Home"
+    clip: true
 
     RowLayout {
-        anchors.fill: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        height: parent.height
 
         ListView {
             Layout.fillHeight: true
-            Layout.preferredWidth: 390
-            leftMargin: 10
-            rightMargin: 10
-            topMargin: 10
-            bottomMargin: 10
-            spacing: 10
+            Layout.preferredWidth: 350
+            leftMargin: 20
+            rightMargin: 20
+            topMargin: 20
+            bottomMargin: 20
+            spacing: 20
+            clip: true
 
             delegate: Comp.GoalItemDelegate {
-                width: ListView.view.width - 20
-                height: 405
+                width: ListView.view.width - 40
+                height: 390
             }
 
             model: 3
         }
 
         ListView {
-            Layout.fillWidth: true
+//            Layout.fillWidth: true
+            Layout.preferredWidth: 600
             Layout.fillHeight: true
+            rightMargin: 20
+            topMargin: 20
+            bottomMargin: 20
+            spacing: 10
+            clip: true
+
+            delegate: Comp.TaskItemDelegate {
+                width: ListView.view.width -
+                       ListView.view.leftMargin -
+                       ListView.view.rightMargin
+                date: "Today"
+                onClicked: taskInfoDrawerView.open()
+            }
+
+            model: 10
         }
 
         ListView {
+            Layout.preferredWidth: 350
             Layout.fillHeight: true
+            topMargin: 20
+            bottomMargin: 20
+            spacing: 10
+
+            delegate: Comp.HabitItemDelegate {
+                width: ListView.view.width - 20
+                height: 260
+            }
+
+            model: 4
         }
     }
 }

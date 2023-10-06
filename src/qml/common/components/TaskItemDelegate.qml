@@ -37,6 +37,7 @@ T.ItemDelegate {
                 text: "1"
                 horizontalAlignment: Label.AlignHCenter
                 verticalAlignment: Label.AlignVCenter
+                visible: false
                 background: Rectangle {
                     color: Comp.Globals.color.primary.shade2
                     radius: Material.SmallScale

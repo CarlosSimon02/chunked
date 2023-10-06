@@ -11,6 +11,7 @@ Comp.PageView {
     RowLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         height: parent.height
+        spacing: 0
 
         ListView {
             Layout.fillHeight: true
@@ -32,7 +33,7 @@ Comp.PageView {
 
         ListView {
 //            Layout.fillWidth: true
-            Layout.preferredWidth: 600
+            Layout.preferredWidth: 500
             Layout.fillHeight: true
             rightMargin: 20
             topMargin: 20

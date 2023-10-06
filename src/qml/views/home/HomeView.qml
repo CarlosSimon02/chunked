@@ -12,6 +12,19 @@ Comp.PageView {
 
         ListView {
             Layout.fillHeight: true
+            Layout.preferredWidth: 390
+            leftMargin: 10
+            rightMargin: 10
+            topMargin: 10
+            bottomMargin: 10
+            spacing: 10
+
+            delegate: Comp.GoalItemDelegate {
+                width: ListView.view.width - 20
+                height: 405
+            }
+
+            model: 3
         }
 
         ListView {

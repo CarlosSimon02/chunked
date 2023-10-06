@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Controls.Material
 
 import components as Comp
-import "./components" as MComp
 
 Item {
     id: item
@@ -29,7 +28,7 @@ Item {
             width: GridView.view.cellWidth
             height: GridView.view.cellHeight
 
-            MComp.GoalItemDelegate {
+            Comp.GoalItemDelegate {
                 anchors.fill: parent
                 anchors.margins: parent.GridView.view.topMargin
                 isSubGoal: item.isSubGoal

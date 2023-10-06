@@ -60,7 +60,7 @@ RowLayout {
             height: listView.height
         }
 
-        delegate: MComp.TaskItemDelegate {
+        delegate: Comp.TaskItemDelegate {
             width: ListView.view.width -
                    ListView.view.leftMargin -
                    ListView.view.rightMargin

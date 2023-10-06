@@ -30,14 +30,11 @@
         <file>common/components/GoalNamesTreeViewComboBox.qml</file>
         <file>common/components/RoundedPane.qml</file>
         <file>common/views/goals_body/GoalsBodyView.qml</file>
-        <file>common/views/goals_body/components/ContentIconLabel.qml</file>
-        <file>common/views/goals_body/components/GoalItemDelegate.qml</file>
         <file>common/views/goals_body/qmldir</file>
         <file>common/views/tasks_body/TasksBodyView.qml</file>
         <file>common/views/habits_body/HabitsBodyView.qml</file>
         <file>common/views/habits_body/qmldir</file>
         <file>common/views/tasks_body/qmldir</file>
-        <file>common/views/tasks_body/components/TaskItemDelegate.qml</file>
         <file>common/views/tasks_body/components/CreateTaskTextField.qml</file>
         <file>common/components/ComboBox.qml</file>
         <file>common/views/tasks_body/views/filter/FilterDrawerView.qml</file>
@@ -46,8 +43,6 @@
         <file>common/views/tasks_body/views/task_info_drawer/components/TextArea.qml</file>
         <file>common/views/tasks_body/views/task_info_drawer/components/FieldRowLayout.qml</file>
         <file>common/views/tasks_body/views/task_info_drawer/components/Icon.qml</file>
-        <file>common/views/habits_body/components/HabitItemDelegate.qml</file>
-        <file>common/views/habits_body/components/ContentIconLabel.qml</file>
         <file>common/views/habits_body/views/habit_info_drawer/HabitInfoDrawerView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal/components/FieldColumnLayout.qml</file>
         <file>common/views/goals_body/views/create_edit_goal/components/FieldLabel.qml</file>

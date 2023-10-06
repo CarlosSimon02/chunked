@@ -67,5 +67,6 @@
         <file>common/views/habits_body/views/habit_info_drawer/components/DateHiglighter.qml</file>
         <file>common/components/GoalItemDelegate.qml</file>
         <file>common/components/TaskItemDelegate.qml</file>
+        <file>common/components/HabitItemDelegate.qml</file>
     </qresource>
 </RCC>

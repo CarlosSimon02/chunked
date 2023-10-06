@@ -68,5 +68,6 @@
         <file>common/components/GoalItemDelegate.qml</file>
         <file>common/components/TaskItemDelegate.qml</file>
         <file>common/components/HabitItemDelegate.qml</file>
+        <file>common/components/ContentIconLabel.qml</file>
     </qresource>
 </RCC>

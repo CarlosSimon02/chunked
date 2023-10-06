@@ -65,5 +65,6 @@
         <file>common/views/habits_body/views/create_edit_habit/components/FieldLabel.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/CreateEditHabitView.qml</file>
         <file>common/views/habits_body/views/habit_info_drawer/components/DateHiglighter.qml</file>
+        <file>common/components/GoalItemDelegate.qml</file>
     </qresource>
 </RCC>

@@ -8,6 +8,8 @@ Comp.PageView {
     title: "Home"
     clip: true
 
+    Material.accent: Comp.Globals.color.accent.shade1
+
     RowLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         height: parent.height
@@ -62,7 +64,7 @@ Comp.PageView {
 
             delegate: Comp.HabitItemDelegate {
                 width: ListView.view.width - 20
-                height: 260
+                height: 250
             }
 
             model: 4

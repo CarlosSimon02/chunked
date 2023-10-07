@@ -25,7 +25,8 @@ Comp.PageView {
 
             delegate: Comp.GoalItemDelegate {
                 width: ListView.view.width - 40
-                height: 390
+                height: 210
+                hasImage: false
             }
 
             model: 3

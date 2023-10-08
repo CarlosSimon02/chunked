@@ -7,12 +7,14 @@ import components as Comp
 Comp.PageView {
     title: "Home"
     clip: true
-    padding: 20
+    padding: 15
+
+    Material.accent: Comp.Globals.color.accent.shade1
 
     RowLayout {
         anchors.fill: parent
         height: parent.height
-        spacing: 20
+        spacing: 15
 
         Page {
             Layout.fillHeight: true
@@ -24,7 +26,6 @@ Comp.PageView {
 
             header: Frame {
                 horizontalPadding: 10
-//                height: 40
                 bottomPadding: 10
                 background: Item {
                     Rectangle {
@@ -62,19 +63,36 @@ Comp.PageView {
         }
 
         Page {
-            Layout.fillWidth: true
             Layout.fillHeight: true
-            padding: 0
-            header: RowLayout {
-                height: 30
+            Layout.fillWidth: true
+            padding: 10
+            background: Rectangle {
+                radius: Material.SmallScale
+                color: Comp.Globals.color.primary.shade1
+            }
 
-                Text {
-                    Layout.alignment: Qt.AlignTop
-                    text: "Task for Today"
-                    color: Comp.Globals.color.secondary.shade2
-                    font.pixelSize: Comp.Globals.fontSize.medium
+            header: Frame {
+                horizontalPadding: 10
+                bottomPadding: 10
+                background: Item {
+                    Rectangle {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 0
+                        width: parent.width
+                        height: 2
+                        color: Comp.Globals.color.primary.shade2
+                    }
+                }
+
+                RowLayout {
+                    Text {
+                        text: "Tasks for Today"
+                        color: Comp.Globals.color.secondary.shade2
+                        font.pixelSize: Comp.Globals.fontSize.medium
+                    }
                 }
             }
+
             ListView {
                 anchors.fill: parent
                 spacing: 10
@@ -92,15 +110,31 @@ Comp.PageView {
 
         Page {
             Layout.fillHeight: true
-            padding: 0
+            padding: 10
+            background: Rectangle {
+                radius: Material.SmallScale
+                color: Comp.Globals.color.primary.shade1
+            }
 
-            header: RowLayout {
-                height: 30
-                Text {
-                    Layout.alignment: Qt.AlignTop
-                    text: "Focus Goals"
-                    color: Comp.Globals.color.secondary.shade2
-                    font.pixelSize: Comp.Globals.fontSize.medium
+            header: Frame {
+                horizontalPadding: 10
+                bottomPadding: 10
+                background: Item {
+                    Rectangle {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 0
+                        width: parent.width
+                        height: 2
+                        color: Comp.Globals.color.primary.shade2
+                    }
+                }
+
+                RowLayout {
+                    Text {
+                        text: "Check Your Habits"
+                        color: Comp.Globals.color.secondary.shade2
+                        font.pixelSize: Comp.Globals.fontSize.medium
+                    }
                 }
             }
             ListView {

@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import "./components" as MComp
 
 Comp.PageView {
     title: "Home"
@@ -16,35 +17,9 @@ Comp.PageView {
         height: parent.height
         spacing: 15
 
-        Page {
+        MComp.Page {
             Layout.fillHeight: true
-            padding: 10
-            background: Rectangle {
-                radius: Material.SmallScale
-                color: Comp.Globals.color.primary.shade1
-            }
-
-            header: Frame {
-                horizontalPadding: 10
-                bottomPadding: 10
-                background: Item {
-                    Rectangle {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 0
-                        width: parent.width
-                        height: 2
-                        color: Comp.Globals.color.primary.shade2
-                    }
-                }
-
-                RowLayout {
-                    Text {
-                        text: "Focus Goals"
-                        color: Comp.Globals.color.secondary.shade2
-                        font.pixelSize: Comp.Globals.fontSize.medium
-                    }
-                }
-            }
+            title: "Focus Goal"
 
             ListView {
                 implicitWidth: 350
@@ -62,36 +37,10 @@ Comp.PageView {
             }
         }
 
-        Page {
+        MComp.Page {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            padding: 10
-            background: Rectangle {
-                radius: Material.SmallScale
-                color: Comp.Globals.color.primary.shade1
-            }
-
-            header: Frame {
-                horizontalPadding: 10
-                bottomPadding: 10
-                background: Item {
-                    Rectangle {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 0
-                        width: parent.width
-                        height: 2
-                        color: Comp.Globals.color.primary.shade2
-                    }
-                }
-
-                RowLayout {
-                    Text {
-                        text: "Tasks for Today"
-                        color: Comp.Globals.color.secondary.shade2
-                        font.pixelSize: Comp.Globals.fontSize.medium
-                    }
-                }
-            }
+            title: "Tasks for Today"
 
             ListView {
                 anchors.fill: parent
@@ -108,35 +57,11 @@ Comp.PageView {
             }
         }
 
-        Page {
+        MComp.Page {
             Layout.fillHeight: true
             padding: 10
-            background: Rectangle {
-                radius: Material.SmallScale
-                color: Comp.Globals.color.primary.shade1
-            }
+            title: "Check Your Habits"
 
-            header: Frame {
-                horizontalPadding: 10
-                bottomPadding: 10
-                background: Item {
-                    Rectangle {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 0
-                        width: parent.width
-                        height: 2
-                        color: Comp.Globals.color.primary.shade2
-                    }
-                }
-
-                RowLayout {
-                    Text {
-                        text: "Check Your Habits"
-                        color: Comp.Globals.color.secondary.shade2
-                        font.pixelSize: Comp.Globals.fontSize.medium
-                    }
-                }
-            }
             ListView {
                 implicitWidth: 350
                 height: parent.height
@@ -151,20 +76,5 @@ Comp.PageView {
                 model: 3
             }
         }
-
-//        ListView {
-//            Layout.preferredWidth: 350
-//            Layout.fillHeight: true
-//            topMargin: 20
-//            bottomMargin: 20
-//            spacing: 10
-
-//            delegate: Comp.HabitItemDelegate {
-//                width: ListView.view.width - 20
-//                height: 250
-//            }
-
-//            model: 4
-//        }
     }
 }

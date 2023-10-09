@@ -65,5 +65,6 @@
         <file>common/components/HabitItemDelegate.qml</file>
         <file>common/components/ContentIconLabel.qml</file>
         <file>views/reports/components/DataSummaryCard.qml</file>
+        <file>views/home/components/Page.qml</file>
     </qresource>
 </RCC>

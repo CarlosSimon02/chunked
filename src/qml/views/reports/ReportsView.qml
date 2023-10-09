@@ -132,8 +132,11 @@ Comp.PageView {
                 // Define x-axis to be used with the series instead of default one
                 ValueAxis {
                     id: valueXAxis
-                    min: lineSeries.at(0)
-                    max: 2011
+                    property real minValue: 2000
+                    property real maxValue: 2049
+                    property real range: 11
+                    min: Math.floor(minValue + (scrollBar.position / (1 - scrollBar.size)) * (maxValue - minValue - range))
+                    max: Math.floor(minValue + (scrollBar.position / (1 - scrollBar.size)) * (maxValue - minValue - range)) + range
                     tickCount: 12
                     labelFormat: "%i"
                     gridLineColor: Comp.Globals.color.secondary.shade1
@@ -146,9 +149,13 @@ Comp.PageView {
                     gridLineColor: Comp.Globals.color.secondary.shade1
                     color: Comp.Globals.color.secondary.shade1
                     labelFormat: "%i"
+                    min: 1
+                    max: 10
+                    tickCount: 11
                 }
 
                 AreaSeries {
+                    id: areaSeries
                     borderColor: Comp.Globals.color.accent.shade1
                     borderWidth: 2
                     color: "#70827717"
@@ -156,31 +163,26 @@ Comp.PageView {
                     axisY: valueYAxis
                     upperSeries: LineSeries {
                         id: lineSeries
-                        XYPoint { x: 2000; y: 1 }
-                        XYPoint { x: 2001; y: 4 }
-                        XYPoint { x: 2002; y: 1 }
-                        XYPoint { x: 2003; y: 2 }
-                        XYPoint { x: 2004; y: 1 }
-                        XYPoint { x: 2005; y: 1 }
-                        XYPoint { x: 2006; y: 3 }
-                        XYPoint { x: 2007; y: 1 }
-                        XYPoint { x: 2008; y: 20 }
-                        XYPoint { x: 2009; y: 3 }
-                        XYPoint { x: 2010; y: 3 }
-                        XYPoint { x: 2011; y: 1 }
-                        XYPoint { x: 2012; y: 1 }
-                        XYPoint { x: 2013; y: 2 }
-                        XYPoint { x: 2014; y: 1 }
-                        XYPoint { x: 2015; y: 1 }
-                        XYPoint { x: 2016; y: 3 }
-                        XYPoint { x: 2017; y: 1 }
-                        XYPoint { x: 2018; y: 20 }
-                        XYPoint { x: 2019; y: 3 }
+                        property point first
+
+                        Component.onCompleted: {
+                            let min = 0
+                            let max = 10
+                            let num = 50
+
+                            for(let i = 0; i < num; i++) {
+                                let data = Math.ceil(Math.random() * 10) + 1
+                                console.log(data)
+                                lineSeries.append(2000+i,data)
+                                if(valueYAxis.max < data) valueYAxis.max = data
+                            }
+                        }
                     }
                 }
             }
 
             ScrollBar {
+                id: scrollBar
                 Layout.fillWidth: true
                 policy: ScrollBar.AlwaysOn
                 orientation: Qt.Horizontal

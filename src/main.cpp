@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QSqlError>
 #include <QQmlContext>
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QtQml>
 #include <FramelessHelper/Quick/framelessquickmodule.h>
@@ -38,7 +38,7 @@ void loadFonts()
 int main(int argc, char *argv[])
 {
     FramelessHelper::Quick::initialize();
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     loadFonts();
 
     std::unique_ptr<QQmlApplicationEngine> engine = std::make_unique<QQmlApplicationEngine>();

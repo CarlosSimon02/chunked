@@ -1,0 +1,2 @@
+module views.goals_body
+GoalInfoView 1.0 GoalInfoView.qml

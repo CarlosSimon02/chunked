@@ -1,0 +1,4 @@
+module components.delegates
+GoalItemDelegate 1.0 GoalItemDelegate.qml
+HabitItemDelegate 1.0 HabitItemDelegate.qml
+TaskItemDelegate 1.0 TaskItemDelegate.qml

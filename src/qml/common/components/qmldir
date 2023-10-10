@@ -4,16 +4,15 @@ ContentIconLabel 1.0 ContentIconLabel.qml
 DatePicker 1.0 DatePicker.qml
 DateTimePickerDialog 1.0 DateTimePickerDialog.qml
 Dialog 1.0 Dialog.qml
-GoalItemDelegate 1.0 GoalItemDelegate.qml
 GoalNamesTreeViewComboBox 1.0 GoalNamesTreeViewComboBox.qml
-HabitItemDelegate 1.0 HabitItemDelegate.qml
 IconButton 1.0 IconButton.qml
 MenuButton 1.0 MenuButton.qml
 PageView 1.0 PageView.qml
 RoundedPane 1.0 RoundedPane.qml
 StackPageView 1.0 StackPageView.qml
 Stepper 1.0 Stepper.qml
-TaskItemDelegate 1.0 TaskItemDelegate.qml
 TextField 1.0 TextField.qml
 
 singleton Globals Globals.qml
+
+

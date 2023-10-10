@@ -53,17 +53,19 @@
         <file>common/views/goals_body/views/create_edit_goal/views/TimeFrameFormView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal/CreateGoalView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal/EditGoalView.qml</file>
-        <file>common/views/goals_body/views/goal_info/views/DetailsView.qml</file>
-        <file>common/views/goals_body/views/goal_info/GoalInfoView.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/components/FieldColumnLayout.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/components/FieldLabel.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/CreateEditHabitView.qml</file>
         <file>common/views/habits_body/views/habit_info_drawer/components/DateHiglighter.qml</file>
-        <file>common/components/GoalItemDelegate.qml</file>
-        <file>common/components/TaskItemDelegate.qml</file>
-        <file>common/components/HabitItemDelegate.qml</file>
-        <file>common/components/ContentIconLabel.qml</file>
         <file>views/reports/components/DataSummaryCard.qml</file>
         <file>views/home/components/Page.qml</file>
+        <file>common/components/delegates/impl/ContentIconLabel.qml</file>
+        <file>common/components/delegates/GoalItemDelegate.qml</file>
+        <file>common/components/delegates/HabitItemDelegate.qml</file>
+        <file>common/components/delegates/qmldir</file>
+        <file>common/components/delegates/TaskItemDelegate.qml</file>
+        <file>common/views/goal_info/views/DetailsView.qml</file>
+        <file>common/views/goal_info/GoalInfoView.qml</file>
+        <file>common/views/goal_info/qmldir</file>
     </qresource>
 </RCC>

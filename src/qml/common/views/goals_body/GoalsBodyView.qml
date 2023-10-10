@@ -41,20 +41,21 @@ Item {
                 Material.elevation: 0
                 Material.roundedScale: Material.SmallScale
 
-                imageSource: model.imageSource
-                goalName: model.name
-                startDateTime: Date.fromLocaleString(Qt.locale(),
-                                                     model.startDateTime,
-                                                     "dd MMM yyyy hh:mm AP")
-                endDateTime: Date.fromLocaleString(Qt.locale(),
-                                                   model.endDateTime,
-                                                   "dd MMM yyyy hh:mm AP")
-                category: model.category
-                progressValue: model.progressValue
-                targetValue: model.targetValue
-                unit: model.progressUnit
-
                 onClicked: stackPageView.push("qrc:/common/views/goals_body/views/goal_info/GoalInfoView.qml")
+                Component.onCompleted: {
+                    imageSource = model.imageSource
+                    goalName = model.name
+                    startDateTime = Date.fromLocaleString(Qt.locale(),
+                                                         model.startDateTime,
+                                                         "dd MMM yyyy hh:mm AP")
+                    endDateTime = Date.fromLocaleString(Qt.locale(),
+                                                       model.endDateTime,
+                                                       "dd MMM yyyy hh:mm AP")
+                    category = model.category
+                    progressValue = model.progressValue
+                    targetValue = model.targetValue
+                    unit = model.progressUnit
+                }
             }
         }
 

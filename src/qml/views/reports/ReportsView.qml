@@ -172,7 +172,6 @@ Comp.PageView {
 
                             for(let i = 0; i < num; i++) {
                                 let data = Math.ceil(Math.random() * 10) + 1
-                                console.log(data)
                                 lineSeries.append(2000+i,data)
                                 if(valueYAxis.max < data) valueYAxis.max = data
                             }

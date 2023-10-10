@@ -12,6 +12,7 @@ RoundedPane 1.0 RoundedPane.qml
 StackPageView 1.0 StackPageView.qml
 Stepper 1.0 Stepper.qml
 TextField 1.0 TextField.qml
+Utils 1.0 Utils.js
 
 singleton Globals Globals.qml
 

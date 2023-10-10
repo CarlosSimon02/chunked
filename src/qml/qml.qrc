@@ -67,5 +67,7 @@
         <file>common/views/goal_info/views/DetailsView.qml</file>
         <file>common/views/goal_info/GoalInfoView.qml</file>
         <file>common/views/goal_info/qmldir</file>
+        <file>common/components/delegates/impl/ItemDelegate.qml</file>
+        <file>common/components/delegates/impl/MenuButton.qml</file>
     </qresource>
 </RCC>

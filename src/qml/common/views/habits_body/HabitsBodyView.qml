@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls.Material
 
 import components as Comp
+import components.delegates as Dlg
 import "./views/habit_info_drawer"
 
 Item {
@@ -28,7 +29,7 @@ Item {
             width: GridView.view.cellWidth
             height: GridView.view.cellHeight
 
-            Comp.HabitItemDelegate {
+            Dlg.HabitItemDelegate {
                 anchors.fill: parent
                 anchors.margins: parent.GridView.view.topMargin
                 isSubHabit: item.isSubHabit

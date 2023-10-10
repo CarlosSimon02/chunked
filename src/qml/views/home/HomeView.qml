@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.delegates as Dlg
 import "./components" as MComp
 
 Comp.PageView {
@@ -27,7 +28,7 @@ Comp.PageView {
                 spacing: 10
                 clip: true
 
-                delegate: Comp.GoalItemDelegate {
+                delegate: Dlg.GoalItemDelegate {
                     width: ListView.view.width
                     height: 210
                     hasImage: false
@@ -47,7 +48,7 @@ Comp.PageView {
                 spacing: 10
                 clip: true
 
-                delegate: Comp.TaskItemDelegate {
+                delegate: Dlg.TaskItemDelegate {
                     width: ListView.view.width
                     date: "Today"
                     onClicked: taskInfoDrawerView.open()
@@ -68,7 +69,7 @@ Comp.PageView {
                 spacing: 10
                 clip: true
 
-                delegate: Comp.HabitItemDelegate {
+                delegate: Dlg.HabitItemDelegate {
                     width: ListView.view.width
                     height: 250
                 }

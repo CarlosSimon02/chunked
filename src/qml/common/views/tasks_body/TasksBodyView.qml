@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.delegates as Dlg
 import "./components" as MComp
 import "./views/filter"
 import "./views/task_info_drawer"
@@ -60,7 +61,7 @@ RowLayout {
             height: listView.height
         }
 
-        delegate: Comp.TaskItemDelegate {
+        delegate: Dlg.TaskItemDelegate {
             width: ListView.view.width -
                    ListView.view.leftMargin -
                    ListView.view.rightMargin

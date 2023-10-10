@@ -9,6 +9,9 @@ ScrollView {
     id: scrollView
     contentHeight: columnLayout.height
 
+    property string startDateTime: startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
+    property string endDateTime: endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
+
     Component.onCompleted: {
         startDateTimePicker.dateTime = new Date()
         startDateTimePicker.dateTime.setHours(0,0)

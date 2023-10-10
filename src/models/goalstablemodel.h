@@ -14,7 +14,6 @@ class GoalsTableModel : public BaseTableModel
 
 public:
     explicit GoalsTableModel(QObject *parent = nullptr);
-    Q_INVOKABLE void insertRecord(Goal* goal);
 };
 
 #endif // GOALSTABLEMODEL_H

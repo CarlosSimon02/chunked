@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Material
+import app
 
 import components as Comp
 import components.delegates as Dlg
@@ -43,7 +44,14 @@ Item {
             }
         }
 
-        model: 10
+        model: GoalsTableModel {}
+
+        Connections {
+            target: initPageView.StackView
+            function onActivating() {
+                gridView.model.refresh()
+            }
+        }
     }
 
     Button {

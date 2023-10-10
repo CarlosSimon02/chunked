@@ -10,7 +10,7 @@ ScrollView {
     property alias mission: mission.text
     property alias vision: vision.text
     property alias obstacles: obstacles.text
-    property alias purposes: purposes.text
+    property alias resources: resources.text
 
     contentHeight: columnLayout.height
 
@@ -74,7 +74,7 @@ ScrollView {
                 }
 
                 TextArea {
-                    id: purposes
+                    id: resources
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
                     wrapMode: TextArea.Wrap

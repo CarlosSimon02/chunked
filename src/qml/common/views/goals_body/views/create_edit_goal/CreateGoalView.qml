@@ -11,8 +11,21 @@ import "./views"
 Comp.PageView {
     id: pageView
 
-    property Goal goal: {
-
+    property Goal goal: Goal {
+        name: common.goalName
+        imageSource: common.imageSource
+        category: common.category
+        startDateTime: timeFrame.startDateTime
+        endDateTime: timeFrame.endDateTime
+        progressTracker: progress.trackerType
+        progressValue: progress.progressValue
+        targetValue: progress.targetValue
+        progressUnit: progress.unit
+        mission: description.mission
+        vision: description.vision
+        obstacles: description.obstacles
+        resources: description.resources
+        parentGoalId: parentGoal.parentGoalId
     }
 
     isInitItem: false
@@ -115,6 +128,8 @@ Comp.PageView {
                             }
                         }
                         else {
+                            dbAccess.saveGoalItem(pageView.goal)
+                            stackPageView.pop()
                         }
                     }
                 }

@@ -9,7 +9,7 @@ Comp.StackPageView {
     id: stackPageView
 
     initialItem: Comp.PageView {
-        id: goalsPageView
+        id: initPageView
         title: "Goals"
 
         headerOptions: Component {
@@ -46,10 +46,10 @@ Comp.StackPageView {
             anchors.fill: parent
 
             verticalScrollBar: ScrollBar {
-                parent: goalsPageView
-                x: goalsPageView.width - width
-                y: goalsPageView.header.height
-                height: goalsPageView.availableHeight - goalsPageView.header.height
+                parent: initPageView
+                x: initPageView.width - width
+                y: initPageView.header.height
+                height: initPageView.availableHeight - initPageView.header.height
             }
         }
     }

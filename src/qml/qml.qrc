@@ -26,7 +26,6 @@
         <file>common/components/TimePicker.qml</file>
         <file>common/components/DateTimePickerDialog.qml</file>
         <file>common/components/Dialog.qml</file>
-        <file>common/components/DialogButtonBox.qml</file>
         <file>common/components/GoalNamesTreeViewComboBox.qml</file>
         <file>common/components/RoundedPane.qml</file>
         <file>common/views/goals_body/GoalsBodyView.qml</file>

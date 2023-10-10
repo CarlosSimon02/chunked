@@ -9,14 +9,14 @@ import components as Comp
 T.ItemDelegate {
     id: control
 
+    property bool isSubGoal: false
+    property bool hasImage: true
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
-
-    property bool isSubGoal: false
-    property bool hasImage: true
 
     contentItem: ColumnLayout {
         Image {

@@ -6,13 +6,12 @@ import components as Comp
 
 Comp.Dialog {
     id: dialog
-    //Will fix this spagetti code
-    width: maximumWidth > (window.width - (leftMargin + rightMargin)) ? (window.width - (leftMargin + rightMargin))  : maximumWidth
-    height: maximumHeight > (window.height - (topMargin + bottomMargin)) ? (window.height - (topMargin + bottomMargin)) : maximumHeight
 
     property int maximumWidth: window.width > Comp.Globals.screen.smallW ? 527 : 390
     property int maximumHeight: window.width > Comp.Globals.screen.smallW ? 40 + header.height + footer.height + 350  :
                                                                             40 + header.height + footer.height + 407
+    width: maximumWidth > (window.width - (leftMargin + rightMargin)) ? (window.width - (leftMargin + rightMargin))  : maximumWidth
+    height: maximumHeight > (window.height - (topMargin + bottomMargin)) ? (window.height - (topMargin + bottomMargin)) : maximumHeight
 
     title: "Select Date and Time"
     parent: Overlay.overlay

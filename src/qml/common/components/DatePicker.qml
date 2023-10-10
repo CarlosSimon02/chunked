@@ -6,9 +6,6 @@ import components as Comp
 
 StackView {
     id: stackView
-    implicitWidth: 350
-    implicitHeight: 350
-    clip: true
 
     property date chosenDateTime: new Date()
     property date startDateTime
@@ -16,6 +13,10 @@ StackView {
     signal chooseDate
     readonly property var months: ["January","February","March","April","May",
     "June","July","August","September","October","November","December"]
+
+    implicitWidth: 350
+    implicitHeight: 350
+    clip: true
 
     initialItem: Pane {
         background: null

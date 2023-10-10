@@ -7,10 +7,11 @@ import components.delegates as Dlg
 
 Item {
     id: item
-    clip: true
     property bool itemsHasImage: true
     property bool isSubGoal: false
     property ScrollBar verticalScrollBar
+
+    clip: true
 
     GridView {
         id: gridView
@@ -41,6 +42,17 @@ Item {
                 Material.roundedScale: Material.SmallScale
 
                 imageSource: model.imageSource
+                goalName: model.name
+                startDateTime: Date.fromLocaleString(Qt.locale(),
+                                                     model.startDateTime,
+                                                     "dd MMM yyyy hh:mm AP")
+                endDateTime: Date.fromLocaleString(Qt.locale(),
+                                                   model.endDateTime,
+                                                   "dd MMM yyyy hh:mm AP")
+                category: model.category
+                progressValue: model.progressValue
+                targetValue: model.targetValue
+                unit: model.progressUnit
 
                 onClicked: stackPageView.push("qrc:/common/views/goals_body/views/goal_info/GoalInfoView.qml")
             }

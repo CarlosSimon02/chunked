@@ -40,6 +40,8 @@ Item {
                 Material.elevation: 0
                 Material.roundedScale: Material.SmallScale
 
+                imageSource: model.imageSource
+
                 onClicked: stackPageView.push("qrc:/common/views/goals_body/views/goal_info/GoalInfoView.qml")
             }
         }

@@ -37,9 +37,9 @@ target_include_directories(chunked
 )
 
 qt6_add_qml_module(chunked
-  URI app
-  VERSION 1.0
-  SOURCES
+    URI app
+    VERSION 1.0
+    SOURCES
 )
 
 list(APPEND QML_DIRS ${CMAKE_SOURCE_DIR}/src/qml/common)

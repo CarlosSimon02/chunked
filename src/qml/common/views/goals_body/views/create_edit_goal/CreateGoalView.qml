@@ -2,12 +2,19 @@ import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 import QtQuick.Layouts
+import app
 
 import components as Comp
 import "./components" as MComp
 import "./views"
 
 Comp.PageView {
+    id: pageView
+
+    property Goal goal: {
+
+    }
+
     isInitItem: false
     title: "Create Goal"
     focusPolicy: Qt.ClickFocus
@@ -99,7 +106,6 @@ Comp.PageView {
                 Button {
                     Layout.preferredWidth: backButton.width
                     text: stepper.currentIndex === (stepper.count - 1) ? "Save" : "Next"
-
                     Material.background: Comp.Globals.color.accent.shade1
                     Material.roundedScale: Material.SmallScale
 
@@ -121,6 +127,8 @@ Comp.PageView {
                                 stepper.currentIndex++
                                 stepper.currentItem.done = true
                             }
+                        }
+                        else {
                         }
                     }
                 }

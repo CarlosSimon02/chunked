@@ -6,6 +6,12 @@ import "../components" as MComp
 
 ScrollView {
     id: scrollView
+
+    property alias mission: mission.text
+    property alias vision: vision.text
+    property alias obstacles: obstacles.text
+    property alias purposes: purposes.text
+
     contentHeight: columnLayout.height
 
     MouseArea {
@@ -29,6 +35,7 @@ ScrollView {
                 }
 
                 TextField {
+                    id: mission
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
                     wrapMode: TextArea.Wrap
@@ -41,6 +48,7 @@ ScrollView {
                 }
 
                 TextArea {
+                    id: vision
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
                     wrapMode: TextArea.Wrap
@@ -53,6 +61,7 @@ ScrollView {
                 }
 
                 TextArea {
+                    id: obstacles
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
                     wrapMode: TextArea.Wrap
@@ -65,6 +74,7 @@ ScrollView {
                 }
 
                 TextArea {
+                    id: purposes
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
                     wrapMode: TextArea.Wrap

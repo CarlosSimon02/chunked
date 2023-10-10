@@ -30,6 +30,10 @@ FramelessApplicationWindow {
         window.visible = true;
     }
 
+    DBAccess {
+        id: dbAccess
+    }
+
     //For textinput controls to lose focus when click outside
     MouseArea {
         anchors.fill: parent

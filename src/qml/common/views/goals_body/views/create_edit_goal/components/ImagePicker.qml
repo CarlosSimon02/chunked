@@ -8,6 +8,9 @@ import components as Comp
 
 Pane {
     id: pane
+
+    property alias source: image.source
+
     implicitWidth: 300
     implicitHeight: width * 9 / 16
     padding: 0
@@ -17,8 +20,6 @@ Pane {
     HoverHandler {
         id: hoverHandler
     }
-
-    property alias source: image.source
 
     Rectangle {
         id: dragIndicator

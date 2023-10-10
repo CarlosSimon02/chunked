@@ -7,9 +7,14 @@ import "../components" as MComp
 
 ScrollView {
     id: scrollView
-    contentHeight: columnLayout.height
-    signal checkError
+
+    property alias goalName: goalName.text
+    property alias category: category.displayText
+    property alias imageSource: imagePicker.source
     property bool hasError
+    signal checkError
+
+    contentHeight: columnLayout.height
 
     MouseArea {
         width: scrollView.width
@@ -82,6 +87,7 @@ ScrollView {
                 }
 
                 MComp.ImagePicker {
+                    id: imagePicker
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
                 }

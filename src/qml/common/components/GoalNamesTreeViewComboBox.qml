@@ -9,9 +9,6 @@ import components as Comp
 
 ComboBox {
     id: comboBox
-    delegate: null
-    topInset: 0
-    bottomInset: 0
 
     enum TrackerType {
         Goals,
@@ -21,6 +18,12 @@ ComboBox {
 
     property int itemId: 0
     property int trackerType: GoalNamesTreeViewComboBox.TrackerType.Goals
+
+    delegate: null
+    topInset: 0
+    bottomInset: 0
+
+
 
 //    model: GoalNamesTreeViewModel {}
 

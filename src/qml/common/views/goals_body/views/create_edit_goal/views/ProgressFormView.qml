@@ -7,9 +7,15 @@ import "../components" as MComp
 
 ScrollView {
     id: scrollView
-    contentHeight: columnLayout.height
-    signal checkError
+
+    property alias trackerType: trackerType.currentIndex
+    property alias unit: unit.text
+    property int progressValue: parseInt(progressValue.text)
+    property int targetValue: parseInt(targetValue.text)
     property bool hasError
+    signal checkError
+
+    contentHeight: columnLayout.height
 
     MouseArea {
         width: scrollView.width
@@ -32,6 +38,7 @@ ScrollView {
                 }
 
                 Comp.ComboBox {
+                    id: trackerType
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
 

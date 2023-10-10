@@ -7,6 +7,9 @@ import "../components" as MComp
 
 ScrollView {
     id: scrollView
+
+    property alias parentGoalId: parentGoal.itemId
+
     contentHeight: columnLayout.height
 
     MouseArea {
@@ -30,6 +33,7 @@ ScrollView {
                 }
 
                 Comp.GoalNamesTreeViewComboBox {
+                    id: parentGoal
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
                 }

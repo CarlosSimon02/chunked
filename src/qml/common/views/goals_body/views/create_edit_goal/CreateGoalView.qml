@@ -61,25 +61,11 @@ Comp.PageView {
                 Layout.fillHeight: true
                 currentIndex: stepper.currentIndex
 
-                CommonFormView {
-                    id: commonFormView
-                }
-
-                ParentGoalFormView {
-
-                }
-
-                TimeFrameFormView {
-
-                }
-
-                ProgressFormView {
-                    id: progressFormView
-                }
-
-                DescriptionFormView {
-
-                }
+                CommonFormView { id: common }
+                ParentGoalFormView { id: parentGoal }
+                TimeFrameFormView { id: timeFrame }
+                ProgressFormView { id: progress }
+                DescriptionFormView { id: description }
             }
 
             RowLayout {
@@ -115,12 +101,12 @@ Comp.PageView {
                             let hasError
 
                             if(stepper.currentIndex === 0) {
-                                commonFormView.checkError()
-                                hasError = commonFormView.hasError
+                                common.checkError()
+                                hasError = common.hasError
                             }
                             else if(stepper.currentIndex === 3) {
-                                progressFormView.checkError()
-                                hasError = progressFormView.hasError
+                                progress.checkError()
+                                hasError = progress.hasError
                             }
 
                             if(!hasError) {

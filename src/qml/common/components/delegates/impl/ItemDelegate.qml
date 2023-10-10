@@ -4,7 +4,6 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
-import "./impl" as Impl
 
 T.ItemDelegate {
     id: control

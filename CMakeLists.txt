@@ -12,14 +12,28 @@ find_package(FramelessHelper REQUIRED COMPONENTS Core Quick)
 qt_standard_project_setup()
 
 qt_add_executable(chunked
-    src/main.cpp
-    src/qml/qml.qrc
+    src/dbaccess.cpp
+    src/dbaccess.h
+    src/goal.cpp
+    src/goal.h
+    src/task.cpp
+    src/task.h
     src/icons/icons.qrc
-    src/fonts/fonts.qrc
+    src/main.cpp
+    src/models/basetablemodel.cpp
+    src/models/basetablemodel.h
+    src/models/goalstablemodel.cpp
+    src/models/goalstablemodel.h
+    src/models/goalnamestreeviewmodel.cpp
+    src/models/goalnamestreeviewmodel.h
+    src/models/taskstablemodel.cpp
+    src/models/taskstablemodel.h
+    src/qml/qml.qrc
 )
 
 target_include_directories(chunked
     PRIVATE src
+    PRIVATE src/models
 )
 
 qt6_add_qml_module(chunked

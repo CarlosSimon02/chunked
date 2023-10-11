@@ -47,10 +47,10 @@ Item {
                     goalName = model.name
                     startDateTime = Date.fromLocaleString(Qt.locale(),
                                                          model.startDateTime,
-                                                         "dd MMM yyyy hh:mm AP")
+                                                         "yyyy-MM-dd hh:mm:ss")
                     endDateTime = Date.fromLocaleString(Qt.locale(),
                                                        model.endDateTime,
-                                                       "dd MMM yyyy hh:mm AP")
+                                                       "yyyy-MM-dd hh:mm:ss")
                     category = model.category
                     progressValue = model.progressValue
                     targetValue = model.targetValue

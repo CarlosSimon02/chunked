@@ -11,13 +11,13 @@ ScrollView {
     property alias goalName: goalName.text
     property date startDateTime
     property date endDateTime
-    property alias category: category.text
+    property alias category: category.value
+    property int trackerType
     property int progressValue
     property int targetValue
     property string unit
 
     clip: true
-
     layer.samples: 8
     layer.enabled: true
     layer.effect: OpacityMask {
@@ -59,7 +59,6 @@ ScrollView {
                     Layout.fillWidth: true
                     Layout.preferredWidth: width
                     wrapMode: Text.Wrap
-                    text: "To Become a Freaking Software Engineer"
                     font.pixelSize: Comp.Globals.fontSize.large
                     font.weight: Font.DemiBold
                     color: "white"
@@ -80,11 +79,11 @@ ScrollView {
                     id: progressBar
                     Layout.fillWidth: true
                     Material.accent: Material.color(Material.Lime, Material.Shade900)
-                    value: 0.5
+                    value: scrollView.targetValue ? scrollView.progressValue / scrollView.targetValue : 0
                 }
 
                 Text {
-                    text: "50%"
+                    text: scrollView.targetValue ? Math.floor((scrollView.progressValue / scrollView.targetValue) * 100) + "%" : "??"
                     font.pixelSize: Comp.Globals.fontSize.large
                     color: Material.color(Material.Lime, Material.Shade900)
                 }
@@ -118,7 +117,6 @@ ScrollView {
                     id: category
                     iconSource: "qrc:/category_icon.svg"
                     label: "Category"
-                    value: "Home"
                     color: "white"
                 }
 
@@ -126,7 +124,9 @@ ScrollView {
                     id: timeFrame
                     iconSource: "qrc:/date_time_icon.svg"
                     label: "Time Frame"
-                    value: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
+                    value: scrollView.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP") + " -\n" +
+                           scrollView.endDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP") + "\n" +
+                           "(" + Comp.Utils.getTimeFrame(scrollView.startDateTime,scrollView.endDateTime) + ")"
                     color: "white"
                 }
 
@@ -134,7 +134,7 @@ ScrollView {
                     id: tracker
                     iconSource: "qrc:/tracker_icon.svg"
                     label: "Tracker"
-                    value: "Subgoals(Total Progress)"
+                    value: Comp.Globals.trackerTypes[scrollView.trackerType]
                     color: "white"
                 }
             }

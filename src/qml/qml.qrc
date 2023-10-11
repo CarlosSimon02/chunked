@@ -71,5 +71,6 @@
         <file>common/components/delegates/impl/MenuButton.qml</file>
         <file>common/components/Utils.js</file>
         <file>common/components/ContentIconLabelData.qml</file>
+        <file>common/components/ProgressBar.qml</file>
     </qresource>
 </RCC>

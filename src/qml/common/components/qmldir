@@ -1,6 +1,6 @@
 module components
 ComboBox 1.0 ComboBox.qml
-ContentIconLabel 1.0 ContentIconLabel.qml
+ContentIconLabelData 1.0 ContentIconLabelData.qml
 DatePicker 1.0 DatePicker.qml
 DateTimePickerDialog 1.0 DateTimePickerDialog.qml
 Dialog 1.0 Dialog.qml

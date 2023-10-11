@@ -77,7 +77,7 @@ ScrollView {
                     id: category
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
-                    model: ["Work", "Personal", "Home"]
+                    model: Comp.Globals.categoryTypes
                 }
             }
 

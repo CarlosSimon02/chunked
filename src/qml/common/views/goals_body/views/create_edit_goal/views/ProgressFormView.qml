@@ -42,15 +42,7 @@ ScrollView {
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
 
-                    model: [
-                        "Subgoals(Total Progress)",
-                        "Subgoals(Completed)",
-                        "Tasks(Total Outcome)",
-                        "Tasks(Completed)",
-                        "Habits(Total Progress)",
-                        "Habits(Completed)",
-                        "Manual Update"
-                    ]
+                    model: Comp.Globals.trackerTypes
 
                     onActivated: index => {
                         progressValue.enabled = false

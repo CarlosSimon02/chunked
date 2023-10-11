@@ -70,5 +70,6 @@
         <file>common/components/delegates/impl/ItemDelegate.qml</file>
         <file>common/components/delegates/impl/MenuButton.qml</file>
         <file>common/components/Utils.js</file>
+        <file>common/components/ContentIconLabelData.qml</file>
     </qresource>
 </RCC>

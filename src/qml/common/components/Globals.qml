@@ -39,4 +39,34 @@ QtObject {
     }
 
     property string dateTimeFormat: "dd MMM yyyy hh:mm AP"
+
+    property var statusTypes: [
+        "Pending",
+        "Active",
+        "Done",
+        "Overdue"
+    ]
+
+    property var statusColors: [
+        "darkgoldenrod",
+        "green",
+        "darkblue",
+        "red"
+    ]
+
+    property var categoryTypes: [
+        "Work",
+        "Personal",
+        "Home"
+    ]
+
+    property var trackerTypes: [
+        "Subgoals(Total Progress)",
+        "Subgoals(Completed)",
+        "Tasks(Total Outcome)",
+        "Tasks(Completed)",
+        "Habits(Total Progress)",
+        "Habits(Completed)",
+        "Manual Update"
+    ]
 }

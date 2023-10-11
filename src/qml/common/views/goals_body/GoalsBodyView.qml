@@ -41,8 +41,8 @@ Item {
                 Material.elevation: 0
                 Material.roundedScale: Material.SmallScale
 
-                onClicked: stackPageView.push("qrc:/common/views/goals_body/views/goal_info/GoalInfoView.qml")
                 Component.onCompleted: {
+                    itemId = model.itemId
                     imageSource = model.imageSource
                     goalName = model.name
                     startDateTime = Date.fromLocaleString(Qt.locale(),

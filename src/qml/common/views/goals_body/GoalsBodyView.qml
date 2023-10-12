@@ -7,8 +7,10 @@ import components.delegates as Dlg
 
 Item {
     id: item
+
+    property alias model: gridView.model
+    property int parentGoalId: 0
     property bool itemsHasImage: true
-    property bool isSubGoal: false
     property ScrollBar verticalScrollBar
 
     clip: true
@@ -18,11 +20,11 @@ Item {
         width: contentWidth
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
-        topMargin: item.isSubGoal ? 8 : 10
+        topMargin: item.parentGoalId ? 8 : 10
         bottomMargin: topMargin
         contentWidth: Math.floor((item.parent.width - 30) / cellWidth) * cellWidth
-        cellWidth: item.isSubGoal ? 310 : 350
-        cellHeight: item.isSubGoal ? item.itemsHasImage ? 360 : 200 :
+        cellWidth: item.parentGoalId ? 310 : 350
+        cellHeight: item.parentGoalId ? item.itemsHasImage ? 360 : 200 :
                                      item.itemsHasImage ? 425 : 240
 
         ScrollBar.vertical: item.verticalScrollBar
@@ -34,7 +36,7 @@ Item {
             Dlg.GoalItemDelegate {
                 anchors.fill: parent
                 anchors.margins: parent.GridView.view.topMargin
-                isSubGoal: item.isSubGoal
+                isSubGoal: item.parentGoalId
                 hasImage: item.itemsHasImage
 
                 Material.background: Material.color(Material.Grey, Material.Shade900)
@@ -59,7 +61,9 @@ Item {
             }
         }
 
-        model: GoalsTableModel {}
+        model: GoalsTableModel {
+            parentGoalId: item.parentGoalId
+        }
 
         Connections {
             target: initPageView.StackView
@@ -81,6 +85,7 @@ Item {
         Material.elevation: 10
         Material.roundedScale: Material.SmallScale
 
-        onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateGoalView.qml")
+        onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateGoalView.qml",
+                                      {"parentGoalId": item.parentGoalId})
     }
 }

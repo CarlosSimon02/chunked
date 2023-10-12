@@ -14,7 +14,6 @@ GoalsTableModel::GoalsTableModel(QObject *parent)
              "endDateTime, progressTracker, progressValue, targetValue, progressUnit, parentGoalId "
              "FROM goals;");
     setFilter("parentGoalId IS NULL");
-    setSort(0,Qt::DescendingOrder);
 
     if(lastError().isValid())
         qWarning() << "GoalsTableModel::GoalsTableModel" << lastError().text();

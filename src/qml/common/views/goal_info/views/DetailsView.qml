@@ -74,19 +74,12 @@ ScrollView {
                 }
             }
 
-            RowLayout {
-                ProgressBar {
-                    id: progressBar
-                    Layout.fillWidth: true
-                    Material.accent: Material.color(Material.Lime, Material.Shade900)
-                    value: scrollView.targetValue ? scrollView.progressValue / scrollView.targetValue : 0
-                }
-
-                Text {
-                    text: scrollView.targetValue ? Math.floor((scrollView.progressValue / scrollView.targetValue) * 100) + "%" : "??"
-                    font.pixelSize: Comp.Globals.fontSize.large
-                    color: Material.color(Material.Lime, Material.Shade900)
-                }
+            Comp.ProgressBar {
+                id: progressBar
+                Layout.fillWidth: true
+                value: scrollView.progressValue
+                target: scrollView.targetValue
+                fontPixelSize: Comp.Globals.fontSize.large
             }
 
             ColumnLayout {

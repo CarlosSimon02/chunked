@@ -11,6 +11,7 @@ import "./views"
 Comp.PageView {
     id: pageView
 
+    property alias parentGoalId: parentGoal.parentGoalId
     property Goal goal: Goal {
         name: common.goalName
         imageSource: common.imageSource

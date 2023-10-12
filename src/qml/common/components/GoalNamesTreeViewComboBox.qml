@@ -19,13 +19,14 @@ ComboBox {
     property int itemId: 0
     property int trackerType: GoalNamesTreeViewComboBox.TrackerType.Goals
 
+    displayText: treeView.itemAtIndex(treeView.selectionModel.currentIndex) ?
+                     treeView.itemAtIndex(treeView.selectionModel.currentIndex).goalName :
+                     ""
     delegate: null
     topInset: 0
     bottomInset: 0
 
-
-
-//    model: GoalNamesTreeViewModel {}
+    model: GoalNamesTreeViewModel {}
 
     popup: Popup {
         y: comboBox.height
@@ -52,18 +53,19 @@ ComboBox {
             height: Math.min(400, 40*rows)
             model: comboBox.model
             clip: true
-            selectionModel: ItemSelectionModel {}
 
             delegate: Item {
                 id: item
-                implicitWidth: itemDelegate.implicitWidth + itemDelegate.x
-                implicitHeight: 40
 
+                property alias goalName: goalName.text
                 readonly property real indent: 20
                 required property TreeView treeView
                 required property bool expanded
                 required property int hasChildren
                 required property int depth
+
+                implicitWidth: itemDelegate.implicitWidth + itemDelegate.x
+                implicitHeight: 40
 
                 ItemDelegate {
                     id: itemDelegate
@@ -97,9 +99,16 @@ ComboBox {
                         }
 
                         Text {
+                            id: goalName
                             text: model.goalName
                             font: itemDelegate.font
-                            color: itemDelegate.foregroundColor
+                            color: "white"
+                        }
+                    }
+
+                    Component.onCompleted: {
+                        if(comboBox.itemId === model.id) {
+                            comboBox.displayText = model.goalName
                         }
                     }
                 }

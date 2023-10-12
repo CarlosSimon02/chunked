@@ -72,5 +72,6 @@
         <file>common/components/Utils.js</file>
         <file>common/components/ContentIconLabelData.qml</file>
         <file>common/components/ProgressBar.qml</file>
+        <file>common/views/goal_info/views/DescriptionView.qml</file>
     </qresource>
 </RCC>

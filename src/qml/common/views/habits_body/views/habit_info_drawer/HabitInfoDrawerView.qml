@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.buttons as Btn
 import "./components" as MComp
 
 Drawer {
@@ -47,37 +48,13 @@ Drawer {
         Component {
             id: content
 
-            Page {
-                padding: 0
-                background: null
-                header: Pane {
-                    padding: 15
-                    background: Item {
-                        Rectangle {
-                            anchors.bottom: parent.bottom
-                            anchors.bottomMargin: 0
-                            height: 1
-                            width: parent.width
-                            color: Comp.Globals.color.secondary.shade1
-                        }
-                    }
-
-                    RowLayout {
-                        width: parent.width
-                        IconLabel {
-                            icon.source: "qrc:/close_icon.svg"
-                            icon.width: 15
-                            icon.height: 15
-                            icon.color: Comp.Globals.color.secondary.shade2
-                        }
-
-                        IconLabel {
-                            Layout.alignment: Qt.AlignRight
-                            icon.source: "qrc:/three_dots_icon.svg"
-                            icon.width: 18
-                            icon.height: 18
-                            icon.color: Comp.Globals.color.secondary.shade2
-                        }
+            Comp.DrawerContent {
+                headerOptions : RowLayout {
+                    Btn.LinkButton {
+                        Layout.alignment: Qt.AlignRight
+                        icon.source: "qrc:/three_dots_icon.svg"
+                        icon.width: 18
+                        icon.height: 18
                     }
                 }
 

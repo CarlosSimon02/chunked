@@ -14,7 +14,8 @@ Comp.StackPageView {
         title: "Goals"
 
         headerOptions: Component {
-            RowLBtn.PageHeaderButton         Comp.IconButton {
+            RowLayout {
+                Btn.PageHeaderButton {
                     icon.source: "qrc:/three_dots_icon.svg"
                     rotation: 90
                     onClicked: menu.open()

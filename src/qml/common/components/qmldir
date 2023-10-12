@@ -4,6 +4,7 @@ ContentIconLabelData 1.0 ContentIconLabelData.qml
 DatePicker 1.0 DatePicker.qml
 DateTimePickerDialog 1.0 DateTimePickerDialog.qml
 Dialog 1.0 Dialog.qml
+DrawerContent 1.0 DrawerContent.qml
 GoalNamesTreeViewComboBox 1.0 GoalNamesTreeViewComboBox.qml
 PageView 1.0 PageView.qml
 ProgressBar 1.0 ProgressBar.qml

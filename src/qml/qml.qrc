@@ -76,5 +76,6 @@
         <file>common/components/buttons/PageHeaderButton.qml</file>
         <file>common/components/buttons/qmldir</file>
         <file>common/components/buttons/MenuButton.qml</file>
+        <file>common/components/DrawerContent.qml</file>
     </qresource>
 </RCC>

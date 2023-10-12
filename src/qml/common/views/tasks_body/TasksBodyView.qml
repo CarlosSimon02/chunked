@@ -32,7 +32,7 @@ RowLayout {
                 Layout.bottomMargin: 10
             }
 
-           Btn.PageHeaderButtonn {
+           Btn.PageHeaderButton {
                 Layout.preferredWidth: 30
                 Layout.preferredHeight: 30
                 Layout.alignment: Qt.AlignVCenter

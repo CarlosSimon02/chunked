@@ -54,7 +54,7 @@ ScrollView {
                         readOnly: true
                     }
 
-                   Btn.PageHeaderButtonn {
+                   Btn.PageHeaderButton {
                         Layout.preferredWidth: startTime.height
                         Layout.preferredHeight: startTime.height
                         flat: true
@@ -100,7 +100,7 @@ ScrollView {
                         readOnly: true
                     }
 
-                   Btn.PageHeaderButtonn {
+                   Btn.PageHeaderButton {
                         Layout.preferredWidth: endTime.height
                         Layout.preferredHeight: endTime.height
                         flat: true

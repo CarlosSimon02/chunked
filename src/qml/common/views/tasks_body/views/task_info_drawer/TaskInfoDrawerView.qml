@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.buttons as Btn
 import "./components" as MComp
 
 Drawer {
@@ -47,116 +48,98 @@ Drawer {
         Component {
             id: content
 
-            Page {
-                padding: 15
-                background: null
-                header: Pane {
-                    padding: 15
-                    background: Item {
-                        Rectangle {
-                            anchors.bottom: parent.bottom
-                            anchors.bottomMargin: 0
-                            height: 1
-                            width: parent.width
-                            color: Comp.Globals.color.secondary.shade1
-                        }
-                    }
-
-                    RowLayout {
-                        width: parent.width
-                        IconLabel {
-                            icon.source: "qrc:/close_icon.svg"
-                            icon.width: 15
-                            icon.height: 15
-                            icon.color: Comp.Globals.color.secondary.shade2
-                        }
-
-                        IconLabel {
-                            Layout.alignment: Qt.AlignRight
-                            icon.source: "qrc:/three_dots_icon.svg"
-                            icon.width: 18
-                            icon.height: 18
-                            icon.color: Comp.Globals.color.secondary.shade2
-                        }
+            Comp.DrawerContent {
+                headerOptions: RowLayout {
+                    Btn.LinkButton {
+                        Layout.alignment: Qt.AlignRight
+                        icon.source: "qrc:/three_dots_icon.svg"
+                        icon.width: 18
+                        icon.height: 18
                     }
                 }
 
-                ColumnLayout {
-                    width: parent.width
-                    spacing: 20
+                ScrollView {
+                    id: scrollView
+                    anchors.fill: parent
 
                     ColumnLayout {
-                        spacing: 40
-
-                        RowLayout {
-                            CheckBox {
-                                Layout.leftMargin: -8
-                                Layout.alignment: Qt.AlignTop
-                            }
-
-                            MComp.TextArea {
-                                Layout.fillWidth: true
-                                Layout.topMargin: 10
-                                text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-                                font.pixelSize: Comp.Globals.fontSize.large
-                            }
-                        }
+                        width: scrollView.width
+                        spacing: 20
 
                         ColumnLayout {
-                            spacing: 10
+                            spacing: 40
+                            Layout.margins: 10
 
-                            MComp.FieldRowLayout {
-                                MComp.Icon {
+                            RowLayout {
+                                CheckBox {
+                                    Layout.leftMargin: -8
                                     Layout.alignment: Qt.AlignTop
-                                    icon.source: "qrc:/status_icon.svg"
-                                    ToolTip.text: "Status"
                                 }
 
                                 MComp.TextArea {
                                     Layout.fillWidth: true
-                                    color: "green"
-                                    text: "Active"
-                                    readOnly: true
+                                    Layout.topMargin: 10
+                                    text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+                                    font.pixelSize: Comp.Globals.fontSize.large
                                 }
                             }
 
-                            MComp.FieldRowLayout {
-                                MComp.Icon {
-                                    Layout.alignment: Qt.AlignTop
-                                    icon.source: "qrc:/check_icon.svg"
-                                    ToolTip.text: "Outcome"
+                            ColumnLayout {
+                                spacing: 10
+
+                                MComp.FieldRowLayout {
+                                    MComp.Icon {
+                                        Layout.alignment: Qt.AlignTop
+                                        icon.source: "qrc:/status_icon.svg"
+                                        ToolTip.text: "Status"
+                                    }
+
+                                    MComp.TextArea {
+                                        Layout.fillWidth: true
+                                        color: "green"
+                                        text: "Active"
+                                        readOnly: true
+                                    }
                                 }
 
-                                MComp.TextArea {
-                                    Layout.fillWidth: true
-                                    text: "1"
-                                }
-                            }
+                                MComp.FieldRowLayout {
+                                    MComp.Icon {
+                                        Layout.alignment: Qt.AlignTop
+                                        icon.source: "qrc:/check_icon.svg"
+                                        ToolTip.text: "Outcome"
+                                    }
 
-                            MComp.FieldRowLayout {
-                                MComp.Icon {
-                                    Layout.alignment: Qt.AlignTop
-                                    icon.source: "qrc:/time_icon.svg"
-                                    ToolTip.text: "Time Remaining"
-                                }
-
-                                MComp.TextArea {
-                                    Layout.fillWidth: true
-                                    text: "4h 3m remaining"
-                                    readOnly: true
-                                }
-                            }
-
-                            MComp.FieldRowLayout {
-                                MComp.Icon {
-                                    Layout.alignment: Qt.AlignTop
-                                    icon.source: "qrc:/date_time_icon.svg"
-                                    ToolTip.text: "Time Frame"
+                                    MComp.TextArea {
+                                        Layout.fillWidth: true
+                                        text: "1"
+                                    }
                                 }
 
-                                MComp.TextArea {
-                                    Layout.fillWidth: true
-                                    text: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
+                                MComp.FieldRowLayout {
+                                    MComp.Icon {
+                                        Layout.alignment: Qt.AlignTop
+                                        icon.source: "qrc:/time_icon.svg"
+                                        ToolTip.text: "Time Remaining"
+                                    }
+
+                                    MComp.TextArea {
+                                        Layout.fillWidth: true
+                                        text: "4h 3m remaining"
+                                        readOnly: true
+                                    }
+                                }
+
+                                MComp.FieldRowLayout {
+                                    MComp.Icon {
+                                        Layout.alignment: Qt.AlignTop
+                                        icon.source: "qrc:/date_time_icon.svg"
+                                        ToolTip.text: "Time Frame"
+                                    }
+
+                                    MComp.TextArea {
+                                        Layout.fillWidth: true
+                                        text: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
+                                    }
                                 }
                             }
                         }

@@ -14,7 +14,8 @@ Comp.StackPageView {
         title: "Habits"
 
         headerOptions: Component {
-            RowLBtn.PageHeaderButton         Comp.IconButton {
+            RowLayout {
+                Btn.PageHeaderButton {
                     icon.source: "qrc:/three_dots_icon.svg"
                     rotation: 90
                 }

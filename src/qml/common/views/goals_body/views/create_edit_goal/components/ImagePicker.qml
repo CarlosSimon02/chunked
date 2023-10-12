@@ -133,7 +133,7 @@ Pane {
         color: "transparent"
         border.width: pane.activeFocus ? 1.5 : 1
         border.color: pane.activeFocus ? Comp.Globals.color.accent.shade1 :
-                                   hoverHandler.hovered ? Comp.Globals.color.secondary.shade3 :
+                                   hoverHandler.hovered ? Comp.Globals.color.secondary.shade4 :
                                                           Comp.Globals.color.secondary.shade1
         radius: 4
     }

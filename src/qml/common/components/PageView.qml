@@ -51,7 +51,7 @@ Page {
                 Text {
                     id: title
                     text: page.title
-                    color: Comp.Globals.color.secondary.shade3
+                    color: Comp.Globals.color.secondary.shade4
                     font.pixelSize: Comp.Globals.fontSize.extraLarge
                     font.weight: Font.DemiBold
                 }

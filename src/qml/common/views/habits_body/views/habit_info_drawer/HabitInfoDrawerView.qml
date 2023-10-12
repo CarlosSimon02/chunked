@@ -128,7 +128,7 @@ Drawer {
                                         Text {
                                             font.pixelSize: Comp.Globals.fontSize.medium
                                             text: value
-                                            color: model.color ? model.color : Comp.Globals.color.secondary.shade3
+                                            color: model.color ? model.color : Comp.Globals.color.secondary.shade4
                                         }
                                     }
 
@@ -173,19 +173,11 @@ Drawer {
                                 }
                             }
 
-                            RowLayout {
-                                ProgressBar {
-                                    Layout.fillWidth: true
-                                    Material.accent: Material.color(Material.Lime, Material.Shade900)
-                                    value: 0.5
-                                }
-
-                                Text {
-                                    text: "50%"
-                                    font.pixelSize: Comp.Globals.fontSize.large
-
-                                    color: Material.color(Material.Lime, Material.Shade900)
-                                }
+                            Comp.ProgressBar {
+                                Layout.fillWidth: true
+                                value: 50
+                                target: 100
+                                fontPixelSize: Comp.Globals.fontSize.large
                             }
 
                             MComp.DateHiglighter {

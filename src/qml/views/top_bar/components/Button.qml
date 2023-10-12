@@ -9,9 +9,9 @@ Ctrl.Button {
     implicitHeight: 40
     icon.width: 14
     icon.height: 14
-    icon.color: Comp.Globals.color.secondary.shade3
+    icon.color: Comp.Globals.color.secondary.shade4
     display: Ctrl.Button.IconOnly
-    property color fadeColor: Comp.Globals.color.secondary.shade3
+    property color fadeColor: Comp.Globals.color.secondary.shade4
     property double hoveredOpacity: 0.2
     property double pressedOpacity: 0.3
 

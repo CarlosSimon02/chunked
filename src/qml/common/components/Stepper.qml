@@ -32,7 +32,7 @@ ListView {
                 text: rowLayout.ListView.isCurrentItem ? (index + 1) :
                         rowLayout.done ? "✓" : (index + 1)
                 font.pixelSize: Comp.Globals.fontSize.small
-                color: Comp.Globals.color.secondary.shade3
+                color: Comp.Globals.color.secondary.shade4
                 horizontalAlignment: Label.AlignHCenter
                 verticalAlignment: Label.AlignVCenter
                 background: Rectangle {
@@ -49,8 +49,8 @@ ListView {
             Layout.preferredHeight: label.height
             Layout.alignment: Qt.AlignBottom
             font.pixelSize: Comp.Globals.fontSize.small
-            color: rowLayout.ListView.isCurrentItem ? Comp.Globals.color.secondary.shade3 :
-                                                      rowLayout.done ? Comp.Globals.color.secondary.shade3 :
+            color: rowLayout.ListView.isCurrentItem ? Comp.Globals.color.secondary.shade4 :
+                                                      rowLayout.done ? Comp.Globals.color.secondary.shade4 :
                                                                        Comp.Globals.color.secondary.shade1
             verticalAlignment: Label.AlignVCenter
         }

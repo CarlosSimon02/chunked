@@ -30,7 +30,7 @@ StackView {
 
                 Text {
                     text: stackView.months[monthGrid.month] + " " + monthGrid.year
-                    color: Comp.Globals.color.secondary.shade3
+                    color: Comp.Globals.color.secondary.shade4
                     font.pixelSize: Comp.Globals.fontSize.large
                     font.weight: Font.DemiBold
 
@@ -48,7 +48,7 @@ StackView {
                         icon.source: "qrc:/arrow_left_icon.svg"
                         icon.width: 24
                         icon.height: 24
-                        icon.color: Comp.Globals.color.secondary.shade3
+                        icon.color: Comp.Globals.color.secondary.shade4
 
                         MouseArea {
                             anchors.fill: parent
@@ -65,7 +65,7 @@ StackView {
                         icon.source: "qrc:/arrow_right_icon.svg"
                         icon.width: 24
                         icon.height: 24
-                        icon.color: Comp.Globals.color.secondary.shade3
+                        icon.color: Comp.Globals.color.secondary.shade4
 
                         MouseArea {
                             anchors.fill: parent
@@ -173,7 +173,7 @@ StackView {
 
                 Text {
                     text: monthGrid.year
-                    color: Comp.Globals.color.secondary.shade3
+                    color: Comp.Globals.color.secondary.shade4
                     font.pixelSize: Comp.Globals.fontSize.large
                     font.weight: Font.DemiBold
 
@@ -228,7 +228,7 @@ StackView {
 
                     Text {
                         text: (gridView.startingYear).toString() + "-" + (gridView.startingYear + 15).toString()
-                        color: Comp.Globals.color.secondary.shade3
+                        color: Comp.Globals.color.secondary.shade4
                         font.pixelSize: Comp.Globals.fontSize.large
                         font.weight: Font.DemiBold
                     }
@@ -241,7 +241,7 @@ StackView {
                             icon.source: "qrc:/arrow_left_icon.svg"
                             icon.width: 24
                             icon.height: 24
-                            icon.color: Comp.Globals.color.secondary.shade3
+                            icon.color: Comp.Globals.color.secondary.shade4
 
                             MouseArea {
                                 anchors.fill: parent
@@ -256,7 +256,7 @@ StackView {
                             icon.source: "qrc:/arrow_right_icon.svg"
                             icon.width: 24
                             icon.height: 24
-                            icon.color: Comp.Globals.color.secondary.shade3
+                            icon.color: Comp.Globals.color.secondary.shade4
 
                             MouseArea {
                                 anchors.fill: parent

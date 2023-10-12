@@ -74,5 +74,7 @@
         <file>common/components/ProgressBar.qml</file>
         <file>common/views/goal_info/views/DescriptionView.qml</file>
         <file>common/components/buttons/LinkButton.qml</file>
+        <file>common/components/buttons/FloatingButton.qml</file>
+        <file>common/components/buttons/PageHeaderButton.qml</file>
     </qresource>
 </RCC>

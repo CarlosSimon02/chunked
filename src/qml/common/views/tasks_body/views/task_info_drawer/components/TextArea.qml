@@ -8,7 +8,7 @@ Ctrl.TextArea {
     topPadding: 0
     leftPadding: 0
     rightPadding: 0
-    color: Comp.Globals.color.secondary.shade3
+    color: Comp.Globals.color.secondary.shade4
     font.pixelSize: Comp.Globals.fontSize.medium
     wrapMode: Ctrl.TextArea.Wrap
 

@@ -73,5 +73,6 @@
         <file>common/components/ContentIconLabelData.qml</file>
         <file>common/components/ProgressBar.qml</file>
         <file>common/views/goal_info/views/DescriptionView.qml</file>
+        <file>common/components/buttons/LinkButton.qml</file>
     </qresource>
 </RCC>

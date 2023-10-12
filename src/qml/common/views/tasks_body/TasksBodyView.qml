@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.buttons as Btn
 import components.delegates as Dlg
 import "./components" as MComp
 import "./views/filter"
@@ -31,7 +32,7 @@ RowLayout {
                 Layout.bottomMargin: 10
             }
 
-            Comp.IconButton {
+           Btn.PageHeaderButtonn {
                 Layout.preferredWidth: 30
                 Layout.preferredHeight: 30
                 Layout.alignment: Qt.AlignVCenter

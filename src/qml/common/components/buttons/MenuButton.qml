@@ -1,11 +1,19 @@
-import QtQuick 
+import QtQuick
 import QtQuick.Controls.Material
 
-Button {
+import components.buttons as Btn
+
+Btn.PageHeaderButton {
     id: button
-    property bool opened: false
+    padding: 0
+    icon.width: 24
+    icon.height: 24
     flat: true
+
+    property bool opened: false
     onClicked: opened = !opened
+
+    Material.roundedScale: Material.SmallScale
 
     contentItem: Item {
         id: item
@@ -61,12 +69,12 @@ Button {
                 NumberAnimation {
                     targets: [top,middle,bottom]
                     property:"width"
-                    duration: 500
+                    duration: 200
                     easing.type: Easing.OutQuad
                 }
 
                 AnchorAnimation {
-                    duration: 500
+                    duration: 200
                     easing.type: Easing.OutQuad
                 }
             }

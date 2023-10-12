@@ -1,4 +1,5 @@
 module components.buttons
 FloatingButton 1.0 FloatingButton.qml
 LinkButton 1.0 LinkButton.qml
+MenuButton 1.0 MenuButton.qml
 PageHeaderButton 1.0 PageHeaderButton.qml

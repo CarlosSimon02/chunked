@@ -5,8 +5,6 @@ DatePicker 1.0 DatePicker.qml
 DateTimePickerDialog 1.0 DateTimePickerDialog.qml
 Dialog 1.0 Dialog.qml
 GoalNamesTreeViewComboBox 1.0 GoalNamesTreeViewComboBox.qml
-IconButton 1.0 IconButton.qml
-MenuButton 1.0 MenuButton.qml
 PageView 1.0 PageView.qml
 ProgressBar 1.0 ProgressBar.qml
 RoundedPane 1.0 RoundedPane.qml

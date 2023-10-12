@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.buttons as Btn
 import "../components" as MComp
 
 ScrollView {
@@ -53,7 +54,7 @@ ScrollView {
                         readOnly: true
                     }
 
-                    Comp.IconButton {
+                   Btn.PageHeaderButtonn {
                         Layout.preferredWidth: startTime.height
                         Layout.preferredHeight: startTime.height
                         flat: true
@@ -99,7 +100,7 @@ ScrollView {
                         readOnly: true
                     }
 
-                    Comp.IconButton {
+                   Btn.PageHeaderButtonn {
                         Layout.preferredWidth: endTime.height
                         Layout.preferredHeight: endTime.height
                         flat: true

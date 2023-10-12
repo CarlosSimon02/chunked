@@ -1,8 +1,10 @@
 import QtQuick
 import QtQuick.Controls.Material
 
-import "./components" as MComp
 import components as Comp
+import components.buttons as Btn
+import "./components" as MComp
+
 
 Drawer {
     id: drawer
@@ -44,7 +46,7 @@ Drawer {
 
                 Component.onCompleted: menuListView.currentIndex = sideMenuView.currentIndex
 
-                Comp.IconButton {
+                Btn.PageHeaderButton {
                     id: closeButton
                     anchors.right: parent.right
                     anchors.rightMargin: 0

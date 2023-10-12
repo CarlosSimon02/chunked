@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.buttons as Btn
 import views.habits_body
 
 Comp.StackPageView {
@@ -13,8 +14,7 @@ Comp.StackPageView {
         title: "Habits"
 
         headerOptions: Component {
-            RowLayout {
-                Comp.IconButton {
+            RowLBtn.PageHeaderButton         Comp.IconButton {
                     icon.source: "qrc:/three_dots_icon.svg"
                     rotation: 90
                 }

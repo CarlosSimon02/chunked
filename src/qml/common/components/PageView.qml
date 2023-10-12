@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.buttons as Btn
 
 Page {
     id: page
@@ -10,7 +11,7 @@ Page {
     property bool isInitItem: true
 
     //For adding options in page view header
-    //Always use RowLayout and Comp.IconButton
+    //Always use RowLayout and Comp.PageHeaderButton
     property Component headerOptions
 
     header: Pane {
@@ -28,7 +29,7 @@ Page {
             RowLayout {
                 spacing: 5
 
-                Comp.MenuButton {
+                 Btn.MenuButton {
                     id: menuButton
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
@@ -42,7 +43,7 @@ Page {
                     }
                 }
 
-                Comp.IconButton {
+                Btn.PageHeaderButton {
                     visible: !page.isInitItem
                     icon.source: "qrc:/arrow_left_icon.svg"
                     onClicked: page.StackView.view.pop()

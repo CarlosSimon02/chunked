@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import app
 
 import components as Comp
+import components.buttons as Btn
 import components.delegates as Dlg
 
 Item {
@@ -73,17 +74,9 @@ Item {
         }
     }
 
-    Button {
-        anchors.right: parent.right
-        anchors.rightMargin: 20
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 20
+    Btn.FloatingButton {
         icon.source: "qrc:/create_icon.svg"
         text: "New Goal"
-
-        Material.background: Material.color(Material.Lime, Material.Shade900)
-        Material.elevation: 10
-        Material.roundedScale: Material.SmallScale
 
         onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateGoalView.qml",
                                       {"parentGoalId": item.parentGoalId})

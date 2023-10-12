@@ -2,8 +2,10 @@ import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Layouts 
 
-import "./components" as MComp
 import components as Comp
+import components.buttons as Btn
+import "./components" as MComp
+
 
 Pane {
     padding: 0
@@ -21,7 +23,7 @@ Pane {
         anchors.top: parent.top
         anchors.topMargin: (60/2) - (menuButton.height/2)
 
-        Comp.MenuButton {
+        Btn.MenuButton {
             id: menuButton
             anchors.horizontalCenter: menuListView.horizontalCenter
         }

@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.inputs as Inpt
 import "../components" as MComp
 
 ScrollView {
@@ -32,7 +33,7 @@ ScrollView {
                     text: "Parent Goal"
                 }
 
-                Comp.GoalNamesTreeViewComboBox {
+                Inpt.GoalNamesTreeViewComboBox {
                     id: parentGoal
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true

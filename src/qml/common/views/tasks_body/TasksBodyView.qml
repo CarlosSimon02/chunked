@@ -11,7 +11,10 @@ import "./views/task_info_drawer"
 
 RowLayout {
     id: rowLayout
+
+    property int parentGoalId: 0
     property bool isSubGoal: false
+
     Material.accent: Comp.Globals.color.accent.shade1
 
     ListView {
@@ -94,7 +97,7 @@ RowLayout {
         Layout.topMargin: 30
         Layout.rightMargin: 30
         Layout.alignment: Qt.AlignTop
-        visible: !rowLayout.isSubGoal && window.width > 1200
+        visible: !rowLayout.parentGoalId && window.width > 1200
     }
 
     FilterDrawerView {

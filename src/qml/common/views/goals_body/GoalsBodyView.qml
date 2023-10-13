@@ -66,6 +66,26 @@ Item {
             parentGoalId: item.parentGoalId
         }
 
+        remove: Transition {
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { property: "opacity"; from: 1; to: 0.7; duration: 200 }
+                    NumberAnimation { property: "scale"; from: 1; to: 0.7; duration: 200 }
+                }
+
+                ScriptAction {
+                    script: gridView.model.refresh()
+                }
+            }
+        }
+
+        displaced: Transition {
+            NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
+            NumberAnimation { property: "opacity"; to: 1.0 }
+            NumberAnimation { property: "scale"; to: 1.0 }
+        }
+
+
         Connections {
             target: initPageView.StackView
             function onActivating() {
@@ -78,7 +98,7 @@ Item {
         icon.source: "qrc:/create_icon.svg"
         text: "New Goal"
 
-        onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateGoalView.qml",
+        onClicked: stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateEditGoalView.qml",
                                       {"parentGoalId": item.parentGoalId})
     }
 }

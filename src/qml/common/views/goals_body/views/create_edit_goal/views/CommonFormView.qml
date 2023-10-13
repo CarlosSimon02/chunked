@@ -3,6 +3,7 @@ import QtQuick.Controls.Material 2.15
 import QtQuick.Layouts
 
 import components as Comp
+import components.inputs as Inpt
 import "../components" as MComp
 
 ScrollView {
@@ -36,7 +37,7 @@ ScrollView {
                     text: "Goal Name"
                 }
 
-                Comp.TextField {
+                Inpt.TextField {
                     id: goalName
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
@@ -73,7 +74,7 @@ ScrollView {
                     text: "Category"
                 }
 
-                Comp.ComboBox {
+                Inpt.ComboBox {
                     id: category
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true

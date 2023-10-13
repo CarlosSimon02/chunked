@@ -194,6 +194,7 @@ Comp.PageView {
                             }
 
                             if(!hasError) {
+                                listView.currentIndex++
                                 stepper.currentIndex++
                                 stepper.currentItem.done = true
                             }

@@ -1,17 +1,14 @@
 module components
-ComboBox 1.0 ComboBox.qml
 ContentIconLabelData 1.0 ContentIconLabelData.qml
 DatePicker 1.0 DatePicker.qml
 DateTimePickerDialog 1.0 DateTimePickerDialog.qml
 Dialog 1.0 Dialog.qml
 DrawerContent 1.0 DrawerContent.qml
-GoalNamesTreeViewComboBox 1.0 GoalNamesTreeViewComboBox.qml
 PageView 1.0 PageView.qml
 ProgressBar 1.0 ProgressBar.qml
 RoundedPane 1.0 RoundedPane.qml
 StackPageView 1.0 StackPageView.qml
 Stepper 1.0 Stepper.qml
-TextField 1.0 TextField.qml
 Utils 1.0 Utils.js
 
 singleton Globals Globals.qml

@@ -1,0 +1,5 @@
+module components.inputs
+BasicTextField 1.0 BasicTextField.qml
+ComboBox 1.0 ComboBox.qml
+GoalsNamesTreeViewComboBox 1.0 GoalsNamesTreeViewComboBox.qml
+TextField 1.0 TextField.qml

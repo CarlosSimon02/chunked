@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import QtCharts
 
 import components as Comp
+import components.inputs as Inpt
 import "./components" as MComp
 
 Comp.PageView {
@@ -111,7 +112,7 @@ Comp.PageView {
                     }
                 }
 
-                Comp.ComboBox {
+                Inpt.ComboBox {
                     id: graphType
                     Layout.preferredWidth: 200
                     Layout.preferredHeight: 50

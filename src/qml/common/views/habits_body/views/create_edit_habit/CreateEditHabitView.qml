@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.inputs as Inpt
 import "./components" as MComp
 
 Comp.PageView {
@@ -30,7 +31,7 @@ Comp.PageView {
                         text: "Habit Name"
                     }
 
-                    Comp.TextField {
+                    Inpt.TextField {
                         Layout.fillWidth: true
                     }
                 }
@@ -40,7 +41,7 @@ Comp.PageView {
                         text: "Frequency"
                     }
 
-                    Comp.ComboBox {
+                    Inpt.ComboBox {
                         Layout.fillWidth: true
                     }
                 }
@@ -60,7 +61,7 @@ Comp.PageView {
                         text: "End Date"
                     }
 
-                    Comp.TextField {
+                    Inpt.TextField {
                         Layout.fillWidth: true
                     }
                 }

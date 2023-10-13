@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.inputs as Inpt
 import "../components" as MComp
 
 ScrollView {
@@ -37,7 +38,7 @@ ScrollView {
                     text: "Progress Tracker"
                 }
 
-                Comp.ComboBox {
+                Inpt.ComboBox {
                     id: trackerType
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
@@ -72,7 +73,7 @@ ScrollView {
                     text: "Unit"
                 }
 
-                Comp.TextField {
+                Inpt.TextField {
                     id: unit
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true

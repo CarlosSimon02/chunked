@@ -19,12 +19,10 @@
         <file>common/components/StackPageView.qml</file>
         <file>common/components/Globals.qml</file>
         <file>common/components/Stepper.qml</file>
-        <file>common/components/TextField.qml</file>
         <file>common/components/DatePicker.qml</file>
         <file>common/components/TimePicker.qml</file>
         <file>common/components/DateTimePickerDialog.qml</file>
         <file>common/components/Dialog.qml</file>
-        <file>common/components/GoalNamesTreeViewComboBox.qml</file>
         <file>common/components/RoundedPane.qml</file>
         <file>common/views/goals_body/GoalsBodyView.qml</file>
         <file>common/views/goals_body/qmldir</file>
@@ -33,7 +31,6 @@
         <file>common/views/habits_body/qmldir</file>
         <file>common/views/tasks_body/qmldir</file>
         <file>common/views/tasks_body/components/CreateTaskTextField.qml</file>
-        <file>common/components/ComboBox.qml</file>
         <file>common/views/tasks_body/views/filter/FilterDrawerView.qml</file>
         <file>common/views/tasks_body/views/filter/FilterView.qml</file>
         <file>common/views/tasks_body/views/task_info_drawer/TaskInfoDrawerView.qml</file>
@@ -49,8 +46,7 @@
         <file>common/views/goals_body/views/create_edit_goal/views/ParentGoalFormView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal/views/ProgressFormView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal/views/TimeFrameFormView.qml</file>
-        <file>common/views/goals_body/views/create_edit_goal/CreateGoalView.qml</file>
-        <file>common/views/goals_body/views/create_edit_goal/EditGoalView.qml</file>
+        <file>common/views/goals_body/views/create_edit_goal/CreateEditGoalView.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/components/FieldColumnLayout.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/components/FieldLabel.qml</file>
         <file>common/views/habits_body/views/create_edit_habit/CreateEditHabitView.qml</file>
@@ -77,5 +73,10 @@
         <file>common/components/buttons/qmldir</file>
         <file>common/components/buttons/MenuButton.qml</file>
         <file>common/components/DrawerContent.qml</file>
+        <file>common/components/inputs/ComboBox.qml</file>
+        <file>common/components/inputs/GoalNamesTreeViewComboBox.qml</file>
+        <file>common/components/inputs/TextField.qml</file>
+        <file>common/components/inputs/BasicTextField.qml</file>
+        <file>common/components/inputs/qmldir</file>
     </qresource>
 </RCC>

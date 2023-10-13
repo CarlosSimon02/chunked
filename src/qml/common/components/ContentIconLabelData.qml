@@ -11,6 +11,7 @@ RowLayout {
     property string label: iconLabel.ToolTip.text
     property alias value: value.text
     property alias color: value.color
+    property alias underline: value.font.underline
 
     spacing: 20
 

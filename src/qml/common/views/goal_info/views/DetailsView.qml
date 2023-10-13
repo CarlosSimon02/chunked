@@ -16,6 +16,7 @@ ScrollView {
     property int progressValue
     property int targetValue
     property string unit
+    property int parentGoalId
 
     clip: true
     layer.samples: 8
@@ -49,7 +50,7 @@ ScrollView {
 
         ColumnLayout {
             Layout.margins: 20
-            spacing: 30
+            spacing: 20
 
             ColumnLayout {
                 spacing: 8
@@ -74,28 +75,61 @@ ScrollView {
                 }
             }
 
-            Comp.ProgressBar {
-                id: progressBar
-                Layout.fillWidth: true
-                value: scrollView.progressValue
-                target: scrollView.targetValue
-                fontPixelSize: Comp.Globals.fontSize.large
+            Rectangle {
+                Layout.preferredWidth: scrollView.width
+                Layout.preferredHeight: 1
+                Layout.leftMargin: -20
+                Layout.rightMargin: -20
+                color: Comp.Globals.color.primary.shade4
             }
 
             ColumnLayout {
+                spacing: 0
+
+                Comp.ProgressBar {
+                    id: progressBar
+                    Layout.fillWidth: true
+                    value: scrollView.progressValue
+                    target: scrollView.targetValue
+                    fontPixelSize: Comp.Globals.fontSize.large
+                }
+
+                Text{
+                    id: progress
+                    text: scrollView.progressValue + " / " + scrollView.targetValue + " " +
+                          scrollView.unit + " completed"
+                    font.pixelSize: 16
+                    color: Comp.Globals.color.secondary.shade2
+                }
+            }
+
+            Rectangle {
+                Layout.preferredWidth: scrollView.width
+                Layout.preferredHeight: 1
+                Layout.leftMargin: -20
+                Layout.rightMargin: -20
+                color: Comp.Globals.color.primary.shade4
+            }
+
+            Column {
                 Layout.fillWidth: true
                 spacing: 12
 
                 Comp.ContentIconLabelData {
                     id: parentGoal
+                    width: parent.width
                     iconSource: "qrc:/hierarchy_icon.svg"
                     label: "Parent Goal"
-                    value: "Sample"
+                    value: scrollView.parentGoalId ? dbAccess.getValue("goals","name",scrollView.parentGoalId) :
+                                                     ""
                     color: "white"
+                    visible: scrollView.parentGoalId
+                    underline: true
                 }
 
                 Comp.ContentIconLabelData {
                     id: status
+                    width: parent.width
                     iconSource: "qrc:/status_icon.svg"
                     label: "Status"
                     value: Comp.Globals.statusTypes[Comp.Utils.getStatus(scrollView.startDateTime,
@@ -108,6 +142,7 @@ ScrollView {
 
                 Comp.ContentIconLabelData {
                     id: category
+                    width: parent.width
                     iconSource: "qrc:/category_icon.svg"
                     label: "Category"
                     color: "white"
@@ -115,6 +150,7 @@ ScrollView {
 
                 Comp.ContentIconLabelData {
                     id: timeFrame
+                    width: parent.width
                     iconSource: "qrc:/date_time_icon.svg"
                     label: "Time Frame"
                     value: scrollView.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP") + " -\n" +
@@ -125,6 +161,7 @@ ScrollView {
 
                 Comp.ContentIconLabelData {
                     id: tracker
+                    width: parent.width
                     iconSource: "qrc:/tracker_icon.svg"
                     label: "Tracker"
                     value: Comp.Globals.trackerTypes[scrollView.trackerType]

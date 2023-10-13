@@ -13,11 +13,12 @@ Comp.PageView {
 
     property alias parentGoalId: parentGoal.parentGoalId
     property Goal goal: Goal {
+        itemId: 0
         name: common.goalName
         imageSource: common.imageSource
         category: common.category
-        startDateTime: timeFrame.startDateTime
-        endDateTime: timeFrame.endDateTime
+        startDateTime: timeFrame.startDateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
+        endDateTime: timeFrame.endDateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
         progressTracker: progress.trackerType
         progressValue: progress.progressValue
         targetValue: progress.targetValue
@@ -27,10 +28,34 @@ Comp.PageView {
         obstacles: description.obstacles
         resources: description.resources
         parentGoalId: parentGoal.parentGoalId
+
+        onItemIdChanged: {
+            if(itemId) {
+                let tempGoal = dbAccess.getGoalItem(itemId)
+                common.goalName = tempGoal.name
+                common.imageSource = tempGoal.imageSource
+                common.category = tempGoal.category
+                timeFrame.startDateTime = Date.fromLocaleString(Qt.locale(),
+                                                                tempGoal.startDateTime,
+                                                                "yyyy-MM-dd hh:mm:ss")
+                timeFrame.endDateTime = Date.fromLocaleString(Qt.locale(),
+                                                              tempGoal.endDateTime,
+                                                              "yyyy-MM-dd hh:mm:ss")
+                progress.trackerType = tempGoal.progressTracker
+                progress.progressValue = tempGoal.progressValue
+                progress.targetValue = tempGoal.targetValue
+                progress.unit = tempGoal.progressUnit
+                description.mission = tempGoal.mission
+                description.vision = tempGoal.vision
+                description.obstacles = tempGoal.obstacles
+                description.resources = tempGoal.resources
+                parentGoal.parentGoalId = tempGoal.parentGoalId
+            }
+        }
     }
 
     isInitItem: false
-    title: "Create Goal"
+    title: pageView.goal.itemId ? "Edit Goal" : "Create Goal"
     focusPolicy: Qt.ClickFocus
 
     Material.accent: Comp.Globals.color.accent.shade1
@@ -39,13 +64,55 @@ Comp.PageView {
         anchors.fill: parent
         spacing: 30
 
+        ListView {
+            id: listView
+            Layout.fillHeight: true
+            Layout.preferredWidth: 150
+            Layout.topMargin: 30
+            Layout.leftMargin: 30
+            visible: !pageIndicator.visible && pageView.goal.itemId
+            spacing: 0
+            currentIndex: 0
+            delegate: ItemDelegate {
+                width: listView.width
+                required property string modelData
+                required property int index
+                text: modelData
+                highlighted: ListView.isCurrentItem
+                onClicked: {
+                    let hasError
+
+                    if(stepper.currentIndex === 0) {
+                        common.checkError()
+                        hasError = common.hasError
+                    }
+                    else if(stepper.currentIndex === 3) {
+                        progress.checkError()
+                        hasError = progress.hasError
+                    }
+
+                    if(!hasError) {
+                        listView.currentIndex = index
+                        stackLayout.currentIndex = index
+                        stepper.currentIndex = index
+                    }
+                }
+            }
+
+            model: ["Common", "Parent Goal", "Time Frame", "Progress", "Description"]
+
+            TapHandler {
+                onTapped: listView.forceActiveFocus()
+            }
+        }
+
         Comp.Stepper {
             id: stepper
             Layout.fillHeight: true
             Layout.preferredWidth: 100
             Layout.topMargin: 30
             Layout.leftMargin: 30
-            visible: !pageIndicator.visible
+            visible: !pageIndicator.visible && !listView.visible
             model: ["Common", "Parent Goal", "Time Frame", "Progress", "Description"]
 
             TapHandler {
@@ -73,11 +140,13 @@ Comp.PageView {
                 id: stackLayout
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                currentIndex: stepper.currentIndex
+                currentIndex: {
+                    stepper.currentIndex
+                }
 
                 CommonFormView { id: common }
                 ParentGoalFormView { id: parentGoal }
-                TimeFrameFormView { id: timeFrame }
+                TimeFrameFormView { id: timeFrame; editMode: pageView.goal.itemId }
                 ProgressFormView { id: progress }
                 DescriptionFormView { id: description }
             }
@@ -99,6 +168,7 @@ Comp.PageView {
                     onClicked: {
                         if(stepper.currentIndex > 0) {
                             stepper.currentIndex--
+                            listView.currentIndex--
                         }
                     }
                 }
@@ -129,7 +199,10 @@ Comp.PageView {
                             }
                         }
                         else {
-                            dbAccess.saveGoalItem(pageView.goal)
+                            if(pageView.goal.itemId)
+                                dbAccess.updateGoalItem(pageView.goal)
+                            else
+                                dbAccess.saveGoalItem(pageView.goal)
                             stackPageView.pop()
                         }
                     }

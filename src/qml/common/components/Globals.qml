@@ -11,6 +11,7 @@ QtObject {
             property color shade1: "black"
             property color shade2: "#121212"
             property color shade3: Material.color(Material.Grey, Material.Shade900)
+            property color shade4: "#393939"
         }
 
         property QtObject secondary: QtObject {

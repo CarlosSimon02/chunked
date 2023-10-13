@@ -10,14 +10,17 @@ ScrollView {
     id: scrollView
     contentHeight: columnLayout.height
 
-    property string startDateTime: startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
-    property string endDateTime: endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
+    property alias startDateTime: startDateTimePicker.dateTime
+    property alias endDateTime: endDateTimePicker.dateTime
+    property bool editMode
 
     Component.onCompleted: {
-        startDateTimePicker.dateTime = new Date()
-        startDateTimePicker.dateTime.setHours(0,0)
-        endDateTimePicker.dateTime = startDateTimePicker.dateTime
-        endDateTimePicker.dateTime.setDate(endDateTimePicker.dateTime.getDate() + 1)
+        if(!scrollView.editMode) {
+            startDateTimePicker.dateTime = new Date()
+            startDateTimePicker.dateTime.setHours(0,0)
+            endDateTimePicker.dateTime = startDateTimePicker.dateTime
+            endDateTimePicker.dateTime.setDate(endDateTimePicker.dateTime.getDate() + 1)
+        }
 
         startTime.text = startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
         endTime.text = endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")

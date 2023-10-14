@@ -4,13 +4,14 @@ DatePicker 1.0 DatePicker.qml
 DateTimePickerDialog 1.0 DateTimePickerDialog.qml
 Dialog 1.0 Dialog.qml
 DrawerContent 1.0 DrawerContent.qml
+NavBar 1.0 NavBar.qml
+NavBarDelegate 1.0 NavBarDelegate.qml
 PageView 1.0 PageView.qml
 ProgressBar 1.0 ProgressBar.qml
 RoundedPane 1.0 RoundedPane.qml
 StackPageView 1.0 StackPageView.qml
 Stepper 1.0 Stepper.qml
+TimePicker 1.0 TimePicker.qml
 Utils 1.0 Utils.js
 
 singleton Globals Globals.qml
-
-

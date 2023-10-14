@@ -1,70 +1,35 @@
 import QtQuick
-import QtQuick.Templates as T
-import QtQuick.Controls.impl
 import QtQuick.Controls.Material
-import QtQuick.Controls.Material.impl
+import QtQuick.Layouts
+import app
 
 import components as Comp
+import components.buttons as Btn
+import components.inputs as Inpt
 
-T.TextField {
-    id: control
+Inpt.BasicTextField {
+    id: textField
 
-    implicitWidth: implicitBackgroundWidth + leftInset + rightInset
-                   || Math.max(contentWidth, placeholder.implicitWidth) + leftPadding + rightPadding
-    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             contentHeight + topPadding + bottomPadding)
+    property Task task: Task{}
+    signal save
 
-    leftPadding: Material.textFieldHorizontalPadding
-    rightPadding: Material.textFieldHorizontalPadding
-    // Need to account for the placeholder text when it's sitting on top.
-    topPadding: Material.containerStyle === Material.Filled
-        ? placeholderText.length > 0 && (activeFocus || length > 0)
-            ? Material.textFieldVerticalPadding + placeholder.largestHeight
-            : Material.textFieldVerticalPadding
-        : Material.textFieldVerticalPadding
-    bottomPadding: Material.textFieldVerticalPadding
-
-    color: enabled ? Material.foreground : Material.hintTextColor
-    selectionColor: Material.accentColor
-    selectedTextColor: Material.primaryHighlightedTextColor
+    implicitHeight: 45
     placeholderText: "Type your task here and press 'Enter' to save"
-    placeholderTextColor: Material.hintTextColor
-    verticalAlignment: TextInput.AlignVCenter
 
-    Material.containerStyle: Material.Outlined
+    Keys.onReturnPressed: {
+        if (textField.length > 0)
+        {
+            textField.task.name = textField.text
+            textField.task.startDateTime = dateTimeFramePicker.startDateTimeText
+            textField.task.endDateTime = dateTimeFramePicker.endDateTimeText
+            textField.task.actualDuration = actualDurationSpinBox.value
+            textField.task.outcome = outcomeSpinBox.value
+            textField.task.notes = notesTextArea.text
+            textField.save()
 
-    cursorDelegate: CursorDelegate { }
-
-    PlaceholderText {
-        id: placeholder
-        x: control.leftPadding
-        y: control.topPadding
-        width: control.width - (control.leftPadding + control.rightPadding)
-        height: control.height - (control.topPadding + control.bottomPadding)
-
-        text: control.placeholderText
-        font: control.font
-        color: control.placeholderTextColor
-        verticalAlignment: control.verticalAlignment
-        visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
-        elide: Text.ElideRight
-        renderType: control.renderType
-    }
-
-    background: MaterialTextContainer {
-        implicitWidth: 120
-        implicitHeight: control.Material.textFieldHeight
-
-        filled: control.Material.containerStyle === Material.Filled
-        fillColor: control.Material.textFieldFilledContainerColor
-        outlineColor: (enabled && control.hovered) ? control.Material.primaryTextColor : control.Material.hintTextColor
-        focusedOutlineColor: control.Material.accentColor
-        // When the control's size is set larger than its implicit size, use whatever size is smaller
-        // so that the gap isn't too big.
-        placeholderTextWidth: 0
-        controlHasActiveFocus: control.activeFocus
-        controlHasText: control.length > 0
-        placeholderHasText: false
-        horizontalPadding: control.Material.textFieldHorizontalPadding
+            textField.text = ""
+            dateTimeFramePicker.reset()
+            taskDetailsPopup.reset()
+        }
     }
 }

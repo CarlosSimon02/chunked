@@ -78,5 +78,9 @@
         <file>common/components/inputs/TextField.qml</file>
         <file>common/components/inputs/BasicTextField.qml</file>
         <file>common/components/inputs/qmldir</file>
+        <file>common/components/NavBar.qml</file>
+        <file>common/components/NavBarDelegate.qml</file>
+        <file>common/views/tasks_body/views/create_task/CreateTaskView.qml</file>
+        <file>common/views/tasks_body/components/IconComboBox.qml</file>
     </qresource>
 </RCC>

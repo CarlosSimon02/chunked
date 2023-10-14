@@ -6,11 +6,13 @@ import components as Comp
 import components.buttons as Btn
 import components.delegates as Dlg
 import "./components" as MComp
+import "./views/create_task"
 import "./views/filter"
 import "./views/task_info_drawer"
 
 RowLayout {
     id: rowLayout
+    spacing: 0
 
     property int parentGoalId: 0
     property bool isSubGoal: false
@@ -29,21 +31,29 @@ RowLayout {
         clip: true
         header: RowLayout {
             width: parent.width
+            spacing: 10
+
             MComp.CreateTaskTextField {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
                 Layout.bottomMargin: 10
             }
 
-           Btn.PageHeaderButton {
-                Layout.preferredWidth: 30
-                Layout.preferredHeight: 30
-                Layout.alignment: Qt.AlignVCenter
+            Comp.NavBarDelegate {
+                Layout.preferredWidth: 45
+                Layout.preferredHeight: 45
+                Layout.bottomMargin: 10
+                icon.source: "qrc:/edit_icon.svg"
+                visible: !columnLayout.visible
+
+            }
+
+            Comp.NavBarDelegate {
+                Layout.preferredWidth: 45
+                Layout.preferredHeight: 45
                 Layout.bottomMargin: 10
                 icon.source: "qrc:/filter_icon.svg"
-                visible: !filterView.visible
-                icon.width: 25
-                icon.height: 25
+                visible: !columnLayout.visible
 
                 onClicked: filterDrawerView.open()
             }
@@ -85,20 +95,86 @@ RowLayout {
             ListElement {
                 date: "Today"
             }
+        }
+    }
 
-            ListElement {
-                date: "Today"
+    Rectangle {
+        Layout.fillHeight: true
+        Layout.preferredWidth: 1
+        color: "white"
+        visible: columnLayout.visible
+    }
+
+    ColumnLayout {
+        id: columnLayout
+        Layout.preferredWidth: 380
+        Layout.maximumWidth: 380
+        Layout.leftMargin: 30
+        visible: !rowLayout.parentGoalId && window.width > 1200
+
+        Comp.NavBar {
+            id: navBar
+            Layout.fillWidth: true
+            Layout.preferredHeight: 45
+            Layout.topMargin: 30
+            clip: false
+
+            delegate: Comp.NavBarDelegate {
+                width: navBar.height
+                height: navBar.height
+                icon.source: model.icon
+                icon.width: 20
+                icon.height: 20
+
+                onClicked: {
+                    ListView.view.currentIndex = model.index
+                }
+            }
+
+            model: ListModel {
+                ListElement {
+                    icon: "qrc:/edit_icon.svg"
+                }
+
+                ListElement {
+                    icon: "qrc:/filter_icon.svg"
+                }
+            }
+        }
+
+        StackLayout {
+            Layout.fillHeight: true
+            Layout.preferredWidth: 380
+            currentIndex: navBar.currentIndex
+
+            ScrollView {
+                id: createTaskScrollView
+                CreateTaskView {
+                    topPadding: 30
+                    rightPadding: 30
+                    width: createTaskScrollView.width
+                }
+            }
+
+            ScrollView {
+                id: scrollView
+
+                Pane {
+                    width: scrollView.width
+                    padding: 0
+                    topPadding: 30
+                    rightPadding: 30
+
+                    FilterView {
+                        id: filterView
+                        width: parent.width
+                    }
+                }
             }
         }
     }
 
-    FilterView {
-        id: filterView
-        Layout.topMargin: 30
-        Layout.rightMargin: 30
-        Layout.alignment: Qt.AlignTop
-        visible: !rowLayout.parentGoalId && window.width > 1200
-    }
+
 
     FilterDrawerView {
         id: filterDrawerView

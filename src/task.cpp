@@ -47,40 +47,26 @@ void Task::setDone(bool done)
     }
 }
 
-QString Task::startDateTime() const
+QString Task::dateTime() const
 {
-    return m_startDateTime;
+    return m_dateTime;
 }
 
-void Task::setStartDateTime(const QString &startDateTime)
+void Task::setDateTime(const QString &dateTime)
 {
-    if (startDateTime != m_startDateTime)
+    if (dateTime != m_dateTime)
     {
-        m_startDateTime = startDateTime;
-        emit startDateTimeChanged();
+        m_dateTime = dateTime;
+        emit dateTimeChanged();
     }
 }
 
-QString Task::endDateTime() const
-{
-    return m_endDateTime;
-}
-
-void Task::setEndDateTime(const QString &endDateTime)
-{
-    if (endDateTime != m_endDateTime)
-    {
-        m_endDateTime = endDateTime;
-        emit endDateTimeChanged();
-    }
-}
-
-int Task::actualDuration() const
+int Task::duration() const
 {
     return m_actualDuration;
 }
 
-void Task::setActualDuration(int actualDuration)
+void Task::duration(int actualDuration)
 {
     if (actualDuration != m_actualDuration)
     {
@@ -89,31 +75,17 @@ void Task::setActualDuration(int actualDuration)
     }
 }
 
-int Task::outcome() const
+int Task::outcomes() const
 {
-    return m_outcome;
+    return m_outcomes;
 }
 
-void Task::setOutcome(int outcome)
+void Task::setOutcomes(int outcomes)
 {
-    if (outcome != m_outcome)
+    if (outcomes != m_outcomes)
     {
-        m_outcome = outcome;
-        emit outcomeChanged();
-    }
-}
-
-QString Task::notes() const
-{
-    return m_notes;
-}
-
-void Task::setNotes(const QString &notes)
-{
-    if (notes != m_notes)
-    {
-        m_notes = notes;
-        emit notesChanged();
+        m_outcomes = outcomes;
+        emit outcomesChanged();
     }
 }
 

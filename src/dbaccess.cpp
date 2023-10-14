@@ -46,7 +46,7 @@ DBAccess::DBAccess(QObject *parent)
                    "done INTEGER, "
                    "dateTime TEXT, "
                    "duration INTEGER, "
-                   "outcome INTEGER, "
+                   "outcomes INTEGER, "
                    "parentGoalId INTEGER, "
                    "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId) ON DELETE CASCADE"
                    ");");

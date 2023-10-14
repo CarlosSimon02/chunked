@@ -44,11 +44,9 @@ DBAccess::DBAccess(QObject *parent)
                    "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
                    "name TEXT, "
                    "done INTEGER, "
-                   "startDateTime TEXT, "
-                   "endDateTime TEXT, "
-                   "actualDuration INTEGER, "
+                   "dateTime TEXT, "
+                   "duration INTEGER, "
                    "outcome INTEGER, "
-                   "notes TEXT, "
                    "parentGoalId INTEGER, "
                    "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId) ON DELETE CASCADE"
                    ");");

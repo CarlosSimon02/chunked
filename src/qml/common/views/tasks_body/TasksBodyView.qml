@@ -101,7 +101,7 @@ RowLayout {
     Rectangle {
         Layout.fillHeight: true
         Layout.preferredWidth: 1
-        color: "white"
+        color: Comp.Globals.color.secondary.shade1
         visible: columnLayout.visible
     }
 

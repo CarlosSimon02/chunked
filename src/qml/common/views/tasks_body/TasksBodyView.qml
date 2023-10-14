@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import app
 
 import components as Comp
 import components.buttons as Btn
@@ -37,6 +38,10 @@ RowLayout {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
                 Layout.bottomMargin: 10
+
+                task.outcomes: createTaskView.outcomes
+                task.dateTime: createTaskView.dateTime
+                task.duration: createTaskView.duration
             }
 
             Comp.NavBarDelegate {
@@ -83,18 +88,8 @@ RowLayout {
             onClicked: taskInfoDrawerView.open()
         }
 
-        model: ListModel {
-            ListElement {
-                date: "Today"
-            }
-
-            ListElement {
-                date: "Today"
-            }
-
-            ListElement {
-                date: "Today"
-            }
+        model: TasksTableModel {
+            parentGoalId: rowLayout.parentGoalId
         }
     }
 
@@ -149,7 +144,9 @@ RowLayout {
 
             ScrollView {
                 id: createTaskScrollView
+
                 CreateTaskView {
+                    id: createTaskView
                     topPadding: 30
                     rightPadding: 30
                     width: createTaskScrollView.width

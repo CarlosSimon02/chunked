@@ -20,16 +20,9 @@ Inpt.BasicTextField {
         if (textField.length > 0)
         {
             textField.task.name = textField.text
-            textField.task.startDateTime = dateTimeFramePicker.startDateTimeText
-            textField.task.endDateTime = dateTimeFramePicker.endDateTimeText
-            textField.task.actualDuration = actualDurationSpinBox.value
-            textField.task.outcome = outcomeSpinBox.value
-            textField.task.notes = notesTextArea.text
             textField.save()
 
             textField.text = ""
-            dateTimeFramePicker.reset()
-            taskDetailsPopup.reset()
         }
     }
 }

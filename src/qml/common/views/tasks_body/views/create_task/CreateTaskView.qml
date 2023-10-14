@@ -10,6 +10,10 @@ Pane {
     implicitWidth: 350
     padding: 0
 
+    property alias outcomes: outcomes.value
+    property date dateTime: datePicker.chosenDateTime
+    property int duration: durationPicker.duration
+
     ColumnLayout {
         spacing: 30
 
@@ -24,6 +28,7 @@ Pane {
             }
 
             SpinBox {
+                id: outcomes
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
                 editable: true
@@ -123,6 +128,8 @@ Pane {
                             id: timePicker
                             anchors.horizontalCenter: parent.horizontalCenter
                             height: parent.height
+                            onChooseTime: datePicker.chosenDateTime.setHours(chosenDateTime.getHours(),
+                                                                             chosenDateTime.getMinutes())
                         }
                     }
 
@@ -154,7 +161,7 @@ Pane {
                             }
                         }
 
-                        Comp.TimePicker {
+                        MComp.DurationPicker {
                             id: durationPicker
                             anchors.horizontalCenter: parent.horizontalCenter
                             height: parent.height

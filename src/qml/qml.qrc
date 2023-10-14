@@ -82,5 +82,6 @@
         <file>common/components/NavBarDelegate.qml</file>
         <file>common/views/tasks_body/views/create_task/CreateTaskView.qml</file>
         <file>common/views/tasks_body/components/IconComboBox.qml</file>
+        <file>common/views/tasks_body/components/DurationPicker.qml</file>
     </qresource>
 </RCC>

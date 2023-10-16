@@ -31,8 +31,7 @@ StackView {
                 Text {
                     text: stackView.months[monthGrid.month] + " " + monthGrid.year
                     color: Comp.Globals.color.secondary.shade4
-                    font.pixelSize: Comp.Globals.fontSize.large
-                    font.weight: Font.DemiBold
+                    font.pixelSize: Comp.Globals.fontSize.medium
 
                     MouseArea {
                         anchors.fill: parent
@@ -174,8 +173,7 @@ StackView {
                 Text {
                     text: monthGrid.year
                     color: Comp.Globals.color.secondary.shade4
-                    font.pixelSize: Comp.Globals.fontSize.large
-                    font.weight: Font.DemiBold
+                    font.pixelSize: Comp.Globals.fontSize.medium
 
                     MouseArea {
                         anchors.fill: parent
@@ -229,8 +227,7 @@ StackView {
                     Text {
                         text: (gridView.startingYear).toString() + "-" + (gridView.startingYear + 15).toString()
                         color: Comp.Globals.color.secondary.shade4
-                        font.pixelSize: Comp.Globals.fontSize.large
-                        font.weight: Font.DemiBold
+                        font.pixelSize: Comp.Globals.fontSize.medium
                     }
 
                     RowLayout {

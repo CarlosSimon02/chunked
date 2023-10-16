@@ -26,15 +26,6 @@ Comp.Dialog {
     property date startDateTime
     property bool hasStartDateTime: false
 
-    header: Label {
-        text: dialog.title
-        visible: dialog.title
-        elide: Label.ElideRight
-        padding: 20
-        color: Comp.Globals.color.secondary.shade2
-        font.pixelSize: Comp.Globals.fontSize.medium
-    }
-
     Connections {
         target: backdrop
         function onTapped() {

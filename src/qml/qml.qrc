@@ -81,5 +81,6 @@
         <file>common/views/tasks_body/views/create_task/CreateTaskView.qml</file>
         <file>common/views/tasks_body/components/IconComboBox.qml</file>
         <file>common/views/tasks_body/components/DurationPicker.qml</file>
+        <file>common/views/tasks_body/views/edit_task_dialog/EditTaskDialogView.qml</file>
     </qresource>
 </RCC>

@@ -9,6 +9,7 @@ import components.delegates as Dlg
 import "./components" as MComp
 import "./views/create_task"
 import "./views/task_info_drawer"
+import "./views/edit_task_dialog"
 
 RowLayout {
     id: rowLayout
@@ -78,7 +79,6 @@ RowLayout {
             width: ListView.view.width -
                    ListView.view.leftMargin -
                    ListView.view.rightMargin
-            onClicked: taskInfoDrawerView.open()
 
             onDoneChanged: model.done = done
 
@@ -157,5 +157,9 @@ RowLayout {
         id: taskInfoDrawerView
         y: topBarView.height
         height: parent.height - topBarView.height
+    }
+
+    EditTaskDialogView {
+        id: editTaskDialogView
     }
 }

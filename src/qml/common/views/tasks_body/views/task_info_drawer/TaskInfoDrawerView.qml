@@ -66,7 +66,7 @@ Drawer {
                         width: scrollView.width
 
                         ColumnLayout {
-                            spacing: 30
+                            spacing: 40
                             Layout.margins: 20
 
                             ColumnLayout {

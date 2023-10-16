@@ -8,15 +8,16 @@ import "./impl" as Impl
 Impl.ItemDelegate {
     id: control
 
-    horizontalPadding: 10
-    verticalPadding: text.lineCount > 1 ? 5 : 0
-
     property alias done: checkBox.checked
     property int outcomes
     property alias taskName: taskName.text
     property date dateTime
     property int duration
 
+    horizontalPadding: 10
+    verticalPadding: text.lineCount > 1 ? 5 : 0
+
+    onClicked: taskInfoDrawerView.open()
     onDateTimeChanged: {
         let tempDate = control.dateTime
         tempDate.setMinutes(tempDate.getMinutes() + control.duration)
@@ -92,20 +93,18 @@ Impl.ItemDelegate {
 
                     MenuItem {
                         text: qsTr("Open")
-//                        onTriggered: {
-//                            stackPageView.push("qrc:/common/views/goal_info/GoalInfoView.qml",
-//                                               {"itemId": control.itemId})
-//                        }
+                        onTriggered: {
+                            taskInfoDrawerView.open()
+                        }
 
                         Material.accent: Material.color(Material.Lime, Material.Shade900)
                     }
 
                     MenuItem {
                         text: qsTr("Edit")
-//                        onTriggered: {
-//                            stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateEditGoalView.qml",
-//                                               {"goal.itemId" : control.itemId})
-//                        }
+                        onTriggered: {
+                            editTaskDialogView.open()
+                        }
 
                         Material.accent: Material.color(Material.Lime, Material.Shade900)
                     }

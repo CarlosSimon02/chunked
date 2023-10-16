@@ -50,7 +50,7 @@ ScrollView {
 
         ColumnLayout {
             Layout.margins: 20
-            spacing: 20
+            spacing: 40
 
             ColumnLayout {
                 spacing: 8
@@ -75,14 +75,6 @@ ScrollView {
                 }
             }
 
-            Rectangle {
-                Layout.preferredWidth: scrollView.width
-                Layout.preferredHeight: 1
-                Layout.leftMargin: -20
-                Layout.rightMargin: -20
-                color: Comp.Globals.color.primary.shade4
-            }
-
             ColumnLayout {
                 spacing: 0
 
@@ -101,14 +93,6 @@ ScrollView {
                     font.pixelSize: 16
                     color: Comp.Globals.color.secondary.shade2
                 }
-            }
-
-            Rectangle {
-                Layout.preferredWidth: scrollView.width
-                Layout.preferredHeight: 1
-                Layout.leftMargin: -20
-                Layout.rightMargin: -20
-                color: Comp.Globals.color.primary.shade4
             }
 
             Column {

@@ -50,7 +50,6 @@ Comp.PageView {
 
                 delegate: Dlg.TaskItemDelegate {
                     width: ListView.view.width
-                    date: "Today"
                     onClicked: taskInfoDrawerView.open()
                 }
 

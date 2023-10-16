@@ -36,9 +36,8 @@ RowLayout {
         id: value
         Layout.fillWidth: true
         Layout.preferredWidth: implicitWidth
-        text: model.value
         font.pixelSize: Comp.Globals.fontSize.medium
-        color: model.color
+        color: "white"
         wrapMode: Text.Wrap
     }
 }

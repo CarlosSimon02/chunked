@@ -55,3 +55,17 @@ function getStatus(startDateTime, endDateTime, isCompleted) {
             return 3
     }
 }
+
+function getSectionTitleDate(dateTime) {
+    let dateNow = new Date()
+
+    if(dateTime.getFullYear() === dateNow.getFullYear()) {
+        if(dateTime.getMonth() === dateNow.getMonth()) {
+            if(dateTime.getDate() === dateNow.getDate()) return "Today"
+            else if(dateTime.getDate() === dateNow.getDate() + 1) return "Tomorrow"
+            else if(dateTime.getDate() === dateNow.getDate() - 1) return "Yesterday"
+        }
+        return dateTime.toLocaleString(Qt.locale(),"MMM dd")
+    }
+    else return dateTime.toLocaleString(Qt.locale(),"yyyy MMM dd")
+}

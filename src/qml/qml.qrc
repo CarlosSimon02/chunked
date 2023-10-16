@@ -31,8 +31,6 @@
         <file>common/views/habits_body/qmldir</file>
         <file>common/views/tasks_body/qmldir</file>
         <file>common/views/tasks_body/components/CreateTaskTextField.qml</file>
-        <file>common/views/tasks_body/views/filter/FilterDrawerView.qml</file>
-        <file>common/views/tasks_body/views/filter/FilterView.qml</file>
         <file>common/views/tasks_body/views/task_info_drawer/TaskInfoDrawerView.qml</file>
         <file>common/views/tasks_body/views/task_info_drawer/components/TextArea.qml</file>
         <file>common/views/tasks_body/views/task_info_drawer/components/FieldRowLayout.qml</file>

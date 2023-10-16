@@ -63,15 +63,15 @@ void Task::setDateTime(const QString &dateTime)
 
 int Task::duration() const
 {
-    return m_actualDuration;
+    return m_duration;
 }
 
-void Task::duration(int actualDuration)
+void Task::setDuration(int duration)
 {
-    if (actualDuration != m_actualDuration)
+    if (duration != m_duration)
     {
-        m_actualDuration = actualDuration;
-        emit actualDurationChanged();
+        m_duration = duration;
+        emit durationChanged();
     }
 }
 

@@ -11,7 +11,7 @@ Pane {
     padding: 0
 
     property alias outcomes: outcomes.value
-    property date dateTime: datePicker.chosenDateTime
+    property alias dateTime: datePicker.chosenDateTime
     property int duration: durationPicker.duration
 
     ColumnLayout {
@@ -128,8 +128,9 @@ Pane {
                             id: timePicker
                             anchors.horizontalCenter: parent.horizontalCenter
                             height: parent.height
-                            onChooseTime: datePicker.chosenDateTime.setHours(chosenDateTime.getHours(),
-                                                                             chosenDateTime.getMinutes())
+                            chosenDateTime: new Date(0,0,0,0,0,0)
+                            onChooseTime: datePicker.chosenDateTime.setHours(timePicker.chosenDateTime.getHours(),
+                                                                             timePicker.chosenDateTime.getMinutes())
                         }
                     }
 

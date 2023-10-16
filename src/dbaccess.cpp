@@ -45,6 +45,7 @@ DBAccess::DBAccess(QObject *parent)
                    "name TEXT, "
                    "done INTEGER, "
                    "dateTime TEXT, "
+                   "date Text, "  //This is for listview sectioning use only, do not explicitly assign value, base on dateTime value
                    "duration INTEGER, "
                    "outcomes INTEGER, "
                    "parentGoalId INTEGER, "
@@ -210,18 +211,17 @@ void DBAccess::saveTaskItem(Task *task)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO tasks "
-                  "(name, done, startDateTime, endDateTime, actualDuration, "
-                  "outcome, notes, parentGoalId) "
+                  "(name, done, dateTime, date, duration, "
+                  "outcomes, parentGoalId) "
                   "VALUES "
-                  "(:name, :done, :startDateTime, :endDateTime, :actualDuration, "
-                  ":outcome, :notes, :parentGoalId);");
+                  "(:name, :done, :dateTime, :date, :duration, "
+                  ":outcomes, :parentGoalId);");
     query.bindValue(":name", task->name());
     query.bindValue(":done", task->done());
-    query.bindValue(":startDateTime", task->startDateTime());
-    query.bindValue(":endDateTime", task->endDateTime());
-    query.bindValue(":actualDuration", task->actualDuration());
-    query.bindValue(":outcome", task->outcome());
-    query.bindValue(":notes", task->notes());
+    query.bindValue(":dateTime", task->dateTime());
+    query.bindValue(":date", task->dateTime().first(10));
+    query.bindValue(":duration", task->duration());
+    query.bindValue(":outcomes", task->outcomes());
     query.bindValue(":parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()));
     query.exec();
 

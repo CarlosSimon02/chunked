@@ -8,7 +8,6 @@ import components.buttons as Btn
 import components.delegates as Dlg
 import "./components" as MComp
 import "./views/create_task"
-import "./views/filter"
 import "./views/task_info_drawer"
 
 RowLayout {
@@ -40,8 +39,12 @@ RowLayout {
                 Layout.bottomMargin: 10
 
                 task.outcomes: createTaskView.outcomes
-                task.dateTime: createTaskView.dateTime
+                task.dateTime: createTaskView.dateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
                 task.duration: createTaskView.duration
+
+                onSave: {
+                    listView.model.insertRecord(task)
+                }
             }
 
             Comp.NavBarDelegate {
@@ -49,18 +52,7 @@ RowLayout {
                 Layout.preferredHeight: 45
                 Layout.bottomMargin: 10
                 icon.source: "qrc:/edit_icon.svg"
-                visible: !columnLayout.visible
-
-            }
-
-            Comp.NavBarDelegate {
-                Layout.preferredWidth: 45
-                Layout.preferredHeight: 45
-                Layout.bottomMargin: 10
-                icon.source: "qrc:/filter_icon.svg"
-                visible: !columnLayout.visible
-
-                onClicked: filterDrawerView.open()
+                visible: !createTaskScrollView.visible
             }
         }
 
@@ -69,7 +61,9 @@ RowLayout {
             topPadding: 10
             bottomPadding: 10
             required property string section
-            text: section
+            text: Comp.Utils.getSectionTitleDate(Date.fromLocaleString(Qt.locale(),
+                                                                       section,
+                                                                       "yyyy-MM-dd"))
             color: Comp.Globals.color.secondary.shade2
             font.pixelSize: Comp.Globals.fontSize.small
         }
@@ -84,12 +78,55 @@ RowLayout {
             width: ListView.view.width -
                    ListView.view.leftMargin -
                    ListView.view.rightMargin
-            date: "Today"
             onClicked: taskInfoDrawerView.open()
+
+            onDoneChanged: model.done = done
+
+            Component.onCompleted: {
+                done = model.done
+                outcomes = model.outcomes
+                taskName = model.name
+                dateTime = Date.fromLocaleString(Qt.locale(),
+                                                model.dateTime,
+                                                "yyyy-MM-dd hh:mm:ss")
+                duration = model.duration
+            }
         }
 
         model: TasksTableModel {
             parentGoalId: rowLayout.parentGoalId
+        }
+
+        add: Transition {
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { property: "opacity"; from: 0.7; to: 1.0; duration: 200 }
+                    NumberAnimation { property: "scale"; from: 0.7; to: 1.0; duration: 200 }
+                }
+
+                ScriptAction {
+                    script: listView.model.refresh()
+                }
+            }
+        }
+
+        remove: Transition {
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { property: "opacity"; from: 1; to: 0.7; duration: 200 }
+                    NumberAnimation { property: "scale"; from: 1; to: 0.7; duration: 200 }
+                }
+
+                ScriptAction {
+                    script: listView.model.refresh()
+                }
+            }
+        }
+
+        displaced: Transition {
+            NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
+            NumberAnimation { property: "opacity"; to: 1.0 }
+            NumberAnimation { property: "scale"; to: 1.0 }
         }
     }
 
@@ -97,86 +134,23 @@ RowLayout {
         Layout.fillHeight: true
         Layout.preferredWidth: 1
         color: Comp.Globals.color.secondary.shade1
-        visible: columnLayout.visible
+        visible: createTaskScrollView.visible
     }
 
-    ColumnLayout {
-        id: columnLayout
+    ScrollView {
+        id: createTaskScrollView
         Layout.preferredWidth: 380
+        Layout.fillHeight: true
         Layout.maximumWidth: 380
         Layout.leftMargin: 30
         visible: !rowLayout.parentGoalId && window.width > 1200
 
-        Comp.NavBar {
-            id: navBar
-            Layout.fillWidth: true
-            Layout.preferredHeight: 45
-            Layout.topMargin: 30
-            clip: false
-
-            delegate: Comp.NavBarDelegate {
-                width: navBar.height
-                height: navBar.height
-                icon.source: model.icon
-                icon.width: 20
-                icon.height: 20
-
-                onClicked: {
-                    ListView.view.currentIndex = model.index
-                }
-            }
-
-            model: ListModel {
-                ListElement {
-                    icon: "qrc:/edit_icon.svg"
-                }
-
-                ListElement {
-                    icon: "qrc:/filter_icon.svg"
-                }
-            }
+        CreateTaskView {
+            id: createTaskView
+            topPadding: 30
+            rightPadding: 30
+            width: createTaskScrollView.width
         }
-
-        StackLayout {
-            Layout.fillHeight: true
-            Layout.preferredWidth: 380
-            currentIndex: navBar.currentIndex
-
-            ScrollView {
-                id: createTaskScrollView
-
-                CreateTaskView {
-                    id: createTaskView
-                    topPadding: 30
-                    rightPadding: 30
-                    width: createTaskScrollView.width
-                }
-            }
-
-            ScrollView {
-                id: scrollView
-
-                Pane {
-                    width: scrollView.width
-                    padding: 0
-                    topPadding: 30
-                    rightPadding: 30
-
-                    FilterView {
-                        id: filterView
-                        width: parent.width
-                    }
-                }
-            }
-        }
-    }
-
-
-
-    FilterDrawerView {
-        id: filterDrawerView
-        y: topBarView.height
-        height: parent.height - topBarView.height
     }
 
     TaskInfoDrawerView {

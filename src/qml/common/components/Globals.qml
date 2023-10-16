@@ -51,9 +51,9 @@ QtObject {
 
     property var statusColors: [
         "darkgoldenrod",
-        "green",
+        "darkgreen",
         "darkblue",
-        "red"
+        "darkred"
     ]
 
     property var categoryTypes: [

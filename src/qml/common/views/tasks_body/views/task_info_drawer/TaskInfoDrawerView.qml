@@ -64,82 +64,76 @@ Drawer {
 
                     ColumnLayout {
                         width: scrollView.width
-                        spacing: 20
 
                         ColumnLayout {
-                            spacing: 40
-                            Layout.margins: 10
+                            spacing: 30
+                            Layout.margins: 20
 
-                            RowLayout {
-                                CheckBox {
-                                    Layout.leftMargin: -8
-                                    Layout.alignment: Qt.AlignTop
+                            ColumnLayout {
+                                spacing: 8
+
+                                Text {
+                                    id: goalName
+                                    Layout.fillWidth: true
+                                    Layout.preferredWidth: width
+                                    wrapMode: Text.Wrap
+                                    font.pixelSize: Comp.Globals.fontSize.large
+                                    font.weight: Font.DemiBold
+                                    color: "white"
+                                    text: "This is a sample Task"
                                 }
 
-                                MComp.TextArea {
-                                    Layout.fillWidth: true
-                                    Layout.topMargin: 10
-                                    text: "HelloOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-                                    font.pixelSize: Comp.Globals.fontSize.large
+                                Text {
+                                    id: timeStatus
+    //                                text: Comp.Utils.getTimeStatus(scrollView.startDateTime,
+    //                                                               scrollView.endDateTime,
+    //                                                               progressBar.value === 1)
+                                    text: "1h 1m remaining"
+                                    font.pixelSize: Comp.Globals.fontSize.medium
+                                    color: Comp.Globals.color.secondary.shade2
                                 }
                             }
 
                             ColumnLayout {
                                 spacing: 10
 
-                                MComp.FieldRowLayout {
-                                    MComp.Icon {
-                                        Layout.alignment: Qt.AlignTop
-                                        icon.source: "qrc:/status_icon.svg"
-                                        ToolTip.text: "Status"
-                                    }
-
-                                    MComp.TextArea {
-                                        Layout.fillWidth: true
-                                        color: "green"
-                                        text: "Active"
-                                        readOnly: true
-                                    }
+                                Comp.ContentIconLabelData {
+                                    iconSource: "qrc:/status_icon.svg"
+                                    label: "Status"
+                                    value: "Active"
+                                    color: "green"
                                 }
 
-                                MComp.FieldRowLayout {
-                                    MComp.Icon {
-                                        Layout.alignment: Qt.AlignTop
-                                        icon.source: "qrc:/check_icon.svg"
-                                        ToolTip.text: "Outcome"
-                                    }
-
-                                    MComp.TextArea {
-                                        Layout.fillWidth: true
-                                        text: "1"
-                                    }
+                                Comp.ContentIconLabelData {
+                                    iconSource: "qrc:/check_icon.svg"
+                                    label: "Outcomes"
+                                    value: "1"
                                 }
 
-                                MComp.FieldRowLayout {
-                                    MComp.Icon {
-                                        Layout.alignment: Qt.AlignTop
-                                        icon.source: "qrc:/time_icon.svg"
-                                        ToolTip.text: "Time Remaining"
-                                    }
-
-                                    MComp.TextArea {
-                                        Layout.fillWidth: true
-                                        text: "4h 3m remaining"
-                                        readOnly: true
-                                    }
+                                Comp.ContentIconLabelData {
+                                    iconSource: "qrc:/date_time_icon.svg"
+                                    label: "Date and Time"
+                                    value: "29 Sep 2023 03:49 PM"
                                 }
 
-                                MComp.FieldRowLayout {
-                                    MComp.Icon {
-                                        Layout.alignment: Qt.AlignTop
-                                        icon.source: "qrc:/date_time_icon.svg"
-                                        ToolTip.text: "Time Frame"
-                                    }
+                                Comp.ContentIconLabelData {
+                                    iconSource: "qrc:/timer_icon.svg"
+                                    label: "Duration"
+                                    value: "1h"
+                                }
+                            }
 
-                                    MComp.TextArea {
-                                        Layout.fillWidth: true
-                                        text: "29 Sep 2023 03:49 PM -\n29 Sep 2023 03:49 PM\n(5h 2m)"
-                                    }
+                            RowLayout {
+                                Layout.alignment: Qt.AlignRight
+
+                                Text {
+                                    text: "Done"
+                                    font.pixelSize: Comp.Globals.fontSize.medium
+                                    color: Comp.Globals.color.secondary.shade2
+                                }
+
+                                CheckBox {
+
                                 }
                             }
                         }

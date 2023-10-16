@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import app
 
 import components as Comp
 import components.buttons as Btn
@@ -17,6 +18,21 @@ Drawer {
     Material.background: Comp.Globals.color.primary.shade2
     Material.roundedScale: Material.NotRounded
     Material.accent: Comp.Globals.color.accent.shade1
+
+    property int itemId
+    property Task task: dbAccess.getTaskItem(itemId)
+    property date startDateTime
+    property date endDateTime
+
+    onTaskChanged: {
+        startDateTime = Date.fromLocaleString(Qt.locale(),
+                                              drawer.task.dateTime,
+                                              "yyyy-MM-dd hh:mm:ss")
+        endDateTime = Date.fromLocaleString(Qt.locale(),
+                                            drawer.task.dateTime,
+                                            "yyyy-MM-dd hh:mm:ss")
+        endDateTime.setMinutes(endDateTime.getMinutes() + drawer.task.duration)
+    }
 
     //To prevent drawer from closing when clicked
     MouseArea {
@@ -73,22 +89,21 @@ Drawer {
                                 spacing: 8
 
                                 Text {
-                                    id: goalName
+                                    id: taskName
                                     Layout.fillWidth: true
                                     Layout.preferredWidth: width
                                     wrapMode: Text.Wrap
                                     font.pixelSize: Comp.Globals.fontSize.large
                                     font.weight: Font.DemiBold
                                     color: "white"
-                                    text: "This is a sample Task"
+                                    text: drawer.task.name
                                 }
 
                                 Text {
                                     id: timeStatus
-    //                                text: Comp.Utils.getTimeStatus(scrollView.startDateTime,
-    //                                                               scrollView.endDateTime,
-    //                                                               progressBar.value === 1)
-                                    text: "1h 1m remaining"
+                                    text: Comp.Utils.getTimeStatus(drawer.startDateTime,
+                                                                   drawer.endDateTime,
+                                                                   drawer.task.done)
                                     font.pixelSize: Comp.Globals.fontSize.medium
                                     color: Comp.Globals.color.secondary.shade2
                                 }
@@ -100,26 +115,31 @@ Drawer {
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/status_icon.svg"
                                     label: "Status"
-                                    value: "Active"
-                                    color: "green"
+                                    value: Comp.Globals.statusTypes[Comp.Utils.getStatus(drawer.startDateTime,
+                                                                                         drawer.endDateTime,
+                                                                                         drawer.task.done)]
+                                    color: Comp.Globals.statusColors[Comp.Utils.getStatus(drawer.startDateTime,
+                                                                                          drawer.endDateTime,
+                                                                                          drawer.task.done)]
                                 }
 
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/check_icon.svg"
                                     label: "Outcomes"
-                                    value: "1"
+                                    value: drawer.task.outcomes
                                 }
 
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/date_time_icon.svg"
                                     label: "Date and Time"
-                                    value: "29 Sep 2023 03:49 PM"
+                                    value: drawer.task.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                                 }
 
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/timer_icon.svg"
                                     label: "Duration"
-                                    value: "1h"
+                                    value: (Math.floor(drawer.task.duration / 60)).toString() +  "h" +
+                                           ((drawer.task.duration % 60) ? " " + (drawer.task.duration % 60).toString() + "m" : "")
                                 }
                             }
 
@@ -133,7 +153,7 @@ Drawer {
                                 }
 
                                 CheckBox {
-
+                                    checked: drawer.task.done
                                 }
                             }
                         }

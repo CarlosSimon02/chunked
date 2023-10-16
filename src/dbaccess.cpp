@@ -215,6 +215,33 @@ void DBAccess::updateGoalItem(Goal *goal)
     updateParentGoalProgressValue(goal->parentGoalId());
 }
 
+Task *DBAccess::getTaskItem(int itemId)
+{
+    QSqlQuery query;
+    query.prepare("SELECT name, done, dateTime, date, duration, "
+                  "outcomes, parentGoalId "
+                  "FROM tasks "
+                  "WHERE itemId = :itemId;");
+    query.bindValue(":itemId", itemId);
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << "DBAccess::getGoalItem" << query.lastError().text();
+
+    query.first();
+
+    Task* task = new Task;
+    task->setItemId(itemId);
+    task->setName(query.value(0).toString());
+    task->setDone(query.value(1).toBool());
+    task->setDateTime(query.value(2).toString());
+    task->setDuration(query.value(3).toInt());
+    task->setOutcomes(query.value(4).toInt());
+    task->setParentGoalId(query.value(5).toInt());
+
+    return task;
+}
+
 void DBAccess::saveTaskItem(Task *task)
 {
     QSqlQuery query;

@@ -47,12 +47,12 @@ void Task::setDone(bool done)
     }
 }
 
-QString Task::dateTime() const
+QDateTime Task::dateTime() const
 {
     return m_dateTime;
 }
 
-void Task::setDateTime(const QString &dateTime)
+void Task::setDateTime(const QDateTime &dateTime)
 {
     if (dateTime != m_dateTime)
     {

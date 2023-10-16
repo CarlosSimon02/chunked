@@ -22,16 +22,14 @@ void TasksTableModel::insertRecord(Task *task)
     rec.setValue("name", task->name());
     rec.setValue("done", 0);
     rec.setValue("dateTime", task->dateTime());
-    rec.setValue("date", task->dateTime().first(10));
+    rec.setValue("date", task->dateTime().toString(Qt::ISODate).first(10));
     rec.setValue("duration", task->duration());
     rec.setValue("outcomes", task->outcomes());
     rec.setValue("parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()) );
 
-    QDateTime itemDateTime = QDateTime::fromString(task->dateTime(), Qt::ISODate);
     for(int i = 0; i < rowCount(); i++)
     {
-        QDateTime tempDateTime = QDateTime::fromString(record(i).value("dateTime").toString(), Qt::ISODate);
-        if(itemDateTime > tempDateTime)
+        if(record(i).value("dateTime").toDateTime() > task->dateTime())
         {
             QSqlTableModel::insertRecord(i,rec);
             return;

@@ -69,3 +69,9 @@ function getSectionTitleDate(dateTime) {
     }
     else return dateTime.toLocaleString(Qt.locale(),"yyyy MMM dd")
 }
+
+function getEndDateTime(startDateTime, duration) {
+    let endDateTime = startDateTime
+    endDateTime.setMinutes(startDateTime.getMinutes() + duration)
+    return endDateTime
+}

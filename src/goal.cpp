@@ -61,12 +61,12 @@ void Goal::setCategory(const QString &category)
     }
 }
 
-QString Goal::startDateTime() const
+QDateTime Goal::startDateTime() const
 {
     return m_startDateTime;
 }
 
-void Goal::setStartDateTime(const QString &startDateTime)
+void Goal::setStartDateTime(const QDateTime &startDateTime)
 {
     if (startDateTime != m_startDateTime)
     {
@@ -75,12 +75,12 @@ void Goal::setStartDateTime(const QString &startDateTime)
     }
 }
 
-QString Goal::endDateTime() const
+QDateTime Goal::endDateTime() const
 {
     return m_endDateTime;
 }
 
-void Goal::setEndDateTime(const QString &endDateTime)
+void Goal::setEndDateTime(const QDateTime &endDateTime)
 {
     if (endDateTime != m_endDateTime)
     {

@@ -2,6 +2,7 @@
 #define GOAL_H
 
 #include <QObject>
+#include <QDateTime>
 #include <QtQml/qqml.h>
 
 class Goal : public QObject
@@ -11,8 +12,8 @@ class Goal : public QObject
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
     Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
-    Q_PROPERTY(QString startDateTime READ startDateTime WRITE setStartDateTime NOTIFY startDateTimeChanged)
-    Q_PROPERTY(QString endDateTime READ endDateTime WRITE setEndDateTime NOTIFY endDateTimeChanged)
+    Q_PROPERTY(QDateTime startDateTime READ startDateTime WRITE setStartDateTime NOTIFY startDateTimeChanged)
+    Q_PROPERTY(QDateTime endDateTime READ endDateTime WRITE setEndDateTime NOTIFY endDateTimeChanged)
     Q_PROPERTY(int progressTracker READ progressTracker WRITE setProgressTracker NOTIFY progressTrackerChanged)
     Q_PROPERTY(int progressValue READ progressValue WRITE setProgressValue NOTIFY progressValueChanged)
     Q_PROPERTY(int targetValue READ targetValue WRITE setTargetValue NOTIFY targetValueChanged)
@@ -34,10 +35,10 @@ public:
     void setImageSource(const QString& imageSource);
     QString category() const;
     void setCategory(const QString& category);
-    QString startDateTime() const;
-    void setStartDateTime(const QString& startDateTime);
-    QString endDateTime() const;
-    void setEndDateTime(const QString& endDateTime);
+    QDateTime startDateTime() const;
+    void setStartDateTime(const QDateTime& startDateTime);
+    QDateTime endDateTime() const;
+    void setEndDateTime(const QDateTime& endDateTime);
     int progressTracker() const;
     void setProgressTracker(int progressTracker);
     int progressValue() const;
@@ -79,8 +80,8 @@ private:
     QString m_name;
     QString m_imageSource;
     QString m_category;
-    QString m_startDateTime;
-    QString m_endDateTime;
+    QDateTime m_startDateTime;
+    QDateTime m_endDateTime;
     int m_progressTracker;
     int m_progressValue;
     int m_targetValue;

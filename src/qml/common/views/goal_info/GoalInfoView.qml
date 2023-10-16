@@ -85,12 +85,8 @@ Comp.PageView {
 
             imageSource: pageView.goal.imageSource
             goalName: pageView.goal.name
-            startDateTime: Date.fromLocaleString(Qt.locale(),
-                                                 pageView.goal.startDateTime,
-                                                 "yyyy-MM-dd hh:mm:ss")
-            endDateTime: Date.fromLocaleString(Qt.locale(),
-                                               pageView.goal.endDateTime,
-                                               "yyyy-MM-dd hh:mm:ss")
+            startDateTime: pageView.goal.startDateTime
+            endDateTime: pageView.goal.endDateTime
             category: pageView.goal.category
             trackerType: pageView.goal.progressTracker
             progressValue: pageView.goal.progressValue

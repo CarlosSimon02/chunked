@@ -21,18 +21,6 @@ Drawer {
 
     property int itemId
     property Task task: dbAccess.getTaskItem(itemId)
-    property date startDateTime
-    property date endDateTime
-
-    onTaskChanged: {
-        startDateTime = Date.fromLocaleString(Qt.locale(),
-                                              drawer.task.dateTime,
-                                              "yyyy-MM-dd hh:mm:ss")
-        endDateTime = Date.fromLocaleString(Qt.locale(),
-                                            drawer.task.dateTime,
-                                            "yyyy-MM-dd hh:mm:ss")
-        endDateTime.setMinutes(endDateTime.getMinutes() + drawer.task.duration)
-    }
 
     //To prevent drawer from closing when clicked
     MouseArea {
@@ -101,8 +89,8 @@ Drawer {
 
                                 Text {
                                     id: timeStatus
-                                    text: Comp.Utils.getTimeStatus(drawer.startDateTime,
-                                                                   drawer.endDateTime,
+                                    text: Comp.Utils.getTimeStatus(drawer.task.dateTime,
+                                                                   Comp.Utils.getEndDateTime(drawer.task.dateTime, drawer.task.duration),
                                                                    drawer.task.done)
                                     font.pixelSize: Comp.Globals.fontSize.medium
                                     color: Comp.Globals.color.secondary.shade2
@@ -115,12 +103,12 @@ Drawer {
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/status_icon.svg"
                                     label: "Status"
-                                    value: Comp.Globals.statusTypes[Comp.Utils.getStatus(drawer.startDateTime,
-                                                                                         drawer.endDateTime,
-                                                                                         drawer.task.done)]
-                                    color: Comp.Globals.statusColors[Comp.Utils.getStatus(drawer.startDateTime,
-                                                                                          drawer.endDateTime,
-                                                                                          drawer.task.done)]
+                                    value: Comp.Globals.statusTypes[Comp.Utils.getTimeStatus(drawer.task.dateTime,
+                                                                                             Comp.Utils.getEndDateTime(drawer.task.dateTime, drawer.task.duration),
+                                                                                             drawer.task.done)]
+                                    color: Comp.Globals.statusColors[Comp.Utils.getTimeStatus(drawer.task.dateTime,
+                                                                                              Comp.Utils.getEndDateTime(drawer.task.dateTime, drawer.task.duration),
+                                                                                              drawer.task.done)]
                                 }
 
                                 Comp.ContentIconLabelData {
@@ -132,7 +120,7 @@ Drawer {
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/date_time_icon.svg"
                                     label: "Date and Time"
-                                    value: drawer.task.startDateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                                    value: drawer.task.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                                 }
 
                                 Comp.ContentIconLabelData {

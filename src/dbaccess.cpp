@@ -3,6 +3,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
+#include <QDateTime>
 #include <QSqlError>
 
 DBAccess::DBAccess(QObject *parent)
@@ -114,8 +115,8 @@ Goal* DBAccess::getGoalItem(int itemId)
     goal->setName(query.value(0).toString());
     goal->setImageSource(query.value(1).toString());
     goal->setCategory(query.value(2).toString());
-    goal->setStartDateTime(query.value(3).toString());
-    goal->setEndDateTime(query.value(4).toString());
+    goal->setStartDateTime(query.value(3).toDateTime());
+    goal->setEndDateTime(query.value(4).toDateTime());
     goal->setProgressTracker(query.value(5).toInt());
     goal->setProgressValue(query.value(6).toInt());
     goal->setTargetValue(query.value(7).toInt());
@@ -234,7 +235,7 @@ Task *DBAccess::getTaskItem(int itemId)
     task->setItemId(itemId);
     task->setName(query.value(0).toString());
     task->setDone(query.value(1).toBool());
-    task->setDateTime(query.value(2).toString());
+    task->setDateTime(query.value(2).toDateTime());
     task->setDuration(query.value(3).toInt());
     task->setOutcomes(query.value(4).toInt());
     task->setParentGoalId(query.value(5).toInt());
@@ -254,7 +255,7 @@ void DBAccess::saveTaskItem(Task *task)
     query.bindValue(":name", task->name());
     query.bindValue(":done", task->done());
     query.bindValue(":dateTime", task->dateTime());
-    query.bindValue(":date", task->dateTime().first(10));
+    query.bindValue(":date", task->dateTime().toString(Qt::ISODate).first(10));
     query.bindValue(":duration", task->duration());
     query.bindValue(":outcomes", task->outcomes());
     query.bindValue(":parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()));

@@ -94,6 +94,11 @@ Pane {
 
                     Comp.DatePicker {
                         id: datePicker
+
+                        Component.onCompleted: {
+                            chosenDateTime.setHours(timePicker.chosenDateTime.getHours(),
+                                                    timePicker.chosenDateTime.getMinutes())
+                        }
                     }
 
                     Page {

@@ -40,7 +40,7 @@ RowLayout {
                 Layout.bottomMargin: 10
 
                 task.outcomes: createTaskView.outcomes
-                task.dateTime: createTaskView.dateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
+                task.dateTime: createTaskView.dateTime
                 task.duration: createTaskView.duration
 
                 onSave: {
@@ -86,9 +86,7 @@ RowLayout {
                 done = model.done
                 outcomes = model.outcomes
                 taskName = model.name
-                dateTime = Date.fromLocaleString(Qt.locale(),
-                                                model.dateTime,
-                                                "yyyy-MM-dd hh:mm:ss")
+                dateTime = model.dateTime
                 duration = model.duration
             }
         }

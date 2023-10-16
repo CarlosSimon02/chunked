@@ -17,8 +17,8 @@ Comp.PageView {
         name: common.goalName
         imageSource: common.imageSource
         category: common.category
-        startDateTime: timeFrame.startDateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
-        endDateTime: timeFrame.endDateTime.toLocaleString(Qt.locale(),"yyyy-MM-dd hh:mm:ss")
+        startDateTime: timeFrame.startDateTime
+        endDateTime: timeFrame.endDateTime
         progressTracker: progress.trackerType
         progressValue: progress.progressValue
         targetValue: progress.targetValue

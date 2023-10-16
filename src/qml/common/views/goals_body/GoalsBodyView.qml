@@ -48,12 +48,8 @@ Item {
                     itemId = model.itemId
                     imageSource = model.imageSource
                     goalName = model.name
-                    startDateTime = Date.fromLocaleString(Qt.locale(),
-                                                         model.startDateTime,
-                                                         "yyyy-MM-dd hh:mm:ss")
-                    endDateTime = Date.fromLocaleString(Qt.locale(),
-                                                       model.endDateTime,
-                                                       "yyyy-MM-dd hh:mm:ss")
+                    startDateTime = model.startDateTime
+                    endDateTime = model.endDateTime
                     category = model.category
                     progressValue = model.progressValue
                     targetValue = model.targetValue

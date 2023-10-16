@@ -39,14 +39,6 @@ Comp.PageView {
                     Material.accent: Material.color(Material.Lime, Material.Shade900)
                     Material.elevation: 15
 
-                    MenuItem {
-                        text: qsTr("Edit")
-                        onTriggered: {
-                            stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateEditGoalView.qml",
-                                               {"goal.itemId" : pageView.itemId})
-                        }
-                    }
-
                     //This option is usually use for subgoals where image is not required
                     MenuItem {
                         id: showImage
@@ -55,6 +47,23 @@ Comp.PageView {
                         checked: true
                         onTriggered: {
                             pageView.itemsHasImage = checked
+                        }
+                    }
+
+                    MenuItem {
+                        text: qsTr("Edit")
+                        onTriggered: {
+                            stackPageView.push("qrc:/common/views/goals_body/views/create_edit_goal/CreateEditGoalView.qml",
+                                               {"goal.itemId" : pageView.itemId})
+                        }
+                    }
+
+                    MenuItem {
+                        text: qsTr("Delete")
+                        Material.foreground: "red"
+                        onTriggered: {
+                            dbAccess.removeGoalItem(pageView.itemId)
+                            stackPageView.pop()
                         }
                     }
                 }

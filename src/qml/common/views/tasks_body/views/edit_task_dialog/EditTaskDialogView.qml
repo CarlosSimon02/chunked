@@ -3,6 +3,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 
 import components as Comp
+import components.inputs as Inpt
 import "../../components" as MComp
 
 Comp.Dialog {
@@ -10,9 +11,12 @@ Comp.Dialog {
     title: "Edit Task"
     width: 390
     height: 700
+    padding: 0
     parent: Overlay.overlay
     anchors.centerIn: parent
     standardButtons: Dialog.Ok | Dialog.Cancel
+
+    Material.accent: Comp.Globals.color.accent.shade1
 
     Connections {
         target: backdrop
@@ -37,157 +41,179 @@ Comp.Dialog {
 
         ColumnLayout {
             width: scrollView.width
-            spacing: 30
 
             ColumnLayout {
-                spacing: 12
+                Layout.fillWidth: true
+                Layout.leftMargin: 20
+                Layout.rightMargin: 20
+                spacing: 20
 
-                Text {
-                    text: "Outcomes"
-                    font.pixelSize: Comp.Globals.fontSize.medium
-                    font.weight: Font.DemiBold
-                    color: Material.color(Material.Grey, Material.Shade600)
-                }
+                ColumnLayout {
+                    spacing: 12
 
-                SpinBox {
-                    id: outcomes
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 45
-                    editable: true
-                    from: 1
-                    to: 99999
-                }
-            }
+                    Text {
+                        text: "Task Name"
+                        font.pixelSize: Comp.Globals.fontSize.medium
+                        font.weight: Font.DemiBold
+                        color: Material.color(Material.Grey, Material.Shade600)
+                    }
 
-            ColumnLayout {
-                spacing: 12
-
-                Text {
-                    text: "Date and Time Frame"
-                    font.pixelSize: Comp.Globals.fontSize.medium
-                    font.weight: Font.DemiBold
-                    color: Material.color(Material.Grey, Material.Shade600)
+                    Inpt.TextField {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 45
+                    }
                 }
 
                 ColumnLayout {
-                    spacing: 20
+                    spacing: 12
 
-                    ListView {
-                        id: listView
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: contentItem.childrenRect.height
-                        spacing: 10
-                        currentIndex: 0
-                        delegate: Comp.NavBarDelegate {
-                            width: (listView.width - (listView.spacing * 2)) / 3
-                            highlighted: ListView.isCurrentItem
-                            display: ItemDelegate.IconOnly
-                            icon.source: model.icon
-                            onClicked: listView.currentIndex = model.index
-
-                            ToolTip.visible: hovered
-                            ToolTip.text: model.label
-                        }
-
-                        model: ListModel {
-                            ListElement {
-                                icon: "qrc:/date_icon.svg"
-                                label: "Date"
-                            }
-
-                            ListElement {
-                                icon: "qrc:/time_icon.svg"
-                                label: "Time"
-                            }
-
-                            ListElement {
-                                icon: "qrc:/timer_icon.svg"
-                                label: "Duration"
-                            }
-                        }
-
-                        orientation: ListView.Horizontal
+                    Text {
+                        text: "Outcomes"
+                        font.pixelSize: Comp.Globals.fontSize.medium
+                        font.weight: Font.DemiBold
+                        color: Material.color(Material.Grey, Material.Shade600)
                     }
 
-                    StackLayout {
+                    SpinBox {
+                        id: outcomes
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 350
-                        currentIndex: listView.currentIndex
+                        Layout.preferredHeight: 45
+                        editable: true
+                        from: 1
+                        to: 99999
+                    }
+                }
 
-                        Comp.DatePicker {
-                            id: datePicker
-                        }
+                ColumnLayout {
+                    spacing: 12
 
-                        Page {
-                            background: null
-                            header: RowLayout {
-                                RowLayout {
-                                    Layout.alignment: Qt.AlignHCenter
-                                    Layout.bottomMargin: 10
-                                    spacing: 30
+                    Text {
+                        text: "Date and Time Frame"
+                        font.pixelSize: Comp.Globals.fontSize.medium
+                        font.weight: Font.DemiBold
+                        color: Material.color(Material.Grey, Material.Shade600)
+                    }
 
-                                    Text {
-                                        text: "HH"
-                                        font.pointSize: Comp.Globals.fontSize.superSmall
-                                        font.weight: Font.Normal
-                                        color: Comp.Globals.color.secondary.shade1
-                                        horizontalAlignment: Text.AlignHCenter
-                                        verticalAlignment: Text.AlignVCenter
-                                    }
+                    ColumnLayout {
+                        spacing: 20
 
-                                    Text {
-                                        text: "MM"
-                                        font.pointSize: Comp.Globals.fontSize.superSmall
-                                        font.weight: Font.Normal
-                                        color: Comp.Globals.color.secondary.shade1
-                                        horizontalAlignment: Text.AlignHCenter
-                                        verticalAlignment: Text.AlignVCenter
-                                    }
+                        ListView {
+                            id: listView
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: contentItem.childrenRect.height
+                            spacing: 10
+                            currentIndex: 0
+                            delegate: Comp.NavBarDelegate {
+                                width: (listView.width - (listView.spacing * 2)) / 3
+                                highlighted: ListView.isCurrentItem
+                                display: ItemDelegate.IconOnly
+                                icon.source: model.icon
+                                onClicked: listView.currentIndex = model.index
+
+                                ToolTip.visible: hovered
+                                ToolTip.text: model.label
+                            }
+
+                            model: ListModel {
+                                ListElement {
+                                    icon: "qrc:/date_icon.svg"
+                                    label: "Date"
+                                }
+
+                                ListElement {
+                                    icon: "qrc:/time_icon.svg"
+                                    label: "Time"
+                                }
+
+                                ListElement {
+                                    icon: "qrc:/timer_icon.svg"
+                                    label: "Duration"
                                 }
                             }
 
-                            Comp.TimePicker {
-                                id: timePicker
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                height: parent.height
-                                chosenDateTime: new Date(0,0,0,0,0,0)
-                                onChooseTime: datePicker.chosenDateTime.setHours(timePicker.chosenDateTime.getHours(),
-                                                                                 timePicker.chosenDateTime.getMinutes())
-                            }
+                            orientation: ListView.Horizontal
                         }
 
-                        Page {
-                            background: null
-                            header: RowLayout {
-                                RowLayout {
-                                    Layout.alignment: Qt.AlignHCenter
-                                    Layout.bottomMargin: 10
-                                    spacing: 30
+                        StackLayout {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 350
+                            currentIndex: listView.currentIndex
 
-                                    Text {
-                                        text: "HH"
-                                        font.pointSize: Comp.Globals.fontSize.superSmall
-                                        font.weight: Font.Normal
-                                        color: Comp.Globals.color.secondary.shade1
-                                        horizontalAlignment: Text.AlignHCenter
-                                        verticalAlignment: Text.AlignVCenter
-                                    }
+                            Comp.DatePicker {
+                                id: datePicker
+                            }
 
-                                    Text {
-                                        text: "MM"
-                                        font.pointSize: Comp.Globals.fontSize.superSmall
-                                        font.weight: Font.Normal
-                                        color: Comp.Globals.color.secondary.shade1
-                                        horizontalAlignment: Text.AlignHCenter
-                                        verticalAlignment: Text.AlignVCenter
+                            Page {
+                                background: null
+                                header: RowLayout {
+                                    RowLayout {
+                                        Layout.alignment: Qt.AlignHCenter
+                                        Layout.bottomMargin: 10
+                                        spacing: 30
+
+                                        Text {
+                                            text: "HH"
+                                            font.pointSize: Comp.Globals.fontSize.superSmall
+                                            font.weight: Font.Normal
+                                            color: Comp.Globals.color.secondary.shade1
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+
+                                        Text {
+                                            text: "MM"
+                                            font.pointSize: Comp.Globals.fontSize.superSmall
+                                            font.weight: Font.Normal
+                                            color: Comp.Globals.color.secondary.shade1
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
                                     }
+                                }
+
+                                Comp.TimePicker {
+                                    id: timePicker
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    height: parent.height
+                                    chosenDateTime: new Date(0,0,0,0,0,0)
+                                    onChooseTime: datePicker.chosenDateTime.setHours(timePicker.chosenDateTime.getHours(),
+                                                                                     timePicker.chosenDateTime.getMinutes())
                                 }
                             }
 
-                            MComp.DurationPicker {
-                                id: durationPicker
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                height: parent.height
+                            Page {
+                                background: null
+                                header: RowLayout {
+                                    RowLayout {
+                                        Layout.alignment: Qt.AlignHCenter
+                                        Layout.bottomMargin: 10
+                                        spacing: 30
+
+                                        Text {
+                                            text: "HH"
+                                            font.pointSize: Comp.Globals.fontSize.superSmall
+                                            font.weight: Font.Normal
+                                            color: Comp.Globals.color.secondary.shade1
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+
+                                        Text {
+                                            text: "MM"
+                                            font.pointSize: Comp.Globals.fontSize.superSmall
+                                            font.weight: Font.Normal
+                                            color: Comp.Globals.color.secondary.shade1
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+                                    }
+                                }
+
+                                MComp.DurationPicker {
+                                    id: durationPicker
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    height: parent.height
+                                }
                             }
                         }
                     }

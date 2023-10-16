@@ -165,6 +165,14 @@ void DBAccess::saveGoalItem(Goal* goal)
         updateParentGoalProgressValue(goal->parentGoalId());
 }
 
+void DBAccess::removeGoalItem(int itemId)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM goals WHERE itemId = :itemId");
+    query.bindValue(":itemId", itemId);
+    query.exec();
+}
+
 void DBAccess::updateGoalItem(Goal *goal)
 {
     QSqlQuery query;

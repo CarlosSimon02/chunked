@@ -80,14 +80,24 @@ RowLayout {
                    ListView.view.leftMargin -
                    ListView.view.rightMargin
 
-            itemId: model.itemId
-            done: model.done
-            outcomes: model.outcomes
-            taskName: model.name
-            dateTime: model.dateTime
-            duration: model.duration
+            signal update
+
+            onUpdate: {
+                model.outcomes = outcomes
+                model.name = taskName
+                model.dateTime = dateTime
+                model.duration = duration
+            }
 
             onDoneChanged: model.done = done
+
+            Component.onCompleted: {
+                done = model.done
+                outcomes = model.outcomes
+                taskName = model.name
+                dateTime = model.dateTime
+                duration = model.duration
+            }
         }
 
         model: TasksTableModel {

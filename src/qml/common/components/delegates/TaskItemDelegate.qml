@@ -8,12 +8,11 @@ import "./impl" as Impl
 Impl.ItemDelegate {
     id: control
 
-    property int itemId
     property alias done: checkBox.checked
-    property int outcomes
+    property alias outcomes: rowLayout.outcomes
     property alias taskName: taskName.text
-    property date dateTime
-    property int duration
+    property alias dateTime: rowLayout.dateTime
+    property alias duration: rowLayout.duration
 
     horizontalPadding: 10
     verticalPadding: text.lineCount > 1 ? 5 : 0
@@ -24,7 +23,12 @@ Impl.ItemDelegate {
     }
 
     contentItem: RowLayout {
+        id: rowLayout
         spacing: 20
+
+        property int outcomes: 1
+        property date dateTime: new Date()
+        property int duration: 1
 
         RowLayout {
             CheckBox {
@@ -93,6 +97,7 @@ Impl.ItemDelegate {
                     MenuItem {
                         text: qsTr("Edit")
                         onTriggered: {
+                            editTaskDialogView.row = model.index
                             editTaskDialogView.open()
                         }
 

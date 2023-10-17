@@ -72,6 +72,7 @@ Drawer {
                             MenuItem {
                                 text: qsTr("Edit")
                                 onTriggered: {
+                                    editTaskDialogView.row = drawer.row
                                     editTaskDialogView.open()
                                 }
 
@@ -81,7 +82,8 @@ Drawer {
                             MenuItem {
                                 text: qsTr("Delete")
                                 onTriggered: {
-                                        listView.model.removeRow(model.index)
+                                    drawer.close()
+                                    listView.model.removeRow(model.index)
                                 }
 
                                 Material.foreground: Material.Red

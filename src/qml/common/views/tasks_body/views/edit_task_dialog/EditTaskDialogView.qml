@@ -21,19 +21,13 @@ Comp.Dialog {
 
     Material.accent: Comp.Globals.color.accent.shade1
 
-    onRowChanged: {
-        taskName.text = listView.itemAt(row).taskName
-        outcomes.value = listView.itemAt(row).outcomes
-        datePicker.chosenDateTime = listView.itemAt(row).dateTime
-        durationPicker.hour = listView.itemAt(row).duration / 60
-        durationPicker.minute = listView.itemAt(row).duration % 60
-    }
-
     onAccepted: {
-        listView.itemAt(row).taskName = taskName.text
-        listView.itemAt(row).outcomes = outcomes.value
-        listView.itemAt(row).dateTime = datePicker.chosenDateTime
-        listView.itemAt(row).duration = durationPicker.duration
+        listView.itemAtIndex(row).taskName = taskName.text
+        listView.itemAtIndex(row).outcomes = outcomes.value
+        listView.itemAtIndex(row).dateTime = datePicker.chosenDateTime
+        listView.itemAtIndex(row).duration = durationPicker.duration
+
+        listView.itemAtIndex(row).update()
     }
 
     Connections {
@@ -45,12 +39,16 @@ Comp.Dialog {
 
     onAboutToShow: {
         backdrop.open()
-        loader.sourceComponent = content
+
+        taskName.text = listView.itemAtIndex(row).taskName
+        outcomes.value = listView.itemAtIndex(row).outcomes
+        datePicker.chosenDateTime = listView.itemAtIndex(row).dateTime
+        durationPicker.hour = listView.itemAtIndex(row).duration / 60
+        durationPicker.minute = listView.itemAtIndex(row).duration % 60
     }
 
     onAboutToHide: {
         backdrop.close()
-        loader.sourceComponent = null
     }
 
     ScrollView {

@@ -42,7 +42,10 @@ ScrollView {
                     Layout.maximumWidth: 500
                     Layout.fillWidth: true
 
-                    onTextChanged: hasError = false
+                    onTextChanged: {
+                        hasError = false
+                        scrollView.hasError = false
+                    }
 
                     Connections {
                         target: scrollView
@@ -52,9 +55,6 @@ ScrollView {
                                 goalName.hasError = true
                                 goalNameError.text = "This field is required and cannot be empty"
                                 scrollView.ScrollBar.vertical.position = 0.0
-                            }
-                            else {
-                                scrollView.hasError = false
                             }
                         }
                     }

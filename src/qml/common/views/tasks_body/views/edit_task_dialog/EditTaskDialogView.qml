@@ -10,8 +10,10 @@ import "../../components" as MComp
 Comp.Dialog {
     id: dialog
 
+    signal checkError
     property int itemId
     property Task task
+    property bool hasError
 
     title: "Edit Task"
     width: 390
@@ -24,13 +26,17 @@ Comp.Dialog {
     Material.accent: Comp.Globals.color.accent.shade1
 
     onAccepted: {
-        dialog.task.name = taskName.text
-        dialog.task.outcomes = outcomes.value
-        dialog.task.dateTime = datePicker.chosenDateTime
-        dialog.task.duration = durationPicker.duration
+        checkError()
 
-        dbAccess.updateTaskItem(dialog.task)
-        listView.model.refresh()
+        if(!dialog.hasError) {
+            dialog.task.name = taskName.text
+            dialog.task.outcomes = outcomes.value
+            dialog.task.dateTime = datePicker.chosenDateTime
+            dialog.task.duration = durationPicker.duration
+
+            dbAccess.updateTaskItem(dialog.task)
+            listView.model.refresh()
+        }
     }
 
     Connections {
@@ -80,8 +86,33 @@ Comp.Dialog {
 
                     Inpt.TextField {
                         id: taskName
+                        Layout.maximumWidth: 500
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 45
+
+                        onTextChanged: {
+                            hasError = false
+                            dialog.hasError = false
+                        }
+
+                        Connections {
+                            target: dialog
+                            function onCheckError() {
+                                if(taskName.length <= 0) {
+                                    dialog.hasError = true
+                                    taskName.hasError = true
+                                    taskNameError.text = "This field is required and cannot be empty"
+                                    scrollView.ScrollBar.vertical.position = 0.0
+                                }
+                            }
+                        }
+                    }
+
+                    Text {
+                        id: taskNameError
+                        visible: taskName.hasError
+                        verticalAlignment: Text.AlignBottom
+                        color: "red"
+                        font.pixelSize: Comp.Globals.fontSize.small
                     }
                 }
 

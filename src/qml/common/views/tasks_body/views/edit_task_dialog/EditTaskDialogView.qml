@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import app
 
 import components as Comp
 import components.inputs as Inpt
@@ -9,7 +10,8 @@ import "../../components" as MComp
 Comp.Dialog {
     id: dialog
 
-    property int row
+    property int itemId
+    property Task task
 
     title: "Edit Task"
     width: 390
@@ -22,12 +24,13 @@ Comp.Dialog {
     Material.accent: Comp.Globals.color.accent.shade1
 
     onAccepted: {
-        listView.itemAtIndex(row).taskName = taskName.text
-        listView.itemAtIndex(row).outcomes = outcomes.value
-        listView.itemAtIndex(row).dateTime = datePicker.chosenDateTime
-        listView.itemAtIndex(row).duration = durationPicker.duration
+        dialog.task.name = taskName.text
+        dialog.task.outcomes = outcomes.value
+        dialog.task.dateTime = datePicker.chosenDateTime
+        dialog.task.duration = durationPicker.duration
 
-        listView.itemAtIndex(row).update()
+        dbAccess.updateTaskItem(dialog.task)
+        listView.model.refresh()
     }
 
     Connections {
@@ -40,11 +43,12 @@ Comp.Dialog {
     onAboutToShow: {
         backdrop.open()
 
-        taskName.text = listView.itemAtIndex(row).taskName
-        outcomes.value = listView.itemAtIndex(row).outcomes
-        datePicker.chosenDateTime = listView.itemAtIndex(row).dateTime
-        durationPicker.hour = listView.itemAtIndex(row).duration / 60
-        durationPicker.minute = listView.itemAtIndex(row).duration % 60
+        dialog.task = dbAccess.getTaskItem(dialog.itemId)
+        taskName.text = dialog.task.name
+        outcomes.value = dialog.task.outcomes
+        datePicker.chosenDateTime = dialog.task.dateTime
+        durationPicker.hour = dialog.task.duration / 60
+        durationPicker.minute = dialog.task.duration % 60
     }
 
     onAboutToHide: {

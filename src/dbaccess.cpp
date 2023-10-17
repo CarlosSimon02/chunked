@@ -269,6 +269,31 @@ void DBAccess::saveTaskItem(Task *task)
         updateParentGoalProgressValue(task->parentGoalId());
 }
 
+void DBAccess::updateTaskItem(Task *task)
+{
+    QSqlQuery query;
+
+    query.prepare("UPDATE tasks "
+                  "SET name = :name, done = :done, dateTime = :dateTime, "
+                  "date = :date, duration = :duration, outcomes = :outcomes, parentGoalId = :parentGoalId "
+                  "WHERE itemId = :itemId;");
+    query.bindValue(":name", task->name());
+    query.bindValue(":done", task->done());
+    query.bindValue(":dateTime", task->dateTime());
+    query.bindValue(":date", task->dateTime().toString(Qt::ISODate).first(10));
+    query.bindValue(":duration", task->duration());
+    query.bindValue(":outcomes", task->outcomes());
+    query.bindValue(":parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()));
+    query.bindValue(":itemId", task->itemId());
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << query.lastQuery() << "DBAccess::updateTaskItem" << query.lastError().text();
+
+    updateParentGoalTargetValue(task->parentGoalId());
+    updateParentGoalProgressValue(task->parentGoalId());
+}
+
 void DBAccess::updateParentGoalTargetValue(int itemId)
 {
     if(itemId)

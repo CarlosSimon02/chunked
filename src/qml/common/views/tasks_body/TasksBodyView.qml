@@ -80,18 +80,10 @@ RowLayout {
                    ListView.view.leftMargin -
                    ListView.view.rightMargin
 
-            signal update
-
-            onUpdate: {
-                model.outcomes = outcomes
-                model.name = taskName
-                model.dateTime = dateTime
-                model.duration = duration
-            }
-
             onDoneChanged: model.done = done
 
             Component.onCompleted: {
+                itemId = model.itemId
                 done = model.done
                 outcomes = model.outcomes
                 taskName = model.name

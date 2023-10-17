@@ -19,7 +19,7 @@ Drawer {
     Material.roundedScale: Material.NotRounded
     Material.accent: Comp.Globals.color.accent.shade1
 
-    property int row
+    property int itemId
 
     //To prevent drawer from closing when clicked
     MouseArea {
@@ -54,6 +54,9 @@ Drawer {
             Comp.DrawerContent {
                 id: drawerContent
 
+                property Task task: dbAccess.getTaskItem(drawer.itemId)
+                property date dateTime: task.dateTime
+
                 headerOptions: RowLayout {
                     Btn.LinkButton {
                         Layout.preferredHeight: 27
@@ -72,7 +75,7 @@ Drawer {
                             MenuItem {
                                 text: qsTr("Edit")
                                 onTriggered: {
-                                    editTaskDialogView.row = drawer.row
+                                    editTaskDialogView.itemId = drawer.itemId
                                     editTaskDialogView.open()
                                 }
 
@@ -114,14 +117,14 @@ Drawer {
                                     font.pixelSize: Comp.Globals.fontSize.large
                                     font.weight: Font.DemiBold
                                     color: "white"
-                                    text: listView.itemAtIndex(drawer.row).taskName
+                                    text: drawerContent.task.name
                                 }
 
                                 Text {
                                     id: timeStatus
-                                    text: Comp.Utils.getTimeStatus(listView.itemAtIndex(drawer.row).dateTime,
-                                                                   Comp.Utils.getEndDateTime(listView.itemAtIndex(drawer.row).dateTime, listView.itemAtIndex(drawer.row).duration),
-                                                                   listView.itemAtIndex(drawer.row).done)
+                                    text: Comp.Utils.getTimeStatus(drawerContent.dateTime,
+                                                                   Comp.Utils.getEndDateTime(drawerContent.dateTime, drawerContent.task.duration),
+                                                                   drawerContent.task.done)
                                     font.pixelSize: Comp.Globals.fontSize.medium
                                     color: Comp.Globals.color.secondary.shade2
                                 }
@@ -133,31 +136,31 @@ Drawer {
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/status_icon.svg"
                                     label: "Status"
-                                    value: Comp.Globals.statusTypes[Comp.Utils.getStatus(listView.itemAtIndex(drawer.row).dateTime,
-                                                                                         Comp.Utils.getEndDateTime(listView.itemAtIndex(drawer.row).dateTime, listView.itemAtIndex(drawer.row).duration),
-                                                                                         listView.itemAtIndex(drawer.row).dones)]
-                                    color: Comp.Globals.statusColors[Comp.Utils.getStatus(listView.itemAtIndex(drawer.row).dateTime,
-                                                                                          Comp.Utils.getEndDateTime(listView.itemAtIndex(drawer.row).dateTime, listView.itemAtIndex(drawer.row).duration),
-                                                                                          listView.itemAtIndex(drawer.row).done)]
+                                    value: Comp.Globals.statusTypes[Comp.Utils.getStatus(drawerContent.dateTime,
+                                                                                         Comp.Utils.getEndDateTime(drawerContent.dateTime, drawerContent.task.duration),
+                                                                                         drawerContent.task.done)]
+                                    color: Comp.Globals.statusColors[Comp.Utils.getStatus(drawerContent.dateTime,
+                                                                                          Comp.Utils.getEndDateTime(drawerContent.dateTime, drawerContent.task.duration),
+                                                                                          drawerContent.task.done)]
                                 }
 
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/check_icon.svg"
                                     label: "Outcomes"
-                                    value: listView.itemAtIndex(drawer.row).outcomes
+                                    value: drawerContent.task.outcomes
                                 }
 
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/date_time_icon.svg"
                                     label: "Date and Time"
-                                    value: listView.itemAtIndex(drawer.row).dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+                                    value: drawerContent.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
                                 }
 
                                 Comp.ContentIconLabelData {
                                     iconSource: "qrc:/timer_icon.svg"
                                     label: "Duration"
-                                    value: (Math.floor(listView.itemAtIndex(drawer.row).duration / 60)).toString() +  "h" +
-                                           ((listView.itemAtIndex(drawer.row).duration % 60) ? " " + (listView.itemAtIndex(drawer.row).duration % 60).toString() + "m" : "")
+                                    value: (Math.floor(drawerContent.task.duration / 60)).toString() +  "h" +
+                                           ((drawerContent.task.duration % 60) ? " " + (drawerContent.task.duration % 60).toString() + "m" : "")
                                 }
                             }
 
@@ -171,11 +174,23 @@ Drawer {
                                 }
 
                                 CheckBox {
-                                    checked: listView.itemAtIndex(drawer.row).done
-                                    onCheckedChanged: listView.itemAtIndex(drawer.row).done = checked
+                                    checked: drawerContent.task.done
+                                    onCheckedChanged: {
+                                        dbAccess.updateValue("tasks","done",drawer.itemId,checked)
+                                        drawerContent.task = dbAccess.getTaskItem(drawer.itemId)
+                                        listView.model.refresh()
+                                    }
                                 }
                             }
                         }
+                    }
+                }
+
+                Connections {
+                    target: editTaskDialogView
+
+                    function onAccepted() {
+                        drawerContent.task = dbAccess.getTaskItem(drawer.itemId)
                     }
                 }
             }

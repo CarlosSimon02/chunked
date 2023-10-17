@@ -4,6 +4,7 @@ DatePicker 1.0 DatePicker.qml
 DateTimePickerDialog 1.0 DateTimePickerDialog.qml
 Dialog 1.0 Dialog.qml
 DrawerContent 1.0 DrawerContent.qml
+ItemCreateEditDialog 1.0 ItemCreateEditDialog.qml
 NavBar 1.0 NavBar.qml
 NavBarDelegate 1.0 NavBarDelegate.qml
 PageView 1.0 PageView.qml

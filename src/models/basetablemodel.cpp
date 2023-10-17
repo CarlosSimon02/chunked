@@ -1,8 +1,11 @@
 #include "basetablemodel.h"
 
 #include <QSqlRecord>
+#include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+
+#include "dbaccess.h"
 
 BaseTableModel::BaseTableModel(QObject *parent)
     : QSqlTableModel{parent}
@@ -86,6 +89,25 @@ bool BaseTableModel::setData(const QString &fieldName, int row, const QVariant &
     return setData(index(row,col), value);
 }
 
+void BaseTableModel::refresh()
+{
+    select();
+}
+
+bool BaseTableModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    int parentGoalId = record(row).value("parentGoalId").toInt();
+    emit beginRemoveRows(parent,row,row+count-1);
+    bool result = QSqlTableModel::removeRows(row,count,parent);
+    emit endRemoveRows();
+
+    DBAccess dbAccess;
+    dbAccess.updateParentGoalProgressValue(parentGoalId);
+    dbAccess.updateParentGoalTargetValue(parentGoalId);
+
+    return result;
+}
+
 int BaseTableModel::parentGoalId()
 {
     return m_parentGoalId;
@@ -101,18 +123,5 @@ void BaseTableModel::setParentGoalId(int parentGoalId)
         select();
         emit parentGoalIdChanged();
     }
-}
-
-void BaseTableModel::refresh()
-{
-    select();
-}
-
-bool BaseTableModel::removeRows(int row, int count, const QModelIndex &parent)
-{
-    emit beginRemoveRows(parent,row,row+count-1);
-    bool result = QSqlTableModel::removeRows(row,count,parent);
-    emit endRemoveRows();
-    return result;
 }
 

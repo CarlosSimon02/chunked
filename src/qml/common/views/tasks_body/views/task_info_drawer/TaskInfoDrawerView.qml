@@ -179,6 +179,7 @@ Drawer {
                                         dbAccess.updateValue("tasks","done",drawer.itemId,checked)
                                         drawerContent.task = dbAccess.getTaskItem(drawer.itemId)
                                         listView.model.refresh()
+                                        taskBodyRowLayout.dataChanged()
                                     }
                                 }
                             }

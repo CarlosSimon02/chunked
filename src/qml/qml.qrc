@@ -84,5 +84,6 @@
         <file>common/views/tasks_body/views/edit_task_dialog/EditTaskDialogView.qml</file>
         <file>common/views/tasks_body/views/create_task/CreateTaskDrawerView.qml</file>
         <file>common/components/inputs/SpinBox.qml</file>
+        <file>common/components/ItemCreateEditDialog.qml</file>
     </qresource>
 </RCC>

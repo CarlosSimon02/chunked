@@ -29,10 +29,8 @@ public:
     Q_INVOKABLE Task* getTaskItem(int itemId);
     Q_INVOKABLE void saveTaskItem(Task* task);
     Q_INVOKABLE void updateTaskItem(Task* task);
-
-private:
-    void updateParentGoalTargetValue(int itemId);
-    void updateParentGoalProgressValue(int itemId);
+    Q_INVOKABLE void updateParentGoalTargetValue(int itemId);
+    Q_INVOKABLE void updateParentGoalProgressValue(int itemId);
 
 signals:
 

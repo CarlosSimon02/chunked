@@ -12,9 +12,10 @@ import "./views/task_info_drawer"
 import "./views/edit_task_dialog"
 
 RowLayout {
-    id: rowLayout
+    id: taskBodyRowLayout
     spacing: 0
 
+    signal dataChanged
     property int parentGoalId: 0
     property int trackerType: 2
 
@@ -37,10 +38,11 @@ RowLayout {
                 task.outcomes: createTaskView.outcomes
                 task.dateTime: createTaskView.dateTime
                 task.duration: createTaskView.duration
-                task.parentGoalId: rowLayout.parentGoalId
+                task.parentGoalId: taskBodyRowLayout.parentGoalId
 
                 onSave: {
                     listView.model.insertRecord(task)
+                    taskBodyRowLayout.dataChanged()
                 }
             }
 
@@ -78,7 +80,7 @@ RowLayout {
             ScrollBar.vertical: ScrollBar {
                 parent: listView
                 x: listView.width - width
-                height: rowLayout.height
+                height: taskBodyRowLayout.height
             }
 
             delegate: Dlg.TaskItemDelegate {
@@ -86,8 +88,12 @@ RowLayout {
                        ListView.view.leftMargin -
                        ListView.view.rightMargin
 
-                trackerType: rowLayout.trackerType
-                onDoneChanged: model.done = done
+                trackerType: taskBodyRowLayout.trackerType
+                onDoneChanged: {
+                    model.done = done
+                    dbAccess.updateParentGoalProgressValue(model.parentGoalId)
+                    taskBodyRowLayout.dataChanged()
+                }
 
                 Component.onCompleted: {
                     itemId = model.itemId
@@ -100,7 +106,7 @@ RowLayout {
             }
 
             model: TasksTableModel {
-                parentGoalId: rowLayout.parentGoalId
+                parentGoalId: taskBodyRowLayout.parentGoalId
             }
 
             add: Transition {
@@ -111,7 +117,10 @@ RowLayout {
                     }
 
                     ScriptAction {
-                        script: listView.model.refresh()
+                        script: {
+                            listView.model.refresh()
+                            taskBodyRowLayout.dataChanged()
+                        }
                     }
                 }
             }
@@ -124,7 +133,10 @@ RowLayout {
                     }
 
                     ScriptAction {
-                        script: listView.model.refresh()
+                        script: {
+                            listView.model.refresh()
+                            taskBodyRowLayout.dataChanged()
+                        }
                     }
                 }
             }
@@ -150,7 +162,7 @@ RowLayout {
         Layout.fillHeight: true
         Layout.maximumWidth: 380
         Layout.leftMargin: 30
-        visible: !rowLayout.parentGoalId && window.width > 1200
+        visible: !taskBodyRowLayout.parentGoalId && window.width > 1200
 
         CreateTaskView {
             id: createTaskView

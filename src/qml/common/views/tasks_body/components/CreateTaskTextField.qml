@@ -24,7 +24,6 @@ Inpt.BasicTextField {
 
             textField.text = ""
             textField.focus = true
-            console.log(textField.focus)
         }
     }
 }

@@ -7,7 +7,7 @@ import components as Comp
 import components.inputs as Inpt
 import "../../components" as MComp
 
-Comp.Dialog {
+Comp.ItemCreateEditDialog {
     id: dialog
 
     signal checkError
@@ -18,14 +18,10 @@ Comp.Dialog {
     title: "Edit Task"
     width: 390
     height: 700
-    padding: 0
-    parent: Overlay.overlay
-    anchors.centerIn: parent
-    standardButtons: Dialog.Ok | Dialog.Cancel
 
-    Material.accent: Comp.Globals.color.accent.shade1
+    onCancel: dialog.close()
 
-    onAccepted: {
+    onSave: {
         checkError()
 
         if(!dialog.hasError) {
@@ -36,29 +32,20 @@ Comp.Dialog {
 
             dbAccess.updateTaskItem(dialog.task)
             listView.model.refresh()
-        }
-    }
-
-    Connections {
-        target: backdrop
-        function onTapped() {
+            taskBodyRowLayout.dataChanged()
             dialog.close()
         }
+        else taskName.focus = true
     }
 
-    onAboutToShow: {
-        backdrop.open()
 
+    onAboutToShow: {
         dialog.task = dbAccess.getTaskItem(dialog.itemId)
         taskName.text = dialog.task.name
         outcomes.value = dialog.task.outcomes
         datePicker.chosenDateTime = dialog.task.dateTime
         durationPicker.hour = dialog.task.duration / 60
         durationPicker.minute = dialog.task.duration % 60
-    }
-
-    onAboutToHide: {
-        backdrop.close()
     }
 
     ScrollView {

@@ -25,11 +25,11 @@ public:
                              int row,
                              const QVariant &value);
 
-    int parentGoalId();
-    void setParentGoalId(int parentGoalId);
-
     Q_INVOKABLE void refresh();
     Q_INVOKABLE bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
+
+    int parentGoalId();
+    void setParentGoalId(int parentGoalId);
 
 signals:
     parentGoalIdChanged();

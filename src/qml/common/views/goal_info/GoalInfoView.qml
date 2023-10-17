@@ -188,6 +188,11 @@ Comp.PageView {
                     TasksBodyView {
                         parentGoalId: pageView.itemId
                         trackerType: pageView.goal.progressTracker
+
+                        onDataChanged: {
+                            pageView.goal = dbAccess.getGoalItem(pageView.itemId)
+                            console.log("called")
+                        }
                     }
                 }
 

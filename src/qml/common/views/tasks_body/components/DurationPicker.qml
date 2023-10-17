@@ -10,6 +10,8 @@ RowLayout {
 
     //in minutes
     property int duration: (hourListView.currentIndex * 60) + minuteListView.currentIndex
+    property alias hour: hourListView.currentIndex
+    property alias minute: minuteListView.currentIndex
 
     ListView {
         id: hourListView

@@ -8,6 +8,7 @@ import "./impl" as Impl
 Impl.ItemDelegate {
     id: control
 
+    property int itemId
     property alias done: checkBox.checked
     property int outcomes
     property alias taskName: taskName.text
@@ -17,27 +18,9 @@ Impl.ItemDelegate {
     horizontalPadding: 10
     verticalPadding: text.lineCount > 1 ? 5 : 0
 
-    onClicked: taskInfoDrawerView.open()
-    onDateTimeChanged: {
-        let tempDate = control.dateTime
-        tempDate.setMinutes(tempDate.getMinutes() + control.duration)
-        timeStatus.text = Comp.Utils.getTimeStatus(control.dateTime,
-                                       tempDate,
-                                       control.done)
-        timeStatus.color =  Comp.Globals.statusColors[Comp.Utils.getStatus(control.dateTime,
-                                        tempDate,
-                                        control.done)]
-    }
-
-    onDurationChanged: {
-        let tempDate = control.dateTime
-        tempDate.setMinutes(tempDate.getMinutes() + control.duration)
-        timeStatus.text = Comp.Utils.getTimeStatus(control.dateTime,
-                                       tempDate,
-                                       control.done)
-        timeStatus.color =  Comp.Globals.statusColors[Comp.Utils.getStatus(control.dateTime,
-                                        tempDate,
-                                        control.done)]
+    onClicked: {
+        taskInfoDrawerView.row = model.index
+        taskInfoDrawerView.open()
     }
 
     contentItem: RowLayout {
@@ -78,6 +61,12 @@ Impl.ItemDelegate {
                 id: timeStatus
                 font.pixelSize: Comp.Globals.fontSize.small
                 visible: control.width > 600
+                text: Comp.Utils.getTimeStatus(control.dateTime,
+                                           Comp.Utils.getEndDateTime(control.dateTime, control.duration),
+                                           control.done)
+                color: Comp.Globals.statusColors[Comp.Utils.getStatus(control.dateTime,
+                                                                              Comp.Utils.getEndDateTime(control.dateTime, control.duration),
+                                                                              control.done)]
             }
 
             Impl.MenuButton {
@@ -94,6 +83,7 @@ Impl.ItemDelegate {
                     MenuItem {
                         text: qsTr("Open")
                         onTriggered: {
+                            taskInfoDrawerView.row = model.index
                             taskInfoDrawerView.open()
                         }
 

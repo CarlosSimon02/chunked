@@ -219,7 +219,7 @@ void DBAccess::updateGoalItem(Goal *goal)
 Task *DBAccess::getTaskItem(int itemId)
 {
     QSqlQuery query;
-    query.prepare("SELECT name, done, dateTime, date, duration, "
+    query.prepare("SELECT name, done, dateTime, duration, "
                   "outcomes, parentGoalId "
                   "FROM tasks "
                   "WHERE itemId = :itemId;");

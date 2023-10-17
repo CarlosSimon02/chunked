@@ -8,6 +8,9 @@ import "../../components" as MComp
 
 Comp.Dialog {
     id: dialog
+
+    property int row
+
     title: "Edit Task"
     width: 390
     height: 700
@@ -17,6 +20,21 @@ Comp.Dialog {
     standardButtons: Dialog.Ok | Dialog.Cancel
 
     Material.accent: Comp.Globals.color.accent.shade1
+
+    onRowChanged: {
+        taskName.text = listView.itemAt(row).taskName
+        outcomes.value = listView.itemAt(row).outcomes
+        datePicker.chosenDateTime = listView.itemAt(row).dateTime
+        durationPicker.hour = listView.itemAt(row).duration / 60
+        durationPicker.minute = listView.itemAt(row).duration % 60
+    }
+
+    onAccepted: {
+        listView.itemAt(row).taskName = taskName.text
+        listView.itemAt(row).outcomes = outcomes.value
+        listView.itemAt(row).dateTime = datePicker.chosenDateTime
+        listView.itemAt(row).duration = durationPicker.duration
+    }
 
     Connections {
         target: backdrop
@@ -59,6 +77,7 @@ Comp.Dialog {
                     }
 
                     Inpt.TextField {
+                        id: taskName
                         Layout.fillWidth: true
                         Layout.preferredHeight: 45
                     }
@@ -98,17 +117,17 @@ Comp.Dialog {
                         spacing: 20
 
                         ListView {
-                            id: listView
+                            id: navBar
                             Layout.fillWidth: true
                             Layout.preferredHeight: contentItem.childrenRect.height
                             spacing: 10
                             currentIndex: 0
                             delegate: Comp.NavBarDelegate {
-                                width: (listView.width - (listView.spacing * 2)) / 3
+                                width: (navBar.width - (navBar.spacing * 2)) / 3
                                 highlighted: ListView.isCurrentItem
                                 display: ItemDelegate.IconOnly
                                 icon.source: model.icon
-                                onClicked: listView.currentIndex = model.index
+                                onClicked: navBar.currentIndex = model.index
 
                                 ToolTip.visible: hovered
                                 ToolTip.text: model.label
@@ -137,7 +156,7 @@ Comp.Dialog {
                         StackLayout {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 350
-                            currentIndex: listView.currentIndex
+                            currentIndex: navBar.currentIndex
 
                             Comp.DatePicker {
                                 id: datePicker
@@ -211,8 +230,8 @@ Comp.Dialog {
 
                                 MComp.DurationPicker {
                                     id: durationPicker
-                                    anchors.horizontalCenter: parent.horizontalCenter
                                     height: parent.height
+                                    anchors.horizontalCenter: parent.horizontalCenter
                                 }
                             }
                         }

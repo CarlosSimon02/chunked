@@ -72,6 +72,6 @@ function getSectionTitleDate(dateTime) {
 
 function getEndDateTime(startDateTime, duration) {
     let endDateTime = startDateTime
-    endDateTime.setMinutes(startDateTime.getMinutes() + duration)
+    endDateTime.setMinutes(endDateTime.getMinutes() + duration)
     return endDateTime
 }

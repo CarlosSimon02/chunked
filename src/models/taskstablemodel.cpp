@@ -29,7 +29,7 @@ void TasksTableModel::insertRecord(Task *task)
 
     for(int i = 0; i < rowCount(); i++)
     {
-        if(record(i).value("dateTime").toDateTime() > task->dateTime())
+        if(record(i).value("dateTime").toDateTime() < task->dateTime())
         {
             QSqlTableModel::insertRecord(i,rec);
             return;

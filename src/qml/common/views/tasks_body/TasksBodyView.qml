@@ -49,6 +49,8 @@ RowLayout {
                 Layout.preferredHeight: 45
                 icon.source: "qrc:/edit_icon.svg"
                 visible: !createTaskScrollView.visible
+
+                onClicked: createTaskDrawerView.open()
             }
         }
 
@@ -160,6 +162,12 @@ RowLayout {
 
     TaskInfoDrawerView {
         id: taskInfoDrawerView
+        y: topBarView.height
+        height: parent.height - topBarView.height
+    }
+
+    CreateTaskDrawerView {
+        id: createTaskDrawerView
         y: topBarView.height
         height: parent.height - topBarView.height
     }

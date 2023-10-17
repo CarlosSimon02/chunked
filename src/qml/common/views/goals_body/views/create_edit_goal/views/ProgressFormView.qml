@@ -11,8 +11,8 @@ ScrollView {
 
     property alias trackerType: trackerType.currentIndex
     property alias unit: unit.text
-    property int progressValue: parseInt(progressValue.text)
-    property int targetValue: parseInt(targetValue.text)
+    property alias progressValue: progressValue.value
+    property alias targetValue: targetValue.value
     property bool hasError
     signal checkError
 
@@ -48,8 +48,8 @@ ScrollView {
                     onActivated: index => {
                         progressValue.enabled = false
                         targetValue.enabled = false
-                        progressValue.text = 0
-                        targetValue.text = 0
+                        progressValue.value = 0
+                        targetValue.value = 0
 
                         switch(index) {
                             case 0: unit.text = "goals' progress"; break;
@@ -79,7 +79,10 @@ ScrollView {
                     Layout.fillWidth: true
                     text: "goals' progress"
 
-                    onTextChanged: hasError = false
+                    onTextChanged: {
+                        hasError = false
+                        scrollView.hasError = false
+                    }
 
                     Connections {
                         target: scrollView
@@ -89,9 +92,6 @@ ScrollView {
                                 unit.hasError = true
                                 unitError.text = "This field is required and cannot be empty"
                                 scrollView.ScrollBar.vertical.position = 0.0
-                            }
-                            else {
-                                scrollView.hasError = false
                             }
                         }
                     }
@@ -111,12 +111,40 @@ ScrollView {
                     text: "Progress Value"
                 }
 
-                TextField {
+                Inpt.SpinBox {
                     id: progressValue
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
                     enabled: false
-                    text: "0"
+                    editable: true
+                    value: 0
+                    from: 0
+                    to: 999999
+
+                    onDisplayTextChanged: {
+                        hasError = false
+                        scrollView.hasError = false
+                    }
+
+                    Connections {
+                        target: scrollView
+                        function onCheckError() {
+                            if(progressValue.value > targetValue.value) {
+                                scrollView.hasError = true
+                                progressValue.hasError = true
+                                progressValueError.text = "Value cannot be higher than target value"
+                                scrollView.ScrollBar.vertical.position = 0.0
+                            }
+                        }
+                    }
+                }
+
+                Text {
+                    id: progressValueError
+                    visible: progressValue.hasError
+                    verticalAlignment: Text.AlignBottom
+                    color: "red"
+                    font.pixelSize: Comp.Globals.fontSize.small
                 }
             }
 
@@ -125,12 +153,15 @@ ScrollView {
                     text: "Target Value"
                 }
 
-                TextField {
+                SpinBox {
                     id: targetValue
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
                     enabled: false
-                    text: "0"
+                    editable: true
+                    value: 0
+                    from: 0
+                    to: 999999
                 }
             }
         }

@@ -82,5 +82,7 @@
         <file>common/views/tasks_body/components/IconComboBox.qml</file>
         <file>common/views/tasks_body/components/DurationPicker.qml</file>
         <file>common/views/tasks_body/views/edit_task_dialog/EditTaskDialogView.qml</file>
+        <file>common/views/tasks_body/views/create_task/CreateTaskDrawerView.qml</file>
+        <file>common/components/inputs/SpinBox.qml</file>
     </qresource>
 </RCC>

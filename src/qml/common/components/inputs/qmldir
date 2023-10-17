@@ -2,4 +2,5 @@ module components.inputs
 BasicTextField 1.0 BasicTextField.qml
 ComboBox 1.0 ComboBox.qml
 GoalNamesTreeViewComboBox 1.0 GoalNamesTreeViewComboBox.qml
+SpinBox 1.0 SpinBox.qml
 TextField 1.0 TextField.qml

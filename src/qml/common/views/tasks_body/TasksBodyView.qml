@@ -16,32 +16,28 @@ RowLayout {
     spacing: 0
 
     property int parentGoalId: 0
-    property bool isSubGoal: false
+    property int trackerType: 2
 
     Material.accent: Comp.Globals.color.accent.shade1
 
-    ListView {
-        id: listView
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        leftMargin: 30
-        rightMargin: 30
-        topMargin: 30
-        bottomMargin: 30
-        spacing: 10
-        clip: true
-        header: RowLayout {
-            width: parent.width
+    ColumnLayout {
+        Layout.margins: 0
+        spacing: 15
+
+        RowLayout {
+            Layout.topMargin: 30
+            Layout.leftMargin: 30
+            Layout.rightMargin: 30
             spacing: 10
 
             MComp.CreateTaskTextField {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
-                Layout.bottomMargin: 10
 
                 task.outcomes: createTaskView.outcomes
                 task.dateTime: createTaskView.dateTime
                 task.duration: createTaskView.duration
+                task.parentGoalId: rowLayout.parentGoalId
 
                 onSave: {
                     listView.model.insertRecord(task)
@@ -51,81 +47,91 @@ RowLayout {
             Comp.NavBarDelegate {
                 Layout.preferredWidth: 45
                 Layout.preferredHeight: 45
-                Layout.bottomMargin: 10
                 icon.source: "qrc:/edit_icon.svg"
                 visible: !createTaskScrollView.visible
             }
         }
 
-        section.property: "date"
-        section.delegate: Label {
-            topPadding: 10
-            bottomPadding: 10
-            required property string section
-            text: Comp.Utils.getSectionTitleDate(Date.fromLocaleString(Qt.locale(),
-                                                                       section,
-                                                                       "yyyy-MM-dd"))
-            color: Comp.Globals.color.secondary.shade2
-            font.pixelSize: Comp.Globals.fontSize.small
-        }
+        ListView {
+            id: listView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            leftMargin: 30
+            rightMargin: 30
+            spacing: 10
+            clip: true
 
-        ScrollBar.vertical: ScrollBar {
-            parent: listView
-            x: listView.width - width
-            height: listView.height
-        }
-
-        delegate: Dlg.TaskItemDelegate {
-            width: ListView.view.width -
-                   ListView.view.leftMargin -
-                   ListView.view.rightMargin
-
-            onDoneChanged: model.done = done
-
-            Component.onCompleted: {
-                itemId = model.itemId
-                done = model.done
-                outcomes = model.outcomes
-                taskName = model.name
-                dateTime = model.dateTime
-                duration = model.duration
+            section.property: "date"
+            section.delegate: Label {
+                topPadding: 10
+                bottomPadding: 10
+                required property string section
+                text: Comp.Utils.getSectionTitleDate(Date.fromLocaleString(Qt.locale(),
+                                                                           section,
+                                                                           "yyyy-MM-dd"))
+                color: Comp.Globals.color.secondary.shade2
+                font.pixelSize: Comp.Globals.fontSize.small
             }
-        }
 
-        model: TasksTableModel {
-            parentGoalId: rowLayout.parentGoalId
-        }
+            ScrollBar.vertical: ScrollBar {
+                parent: listView
+                x: listView.width - width
+                height: rowLayout.height
+            }
 
-        add: Transition {
-            SequentialAnimation {
-                ParallelAnimation {
-                    NumberAnimation { property: "opacity"; from: 0.7; to: 1.0; duration: 200 }
-                    NumberAnimation { property: "scale"; from: 0.7; to: 1.0; duration: 200 }
-                }
+            delegate: Dlg.TaskItemDelegate {
+                width: ListView.view.width -
+                       ListView.view.leftMargin -
+                       ListView.view.rightMargin
 
-                ScriptAction {
-                    script: listView.model.refresh()
+                trackerType: rowLayout.trackerType
+                onDoneChanged: model.done = done
+
+                Component.onCompleted: {
+                    itemId = model.itemId
+                    done = model.done
+                    outcomes = model.outcomes
+                    taskName = model.name
+                    dateTime = model.dateTime
+                    duration = model.duration
                 }
             }
-        }
 
-        remove: Transition {
-            SequentialAnimation {
-                ParallelAnimation {
-                    NumberAnimation { property: "opacity"; from: 1; to: 0.7; duration: 200 }
-                    NumberAnimation { property: "scale"; from: 1; to: 0.7; duration: 200 }
-                }
+            model: TasksTableModel {
+                parentGoalId: rowLayout.parentGoalId
+            }
 
-                ScriptAction {
-                    script: listView.model.refresh()
+            add: Transition {
+                SequentialAnimation {
+                    ParallelAnimation {
+                        NumberAnimation { property: "opacity"; from: 0.7; to: 1.0; duration: 200 }
+                        NumberAnimation { property: "scale"; from: 0.7; to: 1.0; duration: 200 }
+                    }
+
+                    ScriptAction {
+                        script: listView.model.refresh()
+                    }
                 }
             }
-        }
 
-        displaced: Transition {
-            NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
-            NumberAnimation { property: "opacity"; to: 1.0 }
-            NumberAnimation { property: "scale"; to: 1.0 }
+            remove: Transition {
+                SequentialAnimation {
+                    ParallelAnimation {
+                        NumberAnimation { property: "opacity"; from: 1; to: 0.7; duration: 200 }
+                        NumberAnimation { property: "scale"; from: 1; to: 0.7; duration: 200 }
+                    }
+
+                    ScriptAction {
+                        script: listView.model.refresh()
+                    }
+                }
+            }
+
+            displaced: Transition {
+                NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
+                NumberAnimation { property: "opacity"; to: 1.0 }
+                NumberAnimation { property: "scale"; to: 1.0 }
+            }
         }
     }
 

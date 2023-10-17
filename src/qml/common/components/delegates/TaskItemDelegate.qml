@@ -14,6 +14,7 @@ Impl.ItemDelegate {
     property alias taskName: taskName.text
     property date dateTime
     property int duration
+    property int trackerType
 
     horizontalPadding: 10
     verticalPadding: text.lineCount > 1 ? 5 : 0
@@ -39,7 +40,7 @@ Impl.ItemDelegate {
                 text: control.outcomes
                 horizontalAlignment: Label.AlignHCenter
                 verticalAlignment: Label.AlignVCenter
-                visible: false
+                visible: control.trackerType === 3
                 background: Rectangle {
                     color: Comp.Globals.color.primary.shade2
                     radius: Material.SmallScale

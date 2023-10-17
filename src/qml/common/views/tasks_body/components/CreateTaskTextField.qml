@@ -23,6 +23,8 @@ Inpt.BasicTextField {
             textField.save()
 
             textField.text = ""
+            textField.focus = true
+            console.log(textField.focus)
         }
     }
 }

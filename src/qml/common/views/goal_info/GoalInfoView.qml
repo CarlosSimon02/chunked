@@ -186,7 +186,8 @@ Comp.PageView {
                     id: tasksBodyViewComp
 
                     TasksBodyView {
-                        isSubGoal: true
+                        parentGoalId: pageView.itemId
+                        trackerType: pageView.goal.progressTracker
                     }
                 }
 

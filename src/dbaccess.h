@@ -3,9 +3,22 @@
 
 #include <QObject>
 #include <QtQml/qqml.h>
+#include <QPair>
 
 #include "goal.h"
 #include "task.h"
+
+class Progress : public QPair<qreal, qreal> {
+    Q_GADGET
+
+    Q_PROPERTY(qreal value  MEMBER first  FINAL)
+    Q_PROPERTY(qreal target MEMBER second FINAL)
+
+public:
+
+    Progress() = default;
+    Progress(qreal a, qreal b) : QPair<qreal, qreal>(a, b) {}
+};
 
 class DBAccess : public QObject
 {
@@ -23,9 +36,13 @@ public:
                                  const QVariant& value);
 
     Q_INVOKABLE Goal* getGoalItem(int itemId);
-    Q_INVOKABLE void saveGoalItem(Goal* goal);
+    Q_INVOKABLE int saveGoalItem(Goal* goal);
     Q_INVOKABLE void removeGoalItem(int itemId);
     Q_INVOKABLE void updateGoalItem(Goal* goal);
+    Q_INVOKABLE Progress getGoalProgress(int goalId);
+    Q_INVOKABLE void saveGoalProgress(Progress* progress);
+    Q_INVOKABLE void removeGoalProgress(int goalId);
+    Q_INVOKABLE void updateGoalProgress(Progress* progress, int goalId);
     Q_INVOKABLE Task* getTaskItem(int itemId);
     Q_INVOKABLE void saveTaskItem(Task* task);
     Q_INVOKABLE void updateTaskItem(Task* task);

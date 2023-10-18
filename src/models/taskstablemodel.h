@@ -15,10 +15,6 @@ class TasksTableModel : public BaseTableModel
 public:
     explicit TasksTableModel(QObject *parent = nullptr);
     Q_INVOKABLE void insertRecord(Task* task);
-    Q_INVOKABLE bool setData(const QModelIndex &index,
-                             const QVariant &value,
-                             int role = Qt::EditRole) override;
-
 };
 
 #endif // TASKSTABLEMODEL_H

@@ -28,8 +28,6 @@ DBAccess::DBAccess(QObject *parent)
                    "startDateTime VARCHAR(20), "
                    "endDateTime VARCHAR(20), "
                    "progressTracker INTEGER, "
-                   "progressValue INTEGER, "
-                   "targetValue INTEGER, "
                    "progressUnit VARCHAR(20),"
                    "mission TEXT, "
                    "vision TEXT, "
@@ -41,14 +39,37 @@ DBAccess::DBAccess(QObject *parent)
         if (query.lastError().isValid())
             qWarning() << "DBAccess::DBAccess" << query.lastError().text();
 
+        //for manual tracker base goals
+        query.exec("CREATE TABLE IF NOT EXISTS goalProgress ("
+                   "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
+                   "value INTEGER, "
+                   "target INTEGER,"
+                   "goalId INTEGER, "
+                   "FOREIGN KEY(goal) REFERENCES goals(itemId) ON DELETE CASCADE"
+                   ");");
+        if (query.lastError().isValid())
+            qWarning() << "DBAccess::DBAccess" << query.lastError().text();
+
         query.exec("CREATE TABLE IF NOT EXISTS tasks ("
                    "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
                    "name TEXT, "
                    "done INTEGER, "
                    "dateTime TEXT, "
-                   "date Text, "  //This is for listview sectioning use only, do not explicitly assign value, base on dateTime value
+                   "date TEXT, "  //This is for listview sectioning use only, do not explicitly assign value, base on dateTime value
                    "duration INTEGER, "
                    "outcomes INTEGER, "
+                   "parentGoalId INTEGER, "
+                   "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId) ON DELETE CASCADE"
+                   ");");
+        if (query.lastError().isValid())
+            qWarning() << "DBAccess::DBAccess" << query.lastError().text();
+
+        query.exec("CREATE TABLE IF NOT EXISTS habits ("
+                   "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
+                   "name TEXT, "
+                   "category TEXT, "
+                   "startDateTime TEXT, "
+                   "endDateTime TEXT, "  //This is for listview sectioning use only, do not explicitly assign value, base on dateTime value
                    "parentGoalId INTEGER, "
                    "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId) ON DELETE CASCADE"
                    ");");
@@ -86,12 +107,6 @@ void DBAccess::updateValue(const QString& tableName,
 
     if(query.lastError().isValid())
         qWarning() << "DBAccess::updateValue" << query.lastError().text();
-
-    if(columnName == "targetValue" && tableName == "goals")
-        updateParentGoalTargetValue(getValue(tableName,"parentGoalId",itemId).toInt());
-    else if((columnName == "progressValue" && tableName == "goals") ||
-             (columnName == "done" && tableName == "tasks"))
-        updateParentGoalProgressValue(getValue(tableName,"parentGoalId",itemId).toInt());
 }
 
 Goal* DBAccess::getGoalItem(int itemId)
@@ -118,28 +133,26 @@ Goal* DBAccess::getGoalItem(int itemId)
     goal->setStartDateTime(query.value(3).toDateTime());
     goal->setEndDateTime(query.value(4).toDateTime());
     goal->setProgressTracker(query.value(5).toInt());
-    goal->setProgressValue(query.value(6).toInt());
-    goal->setTargetValue(query.value(7).toInt());
-    goal->setProgressUnit(query.value(8).toString());
-    goal->setMission(query.value(9).toString());
-    goal->setVision(query.value(10).toString());
-    goal->setObstacles(query.value(11).toString());
-    goal->setResources(query.value(12).toString());
-    goal->setParentGoalId(query.value(13).toInt());
+    goal->setProgressUnit(query.value(6).toString());
+    goal->setMission(query.value(7).toString());
+    goal->setVision(query.value(8).toString());
+    goal->setObstacles(query.value(9).toString());
+    goal->setResources(query.value(10).toString());
+    goal->setParentGoalId(query.value(11).toInt());
 
     return goal;
 }
 
-void DBAccess::saveGoalItem(Goal* goal)
+int DBAccess::saveGoalItem(Goal* goal)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO goals "
                   "(name, imageSource, category, startDateTime, "
-                  "endDateTime, progressTracker, progressValue, targetValue, "
+                  "endDateTime, progressTracker, "
                   "progressUnit, mission, vision, obstacles, resources, parentGoalId) "
                   "VALUES "
                   "(:name, :imageSource, :category, :startDateTime, "
-                  ":endDateTime, :progressTracker, :progressValue, :targetValue, "
+                  ":endDateTime, :progressTracker, "
                   ":progressUnit, :mission, :vision, :obstacles, :resources, :parentGoalId);");
     query.bindValue(":name", goal->name());
     query.bindValue(":imageSource", goal->imageSource());
@@ -147,8 +160,6 @@ void DBAccess::saveGoalItem(Goal* goal)
     query.bindValue(":startDateTime", goal->startDateTime());
     query.bindValue(":endDateTime", goal->endDateTime());
     query.bindValue(":progressTracker", goal->progressTracker());
-    query.bindValue(":progressValue", goal->progressValue());
-    query.bindValue(":targetValue", goal->targetValue());
     query.bindValue(":progressUnit", goal->progressUnit());
     query.bindValue(":mission", goal->mission());
     query.bindValue(":vision", goal->vision());
@@ -160,8 +171,7 @@ void DBAccess::saveGoalItem(Goal* goal)
     if (query.lastError().isValid())
         qWarning() << query.lastQuery() << "DBAccess::saveGoalItem" << query.lastError().text();
 
-    updateParentGoalTargetValue(goal->parentGoalId());
-    updateParentGoalProgressValue(goal->parentGoalId());
+    return query.lastInsertId().toInt();
 }
 
 void DBAccess::removeGoalItem(int itemId)
@@ -181,13 +191,15 @@ void DBAccess::updateGoalItem(Goal *goal)
     {
         query.exec("DELETE FROM goals WHERE parentGoalId = " + goal->itemId());
         query.exec("DELETE FROM tasks WHERE parentGoalId = " + goal->itemId());
+        query.exec("DELETE FROM goalProgress WHERE goalId = " + goal->itemId());
+        query.exec("DELETE FROM habits WHERE parentGoalId = " + goal->itemId());
     }
 
     query.prepare("UPDATE goals "
                   "SET name = :name, imageSource = :imageSource, category = :category, "
                   "startDateTime = :startDateTime, endDateTime = :endDateTime, "
-                  "progressTracker = :progressTracker, progressValue = :progressValue, "
-                  "targetValue = :targetValue, progressUnit = :progressUnit, mission = :mission"
+                  "progressTracker = :progressTracker, "
+                  "progressUnit = :progressUnit, mission = :mission"
                   "vision = :vision, obstacles = :obstacles, resources = :resources, parentGoalId = :parentGoalId "
                   "WHERE itemId = :itemId;");
     query.bindValue(":name", goal->name());
@@ -196,8 +208,6 @@ void DBAccess::updateGoalItem(Goal *goal)
     query.bindValue(":startDateTime", goal->startDateTime());
     query.bindValue(":endDateTime", goal->endDateTime());
     query.bindValue(":progressTracker", goal->progressTracker());
-    query.bindValue(":progressValue", goal->progressValue());
-    query.bindValue(":targetValue", goal->targetValue());
     query.bindValue(":progressUnit", goal->progressUnit());
     query.bindValue(":mission", goal->mission());
     query.bindValue(":vision", goal->vision());
@@ -209,9 +219,50 @@ void DBAccess::updateGoalItem(Goal *goal)
 
     if (query.lastError().isValid())
         qWarning() << query.lastQuery() << "DBAccess::updateGoalItem" << query.lastError().text();
+}
 
-    updateParentGoalTargetValue(goal->parentGoalId());
-    updateParentGoalProgressValue(goal->parentGoalId());
+Progress DBAccess::getGoalProgress(int itemId)
+{
+
+}
+
+void DBAccess::saveGoalProgress(Progress *progress, int goalId)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO goalProgress "
+                  "(value, target, goalId) "
+                  "VALUES "
+                  "(:value, :target, :goalId);");
+    query.bindValue(":value", progress->first);
+    query.bindValue(":target", progress->second);
+    query.bindValue(":goalId", goalId);
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << "DBAccess::saveGoalProgress" << query.lastError().text();
+}
+
+void DBAccess::removeGoalProgress(int goalId)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM goals WHERE itemId = :itemId");
+    query.bindValue(":itemId", itemId);
+    query.exec();
+}
+
+void DBAccess::updateGoalProgress(Progress *progress, int goalId)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE goalProgress "
+                  "SET value = :value, target = :target "
+                  "WHERE goalId = :goalId;");
+    query.bindValue(":value", progress->first);
+    query.bindValue(":target", progress->second);
+    query.bindValue(":goalId", goalId);
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << query.lastQuery() << "DBAccess::updateGoalProgress" << query.lastError().text();
 }
 
 Task *DBAccess::getTaskItem(int itemId)
@@ -225,7 +276,7 @@ Task *DBAccess::getTaskItem(int itemId)
     query.exec();
 
     if (query.lastError().isValid())
-        qWarning() << "DBAccess::getGoalItem" << query.lastError().text();
+        qWarning() << "DBAccess::getTaskItem" << query.lastError().text();
 
     query.first();
 
@@ -261,10 +312,6 @@ void DBAccess::saveTaskItem(Task *task)
 
     if (query.lastError().isValid())
         qWarning() << "DBAccess::saveTaskItem" << query.lastError().text();
-
-    updateParentGoalTargetValue(task->parentGoalId());
-    if(task->done())
-        updateParentGoalProgressValue(task->parentGoalId());
 }
 
 void DBAccess::updateTaskItem(Task *task)
@@ -287,9 +334,6 @@ void DBAccess::updateTaskItem(Task *task)
 
     if (query.lastError().isValid())
         qWarning() << query.lastQuery() << "DBAccess::updateTaskItem" << query.lastError().text();
-
-    updateParentGoalTargetValue(task->parentGoalId());
-    updateParentGoalProgressValue(task->parentGoalId());
 }
 
 void DBAccess::updateParentGoalTargetValue(int itemId)
@@ -344,6 +388,10 @@ void DBAccess::updateParentGoalProgressValue(int itemId)
         switch (progressTracker)
         {
         case 0:
+            query.prepare("SELECT "
+                          "SUM(CASE WHEN )"
+                          "(SELECT SUM(progressValue) FROM goals WHERE parentGoalId = :parentGoalId), "
+                          "(SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId)")
             query.prepare("SELECT SUM(progressValue) FROM goals WHERE parentGoalId = :parentGoalId;");
             break;
         case 1:

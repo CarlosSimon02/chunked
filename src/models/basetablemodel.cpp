@@ -5,8 +5,6 @@
 #include <QSqlError>
 #include <QDebug>
 
-#include "dbaccess.h"
-
 BaseTableModel::BaseTableModel(QObject *parent)
     : QSqlTableModel{parent}
 {
@@ -100,10 +98,6 @@ bool BaseTableModel::removeRows(int row, int count, const QModelIndex &parent)
     emit beginRemoveRows(parent,row,row+count-1);
     bool result = QSqlTableModel::removeRows(row,count,parent);
     emit endRemoveRows();
-
-    DBAccess dbAccess;
-    dbAccess.updateParentGoalProgressValue(parentGoalId);
-    dbAccess.updateParentGoalTargetValue(parentGoalId);
 
     return result;
 }

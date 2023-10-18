@@ -12,11 +12,8 @@ class Goal : public QObject
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
     Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
-    Q_PROPERTY(QDateTime startDateTime READ startDateTime WRITE setStartDateTime NOTIFY startDateTimeChanged)
     Q_PROPERTY(QDateTime endDateTime READ endDateTime WRITE setEndDateTime NOTIFY endDateTimeChanged)
     Q_PROPERTY(int progressTracker READ progressTracker WRITE setProgressTracker NOTIFY progressTrackerChanged)
-    Q_PROPERTY(int progressValue READ progressValue WRITE setProgressValue NOTIFY progressValueChanged)
-    Q_PROPERTY(int targetValue READ targetValue WRITE setTargetValue NOTIFY targetValueChanged)
     Q_PROPERTY(QString progressUnit READ progressUnit WRITE setProgressUnit NOTIFY progressUnitChanged)
     Q_PROPERTY(QString mission READ mission WRITE setMission NOTIFY missionChanged)
     Q_PROPERTY(QString vision READ vision WRITE setVision NOTIFY visionChanged)
@@ -41,10 +38,6 @@ public:
     void setEndDateTime(const QDateTime& endDateTime);
     int progressTracker() const;
     void setProgressTracker(int progressTracker);
-    int progressValue() const;
-    void setProgressValue(int progressValue);
-    int targetValue() const;
-    void setTargetValue(int targetValue);
     QString progressUnit() const;
     void setProgressUnit(const QString& progressUnit);
     QString mission() const;
@@ -66,8 +59,6 @@ signals:
     void startDateTimeChanged();
     void endDateTimeChanged();
     void progressTrackerChanged();
-    void progressValueChanged();
-    void targetValueChanged();
     void progressUnitChanged();
     void missionChanged();
     void visionChanged();
@@ -83,8 +74,6 @@ private:
     QDateTime m_startDateTime;
     QDateTime m_endDateTime;
     int m_progressTracker;
-    int m_progressValue;
-    int m_targetValue;
     QString m_progressUnit;
     QString m_mission;
     QString m_vision;

@@ -103,34 +103,6 @@ void Goal::setProgressTracker(int progressTracker)
     }
 }
 
-int Goal::progressValue() const
-{
-    return m_progressValue;
-}
-
-void Goal::setProgressValue(int progressValue)
-{
-    if (progressValue != m_progressValue)
-    {
-        m_progressValue = progressValue;
-        emit progressValueChanged();
-    }
-}
-
-int Goal::targetValue() const
-{
-    return m_targetValue;
-}
-
-void Goal::setTargetValue(int targetValue)
-{
-    if (targetValue != m_targetValue)
-    {
-        m_targetValue = targetValue;
-        emit targetValueChanged();
-    }
-}
-
 QString Goal::progressUnit() const
 {
     return m_progressUnit;

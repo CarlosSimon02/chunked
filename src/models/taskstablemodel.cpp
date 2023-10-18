@@ -34,23 +34,11 @@ void TasksTableModel::insertRecord(Task *task)
         if(record(i).value("dateTime").toDateTime() < task->dateTime())
         {
             QSqlTableModel::insertRecord(i,rec);
-            dbAccess.updateParentGoalProgressValue(task->parentGoalId());
-            dbAccess.updateParentGoalTargetValue(task->parentGoalId());
             return;
         }
     }
 
     if (!QSqlTableModel::insertRecord(-1,rec))
         qWarning() << "TasksTableModel::insertRecord: Cannot insert task";
-    dbAccess.updateParentGoalProgressValue(task->parentGoalId());
-    dbAccess.updateParentGoalTargetValue(task->parentGoalId());
-}
-
-bool TasksTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-    bool result = BaseTableModel::setData(index,value,role);
-    DBAccess dbAccess;
-    dbAccess.updateParentGoalProgressValue(record(index.row()).value("parentGoalId").toInt());
-    return result;
 }
 

@@ -26,6 +26,8 @@ qt_add_executable(chunked
     src/models/goalstablemodel.h
     src/models/goalnamestreeviewmodel.cpp
     src/models/goalnamestreeviewmodel.h
+    src/models/habitstablemodel.cpp
+    src/models/habitstablemodel.h
     src/models/taskstablemodel.cpp
     src/models/taskstablemodel.h
     src/qml/qml.qrc

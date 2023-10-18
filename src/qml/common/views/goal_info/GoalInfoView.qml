@@ -191,7 +191,6 @@ Comp.PageView {
 
                         onDataChanged: {
                             pageView.goal = dbAccess.getGoalItem(pageView.itemId)
-                            console.log("called")
                         }
                     }
                 }

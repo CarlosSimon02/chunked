@@ -160,10 +160,8 @@ void DBAccess::saveGoalItem(Goal* goal)
     if (query.lastError().isValid())
         qWarning() << query.lastQuery() << "DBAccess::saveGoalItem" << query.lastError().text();
 
-    if(goal->targetValue())
-        updateParentGoalTargetValue(goal->parentGoalId());
-    if(goal->progressValue())
-        updateParentGoalProgressValue(goal->parentGoalId());
+    updateParentGoalTargetValue(goal->parentGoalId());
+    updateParentGoalProgressValue(goal->parentGoalId());
 }
 
 void DBAccess::removeGoalItem(int itemId)
@@ -310,7 +308,7 @@ void DBAccess::updateParentGoalTargetValue(int itemId)
             query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId;");
             break;
         case 2:
-            query.prepare("SELECT SUM(outcome) FROM tasks WHERE parentGoalId = :parentGoalId;");
+            query.prepare("SELECT SUM(outcomes) FROM tasks WHERE parentGoalId = :parentGoalId;");
             break;
         case 3:
             query.prepare("SELECT COUNT(*) FROM tasks WHERE parentGoalId = :parentGoalId;");
@@ -352,7 +350,7 @@ void DBAccess::updateParentGoalProgressValue(int itemId)
             query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId AND progressValue >= targetValue AND targetValue > 0;");
             break;
         case 2:
-            query.prepare("SELECT SUM(outcome) FROM tasks WHERE parentGoalId = :parentGoalId AND done = 1;");
+            query.prepare("SELECT SUM(outcomes) FROM tasks WHERE parentGoalId = :parentGoalId AND done = 1;");
             break;
         case 3:
             query.prepare("SELECT COUNT(*) FROM tasks WHERE parentGoalId = :parentGoalId AND done = 1;");

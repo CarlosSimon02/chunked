@@ -91,7 +91,6 @@ RowLayout {
                 trackerType: taskBodyRowLayout.trackerType
                 onDoneChanged: {
                     model.done = done
-                    dbAccess.updateParentGoalProgressValue(model.parentGoalId)
                     taskBodyRowLayout.dataChanged()
                 }
 

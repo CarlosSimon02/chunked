@@ -40,7 +40,7 @@ Impl.ItemDelegate {
                 text: control.outcomes
                 horizontalAlignment: Label.AlignHCenter
                 verticalAlignment: Label.AlignVCenter
-                visible: control.trackerType === 3
+                visible: control.trackerType === 2
                 background: Rectangle {
                     color: Comp.Globals.color.primary.shade2
                     radius: Material.SmallScale

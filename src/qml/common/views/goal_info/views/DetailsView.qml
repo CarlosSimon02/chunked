@@ -82,14 +82,13 @@ ScrollView {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 45
                     visible: scrollView.trackerType === 6
-                    value: scrollView.progressValue
+                    value: {value = scrollView.progressValue}
                     from: 0
                     to: scrollView.targetValue
 
                     onValueChanged: {
                         dbAccess.updateValue("goals","progressValue",pageView.itemId,value)
                         pageView.goal = dbAccess.getGoalItem(pageView.itemId)
-                        console.log("called")
                     }
                 }
 

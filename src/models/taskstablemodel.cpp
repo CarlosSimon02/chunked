@@ -46,22 +46,11 @@ void TasksTableModel::insertRecord(Task *task)
     dbAccess.updateParentGoalTargetValue(task->parentGoalId());
 }
 
-QString TasksTableModel::filterDate()
+bool TasksTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    
+    bool result = BaseTableModel::setData(index,value,role);
+    DBAccess dbAccess;
+    dbAccess.updateParentGoalProgressValue(record(index.row()).value("parentGoalId").toInt());
+    return result;
 }
 
-void TasksTableModel::setFilterDate(QString filterDate)
-{
-    
-}
-
-int TasksTableModel::filterStatus()
-{
-    
-}
-
-void TasksTableModel::setFilterStatus(int filterStatus)
-{
-    
-}

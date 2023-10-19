@@ -8,11 +8,11 @@
 #include "goal.h"
 #include "task.h"
 
-class Progress : public QPair<qreal, qreal> {
+class Progress : public QPair<int, int> {
     Q_GADGET
 
-    Q_PROPERTY(qreal value  MEMBER first  FINAL)
-    Q_PROPERTY(qreal target MEMBER second FINAL)
+    Q_PROPERTY(int value  MEMBER first  FINAL)
+    Q_PROPERTY(int target MEMBER second FINAL)
 
 public:
 

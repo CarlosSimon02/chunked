@@ -223,7 +223,65 @@ void DBAccess::updateGoalItem(Goal *goal)
 
 Progress DBAccess::getGoalProgress(int itemId)
 {
+    Progress progress(0,0);
+    if(itemId)
+    {
+        int progressTracker = getValue("goals", "progressTracker", itemId).toInt();
+        QSqlQuery query;
 
+        switch (progressTracker)
+        {
+        case 0:
+            query.prepare("SELECT itemId FROM goals WHERE parentGoalId = :parentGoalId;");
+            query.bindValue(":parentGoalId",itemId);
+            query.exec();
+            while(query.next())
+            {
+                Progress childItemProgress = getGoalProgress(query.value(0).toInt());
+                progress.first += childItemProgress.first;
+                progress.second += childItemProgress.second;
+            }
+            break;
+        case 1:
+            query.prepare("SELECT itemId FROM goals WHERE parentGoalId = :parentGoalId;");
+            query.bindValue(":parentGoalId",itemId);
+            query.exec();
+            while(query.next())
+            {
+                Progress childItemProgress = getGoalProgress(query.value(0).toInt());
+                progress.first += childItemProgress.second > 0 && childItemProgress.first == childItemProgress.second ? 1 : 0;
+                progress.second++;
+            }
+            break;
+        case 2:
+            query.prepare("SELECT SUM(CASE WHEN done == 1 THEN outcomes ELSE 0 END),SUM(outcomes) FROM tasks WHERE parentGoalId == :parentGoalId;");
+            query.bindValue(":parentGoalId",itemId);
+            query.exec();
+            progress.first = query.value(0).toInt();
+            progress.second = query.value(1).toInt();
+            break;
+        case 3:
+            query.prepare("SELECT SUM(CASE WHEN done == 1 THEN 1 ELSE 0 END), COUNT(*) FROM tasks WHERE parentGoalId == :parentGoalId;");
+            query.bindValue(":parentGoalId",itemId);
+            query.exec();
+            progress.first = query.value(0).toInt();
+            progress.second = query.value(1).toInt();
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            query.prepare("SELECT value, target FROM goalProgress WHERE goalId == :goalId;");
+            query.bindValue(":goalId",itemId);
+            query.exec();
+            progress.first = query.value(0).toInt();
+            progress.second = query.value(1).toInt();
+            break;
+        }
+    }
+
+    return progress;
 }
 
 void DBAccess::saveGoalProgress(Progress *progress, int goalId)
@@ -380,6 +438,7 @@ void DBAccess::updateParentGoalTargetValue(int itemId)
 
 void DBAccess::updateParentGoalProgressValue(int itemId)
 {
+    Progress progress(0,0);
     if(itemId)
     {
         int progressTracker = getValue("goals", "progressTracker", itemId).toInt();
@@ -388,12 +447,9 @@ void DBAccess::updateParentGoalProgressValue(int itemId)
         switch (progressTracker)
         {
         case 0:
-            query.prepare("SELECT "
-                          "SUM(CASE WHEN )"
-                          "(SELECT SUM(progressValue) FROM goals WHERE parentGoalId = :parentGoalId), "
-                          "(SELECT SUM(targetValue) FROM goals WHERE parentGoalId = :parentGoalId)")
-            query.prepare("SELECT SUM(progressValue) FROM goals WHERE parentGoalId = :parentGoalId;");
-            break;
+            query.prepare("SELECT itemId FROM goals WHERE parentGoalId = :parentGoalId;");
+            query.bindValue(":parentGoalId",itemId);
+            query.exec();
         case 1:
             query.prepare("SELECT COUNT(*) FROM goals WHERE parentGoalId = :parentGoalId AND progressValue >= targetValue AND targetValue > 0;");
             break;
@@ -422,6 +478,8 @@ void DBAccess::updateParentGoalProgressValue(int itemId)
         query.first();
         updateValue("goals", "progressValue", itemId, query.value(0).toInt());
     }
+
+    return progress;
 }
 
 

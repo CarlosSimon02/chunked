@@ -30,6 +30,8 @@ qt_add_executable(chunked
     src/models/habitstablemodel.h
     src/models/taskstablemodel.cpp
     src/models/taskstablemodel.h
+    src/progress.cpp
+    src/progress.h
     src/qml/qml.qrc
 )
 

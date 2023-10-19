@@ -53,6 +53,9 @@ Comp.PageView {
             }
         }
     }
+    property Progress progress: Progress {
+
+    }
 
     isInitItem: false
     title: pageView.goal.itemId ? "Edit Goal" : "Create Goal"

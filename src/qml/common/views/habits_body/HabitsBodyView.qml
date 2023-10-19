@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Material
+import app
 
 import components as Comp
 import components.buttons as Btn
@@ -10,7 +11,7 @@ Item {
     id: item
     clip: true
     property bool itemsHasImage: true
-    property bool isSubHabit: false
+    property int parentGoalId
     property ScrollBar verticalScrollBar
 
     GridView {
@@ -21,8 +22,8 @@ Item {
         topMargin: item.isSubGoal ? 8 : 10
         bottomMargin: topMargin
         contentWidth: Math.floor((item.parent.width - 30) / cellWidth) * cellWidth
-        cellWidth: item.isSubHabit ? 310 : 350
-        cellHeight: item.isSubHabit ? 230 : 260
+        cellWidth: item.parentGoalId ? 310 : 350
+        cellHeight: item.parentGoalId ? 230 : 260
 
         ScrollBar.vertical: item.verticalScrollBar
 
@@ -33,8 +34,7 @@ Item {
             Dlg.HabitItemDelegate {
                 anchors.fill: parent
                 anchors.margins: parent.GridView.view.topMargin
-                isSubHabit: item.isSubHabit
-                hasImage: item.itemsHasImage
+                hasParentGoal: item.parentGoalId
 
                 Material.background: Material.color(Material.Grey, Material.Shade900)
                 Material.elevation: 0
@@ -44,7 +44,9 @@ Item {
             }
         }
 
-        model: 10
+        model: HabitsTableModel {
+            parentGoalId: item.parentGoalId
+        }
     }
 
     Btn.FloatingButton {

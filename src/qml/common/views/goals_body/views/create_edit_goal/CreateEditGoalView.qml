@@ -20,8 +20,6 @@ Comp.PageView {
         startDateTime: timeFrame.startDateTime
         endDateTime: timeFrame.endDateTime
         progressTracker: progress.trackerType
-        progressValue: progress.progressValue
-        targetValue: progress.targetValue
         progressUnit: progress.unit
         mission: description.mission
         vision: description.vision
@@ -35,26 +33,27 @@ Comp.PageView {
                 common.goalName = tempGoal.name
                 common.imageSource = tempGoal.imageSource
                 common.category = tempGoal.category
-                timeFrame.startDateTime = Date.fromLocaleString(Qt.locale(),
-                                                                tempGoal.startDateTime,
-                                                                "yyyy-MM-dd hh:mm:ss")
-                timeFrame.endDateTime = Date.fromLocaleString(Qt.locale(),
-                                                              tempGoal.endDateTime,
-                                                              "yyyy-MM-dd hh:mm:ss")
+                timeFrame.startDateTime = tempGoal.startDateTime
+                timeFrame.endDateTime = tempGoal.endDateTime
                 progress.trackerType = tempGoal.progressTracker
-                progress.progressValue = tempGoal.progressValue
-                progress.targetValue = tempGoal.targetValue
+
                 progress.unit = tempGoal.progressUnit
                 description.mission = tempGoal.mission
                 description.vision = tempGoal.vision
                 description.obstacles = tempGoal.obstacles
                 description.resources = tempGoal.resources
                 parentGoal.parentGoalId = tempGoal.parentGoalId
+
+                let tempGoalProgress = dbAccess.getGoalProgress(itemId)
+                goalProgress.parentId = itemId
+                progress.progressValue = tempGoalProgress.value
+                progress.targetValue = tempGoalProgress.target
             }
         }
     }
-    property Progress progress: Progress {
-
+    property Progress goalProgress: Progress {
+        value: progress.progressValue
+        target: progress.targetValue
     }
 
     isInitItem: false
@@ -204,9 +203,16 @@ Comp.PageView {
                         }
                         else {
                             if(pageView.goal.itemId)
+                            {
                                 dbAccess.updateGoalItem(pageView.goal)
+                                dbAccess.updateGoalProgress(pageView.goalProgress)
+                            }
                             else
-                                dbAccess.saveGoalItem(pageView.goal)
+                            {
+                                pageView.goalProgress.parentId = dbAccess.saveGoalItem(pageView.goal)
+                                dbAccess.saveGoalProgress(pageView.goalProgress)
+                            }
+
                             stackPageView.pop()
                         }
                     }

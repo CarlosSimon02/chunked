@@ -11,7 +11,7 @@ GoalsTableModel::GoalsTableModel(QObject *parent)
 {
     setTable("goals");
     setQuery("SELECT itemId, name, imageSource, category, startDateTime, "
-             "endDateTime, progressTracker, progressValue, targetValue, progressUnit, parentGoalId "
+             "endDateTime, progressTracker, progressUnit, parentGoalId "
              "FROM goals;");
     setFilter("parentGoalId IS NULL");
 

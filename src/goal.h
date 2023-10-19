@@ -12,6 +12,7 @@ class Goal : public QObject
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
     Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
+    Q_PROPERTY(QDateTime startDateTime READ startDateTime WRITE setStartDateTime NOTIFY startDateTimeChanged)
     Q_PROPERTY(QDateTime endDateTime READ endDateTime WRITE setEndDateTime NOTIFY endDateTimeChanged)
     Q_PROPERTY(int progressTracker READ progressTracker WRITE setProgressTracker NOTIFY progressTrackerChanged)
     Q_PROPERTY(QString progressUnit READ progressUnit WRITE setProgressUnit NOTIFY progressUnitChanged)

@@ -46,11 +46,6 @@ ScrollView {
                     model: Comp.Globals.trackerTypes
 
                     onActivated: index => {
-                        progressValue.enabled = false
-                        targetValue.enabled = false
-                        progressValue.value = 0
-                        targetValue.value = 0
-
                         switch(index) {
                             case 0: unit.text = "goals' progress"; break;
                             case 1: unit.text = "goals"; break;
@@ -58,11 +53,7 @@ ScrollView {
                             case 3: unit.text = "tasks"; break;
                             case 4: unit.text = "habits' progress"; break;
                             case 5: unit.text = "habits"; break;
-                            case 6:
-                            unit.text = "";
-                            progressValue.enabled = true
-                            targetValue.enabled = true
-                            break;
+                            case 6: unit.text = ""; break;
                         }
                     }
                 }
@@ -115,7 +106,7 @@ ScrollView {
                     id: progressValue
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
-                    enabled: false
+                    enabled: trackerType.currentIndex === 6
                     editable: true
                     value: 0
                     from: 0
@@ -157,7 +148,7 @@ ScrollView {
                     id: targetValue
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
-                    enabled: false
+                    enabled: trackerType.currentIndex === 6
                     editable: true
                     value: 0
                     from: 0

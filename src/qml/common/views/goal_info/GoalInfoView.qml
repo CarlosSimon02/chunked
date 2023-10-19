@@ -17,6 +17,7 @@ Comp.PageView {
 
     property int itemId
     property Goal goal: dbAccess.getGoalItem(itemId)
+    property Progress goalProgress: dbAccess.getGoalProgress(itemId)
     property bool itemsHasImage: true
 
     Material.accent: Comp.Globals.color.accent.shade1
@@ -24,6 +25,7 @@ Comp.PageView {
     StackView.onActivating: {
         //refresh
         goal = dbAccess.getGoalItem(itemId)
+        goalProgress = dbAccess.getGoalProgress(itemId)
     }
 
     headerOptions: Component {
@@ -89,8 +91,8 @@ Comp.PageView {
             endDateTime: pageView.goal.endDateTime
             category: pageView.goal.category
             trackerType: pageView.goal.progressTracker
-            progressValue: pageView.goal.progressValue
-            targetValue: pageView.goal.targetValue
+            progressValue: pageView.goalProgress.value
+            targetValue: pageView.goalProgress.target
             unit: pageView.goal.progressUnit
             parentGoalId: pageView.goal.parentGoalId
         }
@@ -190,7 +192,7 @@ Comp.PageView {
                         trackerType: pageView.goal.progressTracker
 
                         onDataChanged: {
-                            pageView.goal = dbAccess.getGoalItem(pageView.itemId)
+                            pageView.goalProgress = dbAccess.getGoalProgress(pageView.itemId)
                         }
                     }
                 }

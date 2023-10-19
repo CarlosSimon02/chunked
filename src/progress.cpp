@@ -8,7 +8,7 @@ Progress::Progress(QObject *parent)
 
 int Progress::value()
 {
-    retun m_value;
+    return m_value;
 }
 
 void Progress::setValue(int value)

@@ -46,13 +46,14 @@ Item {
 
                 Component.onCompleted: {
                     itemId = model.itemId
+                    let goalProgress = dbAccess.getGoalProgress(model.itemId)
                     imageSource = model.imageSource
                     goalName = model.name
                     startDateTime = model.startDateTime
                     endDateTime = model.endDateTime
                     category = model.category
-                    progressValue = model.progressValue
-                    targetValue = model.targetValue
+                    progressValue = goalProgress.value
+                    targetValue = goalProgress.target
                     unit = model.progressUnit
                 }
             }

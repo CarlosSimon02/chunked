@@ -87,7 +87,8 @@ ScrollView {
                     to: scrollView.targetValue
 
                     onValueChanged: {
-                        dbAccess.updateValue("goals","progressValue",pageView.itemId,value)
+                        pageView.goalProgress.value = value
+                        dbAccess.updateGoalProgress(pageView.goalProgress)
                         pageView.goal = dbAccess.getGoalItem(pageView.itemId)
                     }
                 }

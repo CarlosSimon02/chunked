@@ -7,8 +7,8 @@
 class Progress : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int value READ value WRITE setItemId NOTIFY itemIdChanged)
-    Q_PROPERTY(int target READ target WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(int value READ value WRITE setValue NOTIFY valueChanged)
+    Q_PROPERTY(int target READ target WRITE setTarget NOTIFY targetChanged)
     Q_PROPERTY(int parentId READ parentId WRITE setParentId NOTIFY parentIdChanged)
     QML_ELEMENT
 
@@ -28,9 +28,9 @@ signals:
     void parentIdChanged();
 
 private:
-    int m_value;
-    int m_target;
-    int m_parentId;
+    int m_value = 0;
+    int m_target = 0;
+    int m_parentId = 0;
 };
 
 #endif // PROGRESS_H

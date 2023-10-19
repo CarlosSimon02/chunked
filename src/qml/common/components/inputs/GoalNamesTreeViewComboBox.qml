@@ -19,9 +19,6 @@ ComboBox {
     property int itemId: 0
     property int trackerType: GoalNamesTreeViewComboBox.TrackerType.Goals
 
-    displayText: treeView.itemAtIndex(treeView.selectionModel.currentIndex) ?
-                     treeView.itemAtIndex(treeView.selectionModel.currentIndex).goalName :
-                     ""
     delegate: null
     topInset: 0
     bottomInset: 0

@@ -6,19 +6,8 @@
 #include <QPair>
 
 #include "goal.h"
+#include "progress.h"
 #include "task.h"
-
-class Progress : public QPair<int, int> {
-    Q_GADGET
-
-    Q_PROPERTY(int value  MEMBER first  FINAL)
-    Q_PROPERTY(int target MEMBER second FINAL)
-
-public:
-
-    Progress() = default;
-    Progress(qreal a, qreal b) : QPair<qreal, qreal>(a, b) {}
-};
 
 class DBAccess : public QObject
 {
@@ -39,15 +28,13 @@ public:
     Q_INVOKABLE int saveGoalItem(Goal* goal);
     Q_INVOKABLE void removeGoalItem(int itemId);
     Q_INVOKABLE void updateGoalItem(Goal* goal);
-    Q_INVOKABLE Progress getGoalProgress(int goalId);
+    Q_INVOKABLE Progress* getGoalProgress(int goalId);
     Q_INVOKABLE void saveGoalProgress(Progress* progress);
     Q_INVOKABLE void removeGoalProgress(int goalId);
-    Q_INVOKABLE void updateGoalProgress(Progress* progress, int goalId);
+    Q_INVOKABLE void updateGoalProgress(Progress* progress);
     Q_INVOKABLE Task* getTaskItem(int itemId);
     Q_INVOKABLE void saveTaskItem(Task* task);
     Q_INVOKABLE void updateTaskItem(Task* task);
-    Q_INVOKABLE void updateParentGoalTargetValue(int itemId);
-    Q_INVOKABLE void updateParentGoalProgressValue(int itemId);
 
 signals:
 

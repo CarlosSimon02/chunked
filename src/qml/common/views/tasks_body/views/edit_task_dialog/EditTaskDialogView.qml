@@ -73,8 +73,8 @@ Comp.ItemCreateEditDialog {
 
                     Inpt.TextField {
                         id: taskName
-                        Layout.maximumWidth: 500
                         Layout.fillWidth: true
+                        Layout.preferredHeight: 45
 
                         onTextChanged: {
                             hasError = false

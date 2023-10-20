@@ -45,9 +45,6 @@
         <file>common/views/goals_body/views/create_edit_goal/views/ProgressFormView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal/views/TimeFrameFormView.qml</file>
         <file>common/views/goals_body/views/create_edit_goal/CreateEditGoalView.qml</file>
-        <file>common/views/habits_body/views/create_edit_habit/components/FieldColumnLayout.qml</file>
-        <file>common/views/habits_body/views/create_edit_habit/components/FieldLabel.qml</file>
-        <file>common/views/habits_body/views/create_edit_habit/CreateEditHabitView.qml</file>
         <file>common/views/habits_body/views/habit_info_drawer/components/DateHiglighter.qml</file>
         <file>views/reports/components/DataSummaryCard.qml</file>
         <file>views/home/components/Page.qml</file>
@@ -85,5 +82,9 @@
         <file>common/views/tasks_body/views/create_task/CreateTaskDrawerView.qml</file>
         <file>common/components/inputs/SpinBox.qml</file>
         <file>common/components/ItemCreateEditDialog.qml</file>
+        <file>common/views/habits_body/views/create_edit_habit_dialog/CreateEditHabitDialogView.qml</file>
+        <file>common/views/habits_body/views/create_edit_habit_dialog/components/FieldColumnLayout.qml</file>
+        <file>common/views/habits_body/views/create_edit_habit_dialog/components/FieldLabel.qml</file>
+        <file>common/views/habits_body/views/create_edit_habit_dialog/CreateEditHabitView.qml</file>
     </qresource>
 </RCC>

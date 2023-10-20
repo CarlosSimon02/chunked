@@ -16,6 +16,8 @@ qt_add_executable(chunked
     src/dbaccess.h
     src/goal.cpp
     src/goal.h
+    src/habit.cpp
+    src/habit.h
     src/task.cpp
     src/task.h
     src/icons/icons.qrc

@@ -17,7 +17,7 @@ RowLayout {
 
     signal dataChanged
     property int parentGoalId: 0
-    property int trackerType: 2
+    property int trackerType: 3
 
     Material.accent: Comp.Globals.color.accent.shade1
 

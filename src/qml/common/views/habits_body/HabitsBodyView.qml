@@ -6,10 +6,13 @@ import components as Comp
 import components.buttons as Btn
 import components.delegates as Dlg
 import "./views/habit_info_drawer"
+import "./views/create_edit_habit_dialog"
 
 Item {
-    id: item
+    id: habitItem
     clip: true
+
+    signal dataChanged
     property bool itemsHasImage: true
     property int parentGoalId
     property ScrollBar verticalScrollBar
@@ -19,13 +22,13 @@ Item {
         width: contentWidth
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
-        topMargin: item.isSubGoal ? 8 : 10
+        topMargin: habitItem.isSubGoal ? 8 : 10
         bottomMargin: topMargin
-        contentWidth: Math.floor((item.parent.width - 30) / cellWidth) * cellWidth
-        cellWidth: item.parentGoalId ? 310 : 350
-        cellHeight: item.parentGoalId ? 230 : 260
+        contentWidth: Math.floor((habitItem.parent.width - 30) / cellWidth) * cellWidth
+        cellWidth: habitItem.parentGoalId ? 310 : 350
+        cellHeight: habitItem.parentGoalId ? 230 : 260
 
-        ScrollBar.vertical: item.verticalScrollBar
+        ScrollBar.vertical: habitItem.verticalScrollBar
 
         delegate: Item {
             width: GridView.view.cellWidth
@@ -34,7 +37,7 @@ Item {
             Dlg.HabitItemDelegate {
                 anchors.fill: parent
                 anchors.margins: parent.GridView.view.topMargin
-                hasParentGoal: item.parentGoalId
+                hasParentGoal: habitItem.parentGoalId
 
                 Material.background: Material.color(Material.Grey, Material.Shade900)
                 Material.elevation: 0
@@ -45,7 +48,7 @@ Item {
         }
 
         model: HabitsTableModel {
-            parentGoalId: item.parentGoalId
+            parentGoalId: habitItem.parentGoalId
         }
     }
 
@@ -53,7 +56,11 @@ Item {
         icon.source: "qrc:/create_icon.svg"
         text: "New Habit"
 
-        onClicked: stackPageView.push("qrc:/common/views/habits_body/views/create_edit_habit/CreateEditHabitView.qml")
+        onClicked: createEditHabitDialogView.open()
+    }
+
+    CreateEditHabitDialogView {
+        id: createEditHabitDialogView
     }
 
     HabitInfoDrawerView {

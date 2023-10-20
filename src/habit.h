@@ -29,8 +29,8 @@ public:
     void setCategory(const QString& category);
     int frequency() const;
     void setFrequency(int frequency);
-    int targetDays();
-    void setTargetDays();
+    int targetDays() const;
+    void setTargetDays(int targetDays);
     QDateTime startDateTime() const;
     void setStartDateTime(const QDateTime& startDateTime);
     QDateTime endDateTime() const;

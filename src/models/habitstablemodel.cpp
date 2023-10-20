@@ -19,10 +19,11 @@ void HabitsTableModel::insertRecord(Habit *habit)
     rec.setValue("name", habit->name());
     rec.setValue("category", habit->category());
     rec.setValue("frequency", habit->frequency());
+    rec.setValue("targetDays", habit->targetDays());
     rec.setValue("startDateTime", habit->startDateTime());
     rec.setValue("endDateTime", habit->endDateTime());
     rec.setValue("parentGoalId", habit->parentGoalId() ? habit->parentGoalId() : QVariant(QMetaType::fromType<int>()) );
 
     if (!QSqlTableModel::insertRecord(-1,rec))
-        qWarning() << "TasksTableModel::insertRecord: Cannot insert task";
+        qWarning() << "HabitsTableModel::insertRecord: Cannot insert habit";
 }

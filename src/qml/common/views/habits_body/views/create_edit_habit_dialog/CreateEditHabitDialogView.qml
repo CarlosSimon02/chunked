@@ -17,6 +17,7 @@ Comp.ItemCreateEditDialog {
         name: habitName.text
         category: category.displayText
         frequency: frequency.currentIndex
+        targetDays: targetDays.value
         startDateTime: startDateTimePicker.dateTime
         endDateTime: endDateTimePicker.dateTime
         parentGoalId: dialog.parentGoalId
@@ -53,6 +54,7 @@ Comp.ItemCreateEditDialog {
             habitName.text = tempHabit.name
             category.text = tempHabit.category
             frequency.currentIndex = tempHabit.frequency
+            targetDays.value = tempHabit.targetDays
             startDateTimePicker.dateTime = tempHabit.startDateTime
             endDateTimePicker.dateTime = tempHabit.endDateTime
         }
@@ -61,9 +63,10 @@ Comp.ItemCreateEditDialog {
             category.currentIndex = 0
             frequency.currentIndex = 0
             startDateTimePicker.dateTime = new Date()
-            startDateTimePicker.dateTime.setHours(0,0)
+            startDateTimePicker.dateTime.setHours(0,0,0)
             endDateTimePicker.dateTime = startDateTimePicker.dateTime
             endDateTimePicker.dateTime.setDate(endDateTimePicker.dateTime.getDate() + 1)
+            targetDays.value = (endDateTimePicker.dateTime - startDateTimePicker.dateTime) / (1000 * 3600 * 24)
         }
         startTime.text = startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
         endTime.text = endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
@@ -164,6 +167,41 @@ Comp.ItemCreateEditDialog {
                     spacing: 12
 
                     Text {
+                        text: "Target Days"
+                        font.pixelSize: Comp.Globals.fontSize.medium
+                        font.weight: Font.DemiBold
+                        color: Material.color(Material.Grey, Material.Shade600)
+                    }
+
+                    RowLayout {
+                        SpinBox {
+                            id: targetDays
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 45
+                            from: 0
+                            to: (endDateTimePicker.dateTime - startDateTimePicker.dateTime) / (1000 * 3600 * 24)
+                        }
+
+                        Btn.PageHeaderButton {
+                            Layout.preferredWidth: targetDays.height
+                            Layout.preferredHeight: targetDays.height
+                            flat: true
+                            icon.source: "qrc:/create_icon.svg"
+                            icon.width: 24
+                            icon.height: 24
+                            icon.color: Comp.Globals.color.secondary.shade1
+
+                            Material.roundedScale: Material.SmallScale
+
+                            onClicked: targetDays.value = targetDays.to
+                        }
+                    }
+                }
+
+                ColumnLayout {
+                    spacing: 12
+
+                    Text {
                         text: "Start Time"
                         font.pixelSize: Comp.Globals.fontSize.medium
                         font.weight: Font.DemiBold
@@ -182,7 +220,7 @@ Comp.ItemCreateEditDialog {
                             readOnly: true
                         }
 
-                       Btn.PageHeaderButton {
+                        Btn.PageHeaderButton {
                             Layout.preferredWidth: startTime.height
                             Layout.preferredHeight: startTime.height
                             flat: true

@@ -62,6 +62,20 @@ void Habit::setFrequency(int frequency)
     }
 }
 
+int Habit::targetDays() const
+{
+    return m_targetDays;
+}
+
+void Habit::setTargetDays(int targetDays)
+{
+    if (targetDays != m_targetDays)
+    {
+        m_targetDays = targetDays;
+        emit targetDaysChanged();
+    }
+}
+
 QDateTime Habit::startDateTime() const
 {
     return m_startDateTime;

@@ -68,8 +68,10 @@ DBAccess::DBAccess(QObject *parent)
                    "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
                    "name TEXT, "
                    "category TEXT, "
+                   "frequency INTEGER, "
+                   "targetDays INTEGER, "
                    "startDateTime TEXT, "
-                   "endDateTime TEXT, "  //This is for listview sectioning use only, do not explicitly assign value, base on dateTime value
+                   "endDateTime TEXT, "
                    "parentGoalId INTEGER, "
                    "FOREIGN KEY(parentGoalId) REFERENCES goals(itemId) ON DELETE CASCADE"
                    ");");
@@ -332,7 +334,7 @@ void DBAccess::updateGoalProgress(Progress *progress)
 Habit *DBAccess::getHabitItem(int itemId)
 {
     QSqlQuery query;
-    query.prepare("SELECT name, category, frequency, startDateTime, "
+    query.prepare("SELECT name, category, frequency, targetDays, startDateTime, "
                   "endDateTime, parentGoalId "
                   "FROM habits "
                   "WHERE itemId = :itemId;");
@@ -349,9 +351,10 @@ Habit *DBAccess::getHabitItem(int itemId)
     habit->setName(query.value(0).toString());
     habit->setCategory(query.value(1).toString());
     habit->setFrequency(query.value(2).toInt());
-    habit->setStartDateTime(query.value(3).toDateTime());
-    habit->setEndDateTime(query.value(4).toDateTime());
-    habit->setParentGoalId(query.value(5).toInt());
+    habit->setTargetDays(query.value(3).toInt());
+    habit->setStartDateTime(query.value(4).toDateTime());
+    habit->setEndDateTime(query.value(5).toDateTime());
+    habit->setParentGoalId(query.value(6).toInt());
 
     return habit;
 }
@@ -361,12 +364,13 @@ void DBAccess::updateHabitItem(Habit *habit)
     QSqlQuery query;
 
     query.prepare("UPDATE habits "
-                  "SET name = :name, category = :category, frequency = :frequency, "
+                  "SET name = :name, category = :category, frequency = :frequency, targetDays = :targetDays, "
                   "startDateTime = :startDateTime, endDateTime = :endDateTime, parentGoalId = :parentGoalId "
                   "WHERE itemId = :itemId;");
     query.bindValue(":name", habit->name());
     query.bindValue(":category", habit->category());
     query.bindValue(":frequency", habit->frequency());
+    query.bindValue(":targetDays", habit->targetDays());
     query.bindValue(":startDateTime", habit->startDateTime());
     query.bindValue(":endDateTime", habit->endDateTime());
     query.bindValue(":parentGoalId", habit->parentGoalId() ? habit->parentGoalId() : QVariant(QMetaType::fromType<int>()));

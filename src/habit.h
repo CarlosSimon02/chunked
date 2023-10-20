@@ -2,6 +2,7 @@
 #define HABIT_H
 
 #include <QObject>
+#include <QDateTime>
 #include <QtQml/qqml.h>
 
 class Habit : public QObject
@@ -10,7 +11,7 @@ class Habit : public QObject
     Q_PROPERTY(int itemId READ itemId WRITE setItemId NOTIFY itemIdChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
-    Q_PROPERTY(QString frequency READ frequency WRITE setFrequency NOTIFY frequencyChanged)
+    Q_PROPERTY(int frequency READ frequency WRITE setFrequency NOTIFY frequencyChanged)
     Q_PROPERTY(QDateTime startDateTime READ startDateTime WRITE setStartDateTime NOTIFY startDateTimeChanged)
     Q_PROPERTY(QDateTime endDateTime READ endDateTime WRITE setEndDateTime NOTIFY endDateTimeChanged)
     Q_PROPERTY(int parentGoalId READ parentGoalId WRITE setParentGoalId NOTIFY parentGoalIdChanged)
@@ -26,11 +27,13 @@ public:
     QString category() const;
     void setCategory(const QString& category);
     int frequency() const;
-    void setFrequency() const;
+    void setFrequency(int frequency);
     QDateTime startDateTime() const;
     void setStartDateTime(const QDateTime& startDateTime);
     QDateTime endDateTime() const;
     void setEndDateTime(const QDateTime& endDateTime);
+    int parentGoalId();
+    void setParentGoalId(int parentGoalId);
 
 signals:
     void itemIdChanged();
@@ -39,6 +42,7 @@ signals:
     void frequencyChanged();
     void startDateTimeChanged();
     void endDateTimeChanged();
+    void parentGoalIdChanged();
 
 private:
     int m_itemId;
@@ -47,6 +51,7 @@ private:
     int m_frequency;
     QDateTime m_startDateTime;
     QDateTime m_endDateTime;
+    int m_parentGoalId;
 };
 
 #endif // HABIT_H

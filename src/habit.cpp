@@ -53,7 +53,7 @@ int Habit::frequency() const
     return m_frequency;
 }
 
-void Habit::setFrequency() const
+void Habit::setFrequency(int frequency)
 {
     if (frequency != m_frequency)
     {
@@ -87,5 +87,19 @@ void Habit::setEndDateTime(const QDateTime &endDateTime)
     {
         m_endDateTime = endDateTime;
         emit endDateTimeChanged();
+    }
+}
+
+int Habit::parentGoalId()
+{
+    return m_parentGoalId;
+}
+
+void Habit::setParentGoalId(int parentGoalId)
+{
+    if (parentGoalId != m_parentGoalId)
+    {
+        m_parentGoalId = parentGoalId;
+        emit parentGoalIdChanged();
     }
 }

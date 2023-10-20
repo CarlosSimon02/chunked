@@ -12,7 +12,41 @@ Comp.ItemCreateEditDialog {
 
     signal checkError
     property int itemId: 0
-    property Task task
+    property alias parentGoalId: 0
+    property Habit habit: Habit {
+        itemId: 0
+        name: habitName.text
+        category: category.text
+        frequency: frequency.currentIndex
+        startDateTime: startDateTimePicker.dateTime
+        endDateTime: endDateTimePicker.dateTime
+        parentGoalId: dialog.parentGoalId
+
+        onItemIdChanged: {
+            if(itemId) {
+                let tempGoal = dbAccess.getGoalItem(itemId)
+                common.goalName = tempGoal.name
+                common.imageSource = tempGoal.imageSource
+                common.category = tempGoal.category
+                timeFrame.startDateTime = tempGoal.startDateTime
+                timeFrame.endDateTime = tempGoal.endDateTime
+                progress.trackerType = tempGoal.progressTracker
+
+                progress.unit = tempGoal.progressUnit
+                description.mission = tempGoal.mission
+                description.vision = tempGoal.vision
+                description.obstacles = tempGoal.obstacles
+                description.resources = tempGoal.resources
+                parentGoal.parentGoalId = tempGoal.parentGoalId
+
+                let tempGoalProgress = dbAccess.getGoalProgress(itemId)
+                goalProgress.parentId = itemId
+                progress.progressValue = tempGoalProgress.value
+                progress.targetValue = tempGoalProgress.target
+            }
+        }
+    }
+
     property bool hasError
 
     title: itemId ? "Edit Habit" : "Create Habit"

@@ -329,6 +329,54 @@ void DBAccess::updateGoalProgress(Progress *progress)
         qWarning() << query.lastQuery() << "DBAccess::updateGoalProgress" << query.lastError().text();
 }
 
+Habit *DBAccess::getHabitItem(int itemId)
+{
+    QSqlQuery query;
+    query.prepare("SELECT name, category, frequency, startDateTime, "
+                  "endDateTime, parentGoalId "
+                  "FROM habits "
+                  "WHERE itemId = :itemId;");
+    query.bindValue(":itemId", itemId);
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << "DBAccess::getHabitItem" << query.lastError().text();
+
+    query.first();
+
+    Habit* habit = new Habit;
+    habit->setItemId(itemId);
+    habit->setName(query.value(0).toString());
+    habit->setCategory(query.value(1).toString());
+    habit->setFrequency(query.value(2).toInt());
+    habit->setStartDateTime(query.value(3).toDateTime());
+    habit->setEndDateTime(query.value(4).toDateTime());
+    habit->setParentGoalId(query.value(5).toInt());
+
+    return habit;
+}
+
+void DBAccess::updateHabitItem(Habit *habit)
+{
+    QSqlQuery query;
+
+    query.prepare("UPDATE habits "
+                  "SET name = :name, category = :category, frequency = :frequency, "
+                  "startDateTime = :startDateTime, endDateTime = :endDateTime, parentGoalId = :parentGoalId "
+                  "WHERE itemId = :itemId;");
+    query.bindValue(":name", habit->name());
+    query.bindValue(":category", habit->category());
+    query.bindValue(":frequency", habit->frequency());
+    query.bindValue(":startDateTime", habit->startDateTime());
+    query.bindValue(":endDateTime", habit->endDateTime());
+    query.bindValue(":parentGoalId", habit->parentGoalId() ? habit->parentGoalId() : QVariant(QMetaType::fromType<int>()));
+    query.bindValue(":itemId", habit->itemId());
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << query.lastQuery() << "DBAccess::updateHabitItem" << query.lastError().text();
+}
+
 Task *DBAccess::getTaskItem(int itemId)
 {
     QSqlQuery query;
@@ -354,28 +402,6 @@ Task *DBAccess::getTaskItem(int itemId)
     task->setParentGoalId(query.value(5).toInt());
 
     return task;
-}
-
-void DBAccess::saveTaskItem(Task *task)
-{
-    QSqlQuery query;
-    query.prepare("INSERT INTO tasks "
-                  "(name, done, dateTime, date, duration, "
-                  "outcomes, parentGoalId) "
-                  "VALUES "
-                  "(:name, :done, :dateTime, :date, :duration, "
-                  ":outcomes, :parentGoalId);");
-    query.bindValue(":name", task->name());
-    query.bindValue(":done", task->done());
-    query.bindValue(":dateTime", task->dateTime());
-    query.bindValue(":date", task->dateTime().toString(Qt::ISODate).first(10));
-    query.bindValue(":duration", task->duration());
-    query.bindValue(":outcomes", task->outcomes());
-    query.bindValue(":parentGoalId", task->parentGoalId() ? task->parentGoalId() : QVariant(QMetaType::fromType<int>()));
-    query.exec();
-
-    if (query.lastError().isValid())
-        qWarning() << "DBAccess::saveTaskItem" << query.lastError().text();
 }
 
 void DBAccess::updateTaskItem(Task *task)

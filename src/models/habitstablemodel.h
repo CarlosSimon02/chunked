@@ -3,6 +3,8 @@
 
 #include "basetablemodel.h"
 
+class Habit;
+
 class HabitsTableModel : public BaseTableModel
 {
     Q_OBJECT
@@ -11,6 +13,7 @@ class HabitsTableModel : public BaseTableModel
 
 public:
     explicit HabitsTableModel(QObject *parent = nullptr);
+    Q_INVOKABLE void insertRecord(Habit* habit);
 };
 
 #endif // HABITSTABLEMODEL_H

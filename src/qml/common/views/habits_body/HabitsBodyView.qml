@@ -50,6 +50,44 @@ Item {
         model: HabitsTableModel {
             parentGoalId: habitItem.parentGoalId
         }
+
+        add: Transition {
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { property: "opacity"; from: 0.7; to: 1.0; duration: 200 }
+                    NumberAnimation { property: "scale"; from: 0.7; to: 1.0; duration: 200 }
+                }
+
+                ScriptAction {
+                    script: {
+                        gridView.model.refresh()
+                        habitItem.dataChanged()
+                    }
+                }
+            }
+        }
+
+        remove: Transition {
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { property: "opacity"; from: 1; to: 0.7; duration: 200 }
+                    NumberAnimation { property: "scale"; from: 1; to: 0.7; duration: 200 }
+                }
+
+                ScriptAction {
+                    script: {
+                        gridView.model.refresh()
+                        habitItem.dataChanged()
+                    }
+                }
+            }
+        }
+
+        displaced: Transition {
+            NumberAnimation { properties: "x,y"; duration: 200; easing.type: Easing.OutQuad }
+            NumberAnimation { property: "opacity"; to: 1.0 }
+            NumberAnimation { property: "scale"; to: 1.0 }
+        }
     }
 
     Btn.FloatingButton {

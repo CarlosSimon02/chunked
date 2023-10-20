@@ -34,10 +34,8 @@ public:
     Q_INVOKABLE void removeGoalProgress(int goalId);
     Q_INVOKABLE void updateGoalProgress(Progress* progress);
     Q_INVOKABLE Habit* getHabitItem(int itemId);
-    Q_INVOKABLE void saveHabitItem(Habit* task);
-    Q_INVOKABLE void updateHabitItem(Habit* task);
+    Q_INVOKABLE void updateHabitItem(Habit* habit);
     Q_INVOKABLE Task* getTaskItem(int itemId);
-    Q_INVOKABLE void saveTaskItem(Task* task);
     Q_INVOKABLE void updateTaskItem(Task* task);
 
 signals:

@@ -11,45 +11,20 @@ Comp.ItemCreateEditDialog {
     id: dialog
 
     signal checkError
-    property int itemId: 0
-    property alias parentGoalId: 0
+    property int parentGoalId: 0
     property Habit habit: Habit {
         itemId: 0
         name: habitName.text
-        category: category.text
+        category: category.displayText
         frequency: frequency.currentIndex
         startDateTime: startDateTimePicker.dateTime
         endDateTime: endDateTimePicker.dateTime
         parentGoalId: dialog.parentGoalId
-
-        onItemIdChanged: {
-            if(itemId) {
-                let tempGoal = dbAccess.getGoalItem(itemId)
-                common.goalName = tempGoal.name
-                common.imageSource = tempGoal.imageSource
-                common.category = tempGoal.category
-                timeFrame.startDateTime = tempGoal.startDateTime
-                timeFrame.endDateTime = tempGoal.endDateTime
-                progress.trackerType = tempGoal.progressTracker
-
-                progress.unit = tempGoal.progressUnit
-                description.mission = tempGoal.mission
-                description.vision = tempGoal.vision
-                description.obstacles = tempGoal.obstacles
-                description.resources = tempGoal.resources
-                parentGoal.parentGoalId = tempGoal.parentGoalId
-
-                let tempGoalProgress = dbAccess.getGoalProgress(itemId)
-                goalProgress.parentId = itemId
-                progress.progressValue = tempGoalProgress.value
-                progress.targetValue = tempGoalProgress.target
-            }
-        }
     }
 
     property bool hasError
 
-    title: itemId ? "Edit Habit" : "Create Habit"
+    title: dialog.habit.itemId ? "Edit Habit" : "Create Habit"
     width: 390
     height: 700
 
@@ -59,23 +34,39 @@ Comp.ItemCreateEditDialog {
         checkError()
 
         if(!dialog.hasError) {
-            dialog.task.name = habitName.text
-            dialog.task.outcomes = outcomes.value
-            dialog.task.dateTime = datePicker.chosenDateTime
-            dialog.task.duration = durationPicker.duration
+            if(dialog.habit.itemId) {
+                dbAccess.updateHabitItem(dialog.habit)
+                gridView.model.refresh()
+            }
+            else
+                gridView.model.insertRecord(dialog.habit)
 
-            dbAccess.updateTaskItem(dialog.task)
-            listView.model.refresh()
             habitItem.dataChanged()
             dialog.close()
         }
         else habitName.focus = true
     }
 
-
     onAboutToShow: {
-        dialog.task = dbAccess.getTaskItem(dialog.itemId)
-        habitName.text = dialog.task.name
+        if(dialog.habit.itemId) {
+            let tempHabit = dbAccess.getHabitItem(itemId)
+            habitName.text = tempHabit.name
+            category.text = tempHabit.category
+            frequency.currentIndex = tempHabit.frequency
+            startDateTimePicker.dateTime = tempHabit.startDateTime
+            endDateTimePicker.dateTime = tempHabit.endDateTime
+        }
+        else {
+            habitName.text = ""
+            category.currentIndex = 0
+            frequency.currentIndex = 0
+            startDateTimePicker.dateTime = new Date()
+            startDateTimePicker.dateTime.setHours(0,0)
+            endDateTimePicker.dateTime = startDateTimePicker.dateTime
+            endDateTimePicker.dateTime.setDate(endDateTimePicker.dateTime.getDate() + 1)
+        }
+        startTime.text = startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
+        endTime.text = endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
     }
 
     ScrollView {
@@ -147,6 +138,7 @@ Comp.ItemCreateEditDialog {
                         id: category
                         Layout.fillWidth: true
                         Layout.preferredHeight: 45
+                        model: Comp.Globals.categoryTypes
                     }
                 }
 
@@ -164,6 +156,7 @@ Comp.ItemCreateEditDialog {
                         id: frequency
                         Layout.fillWidth: true
                         Layout.preferredHeight: 45
+                        model: ["Daily"]
                     }
                 }
 
@@ -274,17 +267,5 @@ Comp.ItemCreateEditDialog {
                 }
             }
         }
-    }
-
-    Component.onCompleted: {
-        if(!scrollView.editMode) {
-            startDateTimePicker.dateTime = new Date()
-            startDateTimePicker.dateTime.setHours(0,0)
-            endDateTimePicker.dateTime = startDateTimePicker.dateTime
-            endDateTimePicker.dateTime.setDate(endDateTimePicker.dateTime.getDate() + 1)
-        }
-
-        startTime.text = startDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
-        endTime.text = endDateTimePicker.dateTime.toLocaleString(Qt.locale(),"dd MMM yyyy hh:mm AP")
     }
 }

@@ -10,6 +10,10 @@ Impl.ItemDelegate {
     id: control
 
     property bool hasParentGoal
+    property int itemId
+    property alias habitName: habitName.text
+    property date startDateTime
+    property date endDateTime
 
     padding: 15
 
@@ -47,9 +51,12 @@ Impl.ItemDelegate {
                 Impl.ContentIconLabel {
                     id: timeStatus
                     icon.source: "qrc:/time_icon.svg"
-                    text: "1h 2m remaining"
-                    //color depends on status
-                    color: "green"
+                    text: Comp.Utils.getTimeStatus(control.startDateTime,
+                                                 control.endDateTime,
+                                                 control.done)
+                    color: Comp.Globals.statusColors[Comp.Utils.getStatus(control.dateTime,
+                                                    Comp.Utils.getEndDateTime(control.dateTime, control.duration),
+                                                    control.done)]
                 }
 
                 Impl.ContentIconLabel {

@@ -12,6 +12,7 @@ class Habit : public QObject
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
     Q_PROPERTY(int frequency READ frequency WRITE setFrequency NOTIFY frequencyChanged)
+    Q_PROPERTY(int targetDays READ targetDays WRITE setTargetDays NOTIFY targetDaysChanged)
     Q_PROPERTY(QDateTime startDateTime READ startDateTime WRITE setStartDateTime NOTIFY startDateTimeChanged)
     Q_PROPERTY(QDateTime endDateTime READ endDateTime WRITE setEndDateTime NOTIFY endDateTimeChanged)
     Q_PROPERTY(int parentGoalId READ parentGoalId WRITE setParentGoalId NOTIFY parentGoalIdChanged)
@@ -28,6 +29,8 @@ public:
     void setCategory(const QString& category);
     int frequency() const;
     void setFrequency(int frequency);
+    int targetDays();
+    void setTargetDays();
     QDateTime startDateTime() const;
     void setStartDateTime(const QDateTime& startDateTime);
     QDateTime endDateTime() const;
@@ -40,6 +43,7 @@ signals:
     void nameChanged();
     void categoryChanged();
     void frequencyChanged();
+    void targetDaysChanged();
     void startDateTimeChanged();
     void endDateTimeChanged();
     void parentGoalIdChanged();
@@ -49,6 +53,7 @@ private:
     QString m_name;
     QString m_category;
     int m_frequency;
+    int m_targetDays;
     QDateTime m_startDateTime;
     QDateTime m_endDateTime;
     int m_parentGoalId;

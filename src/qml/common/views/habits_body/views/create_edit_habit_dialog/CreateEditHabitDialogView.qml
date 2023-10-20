@@ -183,6 +183,7 @@ Comp.ItemCreateEditDialog {
                         }
 
                         Btn.PageHeaderButton {
+                            id: setToMax
                             Layout.preferredWidth: targetDays.height
                             Layout.preferredHeight: targetDays.height
                             flat: true
@@ -192,7 +193,8 @@ Comp.ItemCreateEditDialog {
                             icon.color: Comp.Globals.color.secondary.shade1
 
                             Material.roundedScale: Material.SmallScale
-
+                            ToolTip.text: "Set to max"
+                            ToolTip.visible: setToMax.hovered
                             onClicked: targetDays.value = targetDays.to
                         }
                     }

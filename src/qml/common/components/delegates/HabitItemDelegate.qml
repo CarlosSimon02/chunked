@@ -28,8 +28,9 @@ Impl.ItemDelegate {
 
                 Text {
                     id: habitName
-                    text: "No Fap for Six Months Everyday and Every Work"
                     Layout.fillWidth: true
+                    Layout.preferredHeight: control.hasParentGoal ? 46 : 60
+                    text: "No Fap for Six Months Everyday and Every Work"
                     font.weight: Font.Medium
                     font.pixelSize: control.hasParentGoal ? Comp.Globals.fontSize.medium :
                                                         Comp.Globals.fontSize.large
@@ -53,10 +54,10 @@ Impl.ItemDelegate {
                     icon.source: "qrc:/time_icon.svg"
                     text: Comp.Utils.getTimeStatus(control.startDateTime,
                                                  control.endDateTime,
-                                                 control.done)
-                    color: Comp.Globals.statusColors[Comp.Utils.getStatus(control.dateTime,
-                                                    Comp.Utils.getEndDateTime(control.dateTime, control.duration),
-                                                    control.done)]
+                                                 true)
+                    color: Comp.Globals.statusColors[Comp.Utils.getStatus(control.startDateTime,
+                                                    control.endDateTime,
+                                                    true)]
                 }
 
                 Impl.ContentIconLabel {
@@ -68,7 +69,7 @@ Impl.ItemDelegate {
                 }
 
                 Impl.ContentIconLabel {
-                    icon.source: "qrc:/fire_icon.svg"
+                    icon.source: "qrc:/check_icon.svg"
                     text: "8 days"
                 }
             }

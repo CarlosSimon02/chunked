@@ -38,6 +38,10 @@ Item {
                 anchors.fill: parent
                 anchors.margins: parent.GridView.view.topMargin
                 hasParentGoal: habitItem.parentGoalId
+                itemId: model.itemId
+                habitName: model.name
+                startDateTime: model.startDateTime
+                endDateTime: model.endDateTime
 
                 Material.background: Material.color(Material.Grey, Material.Shade900)
                 Material.elevation: 0

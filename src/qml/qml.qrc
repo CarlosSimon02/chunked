@@ -4,9 +4,7 @@
         <file>qml.qrc</file>
         <file>views/goals/GoalsView.qml</file>
         <file>views/habits/HabitsView.qml</file>
-        <file>views/home/HomeView.qml</file>
         <file>views/reports/ReportsView.qml</file>
-        <file>views/settings/SettingsView.qml</file>
         <file>views/side_menu/components/ItemDelegate.qml</file>
         <file>views/side_menu/SideMenuView.qml</file>
         <file>views/tasks/TasksView.qml</file>
@@ -47,7 +45,6 @@
         <file>common/views/goals_body/views/create_edit_goal/CreateEditGoalView.qml</file>
         <file>common/views/habits_body/views/habit_info_drawer/components/DateHiglighter.qml</file>
         <file>views/reports/components/DataSummaryCard.qml</file>
-        <file>views/home/components/Page.qml</file>
         <file>common/components/delegates/impl/ContentIconLabel.qml</file>
         <file>common/components/delegates/GoalItemDelegate.qml</file>
         <file>common/components/delegates/HabitItemDelegate.qml</file>

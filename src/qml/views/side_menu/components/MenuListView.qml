@@ -19,12 +19,6 @@ ListView {
 
     model: ListModel {
         ListElement {
-            label: "Home"
-            iconSource: "qrc:/home_icon.svg"
-            viewSource: "qrc:/views/home/HomeView.qml"
-        }
-
-        ListElement {
             label: "Goals"
             iconSource: "qrc:/goals_icon.svg"
             viewSource: "qrc:/views/goals/GoalsView.qml"
@@ -46,12 +40,6 @@ ListView {
             label: "Reports"
             iconSource: "qrc:/reports_icon.svg"
             viewSource: "qrc:/views/reports/ReportsView.qml"
-        }
-
-        ListElement {
-            label: "Settings"
-            iconSource: "qrc:/settings_icon.svg"
-            viewSource: "qrc:/views/settings/SettingsView.qml"
         }
     }
 }

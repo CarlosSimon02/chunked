@@ -77,6 +77,15 @@ DBAccess::DBAccess(QObject *parent)
                    ");");
         if (query.lastError().isValid())
             qWarning() << "DBAccess::DBAccess" << query.lastError().text();
+
+        query.exec("CREATE TABLE IF NOT EXISTS habitsCheckedDate ("
+                   "itemId INTEGER PRIMARY KEY AUTOINCREMENT, "
+                   "date TEXT, "
+                   "parentHabitId INTEGER, "
+                   "FOREIGN KEY(parentHabitId) REFERENCES habits(itemId) ON DELETE CASCADE"
+                   ");");
+        if (query.lastError().isValid())
+            qWarning() << "DBAccess::DBAccess" << query.lastError().text();
     }
 }
 
